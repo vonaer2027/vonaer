@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard - Empty Leg Flights",
-  description: "Manage empty leg flights, users, and pricing settings",
+  title: "Vonaer Empty Leg Management",
+  description: "Vonaer's comprehensive platform for managing empty leg flights, users, and pricing settings",
 };
 
 export default function RootLayout({

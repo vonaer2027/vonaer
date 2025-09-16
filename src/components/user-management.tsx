@@ -158,7 +158,7 @@ export function UserManagement() {
             <div>
               <CardTitle>User Management</CardTitle>
               <CardDescription>
-                Manage customer accounts and contact information
+                Manage Vonaer customer accounts and contact information
               </CardDescription>
             </div>
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>

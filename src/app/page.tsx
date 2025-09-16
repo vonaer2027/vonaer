@@ -71,7 +71,7 @@ export default function AdminDashboard() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center space-y-4">
           <RefreshCw className="h-8 w-8 animate-spin mx-auto text-primary" />
-          <p className="text-muted-foreground">Loading admin dashboard...</p>
+          <p className="text-muted-foreground">Loading Vonaer dashboard...</p>
         </div>
       </div>
     )
@@ -88,9 +88,9 @@ export default function AdminDashboard() {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
+              <h1 className="text-3xl font-bold text-foreground">Vonaer Empty Leg Management</h1>
               <p className="text-muted-foreground mt-1">
-                Manage empty leg flights, users, and pricing
+                Comprehensive platform for managing empty leg flights, users, and pricing
               </p>
             </div>
             <div className="flex items-center gap-2">
