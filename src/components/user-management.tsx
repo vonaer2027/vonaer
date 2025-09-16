@@ -77,9 +77,10 @@ export function UserManagement() {
       setDialogOpen(false)
       resetForm()
       loadUsers()
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error saving user:', error)
-      if (error.message?.includes('duplicate key')) {
+      const errorMessage = error instanceof Error ? error.message : String(error)
+      if (errorMessage.includes('duplicate key')) {
         toast.error('Phone number already exists')
       } else {
         toast.error('Failed to save user')

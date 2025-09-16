@@ -26,7 +26,7 @@ export interface Flight {
   route_summary?: string
   involves_korea?: boolean
   scraped_timestamp?: string
-  image_urls?: any
+  image_urls?: string[]
   created_at?: string
   updated_at?: string
 }
