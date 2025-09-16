@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { FlightCard } from '@/components/flight-card'
 import { UserManagement } from '@/components/user-management'
 import { MarginSettings } from '@/components/margin-settings'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -92,15 +93,18 @@ export default function AdminDashboard() {
                 Manage empty leg flights, users, and pricing
               </p>
             </div>
-            <Button 
-              onClick={loadData} 
-              disabled={refreshing}
-              variant="outline"
-              size="sm"
-            >
-              <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-              Refresh
-            </Button>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <Button 
+                onClick={loadData} 
+                disabled={refreshing}
+                variant="outline"
+                size="sm"
+              >
+                <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+                Refresh
+              </Button>
+            </div>
           </div>
         </motion.div>
 
