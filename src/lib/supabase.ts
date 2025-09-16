@@ -67,6 +67,18 @@ export interface MarginSetting {
   updated_at?: string
 }
 
+export interface BookingRequest {
+  id: number
+  flight_id: string
+  customer_name: string
+  customer_phone: string
+  consent_given: boolean
+  called: boolean
+  created_at?: string
+  updated_at?: string
+  flight?: Flight // For joined queries
+}
+
 // Flight operations
 export const flightService = {
   async getAll() {
@@ -104,6 +116,18 @@ export const userService = {
     
     if (error) throw error
     return data as User[]
+  },
+
+  async getByPhoneNumber(phoneNumber: string) {
+    const supabase = getSupabaseClient()
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('phone_number', phoneNumber)
+      .single()
+    
+    if (error && error.code !== 'PGRST116') throw error // PGRST116 is "no rows returned"
+    return data as User | null
   },
 
   async create(user: Omit<User, 'id' | 'created_at' | 'updated_at'>) {
@@ -190,5 +214,109 @@ export const marginService = {
     
     if (error) throw error
     return data as MarginSetting[]
+  }
+}
+
+// Booking request operations
+export const bookingRequestService = {
+  async getAll() {
+    const supabase = getSupabaseClient()
+    const { data, error } = await supabase
+      .from('booking_requests')
+      .select(`
+        *,
+        flight:flights(*)
+      `)
+      .order('created_at', { ascending: false })
+    
+    if (error) throw error
+    return data as BookingRequest[]
+  },
+
+  async create(bookingRequest: Omit<BookingRequest, 'id' | 'created_at' | 'updated_at' | 'flight'>) {
+    const supabase = getSupabaseClient()
+    
+    // First, check if user already exists with this phone number
+    const existingUser = await userService.getByPhoneNumber(bookingRequest.customer_phone)
+    
+    // If user doesn't exist, create them automatically
+    if (!existingUser) {
+      try {
+        await userService.create({
+          name: bookingRequest.customer_name,
+          phone_number: bookingRequest.customer_phone,
+          is_active: true,
+          notes: `Auto-created from booking request for flight ${bookingRequest.flight_id}`
+        })
+        console.log(`Auto-created user: ${bookingRequest.customer_name} (${bookingRequest.customer_phone})`)
+      } catch (userCreateError) {
+        console.warn('Failed to create user, but continuing with booking request:', userCreateError)
+        // Continue with booking request even if user creation fails
+        // This could happen due to race conditions or database constraints
+      }
+    } else {
+      // User exists, optionally update their name if it's different
+      if (existingUser.name !== bookingRequest.customer_name) {
+        try {
+          await userService.update(existingUser.id, {
+            name: bookingRequest.customer_name,
+            notes: existingUser.notes ? 
+              `${existingUser.notes}; Name updated from booking request` : 
+              'Name updated from booking request'
+          })
+          console.log(`Updated existing user name: ${bookingRequest.customer_name} (${bookingRequest.customer_phone})`)
+        } catch (updateError) {
+          console.warn('Failed to update user name:', updateError)
+        }
+      }
+    }
+    
+    // Create the booking request
+    const { data, error } = await supabase
+      .from('booking_requests')
+      .insert([bookingRequest])
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as BookingRequest
+  },
+
+  async getById(id: number) {
+    const supabase = getSupabaseClient()
+    const { data, error } = await supabase
+      .from('booking_requests')
+      .select(`
+        *,
+        flight:flights(*)
+      `)
+      .eq('id', id)
+      .single()
+    
+    if (error) throw error
+    return data as BookingRequest
+  },
+
+  async markAsCalled(id: number) {
+    const supabase = getSupabaseClient()
+    const { data, error } = await supabase
+      .from('booking_requests')
+      .update({ called: true })
+      .eq('id', id)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as BookingRequest
+  },
+
+  async delete(id: number) {
+    const supabase = getSupabaseClient()
+    const { error } = await supabase
+      .from('booking_requests')
+      .delete()
+      .eq('id', id)
+    
+    if (error) throw error
   }
 }

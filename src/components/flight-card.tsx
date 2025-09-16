@@ -160,7 +160,7 @@ export function FlightCard({ flight, marginSetting }: FlightCardProps) {
           {/* Korea Badge */}
           {flight.involves_korea && (
             <Badge variant="outline" className="w-fit">
-              🇰🇷 Korea Route
+              KR Korea Route
             </Badge>
           )}
 

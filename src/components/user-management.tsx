@@ -10,7 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { User, userService } from '@/lib/supabase'
-import { Plus, MoreHorizontal, Edit, Trash2, Phone, Mail, User as UserIcon } from 'lucide-react'
+import { Plus, MoreHorizontal, Edit, Trash2, Phone, User as UserIcon } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
 
@@ -41,21 +41,17 @@ export function UserManagement() {
   }, [])
 
   const formatPhoneForStorage = (phone: string) => {
-    // Convert 01099343991 to +82-10-9934-3991
-    const cleaned = phone.replace(/\D/g, '') // Remove non-digits
-    if (cleaned.startsWith('010')) {
-      return `+82-${cleaned.slice(1, 3)}-${cleaned.slice(3, 7)}-${cleaned.slice(7)}`
-    }
-    return phone // Return as-is if not standard format
+    // Store phone numbers as entered to maintain consistency
+    // Remove any extra spaces or characters but keep dashes if present
+    return phone.trim()
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Validate phone number (should be 11 digits starting with 010)
-    const cleaned = formData.phone_number.replace(/\D/g, '')
-    if (!cleaned.match(/^010\d{8}$/)) {
-      toast.error('Please enter a valid phone number (e.g., 01099343991)')
+    // Basic validation - ensure phone number is not empty
+    if (!formData.phone_number.trim()) {
+      toast.error('Please enter a phone number')
       return
     }
 
@@ -89,8 +85,8 @@ export function UserManagement() {
   }
 
   const formatPhoneForEdit = (phone: string) => {
-    // Convert +82-10-9934-3991 back to 01099343991 for editing
-    return phone.replace(/^\+82-/, '0').replace(/-/g, '')
+    // Return phone number as-is for editing to maintain original format
+    return phone
   }
 
   const handleEdit = (user: User) => {
@@ -121,8 +117,13 @@ export function UserManagement() {
   }
 
   const formatPhoneNumber = (phone: string) => {
-    // Format Korean phone number for display
-    return phone.replace(/^\+82-/, '0').replace(/-/g, '-')
+    // Format Korean phone number for display - keep original format from database
+    // If it's stored with +82- format, convert to 010 format
+    if (phone.startsWith('+82-')) {
+      return phone.replace(/^\+82-/, '0')
+    }
+    // Return as-is if already in correct format
+    return phone
   }
 
   const formatDate = (dateString: string) => {
@@ -154,7 +155,7 @@ export function UserManagement() {
     >
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <CardTitle>User Management</CardTitle>
               <CardDescription>
@@ -163,7 +164,7 @@ export function UserManagement() {
             </div>
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
               <DialogTrigger asChild>
-                <Button onClick={resetForm}>
+                <Button onClick={resetForm} className="self-start sm:self-auto">
                   <Plus className="h-4 w-4 mr-2" />
                   Add User
                 </Button>
@@ -177,7 +178,7 @@ export function UserManagement() {
                     <DialogDescription>
                       {editingUser 
                         ? 'Update user information below.' 
-                        : 'Enter the user details below. Phone number should be 11 digits (e.g., 01099343991).'}
+                        : 'Enter the user details below.'}
                     </DialogDescription>
                   </DialogHeader>
                   
@@ -199,12 +200,11 @@ export function UserManagement() {
                         id="phone"
                         value={formData.phone_number}
                         onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
-                        placeholder="01099343991"
-                        maxLength={11}
+                        placeholder="01099343991 or 010-9934-3992"
                         required
                       />
                       <p className="text-xs text-muted-foreground">
-                        Enter 11 digits starting with 010 (e.g., 01099343991)
+                        Enter phone number (with or without dashes)
                       </p>
                     </div>
                   </div>
@@ -239,17 +239,19 @@ export function UserManagement() {
               </Button>
             </div>
           ) : (
-            <div className="rounded-md border">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Contact</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Created</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
+            <div className="rounded-md border overflow-hidden">
+              <div className="overflow-x-auto -mx-4 sm:mx-0">
+                <div className="min-w-full inline-block align-middle">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="min-w-[120px]">Name</TableHead>
+                        <TableHead className="min-w-[140px]">Contact</TableHead>
+                        <TableHead className="min-w-[80px]">Status</TableHead>
+                        <TableHead className="min-w-[100px]">Created</TableHead>
+                        <TableHead className="text-right min-w-[80px]">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
                 <TableBody>
                   {users.map((user) => (
                     <TableRow key={user.id}>
@@ -260,17 +262,9 @@ export function UserManagement() {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2 text-sm">
-                            <Phone className="h-3 w-3 text-muted-foreground" />
-                            {formatPhoneNumber(user.phone_number)}
-                          </div>
-                          {user.email && (
-                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <Mail className="h-3 w-3" />
-                              {user.email}
-                            </div>
-                          )}
+                        <div className="flex items-center gap-2 text-sm">
+                          <Phone className="h-3 w-3 text-muted-foreground" />
+                          {formatPhoneNumber(user.phone_number)}
                         </div>
                       </TableCell>
                       <TableCell>
@@ -306,7 +300,9 @@ export function UserManagement() {
                     </TableRow>
                   ))}
                 </TableBody>
-              </Table>
+                  </Table>
+                </div>
+              </div>
             </div>
           )}
         </CardContent>
