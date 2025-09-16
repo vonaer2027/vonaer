@@ -5,7 +5,6 @@ import { FlightCard } from '@/components/flight-card'
 import { UserManagement } from '@/components/user-management'
 import { MarginSettings } from '@/components/margin-settings'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { ConnectionDebug } from '@/components/connection-debug'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -169,15 +168,6 @@ export default function AdminDashboard() {
               </p>
             </CardContent>
           </Card>
-        </motion.div>
-
-        {/* Connection Debug */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
-        >
-          <ConnectionDebug />
         </motion.div>
 
         {/* Main Content Tabs */}
