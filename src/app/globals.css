@@ -36,9 +36,9 @@
   --sidebar-accent-foreground: rgb(34, 64, 66);
   --sidebar-border: rgb(222, 226, 230);
   --sidebar-ring: rgb(34, 64, 66);
-  --font-sans: Inter;
+  --font-sans: var(--font-geist-sans);
   --font-serif: Georgia;
-  --font-mono: monospace;
+  --font-mono: var(--font-geist-mono);
   --radius: 0.5rem;
   --shadow-2xs: 0px 4px 10px 0px hsl(0 0% 0% / 0.05);
   --shadow-xs: 0px 4px 10px 0px hsl(0 0% 0% / 0.05);
@@ -85,9 +85,9 @@
   --sidebar-accent-foreground: rgb(240, 247, 247);
   --sidebar-border: rgb(34, 64, 66);
   --sidebar-ring: rgb(58, 108, 111);
-  --font-sans: Inter;
+  --font-sans: var(--font-geist-sans);
   --font-serif: Georgia;
-  --font-mono: monospace;
+  --font-mono: var(--font-geist-mono);
   --radius: 0.5rem;
   --shadow-2xs: 0px 4px 10px 0px hsl(0 0% 0% / 0.10);
   --shadow-xs: 0px 4px 10px 0px hsl(0 0% 0% / 0.10);
@@ -166,5 +166,6 @@
   body {
     @apply bg-background text-foreground;
     letter-spacing: var(--tracking-normal);
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   }
 }
