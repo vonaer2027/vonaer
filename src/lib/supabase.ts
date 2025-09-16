@@ -1,9 +1,25 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+let supabaseClient: SupabaseClient | null = null
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+export const getSupabaseClient = () => {
+  if (!supabaseClient) {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+    if (!supabaseUrl) {
+      throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL environment variable')
+    }
+
+    if (!supabaseKey) {
+      throw new Error('Missing NEXT_PUBLIC_SUPABASE_ANON_KEY environment variable')
+    }
+
+    supabaseClient = createClient(supabaseUrl, supabaseKey)
+  }
+  
+  return supabaseClient
+}
 
 // Types for our database tables
 export interface Flight {
@@ -54,6 +70,7 @@ export interface MarginSetting {
 // Flight operations
 export const flightService = {
   async getAll() {
+    const supabase = getSupabaseClient()
     const { data, error } = await supabase
       .from('flights')
       .select('*')
@@ -64,6 +81,7 @@ export const flightService = {
   },
 
   async getById(id: number) {
+    const supabase = getSupabaseClient()
     const { data, error } = await supabase
       .from('flights')
       .select('*')
@@ -78,6 +96,7 @@ export const flightService = {
 // User operations
 export const userService = {
   async getAll() {
+    const supabase = getSupabaseClient()
     const { data, error } = await supabase
       .from('users')
       .select('*')
@@ -88,6 +107,7 @@ export const userService = {
   },
 
   async create(user: Omit<User, 'id' | 'created_at' | 'updated_at'>) {
+    const supabase = getSupabaseClient()
     const { data, error } = await supabase
       .from('users')
       .insert([user])
@@ -99,6 +119,7 @@ export const userService = {
   },
 
   async update(id: number, user: Partial<User>) {
+    const supabase = getSupabaseClient()
     const { data, error } = await supabase
       .from('users')
       .update(user)
@@ -111,6 +132,7 @@ export const userService = {
   },
 
   async delete(id: number) {
+    const supabase = getSupabaseClient()
     const { error } = await supabase
       .from('users')
       .delete()
@@ -123,6 +145,7 @@ export const userService = {
 // Margin settings operations
 export const marginService = {
   async getCurrent() {
+    const supabase = getSupabaseClient()
     const { data, error } = await supabase
       .from('margin_settings')
       .select('*')
@@ -136,6 +159,7 @@ export const marginService = {
   },
 
   async update(marginPercentage: number, createdBy?: string) {
+    const supabase = getSupabaseClient()
     // Deactivate current margin
     await supabase
       .from('margin_settings')
@@ -158,6 +182,7 @@ export const marginService = {
   },
 
   async getHistory() {
+    const supabase = getSupabaseClient()
     const { data, error } = await supabase
       .from('margin_settings')
       .select('*')

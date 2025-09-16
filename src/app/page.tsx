@@ -23,6 +23,14 @@ export default function AdminDashboard() {
   const loadData = async () => {
     try {
       setRefreshing(true)
+      
+      // Check if environment variables are available
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        console.error('Missing Supabase environment variables')
+        toast.error('Configuration error: Missing database connection')
+        return
+      }
+      
       const [flightsData, marginData] = await Promise.all([
         flightService.getAll(),
         marginService.getCurrent().catch(() => null) // Handle case where no margin is set
@@ -156,14 +164,6 @@ export default function AdminDashboard() {
               </p>
             </CardContent>
           </Card>
-        </motion.div>
-
-        {/* Debug Panel */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
-        >
         </motion.div>
 
         {/* Main Content Tabs */}
