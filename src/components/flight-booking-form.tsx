@@ -2,21 +2,24 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { CitySearchInput } from '@/components/city-search-input'
+import { FlightDatePicker } from '@/components/flight-date-picker'
 import { 
   Minus, 
   Plus
 } from 'lucide-react'
 
 export function FlightBookingForm() {
+  const t = useTranslations()
   const [tripType, setTripType] = useState('one-way')
   const [passengers, setPassengers] = useState(1)
   const [fromLocation, setFromLocation] = useState('')
   const [toLocation, setToLocation] = useState('')
-  const [departDate, setDepartDate] = useState('')
-  const [returnDate, setReturnDate] = useState('')
+  const [departDate, setDepartDate] = useState<Date | undefined>()
+  const [returnDate, setReturnDate] = useState<Date | undefined>()
 
   const handleSearch = () => {
     // Handle flight search logic
@@ -42,9 +45,9 @@ export function FlightBookingForm() {
         >
           {/* Header */}
           <div className="mb-12">
-            <h2 className="text-4xl font-bold text-foreground mb-4">BOOK A FLIGHT</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-4">{t('booking.title')}</h2>
             <p className="text-muted-foreground text-lg">
-              Please fill out the form to be connected with our sales team. Private jet charter costs are subject to various factors and start at <span className="font-semibold text-foreground">$5,000 per hour</span>.
+              {t('booking.subtitle')}
             </p>
           </div>
 
@@ -53,65 +56,66 @@ export function FlightBookingForm() {
             <Tabs value={tripType} onValueChange={setTripType} className="w-full">
               <TabsList className="grid w-full max-w-sm grid-cols-2 h-12">
                 <TabsTrigger value="one-way" className="text-sm font-medium">
-                  ONE WAY
+                  {t('booking.tripType.oneWay')}
                 </TabsTrigger>
                 <TabsTrigger value="round-trip" className="text-sm font-medium">
-                  ROUND TRIP
+                  {t('booking.tripType.roundTrip')}
                 </TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
 
           {/* Booking Form */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 items-end">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 items-end">
             {/* From */}
-            <div className="lg:col-span-1">
-              <Input
+            <div className="lg:col-span-2">
+              <CitySearchInput
                 id="from"
-                placeholder="Departure city"
+                placeholder={t('booking.placeholders.departureCity')}
                 value={fromLocation}
-                onChange={(e) => setFromLocation(e.target.value)}
+                onChange={setFromLocation}
+                icon="plane"
                 className="h-14 text-base"
               />
             </div>
 
             {/* To */}
-            <div className="lg:col-span-1">
-              <Input
+            <div className="lg:col-span-2">
+              <CitySearchInput
                 id="to"
-                placeholder="Destination city"
+                placeholder={t('booking.placeholders.destinationCity')}
                 value={toLocation}
-                onChange={(e) => setToLocation(e.target.value)}
+                onChange={setToLocation}
+                icon="plane"
                 className="h-14 text-base"
               />
             </div>
 
             {/* Depart Date */}
-            <div className="lg:col-span-1">
-              <Input
-                id="depart"
-                type="date"
-                value={departDate}
-                onChange={(e) => setDepartDate(e.target.value)}
-                className="h-14 text-base [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:invert-0 dark:[&::-webkit-calendar-picker-indicator]:invert [&::-webkit-datetime-edit-text]:text-foreground [&::-webkit-datetime-edit]:text-foreground"
+            <div className="lg:col-span-2">
+              <FlightDatePicker
+                date={departDate}
+                onDateSelect={setDepartDate}
+                placeholder={t('booking.placeholders.departureDate')}
+                className="h-14"
               />
             </div>
 
             {/* Return Date - only show for round trip */}
             {tripType === 'round-trip' && (
-              <div className="lg:col-span-1">
-                <Input
-                  id="return"
-                  type="date"
-                  value={returnDate}
-                  onChange={(e) => setReturnDate(e.target.value)}
-                  className="h-14 text-base [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:invert-0 dark:[&::-webkit-calendar-picker-indicator]:invert [&::-webkit-datetime-edit-text]:text-foreground [&::-webkit-datetime-edit]:text-foreground"
+              <div className="lg:col-span-2">
+                <FlightDatePicker
+                  date={returnDate}
+                  onDateSelect={setReturnDate}
+                  placeholder={t('booking.placeholders.returnDate')}
+                  minDate={departDate}
+                  className="h-14"
                 />
               </div>
             )}
 
             {/* Passengers */}
-            <div className={`${tripType === 'round-trip' ? 'lg:col-span-1' : 'lg:col-span-2'}`}>
+            <div className={`${tripType === 'round-trip' ? 'lg:col-span-2' : 'lg:col-span-4'}`}>
               <div className="flex items-center border rounded-md h-14 bg-background">
                 <Button
                   type="button"
@@ -123,7 +127,7 @@ export function FlightBookingForm() {
                   <Minus className="h-4 w-4 text-foreground" />
                 </Button>
                 <span className="flex-1 text-center font-medium text-foreground text-base">
-                  {passengers} Passenger{passengers !== 1 ? 's' : ''}
+                  {passengers} {passengers === 1 ? t('booking.passengers') : t('booking.passengersPlural')}
                 </span>
                 <Button
                   type="button"
@@ -138,12 +142,12 @@ export function FlightBookingForm() {
             </div>
 
             {/* Search Button */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-2">
               <Button
                 onClick={handleSearch}
-                className="w-full h-14 bg-black text-white hover:bg-gray-800 transition-all duration-300 font-semibold tracking-wide text-base"
+                className="w-full h-14 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 font-semibold tracking-wide text-base"
               >
-                SEARCH
+                {t('booking.search')}
               </Button>
             </div>
           </div>

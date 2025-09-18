@@ -9,6 +9,7 @@ import { MarginSetting, marginService } from '@/lib/supabase'
 import { Settings, TrendingUp, Save, AlertCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
+import { useTranslations } from 'next-intl'
 
 interface MarginSettingsProps {
   currentMargin: MarginSetting | null
@@ -16,6 +17,7 @@ interface MarginSettingsProps {
 }
 
 export function MarginSettings({ currentMargin, onMarginUpdate }: MarginSettingsProps) {
+  const t = useTranslations()
   const [marginPercentage, setMarginPercentage] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -32,12 +34,12 @@ export function MarginSettings({ currentMargin, onMarginUpdate }: MarginSettings
     const percentage = parseFloat(marginPercentage)
     
     if (isNaN(percentage) || percentage < 0 || percentage > 100) {
-      toast.error('0과 100 사이의 유효한 백분율을 입력하세요')
+      toast.error(t('marginSettings.validation.invalidPercentage'))
       return
     }
 
     if (currentMargin && percentage === currentMargin.margin_percentage) {
-      toast.info('마진 백분율이 이미 이 값으로 설정되어 있습니다')
+      toast.info(t('marginSettings.validation.alreadySet'))
       return
     }
 
@@ -47,7 +49,7 @@ export function MarginSettings({ currentMargin, onMarginUpdate }: MarginSettings
       onMarginUpdate(newMargin)
     } catch (error) {
       console.error('Error updating margin:', error)
-      toast.error('마진 설정 업데이트에 실패했습니다')
+      toast.error(t('marginSettings.error.updateFailed'))
     } finally {
       setLoading(false)
     }
@@ -76,17 +78,17 @@ export function MarginSettings({ currentMargin, onMarginUpdate }: MarginSettings
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Settings className="h-5 w-5" />
-마진 설정
+{t('marginSettings.title')}
           </CardTitle>
           <CardDescription>
-모든 항공편 가격에 적용될 마진 백분율을 설정하세요
+{t('marginSettings.subtitle')}
           </CardDescription>
         </CardHeader>
         
         <CardContent className="space-y-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-2">
-              <Label htmlFor="margin">마진 백분율 (%)</Label>
+              <Label htmlFor="margin">{t('marginSettings.marginPercentage')}</Label>
               <div className="flex gap-2">
                 <Input
                   id="margin"
@@ -96,16 +98,16 @@ export function MarginSettings({ currentMargin, onMarginUpdate }: MarginSettings
                   step="0.01"
                   value={marginPercentage}
                   onChange={(e) => setMarginPercentage(e.target.value)}
-                  placeholder="백분율을 입력하세요 (예: 15.5)"
+                  placeholder={t('marginSettings.placeholder')}
                   className="flex-1"
                 />
                 <Button type="submit" disabled={loading}>
                   <Save className="h-4 w-4 mr-2" />
-                  {loading ? '저장 중...' : '저장'}
+                  {loading ? t('marginSettings.saving') : t('marginSettings.save')}
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground">
-현재 마진: {currentMargin?.margin_percentage || 0}%
+{t('marginSettings.currentMargin')}: {currentMargin?.margin_percentage || 0}%
               </p>
             </div>
           </form>
@@ -115,19 +117,19 @@ export function MarginSettings({ currentMargin, onMarginUpdate }: MarginSettings
             <div className="border rounded-lg p-4 bg-muted/50">
               <h4 className="font-medium mb-3 flex items-center gap-2">
                 <TrendingUp className="h-4 w-4" />
-가격 예시
+{t('marginSettings.example.title')}
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div>
-                  <div className="text-muted-foreground">기본 가격</div>
+                  <div className="text-muted-foreground">{t('marginSettings.example.basePrice')}</div>
                   <div className="font-medium">${example.basePrice.toLocaleString()}</div>
                 </div>
                 <div>
-                  <div className="text-muted-foreground">마진 ({example.percentage}%)</div>
-                  <div className="font-medium text-green-600">+${example.margin.toLocaleString()}</div>
+                  <div className="text-muted-foreground">{t('marginSettings.example.margin')} ({example.percentage}%)</div>
+                  <div className="font-medium text-primary">+${example.margin.toLocaleString()}</div>
                 </div>
                 <div>
-                  <div className="text-muted-foreground">최종 가격</div>
+                  <div className="text-muted-foreground">{t('marginSettings.example.finalPrice')}</div>
                   <div className="font-bold text-primary">${example.adjustedPrice.toLocaleString()}</div>
                 </div>
               </div>
@@ -139,11 +141,10 @@ export function MarginSettings({ currentMargin, onMarginUpdate }: MarginSettings
             <AlertCircle className="h-4 w-4 text-yellow-600 dark:text-yellow-400 mt-0.5 flex-shrink-0" />
             <div className="text-sm">
               <p className="font-medium text-yellow-800 dark:text-yellow-200">
-중요 안내
+{t('marginSettings.warning.title')}
               </p>
               <p className="text-yellow-700 dark:text-yellow-300 mt-1">
-마진을 변경하면 고객에게 표시되는 모든 항공편 가격에 영향을 미칩니다. 
-                새로운 마진은 기존 및 신규 모든 항공편에 즉시 적용됩니다.
+{t('marginSettings.warning.description')}
               </p>
             </div>
           </div>

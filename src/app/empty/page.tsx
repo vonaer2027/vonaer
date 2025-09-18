@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
+import { VonaerHeader } from '@/components/vonaer-header'
+import { VonaerMenuOverlay } from '@/components/vonaer-menu-overlay'
 import { ClientFlightCard } from '@/components/client-flight-card'
 import { BookingDialog } from '@/components/booking-dialog'
-import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -17,6 +19,7 @@ import { toast } from 'sonner'
 type SortOption = 'price-low' | 'price-high' | 'date-near' | 'date-far'
 
 export default function ClientFlightsPage() {
+  const t = useTranslations()
   const [flights, setFlights] = useState<Flight[]>([])
   const [filteredFlights, setFilteredFlights] = useState<Flight[]>([])
   const [marginSetting, setMarginSetting] = useState<MarginSetting | null>(null)
@@ -25,8 +28,9 @@ export default function ClientFlightsPage() {
   const [sortBy, setSortBy] = useState<SortOption>('date-near')
   const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null)
   const [bookingDialogOpen, setBookingDialogOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     try {
       setRefreshing(true)
       
@@ -47,16 +51,16 @@ export default function ClientFlightsPage() {
       setMarginSetting(marginData)
     } catch (error) {
       console.error('Error loading data:', error)
-      toast.error('항공편 로드에 실패했습니다')
+      toast.error(t('client.loading'))
     } finally {
       setLoading(false)
       setRefreshing(false)
     }
-  }
+  }, [t])
 
   useEffect(() => {
     loadData()
-  }, [])
+  }, [loadData])
 
   const calculateFinalPrice = useCallback((flight: Flight): number => {
     if (!flight.price_numeric || !marginSetting) return flight.price_numeric || 0
@@ -106,25 +110,52 @@ export default function ClientFlightsPage() {
   }
 
   const handleBookingSuccess = () => {
-    toast.success('예약 요청이 성공적으로 제출되었습니다! 곧 연락드리겠습니다.')
+    toast.success(t('bookingDialog.bookingRequestSuccess'))
     setBookingDialogOpen(false)
     setSelectedFlight(null)
   }
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <RefreshCw className="h-8 w-8 animate-spin mx-auto text-primary" />
-          <p className="text-muted-foreground">이용 가능한 항공편 로딩 중...</p>
+      <div className="bg-primary text-primary-foreground relative min-h-screen">
+        {/* Sticky Header */}
+        <VonaerHeader 
+          menuOpen={menuOpen}
+          onMenuToggle={() => setMenuOpen(!menuOpen)}
+        />
+
+        {/* Full Screen Menu Overlay */}
+        <VonaerMenuOverlay 
+          isOpen={menuOpen}
+          onClose={() => setMenuOpen(false)}
+        />
+
+        <div className="min-h-screen bg-background flex items-center justify-center pt-20">
+          <div className="text-center space-y-4">
+            <RefreshCw className="h-8 w-8 animate-spin mx-auto text-primary" />
+            <p className="text-muted-foreground">{t('client.loading')}</p>
+          </div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
+    <div className="bg-primary text-primary-foreground relative min-h-screen">
+      {/* Sticky Header */}
+      <VonaerHeader 
+        menuOpen={menuOpen}
+        onMenuToggle={() => setMenuOpen(!menuOpen)}
+      />
+
+      {/* Full Screen Menu Overlay */}
+      <VonaerMenuOverlay 
+        isOpen={menuOpen}
+        onClose={() => setMenuOpen(false)}
+      />
+
+      <div className="min-h-screen bg-background pt-20">
+        <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -133,18 +164,18 @@ export default function ClientFlightsPage() {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-foreground">VONAER 어드민</h1>
+              <h1 className="text-3xl font-bold text-foreground">{t('client.title')}</h1>
             </div>
             <div className="flex items-center gap-2">
-              <ThemeToggle />
               <Button 
                 onClick={loadData} 
                 disabled={refreshing}
                 variant="outline"
                 size="sm"
+                className="text-foreground hover:text-foreground"
               >
                 <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-새로고침
+{t('client.refresh')}
               </Button>
             </div>
           </div>
@@ -163,14 +194,14 @@ export default function ClientFlightsPage() {
                 <div>
                   <CardTitle className="flex items-center gap-2">
                     <Plane className="h-5 w-5" />
-이용 가능한 항공편
+                    {t('client.availableFlights')}
                   </CardTitle>
                   <CardDescription>
-{filteredFlights.length}개의 빈 항공편이 이용 가능합니다
+                    {t('client.flightsAvailable', { count: filteredFlights.length })}
                   </CardDescription>
                 </div>
                 <Badge variant="outline" className="text-sm">
-업데이트: {new Date().toLocaleDateString('ko-KR')}
+                  {t('client.updateDate')} {new Date().toLocaleDateString('ko-KR')}
                 </Badge>
               </div>
             </CardHeader>
@@ -178,7 +209,7 @@ export default function ClientFlightsPage() {
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
                   <Filter className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm font-medium">정렬 기준:</span>
+                  <span className="text-sm font-medium">{t('client.sortBy')}</span>
                 </div>
                 <Select value={sortBy} onValueChange={(value: SortOption) => setSortBy(value)}>
                   <SelectTrigger className="w-48">
@@ -189,28 +220,28 @@ export default function ClientFlightsPage() {
                       <div className="flex items-center gap-2">
                         <DollarSign className="h-4 w-4" />
                         <SortAsc className="h-4 w-4" />
-가격: 낮은 순
+                        {t('client.sortOptions.priceLow')}
                       </div>
                     </SelectItem>
                     <SelectItem value="price-high">
                       <div className="flex items-center gap-2">
                         <DollarSign className="h-4 w-4" />
                         <SortDesc className="h-4 w-4" />
-가격: 높은 순
+                        {t('client.sortOptions.priceHigh')}
                       </div>
                     </SelectItem>
                     <SelectItem value="date-near">
                       <div className="flex items-center gap-2">
                         <Calendar className="h-4 w-4" />
                         <SortAsc className="h-4 w-4" />
-날짜: 가까운 순
+                        {t('client.sortOptions.dateNear')}
                       </div>
                     </SelectItem>
                     <SelectItem value="date-far">
                       <div className="flex items-center gap-2">
                         <Calendar className="h-4 w-4" />
                         <SortDesc className="h-4 w-4" />
-날짜: 먼 순
+                        {t('client.sortOptions.dateFar')}
                       </div>
                     </SelectItem>
                   </SelectContent>
@@ -231,10 +262,10 @@ export default function ClientFlightsPage() {
               <CardContent className="text-center py-12">
                 <Plane className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-muted-foreground mb-2">
-                  이용 가능한 항공편이 없습니다
+                  {t('client.noFlights')}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  새로운 빈 항공편 기회를 확인하려면 나중에 다시 확인하세요
+                  {t('client.noFlightsDescription')}
                 </p>
               </CardContent>
             </Card>
@@ -257,6 +288,7 @@ export default function ClientFlightsPage() {
             </div>
           )}
         </motion.div>
+        </div>
       </div>
       
       {/* Booking Dialog */}

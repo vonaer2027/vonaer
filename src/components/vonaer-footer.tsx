@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { 
@@ -9,36 +10,38 @@ import {
   MessageCircle, 
   ArrowRight,
   Phone,
-  Mail,
-  MapPin
+  Mail
 } from 'lucide-react'
 
-const footerServices = [
-  'VONAER Jet',
-  'VON Private', 
-  'VON Routine',
-  'VON Tour'
-]
-
-const ancillaryServices = [
-  'Membership',
-  'Company'
-]
-
-const companyLinks = [
-  'ABOUT US',
-  'Careers',
-  'Personal Information Policy',
-  'Terms of Use'
-]
-
-const socialLinks = [
-  { icon: Instagram, label: 'Instagram', href: '#' },
-  { icon: MessageCircle, label: 'KakaoTalk', href: '#' },
-  { icon: Youtube, label: 'Youtube', href: '#' }
-]
-
 export function VonaerFooter() {
+  const t = useTranslations()
+  
+  const footerServices = [
+    t('footer.services.0'),
+    t('footer.services.1'),
+    t('footer.services.2'),
+    t('footer.services.3')
+  ]
+  const ancillaryServices = [
+    t('footer.ancillaryServices.0'),
+    t('footer.ancillaryServices.1'),
+    t('footer.ancillaryServices.2'),
+    t('footer.ancillaryServices.3'),
+    t('footer.ancillaryServices.4'),
+    t('footer.ancillaryServices.5')
+  ]
+  const companyLinks = [
+    t('footer.companyLinks.0'),
+    t('footer.companyLinks.1'),
+    t('footer.companyLinks.2'),
+    t('footer.companyLinks.3')
+  ]
+  
+  const socialLinks = [
+    { icon: Instagram, label: 'Instagram', href: '#' },
+    { icon: MessageCircle, label: 'KakaoTalk', href: '#' },
+    { icon: Youtube, label: 'Youtube', href: '#' }
+  ]
   return (
     <footer id="contact" className="bg-card text-card-foreground border-t">
       {/* Newsletter Section */}
@@ -51,18 +54,18 @@ export function VonaerFooter() {
             viewport={{ once: true }}
             className="text-center max-w-2xl mx-auto"
           >
-            <h3 className="text-3xl font-bold mb-4 text-foreground">Newsletter</h3>
+            <h3 className="text-3xl font-bold mb-4 text-foreground">{t('footer.newsletter.title')}</h3>
             <p className="text-muted-foreground mb-8">
-              Stay updated with the latest from VONAER and exclusive offers
+              {t('footer.newsletter.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <Input
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t('footer.newsletter.placeholder')}
                 className="flex-1"
               />
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 group">
-                Subscribe
+                {t('footer.newsletter.subscribe')}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>
@@ -80,7 +83,7 @@ export function VonaerFooter() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h4 className="font-bold text-lg mb-6 text-foreground">VONAER SERVICE</h4>
+            <h4 className="font-bold text-lg mb-6 text-foreground">{t('footer.sections.vonaerService')}</h4>
             <div className="space-y-3">
               {footerServices.map((service, index) => (
                 <a
@@ -101,7 +104,7 @@ export function VonaerFooter() {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h4 className="font-bold text-lg mb-6 text-foreground">ANCILLARY SERVICE</h4>
+            <h4 className="font-bold text-lg mb-6 text-foreground">{t('footer.sections.ancillaryService')}</h4>
             <div className="space-y-3">
               {ancillaryServices.map((service, index) => (
                 <a
@@ -122,7 +125,7 @@ export function VonaerFooter() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="font-bold text-lg mb-6 text-foreground">Company</h4>
+            <h4 className="font-bold text-lg mb-6 text-foreground">{t('footer.sections.company')}</h4>
             <div className="space-y-3">
               {companyLinks.map((link, index) => (
                 <a
@@ -143,26 +146,26 @@ export function VonaerFooter() {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h4 className="font-bold text-lg mb-6 text-foreground">Contact</h4>
+            <h4 className="font-bold text-lg mb-6 text-foreground">{t('footer.sections.contact')}</h4>
             <div className="space-y-4 mb-6">
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Phone className="h-4 w-4 flex-shrink-0" />
-                <span>+82 1600 9064</span>
+                <span>{t('footer.contact.phone')}</span>
               </div>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Mail className="h-4 w-4 flex-shrink-0" />
-                <span>business@VONAER.com</span>
+                <span>{t('footer.contact.email')}</span>
               </div>
             </div>
 
             <div className="mb-6">
-              <h5 className="font-medium text-foreground mb-3">Business hours</h5>
-              <p className="text-muted-foreground text-sm">Business days | 09:00 ~ 18:00</p>
-              <p className="text-muted-foreground text-sm">Holidays</p>
+              <h5 className="font-medium text-foreground mb-3">{t('footer.contact.businessHours')}</h5>
+              <p className="text-muted-foreground text-sm">{t('footer.contact.businessDays')}</p>
+              <p className="text-muted-foreground text-sm">{t('footer.contact.holidays')}</p>
             </div>
 
             <div>
-              <h5 className="font-medium text-foreground mb-3">SNS</h5>
+              <h5 className="font-medium text-foreground mb-3">{t('footer.contact.sns')}</h5>
               <div className="flex gap-3">
                 {socialLinks.map((social, index) => (
                   <a
@@ -191,12 +194,15 @@ export function VonaerFooter() {
             className="text-center space-y-4"
           >
             <div className="text-sm text-muted-foreground space-y-1">
-              <p>Company : Moviation Inc | Business registration number: 216-81-49698</p>
-              <p>Address : 06164, 2nd floor of Korea City Airport, 22, Teheran-ro 87-gil, Gangnam-gu, Seoul</p>
-              <p>e-commerce registration number : 2022-SeoulGangnam-00453 | e-commerce registration authority : Gangnam-gu office</p>
+              <p>{t('footer.company.name')}</p>
+              <p>{t('footer.company.address')}</p>
+              <p>{t('footer.company.businessNumber')}</p>
+              <p>{t('footer.company.representative')}</p>
+              <p>{t('footer.company.telecomSales')}</p>
+              <p>{t('footer.company.telecomAuthority')}</p>
             </div>
             <p className="text-muted-foreground text-sm">
-              Copyright Moviation Inc. All Rights Reserved.
+              {t('footer.company.copyright')}
             </p>
           </motion.div>
         </div>

@@ -1,0 +1,1342 @@
+{
+  "hero": {
+    "title": "VONAER",
+    "subtitle": "새로운 라이프스타일을 제안하는 플랫폼, VONAER는 도시 항공 모빌리티 서비스입니다.",
+    "bookFlight": "항공편 예약"
+  },
+  "services": {
+    "title": "VONAER 서비스",
+    "subtitle": "새로운 라이프스타일을 제안하는 플랫폼, VONAER는 도시 항공 모빌리티 서비스입니다.",
+    "vonPrivate": {
+      "title": "VON 프라이빗",
+      "subtitle": "시간을 가장 소중히 여기는 분들을 위한 VIP 서비스",
+      "description": "VON 프라이빗은 목적지와 시간을 자유롭게 지정할 수 있는 VIP 전세 서비스로 원활한 여행 경험을 제공합니다.",
+      "features": {
+        "feature1": "편리한 출발지와 목적지 선택",
+        "feature2": "가입비 없음. 크레딧 구매 후 앱을 통한 예약",
+        "feature3": "공항 에스코트, VON 캐리, VON 라운지 서비스"
+      }
+    },
+    "vonRoutine": {
+      "title": "VON 루틴",
+      "subtitle": "강남에서 인천공항까지 20분",
+      "description": "VON 루틴은 강남과 인천공항 간 빠르고 편안한 항공 셔틀 서비스를 제공합니다. VONAER 앱을 통해 간단히 예약하세요.",
+      "features": {
+        "feature1": "강남에서 인천공항까지 차원이 다른 편안함 경험",
+        "feature2": "편리하고 빠른 교통수단",
+        "feature3": "헬리콥터 전세 서비스 이용 가능"
+      }
+    },
+    "vonTour": {
+      "title": "VON 투어",
+      "subtitle": "한국의 숨막히는 하늘 경치를 즐기세요",
+      "description": "경치 좋은 헬리콥터 투어로 한국을 이전과는 다르게 경험해보세요. 다양한 투어 패키지를 이용할 수 있습니다.",
+      "features": {
+        "feature1": "관악산 투어 - 단풍 & 봄꽃 투어",
+        "feature2": "한강 투어 - 서울 스카이라인 & 벚꽃 투어",
+        "feature3": "DMZ 투어 - 한국에서만 볼 수 있는 역사적 랜드마크"
+      }
+    },
+    "learnMore": "더 알아보기",
+    "tourPackages": {
+      "title": "투어 패키지",
+      "gwanakMountain": {
+        "name": "관악산",
+        "route": "한국에서만 볼 수 있는 역사적 랜드마크를 목격하세요. 하늘에서 DMZ 너머 북한의 숨막히는 경치를 경험하세요.",
+        "tags": {
+          "tag1": "역사적",
+          "tag2": "경치",
+          "tag3": "독특한"
+        }
+      },
+      "hanRiver": {
+        "name": "한강",
+        "route": "서울 → 한강 → 서울",
+        "tags": {
+          "tag1": "시티 투어",
+          "tag2": "강 경치",
+          "tag3": "스카이라인"
+        }
+      },
+      "bukhanMountain": {
+        "name": "북한산",
+        "route": "코엑스 → 롯데타워 → 석촌호수 → 북한산 → 도봉산",
+        "tags": {
+          "tag1": "북한산 국립공원",
+          "tag2": "서울 록키산 투어"
+        }
+      },
+      "dmz": {
+        "name": "DMZ 투어",
+        "route": "한국에서만 볼 수 있는 역사적 랜드마크를 목격하세요. 하늘에서 DMZ 너머 북한의 경치를 감상하세요.",
+        "tags": {
+          "tag1": "DMZ 투어"
+        }
+      }
+    },
+    "usageGuide": {
+      "title": "VONAER 사용법",
+      "subtitle": "프리미엄 항공 경험을 예약하는 간단한 단계",
+      "steps": {
+        "step1": {
+          "title": "앱 다운로드",
+          "description": "앱스토어 또는 구글플레이에서 VONAER 앱을 다운로드하세요"
+        },
+        "step2": {
+          "title": "계정 생성",
+          "description": "필요한 서류로 계정을 가입하고 인증하세요"
+        },
+        "step3": {
+          "title": "서비스 선택",
+          "description": "VON 프라이빗, VON 루틴, VON 투어 중에서 선택하세요"
+        },
+        "step4": {
+          "title": "예약 & 비행",
+          "description": "예약하고 프리미엄 항공 경험을 즐기세요"
+        },
+        "step5": {
+          "title": "탑승",
+          "description": "예정된 시간에 헬리패드에 도착하여 안전 직원의 지시를 따르세요"
+        },
+        "step6": {
+          "title": "하기",
+          "description": "착륙 후 VON 렌트카 또는 VON 리무진으로 라스트 마일 이동을 계속하세요"
+        }
+      }
+    }
+  },
+  "booking": {
+    "title": "항공편 예약",
+    "subtitle": "VONAER의 프리미엄 서비스로 럭셔리 항공 여행을 경험하세요",
+    "tripType": {
+      "oneWay": "편도",
+      "roundTrip": "왕복"
+    },
+    "placeholders": {
+      "departureCity": "출발 도시",
+      "destinationCity": "목적지 도시",
+      "departureDate": "출발 날짜",
+      "returnDate": "귀국 날짜"
+    },
+    "passengers": "승객",
+    "passengersPlural": "승객",
+    "search": "항공편 검색"
+  },
+  "about": {
+    "coreValues": {
+      "value1": {
+        "title": "시간 효율성",
+        "description": "우리는 무엇보다 당신의 시간을 소중히 여기며, 가장 빠른 경로와 최소한의 대기 시간을 제공합니다."
+      },
+      "value2": {
+        "title": "안전 우선",
+        "description": "우리의 안전에 대한 약속은 흔들리지 않으며, 엄격한 유지보수와 인증된 조종사를 통해 실현됩니다."
+      },
+      "value3": {
+        "title": "럭셔리 경험",
+        "description": "모든 여행은 최고의 편안함과 세련됨을 제공하도록 세심하게 계획됩니다."
+      },
+      "value4": {
+        "title": "혁신",
+        "description": "우리는 지속적으로 혁신하여 최신 항공 기술과 서비스를 제공합니다."
+      }
+    },
+    "companyStory": {
+      "title": "우리의 이야기",
+      "description": "VONAER는 한국의 도시 항공 모빌리티를 혁신하겠다는 비전으로 설립되었습니다. 우리는 프리미엄 항공 여행이 접근 가능하고 효율적이며 환경을 고려해야 한다고 믿습니다. 항공 전문가와 기술 혁신가로 구성된 우리 팀은 오늘 교통의 미래를 제공하기 위해 끊임없이 노력합니다."
+    },
+    "appDownload": {
+      "title": "VONAER 앱 다운로드",
+      "subtitle": "손끝에서 항공 여행의 미래를 경험하세요",
+      "button": "앱 다운로드"
+    }
+  },
+  "membership": {
+    "title": "VONAER 멤버십",
+    "subtitle": "항공 여행 요구사항에 가장 적합한 멤버십 등급을 선택하세요",
+    "mostPopular": "가장 인기",
+    "annualDues": "연회비",
+    "bookingFee": "예약 수수료",
+    "charterPrice": "전세 가격",
+    "getStarted": "시작하기",
+    "joinNow": "지금 가입",
+    "termsTitle": "멤버십 약관 및 혜택",
+    "terms": {
+      "term1": "모든 멤버십은 구매일로부터 12개월간 유효합니다.",
+      "term2": "멤버십 혜택은 양도할 수 없으며 제3자와 공유할 수 없습니다.",
+      "term3": "멤버십 종료 전에 추가 시간을 구매하면 남은 시간이 이월됩니다.",
+      "term4": "전용 비행 시간이 소진되면 멤버 등급에 따른 적용 요금이 적용됩니다.",
+      "term5": "제빙, 흡연, 특별 케이터링 서비스에 대해 추가 요금이 적용될 수 있습니다."
+    },
+    "tiers": {
+      "aerMember": {
+        "name": "AER 멤버",
+        "annualDues": "해당 없음",
+        "bookingFee": "$495",
+        "charterPrice": "동적",
+        "features": {
+          "0": {
+            "name": "공항 에스코트",
+            "included": "false"
+          },
+          "1": {
+            "name": "프라이빗 터미널",
+            "included": "true"
+          },
+          "2": {
+            "name": "VONAER 이벤트",
+            "included": "false"
+          },
+          "3": {
+            "name": "엠프티 레그 할인",
+            "included": "false",
+            "value": ""
+          }
+        }
+      },
+      "von": {
+        "name": "VON",
+        "annualDues": "$92,500",
+        "bookingFee": "무료",
+        "charterPrice": "동적",
+        "features": {
+          "0": {
+            "name": "항공기 개조",
+            "included": "false"
+          },
+          "1": {
+            "name": "공항 에스코트",
+            "included": "true"
+          },
+          "2": {
+            "name": "프라이빗 터미널",
+            "included": "true"
+          },
+          "3": {
+            "name": "VONAER 이벤트",
+            "included": "true"
+          },
+          "4": {
+            "name": "엠프티 레그 할인",
+            "included": "true",
+            "value": "2%"
+          }
+        }
+      },
+      "vonPremiere": {
+        "name": "VON 프리미어",
+        "annualDues": "$234,000",
+        "bookingFee": "무료",
+        "charterPrice": "동적",
+        "features": {
+          "0": {
+            "name": "항공기 개조",
+            "included": "true"
+          },
+          "1": {
+            "name": "공항 에스코트",
+            "included": "true"
+          },
+          "2": {
+            "name": "프라이빗 터미널",
+            "included": "true"
+          },
+          "3": {
+            "name": "VONAER 이벤트",
+            "included": "true"
+          },
+          "4": {
+            "name": "엠프티 레그 할인",
+            "included": "true",
+            "value": "3%"
+          }
+        }
+      },
+      "vonUltimate": {
+        "name": "VON 얼티밋",
+        "annualDues": "$350,000",
+        "bookingFee": "무료",
+        "charterPrice": "동적",
+        "features": {
+          "0": {
+            "name": "프리미엄 항공기",
+            "included": "true"
+          },
+          "1": {
+            "name": "공항 에스코트",
+            "included": "true"
+          },
+          "2": {
+            "name": "프라이빗 터미널",
+            "included": "true"
+          },
+          "3": {
+            "name": "VONAER 이벤트",
+            "included": "true"
+          },
+          "4": {
+            "name": "엠프티 레그 할인",
+            "included": "true",
+            "value": "5%"
+          }
+        }
+      }
+    }
+  },
+  "ancillary": {
+    "title": "부대 서비스",
+    "subtitle": "포괄적인 부대 서비스로 VONAER 서비스를 향상시키세요",
+    "services": {
+      "0": {
+        "id": "von-escort",
+        "title": "VON 에스코트",
+        "description": "진정한 VIP 경험을 위한 차별화된 공항 에스코트 서비스",
+        "features": {
+          "0": "공항 내 개인 에스코트",
+          "1": "빠른 보안 및 입국 심사",
+          "2": "VIP 라운지 이용",
+          "3": "수하물 도움"
+        }
+      },
+      "1": {
+        "id": "von-carry",
+        "title": "VON 캐리",
+        "description": "최종 목적지까지 수하물을 배달하는 프리미엄 수하물 배송 서비스",
+        "features": {
+          "0": "문앞까지 수하물 배달",
+          "1": "실시간 추적",
+          "2": "보험 적용",
+          "3": "화이트 글로브 처리"
+        }
+      },
+      "2": {
+        "id": "von-connect",
+        "title": "VON 커넥트",
+        "description": "헬리포트와 공항 터미널 간 자동차 서비스",
+        "features": {
+          "0": "원활한 터미널 이동",
+          "1": "전문 운전사",
+          "2": "럭셔리 차량 대여",
+          "3": "실시간 조정"
+        }
+      },
+      "3": {
+        "id": "von-lounge",
+        "title": "VON 라운지",
+        "description": "VON 멤버를 위한 독점 라운지",
+        "features": {
+          "0": "프라이빗 라운지 이용",
+          "1": "프리미엄 다이닝 옵션",
+          "2": "비즈니스 시설",
+          "3": "컨시어지 서비스"
+        }
+      },
+      "4": {
+        "id": "von-limousine",
+        "title": "VON 리무진",
+        "description": "VON 리무진은 퍼스트 & 라스트 마일을 위한 VIP 블랙카 서비스를 제공합니다.",
+        "features": {
+          "0": "럭셔리 리무진 대여",
+          "1": "전문 운전사",
+          "2": "퍼스트 및 라스트 마일 서비스",
+          "3": "프리미엄 편의시설"
+        }
+      },
+      "5": {
+        "id": "von-rentcar",
+        "title": "VON 렌트카",
+        "description": "고객이 최종 목적지까지 운전할 수 있도록 하는 렌터카 서비스",
+        "features": {
+          "0": "프리미엄 차량 선택",
+          "1": "유연한 렌탈 조건",
+          "2": "공항 배달",
+          "3": "24/7 지원"
+        }
+      }
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "뉴스레터",
+      "subtitle": "VONAER의 최신 소식과 독점 혜택을 받아보세요",
+      "placeholder": "이메일을 입력하세요",
+      "subscribe": "구독"
+    },
+    "sections": {
+      "vonaerService": "VONAER 서비스",
+      "ancillaryService": "부대 서비스",
+      "company": "회사",
+      "contact": "연락처"
+    },
+    "services": {
+      "0": "VONAER 제트",
+      "1": "VON 프라이빗",
+      "2": "VON 루틴",
+      "3": "VON 투어"
+    },
+    "ancillaryServices": {
+      "0": "VON 에스코트",
+      "1": "VON 캐리",
+      "2": "VON 커넥트",
+      "3": "VON 라운지",
+      "4": "VON 리무진",
+      "5": "VON 렌트카"
+    },
+    "companyLinks": {
+      "0": "회사 소개",
+      "1": "채용",
+      "2": "보도자료",
+      "3": "연락처"
+    },
+    "contact": {
+      "phone": "+82-2-1234-5678",
+      "email": "info@vonaer.com",
+      "businessHours": "영업시간",
+      "businessDays": "월요일 - 금요일: 오전 9:00 - 오후 6:00",
+      "holidays": "주말 및 공휴일: 휴무",
+      "sns": "SNS"
+    },
+    "company": {
+      "name": "주식회사 모비에이션",
+      "address": "서울특별시 강남구 학동로 523, 1층 102호(청담동, 루나빌딩)",
+      "businessNumber": "사업등록번호 : 216-81-49698",
+      "representative": "대표 : 신민",
+      "telecomSales": "통신판매신고번호 : 제2022-서울강남-00453호",
+      "telecomAuthority": "통신판매업신고기관 : 서울특별시 강남구청",
+      "copyright": "Copyright Moviation Inc. All Rights Reserved. 2025"
+    }
+  },
+  "menu": {
+    "title": "메뉴",
+    "categories": {
+      "vonaerService": "VONAER 서비스",
+      "privateJets": "프라이빗 제트",
+      "helicopter": "헬리콥터",
+      "luxuryTransport": "럭셔리 교통",
+      "ancillaryService": "부대 서비스"
+    },
+    "items": {
+      "allServices": "모든 서비스",
+      "bookFlight": "항공편 예약",
+      "allJets": "모든 제트",
+      "lightJet": "라이트 제트",
+      "midJet": "미드 제트",
+      "heavyJet": "헤비 제트",
+      "ultraLongHaul": "울트라 롱홀",
+      "vipAirline": "VIP 항공",
+      "helicopterServices": "헬리콥터 서비스",
+      "superCar": "슈퍼카",
+      "superYacht": "슈퍼요트",
+      "allAncillaryServices": "모든 부대 서비스"
+    },
+    "other": {
+      "home": "홈",
+      "aboutUs": "회사 소개",
+      "membership": "멤버십",
+      "aircraft": "항공기",
+      "emptyLeg": "엠프티 레그",
+      "pr": "PR",
+      "contact": "연락처"
+    }
+  },
+  "booking": {
+    "title": "항공편 예약",
+    "subtitle": "영업팀과 연결되도록 양식을 작성해 주세요. 프라이빗 제트 전세 비용은 다양한 요인에 따라 달라지며 시간당 $5,000부터 시작됩니다.",
+    "tripType": {
+      "oneWay": "편도",
+      "roundTrip": "왕복"
+    },
+    "placeholders": {
+      "departureCity": "출발 도시",
+      "destinationCity": "목적지 도시",
+      "departureDate": "출발 날짜",
+      "returnDate": "귀국 날짜"
+    },
+    "passengers": "승객",
+    "passengersPlural": "승객",
+    "search": "검색"
+  },
+  "jets": {
+    "title": "프라이빗 제트",
+    "subtitle": "포괄적인 프라이빗 제트 대여로 럭셔리, 편안함, 효율성을 경험하세요",
+    "mostPopular": "가장 인기",
+    "aircraftImage": "항공기 이미지",
+    "passengers": "승객",
+    "range": "항속거리",
+    "speed": "속도",
+    "airports": "공항",
+    "requestQuote": "견적 요청",
+    "safety": {
+      "title": "안전 및 인증",
+      "description": "모든 VONAER 항공기는 최고의 안전 기준을 충족하며 풍부한 경험을 가진 인증된 전문가들이 운항합니다.",
+      "learnMore": "안전에 대해 알아보기"
+    },
+    "categories": {
+      "lightJet": {
+        "title": "라이트 제트",
+        "subtitle": "효율적인 단거리 제트",
+        "description": "우수한 연료 효율성과 소규모 그룹을 위한 편안한 좌석으로 단거리에서 중거리 비행에 완벽합니다.",
+        "specs": {
+          "passengers": "4-8명",
+          "range": "1,500-2,500 nm",
+          "speed": "400-500 mph",
+          "airports": "5,000개 이상"
+        },
+        "features": [
+          "단거리 여행에 비용 효율적",
+          "소규모 공항 접근 가능",
+          "빠른 탑승 절차",
+          "연료 효율적"
+        ]
+      },
+      "midJet": {
+        "title": "미드 제트",
+        "subtitle": "균형 잡힌 성능 제트",
+        "description": "향상된 객실 공간으로 중거리 여행을 위한 편안함, 항속거리, 성능의 이상적인 균형을 제공합니다.",
+        "specs": {
+          "passengers": "6-10명",
+          "range": "2,000-3,500 nm",
+          "speed": "450-550 mph",
+          "airports": "3,500개 이상"
+        },
+        "features": [
+          "넓은 객실 디자인",
+          "확장된 항속거리 기능",
+          "향상된 편의 기능",
+          "신뢰할 수 있는 성능"
+        ]
+      },
+      "heavyJet": {
+        "title": "헤비 제트",
+        "subtitle": "장거리 럭셔리 제트",
+        "description": "프리미엄 편의시설과 넓은 객실로 장거리 비행을 위한 최대의 럭셔리와 항속거리를 제공합니다.",
+        "specs": {
+          "passengers": "8-16명",
+          "range": "3,500-7,000 nm",
+          "speed": "500-600 mph",
+          "airports": "3,000개 이상"
+        },
+        "features": [
+          "럭셔리 객실 편의시설",
+          "장거리 기능",
+          "프리미엄 다이닝 옵션",
+          "풀사이즈 화장실"
+        ]
+      },
+      "ultraLongHaul": {
+        "title": "울트라 롱홀",
+        "subtitle": "대륙간 제트",
+        "description": "호텔과 같은 편의시설로 대륙간 비행을 위한 궁극의 럭셔리와 항속거리를 제공합니다.",
+        "specs": {
+          "passengers": "10-19명",
+          "range": "6,000+ nm",
+          "speed": "550-650 mph",
+          "airports": "2,500개 이상"
+        },
+        "features": [
+          "침실 및 샤워 시설",
+          "회의실 설정",
+          "고급 다이닝 서비스",
+          "글로벌 항속거리 기능"
+        ]
+      },
+      "vipAirline": {
+        "title": "VIP 항공",
+        "subtitle": "프리미엄 항공 서비스",
+        "description": "퍼스트 클래스 편의시설과 우선 탑승으로 상용 항공 VIP 서비스를 제공합니다.",
+        "specs": {
+          "passengers": "1-4명",
+          "range": "글로벌",
+          "speed": "500-600 mph",
+          "airports": "주요 허브"
+        },
+        "features": [
+          "퍼스트 클래스 객실 이용",
+          "우선 탑승",
+          "전용 체크인",
+          "글로벌 네트워크"
+        ]
+      }
+    }
+  },
+  "admin": {
+    "title": "VONAER 관리자 대시보드",
+    "loading": "VONAER 대시보드 로딩 중...",
+    "viewLanding": "랜딩 페이지 보기",
+    "viewCustomer": "고객 사이트 보기",
+    "refresh": "새로고침",
+    "priceTest": "가격 테스트",
+    "noFlights": "테스트할 항공편이 없습니다",
+    "priceTestSuccess": "사용자 정의 가격 업데이트 테스트가 성공했습니다!",
+    "priceTestFailed": "테스트 실패",
+    "priceTestError": "오류로 인한 테스트 실패",
+    "stats": {
+      "totalFlights": "전체 항공편",
+      "koreaRoutes": "한국 노선",
+      "averagePrice": "평균 가격",
+      "currentMargin": "현재 마진"
+    },
+    "tabs": {
+      "flights": "항공편",
+      "bookings": "예약",
+      "users": "사용자",
+      "settings": "설정"
+    },
+    "flights": {
+      "title": "엠프티 레그 항공편",
+      "description": "현재 가격이 적용된 모든 이용 가능한 엠프티 레그 항공편",
+      "noFlights": "이용 가능한 항공편이 없습니다",
+      "noFlightsDescription": "새로운 엠프티 레그 항공편 기회를 확인하려면 나중에 다시 확인하세요"
+    }
+  },
+  "client": {
+    "title": "엠프티 레그 항공편",
+    "subtitle": "이용 가능한 엠프티 레그 항공편을 확인하고 예약하세요",
+    "loading": "이용 가능한 항공편 로딩 중...",
+    "refresh": "새로고침",
+    "availableFlights": "이용 가능한 항공편",
+    "flightsAvailable": "엠프티 레그 항공편이 이용 가능합니다",
+    "updateDate": "업데이트:",
+    "sortBy": "정렬 기준:",
+    "sortOptions": {
+      "priceLow": "가격: 낮은 순",
+      "priceHigh": "가격: 높은 순",
+      "dateNear": "날짜: 가까운 순",
+      "dateFar": "날짜: 먼 순"
+    },
+    "noFlights": "이용 가능한 항공편이 없습니다",
+    "noFlightsDescription": "새로운 엠프티 레그 항공편 기회를 확인하려면 나중에 다시 확인하세요"
+  },
+  "flightCard": {
+    "from": "출발지",
+    "to": "도착지",
+    "date": "날짜",
+    "seats": "석",
+    "price": "가격",
+    "tbd": "미정",
+    "dateTBD": "날짜 미정",
+    "priceTBD": "가격 미정",
+    "customPrice": "개별 조정 가격",
+    "margin": "마진",
+    "adjustPrice": "가격 조정",
+    "newPrice": "새 가격 (USD)",
+    "pricePlaceholder": "가격을 입력하세요",
+    "cancel": "취소",
+    "save": "저장",
+    "validation": {
+      "invalidPrice": "유효한 가격을 입력하세요"
+    },
+    "success": {
+      "priceUpdated": "가격이 성공적으로 업데이트되었습니다"
+    },
+    "error": {
+      "updateFailed": "가격 업데이트에 실패했습니다"
+    }
+  },
+  "bookingDialog": {
+    "title": "예약 요청",
+    "subtitle": "세부 정보를 입력하시면 24시간 이내에 연락드리겠습니다.",
+    "seats": "석",
+    "dateTBD": "날짜 미정",
+    "contactInfo": "연락처 정보",
+    "name": "성명",
+    "namePlaceholder": "성명을 입력하세요",
+    "phone": "전화번호",
+    "phonePlaceholder": "010-1234-5678",
+    "email": "이메일 주소 (선택사항)",
+    "emailPlaceholder": "your.email@example.com",
+    "consent": "개인정보 및 동의",
+    "contactConsentText": "VONAER에서 항공편 예약과 관련하여 연락하는 것에 동의합니다.",
+    "privacyConsentText": "서비스를 이용함으로써",
+    "privacyPolicy": "개인정보처리방침",
+    "privacyConsentText2": "을 읽고 이해했으며 동의함을 확인합니다.",
+    "cancel": "취소",
+    "submit": "요청 제출",
+    "submitting": "제출 중...",
+    "validation": {
+      "nameRequired": "성명을 입력해주세요",
+      "phoneRequired": "전화번호를 입력해주세요",
+      "contactConsentRequired": "VONAER 연락 동의를 제공해주세요",
+      "privacyConsentRequired": "개인정보처리방침에 동의해주세요"
+    },
+    "error": {
+      "unknownError": "알 수 없는 오류가 발생했습니다",
+      "submitFailed": "예약 요청 실패"
+    }
+  },
+  "bookingRequestsAdmin": {
+    "loadFailed": "예약 요청 로드에 실패했습니다",
+    "markAsCalledSuccess": "통화 완료로 표시되었습니다",
+    "markAsCalledFailed": "통화 완료 표시에 실패했습니다",
+    "deleteConfirm": "정말로 이 예약 요청을 삭제하시겠습니까?",
+    "deleteSuccess": "예약 요청이 삭제되었습니다",
+    "deleteFailed": "예약 요청 삭제에 실패했습니다",
+    "loading": "예약 요청 로딩 중...",
+    "title": "예약 요청",
+    "totalRequests": "전체 요청",
+    "pendingCalls": "대기 중인 통화",
+    "pendingCallsDescription": "연락이 필요한 새로운 예약 요청",
+    "completedCalls": "통화 완료",
+    "completedCallsDescription": "연락이 완료된 고객",
+    "customer": "고객",
+    "flight": "항공편",
+    "route": "노선",
+    "flightDate": "항공편 날짜",
+    "requestDate": "요청일",
+    "actions": "작업",
+    "callCompleted": "통화 완료",
+    "viewDetails": "세부사항 보기",
+    "delete": "삭제",
+    "noRequests": "예약 요청이 아직 없습니다",
+    "noRequestsDescription": "고객 예약 요청이 여기에 나타납니다",
+    "details": {
+      "title": "예약 세부사항",
+      "subtitle": "예약 요청",
+      "customer": "고객",
+      "phone": "전화번호",
+      "email": "이메일",
+      "status": "상태",
+      "requestDate": "요청일",
+      "pending": "대기 중",
+      "completed": "완료",
+      "consent": "개인정보 동의",
+      "agreed": "동의함",
+      "notAgreed": "동의 안함",
+      "markCompleted": "통화 완료로 표시",
+      "close": "닫기"
+    }
+  },
+  "bookingRequests": {
+    "title": "예약 요청",
+    "subtitle": "엠프티 레그 항공편에 대한 고객 문의",
+    "loading": "예약 요청 로딩 중...",
+    "refresh": "새로고침",
+    "stats": {
+      "totalRequests": "전체 요청",
+      "pendingCalls": "대기 중인 통화",
+      "completedCalls": "통화 완료"
+    },
+    "pendingCalls": "대기 중인 통화",
+    "pendingCallsDescription": "연락이 필요한 새로운 예약 요청",
+    "completedCalls": "통화 완료",
+    "completedCallsDescription": "연락이 완료된 고객",
+    "customer": "고객",
+    "flight": "항공편",
+    "route": "노선",
+    "flightDate": "항공편 날짜",
+    "requestDate": "요청일",
+    "actions": "작업",
+    "callCompleted": "통화 완료",
+    "viewDetails": "세부사항 보기",
+    "delete": "삭제",
+    "noRequests": "예약 요청이 아직 없습니다",
+    "noRequestsDescription": "고객 예약 요청이 여기에 나타납니다",
+    "details": {
+      "title": "예약 세부사항",
+      "subtitle": "예약 요청",
+      "customer": "고객",
+      "phone": "전화번호",
+      "email": "이메일",
+      "status": "상태",
+      "requestDate": "요청일",
+      "pending": "대기 중",
+      "completed": "완료",
+      "consent": "개인정보 동의",
+      "agreed": "동의함",
+      "notAgreed": "동의 안함",
+      "markCompleted": "통화 완료로 표시",
+      "close": "닫기"
+    }
+  },
+  "userManagement": {
+    "title": "사용자 관리",
+    "subtitle": "사용자 계정 및 권한 관리",
+    "addUser": "사용자 추가",
+    "editUser": "사용자 수정",
+    "deleteUser": "사용자 삭제",
+    "name": "이름",
+    "phone": "연락처",
+    "status": "상태",
+    "createdAt": "생성일",
+    "actions": "작업",
+    "active": "활성",
+    "inactive": "비활성",
+    "cancel": "취소",
+    "save": "저장",
+    "edit": "수정",
+    "delete": "삭제",
+    "noUsers": "사용자를 찾을 수 없습니다",
+    "noUsersDescription": "첫 번째 사용자를 추가하여 시작하세요",
+    "addFirstUser": "첫 사용자 추가",
+    "namePlaceholder": "사용자 이름을 입력하세요",
+    "phonePlaceholder": "010-1234-5678 또는 01012345678",
+    "phoneHelper": "전화번호를 입력하세요 (대시 포함 또는 제외)",
+    "loadUsersFailed": "사용자 로드에 실패했습니다",
+    "createUserSuccess": "사용자가 성공적으로 생성되었습니다",
+    "createUserFailed": "사용자 생성에 실패했습니다",
+    "updateUserSuccess": "사용자가 성공적으로 업데이트되었습니다",
+    "updateUserFailed": "사용자 업데이트에 실패했습니다",
+    "deleteUserSuccess": "사용자가 성공적으로 삭제되었습니다",
+    "deleteUserFailed": "사용자 삭제에 실패했습니다",
+    "deleteConfirm": "정말로 이 사용자를 삭제하시겠습니까?",
+    "nameRequired": "이름은 필수입니다",
+    "phoneRequired": "전화번호는 필수입니다"
+  },
+  "marginSettings": {
+    "title": "마진 설정",
+    "subtitle": "모든 항공편 가격에 적용될 마진 백분율을 설정하세요",
+    "marginPercentage": "마진 백분율 (%)",
+    "placeholder": "백분율을 입력하세요 (예: 15.5)",
+    "currentMargin": "현재 마진",
+    "save": "저장",
+    "saving": "저장 중...",
+    "example": {
+      "title": "가격 예시",
+      "basePrice": "기본 가격",
+      "margin": "마진",
+      "selectDate": "출발 날짜 선택",
+      "passenger": "승객",
+      "finalPrice": "최종 가격"
+    },
+    "validation": {
+      "invalidPercentage": "0과 100 사이의 유효한 백분율을 입력하세요",
+      "alreadySet": "마진 백분율이 이미 이 값으로 설정되어 있습니다"
+    },
+    "error": {
+      "updateFailed": "마진 설정 업데이트에 실패했습니다"
+    },
+    "warning": {
+      "title": "중요 안내",
+      "description": "마진을 변경하면 고객에게 표시되는 모든 항공편 가격에 영향을 미칩니다. 새로운 마진은 기존 및 신규 모든 항공편에 즉시 적용됩니다."
+    }
+  },
+  "clientFlightCard": {
+    "luxuryAircraft": "럭셔리 항공기",
+    "departure": "출발",
+    "arrival": "도착",
+    "emptyLeg": "빈 항공편",
+    "flightDate": "항공편 날짜",
+    "capacity": "수용 인원",
+    "people": "명",
+    "price": "가격",
+    "totalCost": "총 항공편 비용",
+    "bookRequest": "예약 요청",
+    "tbd": "미정",
+    "dateTBD": "날짜 미정"
+  },
+  "menu": {
+    "title": "메뉴",
+    "categories": {
+      "services": "서비스"
+    },
+    "items": {
+      "allServices": "모든 서비스",
+      "privateJets": "프라이빗 제트",
+      "helicopter": "헬리콥터",
+      "superCar": "슈퍼카",
+      "superYacht": "슈퍼요트"
+    },
+    "other": {
+      "home": "홈",
+      "aboutUs": "회사 소개",
+      "membership": "멤버십",
+      "emptyLeg": "엠프티 레그",
+      "contact": "연락처"
+    }
+  },
+  "jets": {
+    "title": "프라이빗 제트",
+    "subtitle": "포괄적인 프라이빗 제트 기단으로 럭셔리, 편안함, 효율성을 경험하세요",
+    "categories": {
+      "lightJet": {
+        "title": "라이트 제트",
+        "subtitle": "효율적인 단거리 제트",
+        "description": "우수한 연료 효율성과 소규모 그룹을 위한 편안한 좌석으로 단거리에서 중거리 항공편에 완벽합니다.",
+        "features": {
+          "0": "단거리 여행에 비용 효율적",
+          "1": "소규모 공항 접근 가능",
+          "2": "빠른 탑승 절차",
+          "3": "연료 효율적"
+        }
+      },
+      "midJet": {
+        "title": "미드 제트",
+        "subtitle": "균형 잡힌 성능 제트",
+        "description": "향상된 객실 공간으로 중거리 여행을 위한 편안함, 항속거리, 성능의 이상적인 균형을 제공합니다.",
+        "features": {
+          "0": "넓은 객실 디자인",
+          "1": "확장된 항속거리 기능",
+          "2": "향상된 편안함 기능",
+          "3": "신뢰할 수 있는 성능"
+        }
+      },
+      "heavyJet": {
+        "title": "헤비 제트",
+        "subtitle": "장거리 럭셔리 제트",
+        "description": "프리미엄 편의시설과 넓은 객실로 장거리 항공편을 위한 최대 럭셔리와 항속거리를 제공합니다.",
+        "features": {
+          "0": "럭셔리 객실 편의시설",
+          "1": "장거리 기능",
+          "2": "프리미엄 다이닝 옵션",
+          "3": "풀사이즈 화장실"
+        }
+      },
+      "ultraLongHaul": {
+        "title": "울트라 롱홀",
+        "subtitle": "대륙간 제트",
+        "description": "호텔과 같은 편의시설로 대륙간 항공편을 위한 궁극의 럭셔리와 항속거리를 제공합니다.",
+        "features": {
+          "0": "침실 및 샤워 시설",
+          "1": "회의실 설정",
+          "2": "고급 다이닝 서비스",
+          "3": "글로벌 항속거리 기능"
+        }
+      },
+      "vipAirline": {
+        "title": "VIP 항공사",
+        "subtitle": "프리미엄 항공사 서비스",
+        "description": "퍼스트클래스 편의시설과 우선 탑승을 제공하는 상용 항공사 VIP 서비스입니다.",
+        "features": {
+          "0": "퍼스트클래스 객실 접근",
+          "1": "우선 탑승",
+          "2": "전용 체크인",
+          "3": "글로벌 네트워크"
+        }
+      }
+    },
+    "specs": {
+      "passengers": "승객",
+      "range": "항속거리",
+      "speed": "속도",
+      "airports": "공항"
+    },
+    "cta": {
+      "requestQuote": "견적 요청"
+    },
+    "safety": {
+      "title": "안전 및 인증",
+      "description": "모든 VONAER 항공기는 최고의 안전 기준을 충족하며 광범위한 경험을 가진 인증된 전문가들이 운항합니다.",
+      "learnMore": "안전에 대해 알아보기"
+    }
+  },
+  "helicopter": {
+    "title": "헬리콥터 서비스",
+    "subtitle": "교통, 투어, 독특한 항공 경험을 위한 다목적 헬리콥터 서비스",
+    "services": {
+      "vonRoutine": {
+        "title": "VON 루틴",
+        "subtitle": "정기 셔틀 서비스",
+        "description": "강남과 인천공항 간 20분 만에 빠르고 편안한 항공 셔틀 서비스입니다.",
+        "route": "강남 ↔ 인천공항",
+        "duration": "20분",
+        "frequency": "하루 여러 편",
+        "features": {
+          "0": "익스프레스 공항 이동",
+          "1": "프리미엄 헬리콥터 기단",
+          "2": "전문 조종사",
+          "3": "날씨 모니터링"
+        }
+      },
+      "vonTour": {
+        "title": "VON 투어",
+        "subtitle": "경관 헬리콥터 투어",
+        "description": "한국의 가장 아름다운 랜드마크의 숨막히는 항공 전망을 제공하는 경관 헬리콥터 투어입니다.",
+        "route": "다양한 경관 루트",
+        "duration": "30-90분",
+        "frequency": "주문형",
+        "features": {
+          "0": "경관 루트 옵션",
+          "1": "전문 투어 가이드",
+          "2": "사진 촬영 기회",
+          "3": "유연한 스케줄링"
+        }
+      },
+      "vonPrivate": {
+        "title": "VON 프라이빗 헬리콥터",
+        "subtitle": "프라이빗 헬리콥터 차터",
+        "description": "유연한 목적지와 개인화된 항공 경험을 제공하는 맞춤형 헬리콥터 차터 서비스입니다.",
+        "route": "맞춤형 목적지",
+        "duration": "필요에 따라",
+        "frequency": "주문형",
+        "features": {
+          "0": "맞춤형 항공 계획",
+          "1": "VIP 서비스",
+          "2": "유연한 타이밍",
+          "3": "프리미엄 편의시설"
+        }
+      }
+    },
+    "details": {
+      "route": "루트",
+      "duration": "소요시간",
+      "frequency": "빈도"
+    },
+    "tours": {
+      "title": "경관 투어 루트",
+      "gwanakMountain": {
+        "name": "관악산 투어",
+        "route": "코엑스 → 잠실 → 양재숲 → 서울랜드 → 관악산",
+        "duration": "45분",
+        "highlights": {
+          "0": "가을 단풍",
+          "1": "봄 꽃",
+          "2": "서울랜드"
+        }
+      },
+      "hanRiver": {
+        "name": "한강 투어",
+        "route": "코엑스 → 롯데타워 → 석촌호수 → 올림픽공원 → 암사유적 → 남양주",
+        "duration": "60분",
+        "highlights": {
+          "0": "서울 스카이라인",
+          "1": "벚꽃",
+          "2": "올림픽공원"
+        }
+      },
+      "bukhanMountain": {
+        "name": "북한산 투어",
+        "route": "코엑스 → 롯데타워 → 석촌호수 → 북한산 → 도봉산",
+        "duration": "75분",
+        "highlights": {
+          "0": "국립공원",
+          "1": "바위산",
+          "2": "산악 전망"
+        }
+      },
+      "dmz": {
+        "name": "DMZ 투어",
+        "route": "DMZ 위에서 본 역사적 랜드마크와 북한 전망",
+        "duration": "90분",
+        "highlights": {
+          "0": "역사적 유적지",
+          "1": "DMZ 전망",
+          "2": "독특한 경험"
+        }
+      }
+    },
+    "booking": {
+      "title": "예약 방법",
+      "description": "VONAER와 함께 헬리콥터를 예약하는 것은 모바일 앱이나 웹사이트를 통해 간단하고 편리합니다.",
+      "downloadApp": "앱 다운로드",
+      "bookOnline": "온라인 예약"
+    },
+    "cta": {
+      "bookNow": "지금 예약"
+    }
+  },
+  "supercar": {
+    "title": "슈퍼카",
+    "subtitle": "프리미엄 슈퍼카 기단으로 궁극의 럭셔리 지상 교통을 경험하세요",
+    "comingSoon": {
+      "title": "곧 출시",
+      "description": "우리의 럭셔리 슈퍼카 서비스는 현재 개발 중입니다. 항공 서비스의 우수성에 맞는 프리미엄 지상 교통을 경험하세요.",
+      "features": {
+        "luxuryFleet": {
+          "title": "럭셔리 기단",
+          "description": "최고 제조업체의 프리미엄 슈퍼카"
+        },
+        "professionalService": {
+          "title": "전문 서비스",
+          "description": "전문 드라이버와 컨시어지 서비스"
+        },
+        "flexibleBooking": {
+          "title": "유연한 예약",
+          "description": "주문형 및 예약 서비스"
+        }
+      },
+      "cta": {
+        "getNotified": "알림 받기",
+        "contactSales": "영업팀 문의"
+      }
+    }
+  },
+  "superyacht": {
+    "title": "슈퍼요트",
+    "subtitle": "궁극의 해상 경험을 위한 럭셔리 요트 차터",
+    "comingSoon": {
+      "title": "곧 출시",
+      "description": "우리의 럭셔리 요트 차터 서비스는 현재 개발 중입니다. VONAER의 다가오는 요트 기단으로 최고의 해상 럭셔리를 경험하세요.",
+      "features": {
+        "luxuryFleet": {
+          "title": "럭셔리 기단",
+          "description": "세계적 수준의 편의시설을 갖춘 프리미엄 요트"
+        },
+        "coastalAccess": {
+          "title": "해안 접근",
+          "description": "프리미엄 마리나 및 목적지 접근"
+        },
+        "fullService": {
+          "title": "풀 서비스",
+          "description": "완전한 승무원 및 컨시어지 서비스"
+        }
+      },
+      "cta": {
+        "getNotified": "알림 받기",
+        "contactSales": "영업팀 문의"
+      }
+    }
+  },
+  "aircraft": {
+    "title": "항공기 기단",
+    "subtitle": "특정 여행 요구사항을 충족하기 위해 포괄적인 항공기 기단에서 선택하세요",
+    "categories": {
+      "lightJet": {
+        "title": "라이트 제트",
+        "subtitle": "전용기 - 라이트 제트",
+        "description": "우수한 연료 효율성과 소규모 그룹을 위한 편안한 좌석으로 단거리에서 중거리 항공편에 완벽합니다.",
+        "features": {
+          "0": "단거리 여행에 비용 효율적",
+          "1": "소규모 공항 접근 가능",
+          "2": "빠른 탑승 절차",
+          "3": "연료 효율적"
+        }
+      },
+      "midJet": {
+        "title": "미드 제트",
+        "subtitle": "전용기 - 미드 제트",
+        "description": "향상된 객실 공간으로 중거리 여행을 위한 편안함, 항속거리, 성능의 이상적인 균형을 제공합니다.",
+        "features": {
+          "0": "넓은 객실 디자인",
+          "1": "확장된 항속거리 기능",
+          "2": "향상된 편안함 기능",
+          "3": "신뢰할 수 있는 성능"
+        }
+      },
+      "heavyJet": {
+        "title": "헤비 제트",
+        "subtitle": "전용기 - 헤비 제트",
+        "description": "프리미엄 편의시설과 넓은 객실로 장거리 항공편을 위한 최대 럭셔리와 항속거리를 제공합니다.",
+        "features": {
+          "0": "럭셔리 객실 편의시설",
+          "1": "장거리 기능",
+          "2": "프리미엄 다이닝 옵션",
+          "3": "풀사이즈 화장실"
+        }
+      },
+      "ultraLongHaul": {
+        "title": "울트라 롱홀",
+        "subtitle": "전용기 - 울트라 롱홀",
+        "description": "호텔과 같은 편의시설로 대륙간 항공편을 위한 궁극의 럭셔리와 항속거리를 제공합니다.",
+        "features": {
+          "0": "침실 및 샤워 시설",
+          "1": "회의실 설정",
+          "2": "고급 다이닝 서비스",
+          "3": "글로벌 항속거리 기능"
+        }
+      },
+      "vipAirline": {
+        "title": "VIP 항공사",
+        "subtitle": "전용기 - VIP 항공",
+        "description": "퍼스트클래스 편의시설과 우선 탑승을 제공하는 상용 항공사 VIP 서비스입니다.",
+        "features": {
+          "0": "퍼스트클래스 객실 접근",
+          "1": "우선 탑승",
+          "2": "전용 체크인",
+          "3": "글로벌 네트워크"
+        }
+      },
+      "helicopter": {
+        "title": "헬리콥터",
+        "subtitle": "헬기",
+        "description": "단거리 여행, 경관 투어, 제한된 지역 접근을 위한 다목적 회전익 항공기입니다.",
+        "features": {
+          "0": "수직 이착륙",
+          "1": "도심 접근",
+          "2": "경관 비행 기능",
+          "3": "유연한 스케줄링"
+        }
+      }
+    },
+    "specs": {
+      "passengers": "승객",
+      "range": "항속거리",
+      "speed": "속도",
+      "airports": "공항"
+    },
+    "cta": {
+      "requestQuote": "견적 요청"
+    },
+    "help": {
+      "title": "선택에 도움이 필요하신가요?",
+      "description": "우리의 항공 전문가들이 특정 요구사항과 필요에 맞는 완벽한 항공기를 선택하는 데 도움을 드립니다.",
+      "contactExperts": "전문가에게 문의"
+    }
+  },
+  "pr": {
+    "title": "보도 자료 및 미디어",
+    "subtitle": "VONAER의 최신 뉴스, 보도 자료 및 미디어 리소스",
+    "mediaKit": {
+      "title": "미디어 키트",
+      "logos": {
+        "title": "회사 로고",
+        "description": "다양한 형식의 고해상도 VONAER 로고",
+        "type": "이미지"
+      },
+      "pressKit": {
+        "title": "보도 자료",
+        "description": "회사 개요, 임원 이력, 팩트 시트",
+        "type": "문서"
+      },
+      "videos": {
+        "title": "제품 비디오",
+        "description": "VONAER 서비스에 대한 홍보 및 교육 비디오",
+        "type": "비디오"
+      },
+      "download": "다운로드"
+    },
+    "pressReleases": {
+      "title": "보도 자료",
+      "categories": {
+        "companyNews": "회사 뉴스",
+        "partnerships": "파트너십",
+        "serviceLaunch": "서비스 출시",
+        "funding": "투자",
+        "safety": "안전"
+      },
+      "readMore": "더 읽기"
+    },
+    "mediaInquiries": {
+      "title": "미디어 문의",
+      "description": "보도 문의, 인터뷰 요청 또는 추가 정보가 있으시면 미디어 관계팀에 연락해 주세요.",
+      "contactTeam": "미디어팀 문의",
+      "downloadKit": "미디어 키트 다운로드"
+    }
+  },
+  "client": {
+    "loading": "로딩 중...",
+    "title": "이용 가능한 항공편",
+    "subtitle": "다음 엠프티 레그 항공편을 예약하세요",
+    "sortBy": "정렬 기준",
+    "priceLow": "가격: 낮은 순",
+    "priceHigh": "가격: 높은 순",
+    "dateNear": "날짜: 가까운 순",
+    "dateFar": "날짜: 먼 순",
+    "noFlights": "이용 가능한 항공편이 없습니다",
+    "noFlightsDescription": "현재 이용 가능한 항공편이 없습니다. 나중에 다시 확인하거나 더 많은 정보를 위해 문의해 주세요.",
+    "bookFlight": "항공편 예약",
+    "from": "출발지",
+    "to": "도착지",
+    "date": "날짜",
+    "price": "가격",
+    "passengers": "승객 수",
+    "aircraft": "항공기",
+    "refresh": "새로고침",
+    "availableFlights": "이용 가능한 항공편",
+    "flightsAvailable": "엠프티 레그 항공편이 이용 가능합니다",
+    "updateDate": "업데이트:",
+    "sortOptions": {
+      "priceLow": "가격: 낮은 순",
+      "priceHigh": "가격: 높은 순",
+      "dateNear": "날짜: 가까운 순",
+      "dateFar": "날짜: 먼 순"
+    },
+    "flightCard": {
+      "emptyLeg": "빈 항공편",
+      "departure": "출발",
+      "arrival": "도착",
+      "flightDate": "항공편 날짜",
+      "capacity": "수용 인원",
+      "totalCost": "총 항공편 비용",
+      "bookingRequest": "예약 요청"
+    },
+    "clientFlightCard": {
+      "dateTBD": "날짜 미정",
+      "luxuryAircraft": "럭셔리 항공기",
+      "departure": "출발",
+      "tbd": "미정",
+      "emptyLeg": "빈 항공편",
+      "arrival": "도착",
+      "flightDate": "항공편 날짜",
+      "capacity": "수용 인원",
+      "people": "명",
+      "price": "가격",
+      "totalCost": "총 항공편 비용",
+      "bookRequest": "예약 요청"
+    }
+  },
+  "admin": {
+    "loading": "로딩 중...",
+    "title": "관리자 대시보드",
+    "viewLanding": "랜딩 페이지 보기",
+    "viewCustomer": "고객 페이지 보기",
+    "dashboard": "대시보드",
+    "flights": "항공편",
+    "users": "사용자",
+    "settings": "설정",
+    "bookingRequests": "예약 요청",
+    "totalFlights": "총 항공편 수",
+    "averagePrice": "평균 가격",
+    "currentMargin": "현재 마진",
+    "refresh": "새로고침",
+    "noFlights": "이용 가능한 항공편이 없습니다",
+    "noFlightsDescription": "현재 시스템에 항공편이 없습니다. 시작하려면 항공편을 추가하세요.",
+    "priceTest": "가격 테스트",
+    "stats": {
+      "totalFlights": "총 항공편",
+      "koreaRoutes": "한국 노선",
+      "averagePrice": "평균 가격",
+      "currentMargin": "현재 마진"
+    },
+    "tabs": {
+      "flights": "항공편",
+      "bookings": "예약",
+      "users": "사용자",
+      "settings": "설정"
+    },
+    "flights": {
+      "title": "엠프티 레그 항공편",
+      "description": "현재 가격이 적용된 모든 이용 가능한 엠프티 레그 항공편"
+    }
+  },
+  "common": {
+    "imagePlaceholder": "이미지 플레이스홀더",
+    "learnMore": "더 알아보기",
+    "home": "홈",
+    "customer": "고객",
+    "test": "테스트",
+    "switchLanguage": "언어 변경",
+    "toggleTheme": "테마 변경",
+    "refresh": "새로고침",
+    "from": "출발지",
+    "to": "도착지",
+    "date": "날짜",
+    "price": "가격",
+    "passengers": "승객 수",
+    "aircraft": "항공기",
+    "departure": "출발",
+    "arrival": "도착",
+    "flightDate": "항공편 날짜",
+    "capacity": "수용 인원",
+    "totalCost": "총 비용",
+    "bookingRequest": "예약 요청",
+    "emptyLeg": "빈 항공편",
+    "priceAdjustment": "가격 조정",
+    "individualPriceAdjustment": "개별 조정 가격",
+    "margin": "마진",
+    "selectDate": "출발 날짜 선택",
+    "passenger": "승객",
+    "weekdays": {
+      "mon": "월",
+      "tue": "화",
+      "wed": "수",
+      "thu": "목",
+      "fri": "금",
+      "sat": "토",
+      "sun": "일"
+    },
+    "months": {
+      "jan": "1월",
+      "feb": "2월",
+      "mar": "3월",
+      "apr": "4월",
+      "may": "5월",
+      "jun": "6월",
+      "jul": "7월",
+      "aug": "8월",
+      "sep": "9월",
+      "oct": "10월",
+      "nov": "11월",
+      "dec": "12월"
+    }
+  }
+}

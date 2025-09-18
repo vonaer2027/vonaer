@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { FontToggle } from '@/components/font-toggle'
+import { LanguageDropdown } from '@/components/language-dropdown'
 import { Menu, X } from 'lucide-react'
 
 interface VonaerHeaderProps {
@@ -39,9 +41,14 @@ export function VonaerHeader({ menuOpen, onMenuToggle }: VonaerHeaderProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {
-                const element = document.querySelector('#home')
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                // Check if we're on the main page (has #home element)
+                const homeElement = document.querySelector('#home')
+                if (homeElement) {
+                  // On main page, scroll to home section
+                  homeElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                } else {
+                  // On service pages, navigate to main page
+                  window.location.href = '/'
                 }
               }}
             >
@@ -51,8 +58,10 @@ export function VonaerHeader({ menuOpen, onMenuToggle }: VonaerHeaderProps) {
             </motion.div>
           </div>
 
-          {/* Right: Theme Toggle Only */}
-          <div className="flex items-center">
+          {/* Right: Language, Font & Theme Toggle */}
+          <div className="flex items-center gap-2">
+            <LanguageDropdown />
+            <FontToggle />
             <ThemeToggle />
           </div>
         </div>

@@ -10,7 +10,6 @@ import { VonaerMembershipSection } from '@/components/vonaer-membership-section'
 import { VonaerAncillarySection } from '@/components/vonaer-ancillary-section'
 import { VonaerFooter } from '@/components/vonaer-footer'
 import { VonaerMenuOverlay } from '@/components/vonaer-menu-overlay'
-import { motion, AnimatePresence } from 'framer-motion'
 
 export default function VonaerLanding() {
   const [menuOpen, setMenuOpen] = useState(false)

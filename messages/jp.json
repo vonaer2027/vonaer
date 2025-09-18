@@ -1,0 +1,1050 @@
+{
+  "hero": {
+    "title": "VONAER",
+    "subtitle": "新しいライフスタイルを提案するプラットフォーム、VONAERは都市航空モビリティサービスです。",
+    "bookFlight": "フライト予約"
+  },
+  "services": {
+    "title": "VONAERサービス",
+    "subtitle": "新しいライフスタイルを提案するプラットフォーム、VONAERは都市航空モビリティサービスです。",
+    "vonPrivate": {
+      "title": "VONプライベート",
+      "subtitle": "時間を何よりも大切にする方のためのVIPサービス",
+      "description": "VONプライベートは、目的地と時間を自由に指定できるVIPチャーターサービスで、シームレスな旅行体験を提供します。",
+      "features": {
+        "feature1": "便利な出発地と目的地の選択",
+        "feature2": "入会金なし。クレジット購入後、アプリで予約",
+        "feature3": "空港エスコート、VONキャリー、VONラウンジサービス"
+      }
+    },
+    "vonRoutine": {
+      "title": "VONルーチン",
+      "subtitle": "江南から仁川空港まで20分",
+      "description": "VONルーチンは江南と仁川空港間の快適で高速な航空シャトルサービスを提供します。VONAERアプリで簡単に予約できます。",
+      "features": {
+        "feature1": "江南から仁川空港まで次元の違う快適さを体験",
+        "feature2": "便利で高速な交通手段",
+        "feature3": "ヘリコプターチャーターサービス利用可能"
+      }
+    },
+    "vonTour": {
+      "title": "VONツアー",
+      "subtitle": "韓国の息をのむような空の景色をお楽しみください",
+      "description": "風光明媚なヘリコプターツアーで韓国をこれまでとは違った方法で体験してください。複数のツアーパッケージをご利用いただけます。",
+      "features": {
+        "feature1": "関岳山ツアー - 紅葉＆春の花ツアー",
+        "feature2": "漢江ツアー - ソウルスカイライン＆桜ツアー",
+        "feature3": "DMZツアー - 韓国でのみ見ることができる歴史的ランドマーク"
+      }
+    },
+    "learnMore": "詳細を見る",
+    "tourPackages": {
+      "title": "ツアーパッケージ",
+      "gwanakMountain": {
+        "name": "関岳山",
+        "route": "韓国でのみ見ることができる歴史的ランドマークを目撃してください。空からDMZを越えた北朝鮮の息をのむような景色を体験してください。",
+        "tags": {
+          "tag1": "歴史的",
+          "tag2": "風景",
+          "tag3": "ユニーク"
+        }
+      },
+      "hanRiver": {
+        "name": "漢江",
+        "route": "ソウル → 漢江 → ソウル",
+        "tags": {
+          "tag1": "シティツアー",
+          "tag2": "川の景色",
+          "tag3": "スカイライン"
+        }
+      },
+      "bukhanMountain": {
+        "name": "北漢山",
+        "route": "COEX → ロッテタワー → 石村湖 → 北漢山 → 道峰山",
+        "tags": {
+          "tag1": "北漢山国立公園",
+          "tag2": "ソウルロッキー山ツアー"
+        }
+      },
+      "dmz": {
+        "name": "DMZツアー",
+        "route": "韓国でのみ利用可能な歴史的ランドマークを目撃してください。空からDMZを越えた北朝鮮の景色をご覧ください。",
+        "tags": {
+          "tag1": "DMZツアー"
+        }
+      }
+    },
+    "usageGuide": {
+      "title": "VONAERの使い方",
+      "subtitle": "プレミアム航空体験を予約するための簡単なステップ",
+      "steps": {
+        "step1": {
+          "title": "アプリダウンロード",
+          "description": "App StoreまたはGoogle PlayからVONAERアプリをダウンロードしてください"
+        },
+        "step2": {
+          "title": "アカウント作成",
+          "description": "必要な書類でアカウントにサインアップして認証してください"
+        },
+        "step3": {
+          "title": "サービス選択",
+          "description": "VONプライベート、VONルーチン、VONツアーから選択してください"
+        },
+        "step4": {
+          "title": "予約＆フライト",
+          "description": "予約してプレミアム航空体験をお楽しみください"
+        },
+        "step5": {
+          "title": "搭乗",
+          "description": "予定時刻にヘリパッドに到着し、安全スタッフの指示に従ってください"
+        },
+        "step6": {
+          "title": "降機",
+          "description": "着陸後、VONレンタカーまたはVONリムジンでラストマイル移動を続けてください"
+        }
+      }
+    }
+  },
+  "booking": {
+    "title": "フライト予約",
+    "subtitle": "VONAERのプレミアムサービスで豪華な航空旅行を体験してください",
+    "tripType": {
+      "oneWay": "片道",
+      "roundTrip": "往復"
+    },
+    "placeholders": {
+      "departureCity": "出発都市",
+      "destinationCity": "目的地都市",
+      "departureDate": "出発日",
+      "returnDate": "帰国日"
+    },
+    "passengers": "乗客",
+    "passengersPlural": "乗客",
+    "search": "フライト検索"
+  },
+  "about": {
+    "coreValues": {
+      "value1": {
+        "title": "時間効率",
+        "description": "私たちは何よりもあなたの時間を大切にし、最速のルートと最小限の待ち時間を提供します。"
+      },
+      "value2": {
+        "title": "安全第一",
+        "description": "私たちの安全への取り組みは揺るぎなく、厳格なメンテナンスと認定パイロットを通じて実現されています。"
+      },
+      "value3": {
+        "title": "ラグジュアリー体験",
+        "description": "すべての旅は最高の快適さと洗練を提供するよう細心に計画されています。"
+      },
+      "value4": {
+        "title": "イノベーション",
+        "description": "私たちは継続的に革新し、最新の航空技術とサービスを提供します。"
+      }
+    },
+    "companyStory": {
+      "title": "私たちのストーリー",
+      "description": "VONAERは韓国の都市航空モビリティを革新するビジョンで設立されました。私たちはプレミアム航空旅行がアクセス可能で効率的で環境に配慮したものであるべきだと信じています。航空専門家と技術革新者からなる私たちのチームは、今日の交通の未来を提供するために絶え間なく努力しています。"
+    },
+    "appDownload": {
+      "title": "VONAERアプリダウンロード",
+      "subtitle": "指先で航空旅行の未来を体験してください",
+      "button": "アプリダウンロード"
+    }
+  },
+  "membership": {
+    "title": "VONAERメンバーシップ",
+    "subtitle": "ライフスタイルと旅行ニーズに合ったメンバーシップレベルを選択してください",
+    "mostPopular": "最も人気",
+    "annualDues": "年会費",
+    "bookingFee": "予約手数料",
+    "charterPrice": "チャーター価格",
+    "getStarted": "始める",
+    "joinNow": "今すぐ参加",
+    "termsTitle": "メンバーシップ条件と特典",
+    "terms": {
+      "term1": "すべてのメンバーシップは購入日から12か月間有効です。",
+      "term2": "メンバーシップ特典は譲渡不可で、第三者と共有することはできません。",
+      "term3": "メンバーシップ終了前に追加時間を購入した場合、残り時間は繰り越されます。",
+      "term4": "専用飛行時間が使い切られると、メンバーステータス内の適用料金が適用されます。",
+      "term5": "除氷、喫煙、特別ケータリングサービスには追加料金が適用される場合があります。"
+    },
+    "tiers": {
+      "aerMember": {
+        "name": "AERメンバー",
+        "annualDues": "該当なし",
+        "bookingFee": "$495",
+        "charterPrice": "動的",
+        "features": {
+          "0": { "name": "空港エスコート", "included": "false" },
+          "1": { "name": "プライベートターミナル", "included": "true" },
+          "2": { "name": "VONAERイベント", "included": "false" },
+          "3": { "name": "エンプティレッグ割引", "included": "false", "value": "" }
+        }
+      },
+      "von": {
+        "name": "VON",
+        "annualDues": "$92,500",
+        "bookingFee": "無料",
+        "charterPrice": "動的",
+        "features": {
+          "0": { "name": "航空機改造", "included": "false" },
+          "1": { "name": "空港エスコート", "included": "true" },
+          "2": { "name": "プライベートターミナル", "included": "true" },
+          "3": { "name": "VONAERイベント", "included": "true" },
+          "4": { "name": "エンプティレッグ割引", "included": "true", "value": "2%" }
+        }
+      },
+      "vonPremiere": {
+        "name": "VONプレミア",
+        "annualDues": "$234,000",
+        "bookingFee": "無料",
+        "charterPrice": "動的",
+        "features": {
+          "0": { "name": "航空機改造", "included": "true" },
+          "1": { "name": "空港エスコート", "included": "true" },
+          "2": { "name": "プライベートターミナル", "included": "true" },
+          "3": { "name": "VONAERイベント", "included": "true" },
+          "4": { "name": "エンプティレッグ割引", "included": "true", "value": "3%" }
+        }
+      },
+      "vonUltimate": {
+        "name": "VONアルティメット",
+        "annualDues": "$350,000",
+        "bookingFee": "無料",
+        "charterPrice": "動的",
+        "features": {
+          "0": { "name": "プレミアム航空機", "included": "true" },
+          "1": { "name": "空港エスコート", "included": "true" },
+          "2": { "name": "プライベートターミナル", "included": "true" },
+          "3": { "name": "VONAERイベント", "included": "true" },
+          "4": { "name": "エンプティレッグ割引", "included": "true", "value": "5%" }
+        }
+      }
+    }
+  },
+  "ancillary": {
+    "title": "付帯サービス",
+    "subtitle": "包括的な付帯サービスでVONAERサービスを向上させます",
+    "services": {
+      "0": {
+        "id": "von-escort",
+        "title": "VONエスコート",
+        "description": "真のVIP体験のための卓越した空港エスコートサービス",
+        "features": {
+          "0": "空港内個人エスコート",
+          "1": "高速セキュリティと入国審査",
+          "2": "VIPラウンジアクセス",
+          "3": "手荷物サポート"
+        }
+      },
+      "1": {
+        "id": "von-carry",
+        "title": "VONキャリー",
+        "description": "最終目的地まで荷物を配送するプレミアム荷物配送サービス",
+        "features": {
+          "0": "ドアツードア荷物配送",
+          "1": "リアルタイム追跡",
+          "2": "保険適用",
+          "3": "ホワイトグローブ取り扱い"
+        }
+      },
+      "2": {
+        "id": "von-connect",
+        "title": "VONコネクト",
+        "description": "ヘリポートと空港ターミナル間の車両サービス",
+        "features": {
+          "0": "シームレスなターミナル移動",
+          "1": "プロの運転手",
+          "2": "高級車両フリート",
+          "3": "リアルタイム調整"
+        }
+      },
+      "3": {
+        "id": "von-lounge",
+        "title": "VONラウンジ",
+        "description": "VONメンバー専用ラウンジ",
+        "features": {
+          "0": "プライベートラウンジアクセス",
+          "1": "プレミアムダイニングオプション",
+          "2": "ビジネス施設",
+          "3": "コンシェルジュサービス"
+        }
+      },
+      "4": {
+        "id": "von-limousine",
+        "title": "VONリムジン",
+        "description": "VONリムジンはファースト＆ラストマイルのためのVIPブラックカーサービスを提供します。",
+        "features": {
+          "0": "高級リムジンフリート",
+          "1": "プロの運転手",
+          "2": "ファーストおよびラストマイルサービス",
+          "3": "プレミアムアメニティ"
+        }
+      },
+      "5": {
+        "id": "von-rentcar",
+        "title": "VONレンタカー",
+        "description": "お客様が最終目的地まで運転できるレンタカーサービス。",
+        "features": {
+          "0": "プレミアム車両選択",
+          "1": "柔軟なレンタル条件",
+          "2": "空港配送",
+          "3": "24/7サポート"
+        }
+      }
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "最新情報を受け取る",
+      "subtitle": "VONAERの最新ニュースと独占オファーを入手",
+      "placeholder": "メールアドレスを入力",
+      "subscribe": "購読"
+    },
+    "sections": {
+      "vonaerService": "VONAERサービス",
+      "ancillaryService": "付帯サービス",
+      "company": "会社",
+      "contact": "連絡先"
+    },
+    "services": {
+      "0": "VONAERジェット",
+      "1": "VONプライベート",
+      "2": "VONルーチン",
+      "3": "VONツアー"
+    },
+    "ancillaryServices": {
+      "0": "VONエスコート",
+      "1": "VONキャリー",
+      "2": "VONコネクト",
+      "3": "VONラウンジ",
+      "4": "VONリムジン",
+      "5": "VONレンタカー"
+    },
+    "companyLinks": {
+      "0": "会社概要",
+      "1": "採用情報",
+      "2": "プレス",
+      "3": "お問い合わせ"
+    },
+    "contact": {
+      "phone": "+82-2-1234-5678",
+      "email": "info@vonaer.com",
+      "businessHours": "営業時間",
+      "businessDays": "月曜日 - 金曜日: 午前9:00 - 午後6:00",
+      "holidays": "週末・祝日: 休業",
+      "sns": "SNS"
+    },
+    "company": {
+      "name": "주식회사 모비에이션",
+      "address": "서울특별시 강남구 학동로 523, 1층 102호(청담동, 루나빌딩)",
+      "businessNumber": "사업등록번호 : 216-81-49698",
+      "representative": "대표 : 신민",
+      "telecomSales": "통신판매신고번호 : 제2022-서울강남-00453호",
+      "telecomAuthority": "통신판매업신고기관 : 서울특별시 강남구청",
+      "copyright": "Copyright Moviation Inc. All Rights Reserved. 2025"
+    }
+  },
+  "userManagement": {
+    "title": "ユーザー管理",
+    "subtitle": "ユーザーアカウントと権限を管理",
+    "addUser": "ユーザー追加",
+    "editUser": "ユーザー編集",
+    "deleteUser": "ユーザー削除",
+    "name": "名前",
+    "phone": "電話",
+    "status": "ステータス",
+    "createdAt": "作成日",
+    "actions": "アクション",
+    "active": "アクティブ",
+    "inactive": "非アクティブ",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "edit": "編集",
+    "delete": "削除",
+    "noUsers": "ユーザーが見つかりません",
+    "noUsersDescription": "最初のユーザーを追加して始めましょう",
+    "addFirstUser": "最初のユーザーを追加",
+    "namePlaceholder": "ユーザー名を入力",
+    "phonePlaceholder": "010-1234-5678または01012345678",
+    "phoneHelper": "電話番号を入力してください（ハイフンあり・なし）",
+    "loadUsersFailed": "ユーザーの読み込みに失敗しました",
+    "createUserSuccess": "ユーザーが正常に作成されました",
+    "createUserFailed": "ユーザーの作成に失敗しました",
+    "updateUserSuccess": "ユーザーが正常に更新されました",
+    "updateUserFailed": "ユーザーの更新に失敗しました",
+    "deleteUserSuccess": "ユーザーが正常に削除されました",
+    "deleteUserFailed": "ユーザーの削除に失敗しました",
+    "deleteConfirm": "このユーザーを削除してもよろしいですか？",
+    "nameRequired": "名前は必須です",
+    "phoneRequired": "電話番号は必須です"
+  },
+  "marginSettings": {
+    "title": "マージン設定",
+    "subtitle": "すべてのフライト価格に適用されるマージン率を設定してください",
+    "marginPercentage": "マージン率 (%)",
+    "placeholder": "率を入力してください（例：15.5）",
+    "currentMargin": "現在のマージン",
+    "save": "保存",
+    "saving": "保存中...",
+    "example": {
+      "title": "価格例",
+      "basePrice": "基本価格",
+      "margin": "マージン",
+      "selectDate": "出発日を選択",
+      "passenger": "乗客",
+      "finalPrice": "最終価格"
+    },
+    "validation": {
+      "invalidPercentage": "0から100の間の有効な率を入力してください",
+      "alreadySet": "マージン率は既にこの値に設定されています"
+    },
+    "error": {
+      "updateFailed": "マージン設定の更新に失敗しました"
+    },
+    "warning": {
+      "title": "重要な注意事項",
+      "description": "マージンを変更すると、顧客に表示されるすべてのフライト価格に影響します。新しいマージンは既存および新規のすべてのフライトに即座に適用されます。"
+    }
+  },
+  "flightCard": {
+    "from": "出発地",
+    "to": "到着地",
+    "date": "日付",
+    "seats": "座席",
+    "price": "価格",
+    "tbd": "未定",
+    "dateTBD": "日付未定",
+    "priceTBD": "価格未定",
+    "customPrice": "個別調整価格",
+    "margin": "マージン",
+    "adjustPrice": "価格調整",
+    "newPrice": "新価格 (USD)",
+    "pricePlaceholder": "価格を入力してください",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "validation": {
+      "invalidPrice": "有効な価格を入力してください"
+    },
+    "success": {
+      "priceUpdated": "価格が正常に更新されました"
+    },
+    "error": {
+      "updateFailed": "価格の更新に失敗しました"
+    }
+  },
+  "bookingDialog": {
+    "title": "予約リクエスト",
+    "subtitle": "詳細を入力していただければ、24時間以内にご連絡いたします。",
+    "seats": "席",
+    "dateTBD": "日付未定",
+    "contactInfo": "連絡先情報",
+    "name": "お名前",
+    "namePlaceholder": "お名前を入力してください",
+    "phone": "電話番号",
+    "phonePlaceholder": "010-1234-5678",
+    "email": "メールアドレス（任意）",
+    "emailPlaceholder": "your.email@example.com",
+    "consent": "プライバシーと同意",
+    "contactConsentText": "フライト予約に関してVONAERから連絡を受けることに同意します。",
+    "privacyConsentText": "サービスを利用することで、",
+    "privacyPolicy": "プライバシーポリシー",
+    "privacyConsentText2": "を読み、理解し、同意したことを確認します。",
+    "cancel": "キャンセル",
+    "submit": "リクエスト送信",
+    "submitting": "送信中...",
+    "validation": {
+      "nameRequired": "お名前を入力してください",
+      "phoneRequired": "電話番号を入力してください",
+      "contactConsentRequired": "VONAER連絡同意を提供してください",
+      "privacyConsentRequired": "プライバシーポリシーに同意してください"
+    },
+    "error": {
+      "unknownError": "不明なエラーが発生しました",
+      "submitFailed": "予約リクエストに失敗しました"
+    }
+  },
+  "clientFlightCard": {
+    "luxuryAircraft": "ラグジュアリー航空機",
+    "departure": "出発",
+    "arrival": "到着",
+    "emptyLeg": "エンプティレッグ",
+    "flightDate": "フライト日付",
+    "capacity": "定員",
+    "people": "名",
+    "price": "価格",
+    "totalCost": "総フライト費用",
+    "bookRequest": "予約リクエスト",
+    "tbd": "未定",
+    "dateTBD": "日付未定"
+  },
+  "bookingRequests": {
+    "title": "予約リクエスト",
+    "subtitle": "エンプティレッグフライトの顧客お問い合わせ",
+    "loading": {
+      "text": "予約リクエスト読み込み中...",
+      "failed": "予約リクエストの読み込みに失敗しました"
+    },
+    "refresh": "更新",
+    "stats": {
+      "totalRequests": "総リクエスト数",
+      "pendingCalls": "保留中の通話",
+      "completedCalls": "完了した通話"
+    },
+    "pendingCalls": "保留中の通話",
+    "pendingCallsDescription": "連絡が必要な新しい予約リクエスト",
+    "completedCalls": "完了した通話",
+    "completedCallsDescription": "連絡済みの顧客",
+    "customer": "顧客",
+    "flight": "フライト",
+    "route": "ルート",
+    "flightDate": "フライト日付",
+    "requestDate": "リクエスト日",
+    "actions": "アクション",
+    "callCompleted": "通話完了",
+    "viewDetails": "詳細表示",
+    "delete": "削除",
+    "noRequests": "予約リクエストがまだありません",
+    "noRequestsDescription": "顧客の予約リクエストがここに表示されます",
+    "details": {
+      "title": "予約詳細",
+      "subtitle": "予約リクエスト元",
+      "customer": "顧客",
+      "phone": "電話",
+      "email": "メール",
+      "status": "ステータス",
+      "requestDate": "リクエスト日",
+      "pending": "保留中",
+      "completed": "完了",
+      "consent": "プライバシー同意",
+      "agreed": "同意済み",
+      "notAgreed": "未同意",
+      "markCompleted": "完了としてマーク",
+      "close": "閉じる"
+    },
+    "success": {
+      "markedAsCalled": "通話済みとしてマークされました",
+      "deleted": "予約リクエストが削除されました"
+    },
+    "error": {
+      "statusUpdateFailed": "ステータスの更新に失敗しました",
+      "deleteFailed": "予約リクエストの削除に失敗しました"
+    },
+    "confirmDelete": "この予約リクエストを削除してもよろしいですか？"
+  },
+  "menu": {
+    "title": "メニュー",
+    "categories": {
+      "services": "サービス"
+    },
+    "items": {
+      "allServices": "すべてのサービス",
+      "privateJets": "プライベートジェット",
+      "helicopter": "ヘリコプター",
+      "superCar": "スーパーカー",
+      "superYacht": "スーパーヨット"
+    },
+    "other": {
+      "home": "ホーム",
+      "aboutUs": "会社概要",
+      "membership": "メンバーシップ",
+      "emptyLeg": "エンプティレッグ",
+      "contact": "お問い合わせ"
+    }
+  },
+  "jets": {
+    "title": "プライベートジェット",
+    "subtitle": "包括的なプライベートジェット機隊で、贅沢、快適さ、効率性を体験してください",
+    "categories": {
+      "lightJet": {
+        "title": "ライトジェット",
+        "subtitle": "効率的な短距離ジェット",
+        "description": "優れた燃料効率と小グループ向けの快適な座席で、短距離から中距離のフライトに最適です。",
+        "features": {
+          "0": "短距離旅行にコスト効率が良い",
+          "1": "小型空港へのアクセス可能",
+          "2": "迅速な搭乗プロセス",
+          "3": "燃料効率が良い"
+        }
+      },
+      "midJet": {
+        "title": "ミッドジェット",
+        "subtitle": "バランスの取れた性能ジェット",
+        "description": "拡張されたキャビン空間で中距離旅行に理想的な快適さ、航続距離、性能のバランスを提供します。",
+        "features": {
+          "0": "広々としたキャビンデザイン",
+          "1": "拡張された航続距離機能",
+          "2": "強化された快適性機能",
+          "3": "信頼性の高い性能"
+        }
+      },
+      "heavyJet": {
+        "title": "ヘビージェット",
+        "subtitle": "長距離ラグジュアリージェット",
+        "description": "プレミアムアメニティと広々としたキャビンで長距離フライトに最大の贅沢と航続距離を提供します。",
+        "features": {
+          "0": "ラグジュアリーキャビンアメニティ",
+          "1": "長距離機能",
+          "2": "プレミアムダイニングオプション",
+          "3": "フルサイズのラバトリー"
+        }
+      },
+      "ultraLongHaul": {
+        "title": "ウルトラロングホール",
+        "subtitle": "大陸間ジェット",
+        "description": "ホテル並みのアメニティで大陸間フライトに究極の贅沢と航続距離を提供します。",
+        "features": {
+          "0": "ベッドルームとシャワー施設",
+          "1": "会議室セットアップ",
+          "2": "美食サービス",
+          "3": "グローバル航続距離機能"
+        }
+      },
+      "vipAirline": {
+        "title": "VIP航空会社",
+        "subtitle": "プレミアム航空会社サービス",
+        "description": "ファーストクラスのアメニティと優先搭乗を提供する商用航空会社のVIPサービスです。",
+        "features": {
+          "0": "ファーストクラスキャビンアクセス",
+          "1": "優先搭乗",
+          "2": "専用チェックイン",
+          "3": "グローバルネットワーク"
+        }
+      }
+    },
+    "specs": {
+      "passengers": "乗客",
+      "range": "航続距離",
+      "speed": "速度",
+      "airports": "空港"
+    },
+    "cta": {
+      "requestQuote": "見積もり依頼"
+    },
+    "safety": {
+      "title": "安全性と認証",
+      "description": "すべてのVONAER航空機は最高の安全基準を満たし、豊富な経験を持つ認証された専門家によって運航されています。",
+      "learnMore": "安全性について学ぶ"
+    }
+  },
+  "helicopter": {
+    "title": "ヘリコプターサービス",
+    "subtitle": "交通、ツアー、ユニークな航空体験のための多目的ヘリコプターサービス",
+    "services": {
+      "vonRoutine": {
+        "title": "VONルーティン",
+        "subtitle": "定期シャトルサービス",
+        "description": "江南と仁川空港間をわずか20分で結ぶ高速で快適な航空シャトルサービスです。",
+        "route": "江南 ↔ 仁川空港",
+        "duration": "20分",
+        "frequency": "1日複数便",
+        "features": {
+          "0": "エクスプレス空港送迎",
+          "1": "プレミアムヘリコプター機隊",
+          "2": "プロのパイロット",
+          "3": "天候監視"
+        }
+      },
+      "vonTour": {
+        "title": "VONツアー",
+        "subtitle": "景観ヘリコプターツアー",
+        "description": "韓国の最も美しいランドマークの息を呑むような空中景観を提供する景観ヘリコプターツアーです。",
+        "route": "様々な景観ルート",
+        "duration": "30-90分",
+        "frequency": "オンデマンド",
+        "features": {
+          "0": "景観ルートオプション",
+          "1": "プロのツアーガイド",
+          "2": "写真撮影機会",
+          "3": "柔軟なスケジューリング"
+        }
+      },
+      "vonPrivate": {
+        "title": "VONプライベートヘリコプター",
+        "subtitle": "プライベートヘリコプターチャーター",
+        "description": "柔軟な目的地とパーソナライズされたフライト体験を提供するカスタムヘリコプターチャーターサービスです。",
+        "route": "カスタム目的地",
+        "duration": "必要に応じて",
+        "frequency": "オンデマンド",
+        "features": {
+          "0": "カスタムフライトプランニング",
+          "1": "VIPサービス",
+          "2": "柔軟なタイミング",
+          "3": "プレミアムアメニティ"
+        }
+      }
+    },
+    "details": {
+      "route": "ルート",
+      "duration": "所要時間",
+      "frequency": "頻度"
+    },
+    "tours": {
+      "title": "景観ツアールート",
+      "gwanakMountain": {
+        "name": "冠岳山ツアー",
+        "route": "COEX → 蚕室 → 良才森林 → ソウルランド → 冠岳山",
+        "duration": "45分",
+        "highlights": {
+          "0": "紅葉",
+          "1": "春の花",
+          "2": "ソウルランド"
+        }
+      },
+      "hanRiver": {
+        "name": "漢江ツアー",
+        "route": "COEX → ロッテワールドタワー → 石村湖 → オリンピック公園 → 岩寺遺跡 → 南楊州",
+        "duration": "60分",
+        "highlights": {
+          "0": "ソウルスカイライン",
+          "1": "桜",
+          "2": "オリンピック公園"
+        }
+      },
+      "bukhanMountain": {
+        "name": "北漢山ツアー",
+        "route": "COEX → ロッテワールドタワー → 石村湖 → 北漢山 → 道峰山",
+        "duration": "75分",
+        "highlights": {
+          "0": "国立公園",
+          "1": "岩山",
+          "2": "山の景色"
+        }
+      },
+      "dmz": {
+        "name": "DMZツアー",
+        "route": "DMZ上空から見る歴史的ランドマークと北朝鮮の景色",
+        "duration": "90分",
+        "highlights": {
+          "0": "歴史的遺跡",
+          "1": "DMZの景色",
+          "2": "ユニークな体験"
+        }
+      }
+    },
+    "booking": {
+      "title": "予約方法",
+      "description": "モバイルアプリまたはウェブサイトを通じてVONAERでヘリコプターを予約するのは簡単で便利です。",
+      "downloadApp": "アプリダウンロード",
+      "bookOnline": "オンライン予約"
+    },
+    "cta": {
+      "bookNow": "今すぐ予約"
+    }
+  },
+  "supercar": {
+    "title": "スーパーカー",
+    "subtitle": "プレミアムスーパーカー機隊で究極のラグジュアリー地上交通を体験してください",
+    "comingSoon": {
+      "title": "近日公開",
+      "description": "私たちのラグジュアリースーパーカーサービスは現在開発中です。航空サービスの卓越性に匹敵するプレミアム地上交通を体験してください。",
+      "features": {
+        "luxuryFleet": {
+          "title": "ラグジュアリー機隊",
+          "description": "トップメーカーのプレミアムスーパーカー"
+        },
+        "professionalService": {
+          "title": "プロフェッショナルサービス",
+          "description": "専門ドライバーとコンシェルジュサービス"
+        },
+        "flexibleBooking": {
+          "title": "柔軟な予約",
+          "description": "オンデマンドとスケジュールサービス"
+        }
+      },
+      "cta": {
+        "getNotified": "通知を受け取る",
+        "contactSales": "営業に連絡"
+      }
+    }
+  },
+  "superyacht": {
+    "title": "スーパーヨット",
+    "subtitle": "究極の海上体験のためのラグジュアリーヨットチャーター",
+    "comingSoon": {
+      "title": "近日公開",
+      "description": "私たちのラグジュアリーヨットチャーターサービスは現在開発中です。VONAERの今後のヨット機隊で最高の海上ラグジュアリーを体験してください。",
+      "features": {
+        "luxuryFleet": {
+          "title": "ラグジュアリー機隊",
+          "description": "世界クラスのアメニティを備えたプレミアムヨット"
+        },
+        "coastalAccess": {
+          "title": "海岸アクセス",
+          "description": "プレミアムマリーナと目的地へのアクセス"
+        },
+        "fullService": {
+          "title": "フルサービス",
+          "description": "完全なクルーとコンシェルジュサービス"
+        }
+      },
+      "cta": {
+        "getNotified": "通知を受け取る",
+        "contactSales": "営業に連絡"
+      }
+    }
+  },
+  "aircraft": {
+    "title": "航空機機隊",
+    "subtitle": "特定の旅行ニーズを満たすために包括的な航空機機隊から選択してください",
+    "categories": {
+      "lightJet": {
+        "title": "ライトジェット",
+        "subtitle": "専用機 - ライトジェット",
+        "description": "優れた燃料効率と小グループ向けの快適な座席で、短距離から中距離のフライトに最適です。",
+        "features": {
+          "0": "短距離旅行にコスト効率が良い",
+          "1": "小型空港へのアクセス可能",
+          "2": "迅速な搭乗プロセス",
+          "3": "燃料効率が良い"
+        }
+      },
+      "midJet": {
+        "title": "ミッドジェット",
+        "subtitle": "専用機 - ミッドジェット",
+        "description": "拡張されたキャビン空間で中距離旅行に理想的な快適さ、航続距離、性能のバランスを提供します。",
+        "features": {
+          "0": "広々としたキャビンデザイン",
+          "1": "拡張された航続距離機能",
+          "2": "強化された快適性機能",
+          "3": "信頼性の高い性能"
+        }
+      },
+      "heavyJet": {
+        "title": "ヘビージェット",
+        "subtitle": "専用機 - ヘビージェット",
+        "description": "プレミアムアメニティと広々としたキャビンで長距離フライトに最大の贅沢と航続距離を提供します。",
+        "features": {
+          "0": "ラグジュアリーキャビンアメニティ",
+          "1": "長距離機能",
+          "2": "プレミアムダイニングオプション",
+          "3": "フルサイズのラバトリー"
+        }
+      },
+      "ultraLongHaul": {
+        "title": "ウルトラロングホール",
+        "subtitle": "専用機 - ウルトラロングホール",
+        "description": "ホテル並みのアメニティで大陸間フライトに究極の贅沢と航続距離を提供します。",
+        "features": {
+          "0": "ベッドルームとシャワー施設",
+          "1": "会議室セットアップ",
+          "2": "美食サービス",
+          "3": "グローバル航続距離機能"
+        }
+      },
+      "vipAirline": {
+        "title": "VIP航空会社",
+        "subtitle": "専用機 - VIP航空",
+        "description": "ファーストクラスのアメニティと優先搭乗を提供する商用航空会社のVIPサービスです。",
+        "features": {
+          "0": "ファーストクラスキャビンアクセス",
+          "1": "優先搭乗",
+          "2": "専用チェックイン",
+          "3": "グローバルネットワーク"
+        }
+      },
+      "helicopter": {
+        "title": "ヘリコプター",
+        "subtitle": "ヘリコプター",
+        "description": "短距離旅行、景観ツアー、制限された地域へのアクセスのための多目的回転翼航空機です。",
+        "features": {
+          "0": "垂直離着陸",
+          "1": "都心部アクセス",
+          "2": "景観フライト機能",
+          "3": "柔軟なスケジューリング"
+        }
+      }
+    },
+    "specs": {
+      "passengers": "乗客",
+      "range": "航続距離",
+      "speed": "速度",
+      "airports": "空港"
+    },
+    "cta": {
+      "requestQuote": "見積もり依頼"
+    },
+    "help": {
+      "title": "選択にヘルプが必要ですか？",
+      "description": "私たちの航空専門家が、特定のニーズと要件に合った完璧な航空機を選択するお手伝いをします。",
+      "contactExperts": "専門家に連絡"
+    }
+  },
+  "pr": {
+    "title": "プレスリリースとメディア",
+    "subtitle": "VONAERの最新ニュース、プレスリリース、メディアリソース",
+    "mediaKit": {
+      "title": "メディアキット",
+      "logos": {
+        "title": "会社ロゴ",
+        "description": "様々なフォーマットの高解像度VONAERロゴ",
+        "type": "画像"
+      },
+      "pressKit": {
+        "title": "プレスキット",
+        "description": "会社概要、役員経歴、ファクトシート",
+        "type": "文書"
+      },
+      "videos": {
+        "title": "プロダクトビデオ",
+        "description": "VONAERサービスに関するプロモーションと教育ビデオ",
+        "type": "ビデオ"
+      },
+      "download": "ダウンロード"
+    },
+    "pressReleases": {
+      "title": "プレスリリース",
+      "categories": {
+        "companyNews": "会社ニュース",
+        "partnerships": "パートナーシップ",
+        "serviceLaunch": "サービスローンチ",
+        "funding": "資金調達",
+        "safety": "安全性"
+      },
+      "readMore": "続きを読む"
+    },
+    "mediaInquiries": {
+      "title": "メディア問い合わせ",
+      "description": "プレス問い合わせ、インタビュー依頼、または追加情報については、メディア関係チームにお問い合わせください。",
+      "contactTeam": "メディアチームに連絡",
+      "downloadKit": "メディアキットをダウンロード"
+    }
+  },
+  "client": {
+    "loading": "読み込み中...",
+    "title": "利用可能なフライト",
+    "subtitle": "次のエンプティレッグフライトを予約",
+    "sortBy": "並び順",
+    "priceLow": "価格: 安い順",
+    "priceHigh": "価格: 高い順",
+    "dateNear": "日付: 近い順",
+    "dateFar": "日付: 遠い順",
+    "noFlights": "利用可能なフライトがありません",
+    "noFlightsDescription": "現在利用可能なフライトがありません。後でもう一度確認するか、詳細についてはお問い合わせください。",
+    "bookFlight": "フライト予約",
+    "from": "出発地",
+    "to": "到着地",
+    "date": "日付",
+    "price": "価格",
+    "passengers": "乗客数",
+    "aircraft": "航空機",
+    "refresh": "更新",
+    "availableFlights": "利用可能なフライト",
+    "flightsAvailable": "エンプティレッグフライトが利用可能です",
+    "updateDate": "更新日:",
+    "sortOptions": {
+      "priceLow": "価格: 安い順",
+      "priceHigh": "価格: 高い順",
+      "dateNear": "日付: 近い順",
+      "dateFar": "日付: 遠い順"
+    },
+    "flightCard": {
+      "emptyLeg": "エンプティレッグ",
+      "departure": "出発",
+      "arrival": "到着",
+      "flightDate": "フライト日",
+      "capacity": "定員",
+      "totalCost": "総フライト費用",
+      "bookingRequest": "予約リクエスト"
+    },
+    "clientFlightCard": {
+      "dateTBD": "日付未定",
+      "luxuryAircraft": "ラグジュアリー航空機",
+      "departure": "出発",
+      "tbd": "未定",
+      "emptyLeg": "エンプティレッグ",
+      "arrival": "到着",
+      "flightDate": "フライト日",
+      "capacity": "定員",
+      "people": "名",
+      "price": "価格",
+      "totalCost": "総フライト費用",
+      "bookRequest": "予約リクエスト"
+    }
+  },
+  "admin": {
+    "loading": "読み込み中...",
+    "title": "管理ダッシュボード",
+    "viewLanding": "ランディングページを見る",
+    "viewCustomer": "顧客ページを見る",
+    "dashboard": "ダッシュボード",
+    "flights": "フライト",
+    "users": "ユーザー",
+    "settings": "設定",
+    "bookingRequests": "予約リクエスト",
+    "totalFlights": "総フライト数",
+    "averagePrice": "平均価格",
+    "currentMargin": "現在のマージン",
+    "refresh": "更新",
+    "noFlights": "利用可能なフライトがありません",
+    "noFlightsDescription": "現在システムにフライトがありません。開始するにはフライトを追加してください。",
+    "priceTest": "価格テスト",
+    "stats": {
+      "totalFlights": "総フライト",
+      "koreaRoutes": "韓国ルート",
+      "averagePrice": "平均価格",
+      "currentMargin": "現在のマージン"
+    },
+    "tabs": {
+      "flights": "フライト",
+      "bookings": "予約",
+      "users": "ユーザー",
+      "settings": "設定"
+    },
+    "flights": {
+      "title": "エンプティレッグフライト",
+      "description": "現在の価格が適用されたすべての利用可能なエンプティレッグフライト"
+    }
+  },
+  "common": {
+    "imagePlaceholder": "画像プレースホルダー",
+    "learnMore": "詳細を見る",
+    "home": "ホーム",
+    "customer": "顧客",
+    "test": "テスト",
+    "switchLanguage": "言語切り替え",
+    "toggleTheme": "テーマ切り替え",
+    "refresh": "更新",
+    "from": "出発地",
+    "to": "到着地",
+    "date": "日付",
+    "price": "価格",
+    "passengers": "乗客数",
+    "aircraft": "航空機",
+    "departure": "出発",
+    "arrival": "到着",
+    "flightDate": "フライト日",
+    "capacity": "定員",
+    "totalCost": "総費用",
+    "bookingRequest": "予約リクエスト",
+    "emptyLeg": "エンプティレッグ",
+    "priceAdjustment": "価格調整",
+    "individualPriceAdjustment": "個別価格調整",
+    "margin": "マージン",
+    "selectDate": "出発日を選択",
+    "passenger": "乗客",
+    "weekdays": {
+      "mon": "月",
+      "tue": "火",
+      "wed": "水",
+      "thu": "木",
+      "fri": "金",
+      "sat": "土",
+      "sun": "日"
+    },
+    "months": {
+      "jan": "1月",
+      "feb": "2月",
+      "mar": "3月",
+      "apr": "4月",
+      "may": "5月",
+      "jun": "6月",
+      "jul": "7月",
+      "aug": "8月",
+      "sep": "9月",
+      "oct": "10月",
+      "nov": "11月",
+      "dec": "12月"
+    }
+  }
+}

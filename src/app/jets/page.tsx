@@ -8,6 +8,7 @@ import { VonaerHeader } from '@/components/vonaer-header'
 import { VonaerMenuOverlay } from '@/components/vonaer-menu-overlay'
 import { VonaerFooter } from '@/components/vonaer-footer'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { 
   Plane, 
   Users, 
@@ -15,110 +16,110 @@ import {
   MapPin, 
   Clock,
   ArrowRight,
-  Star,
   Shield
 } from 'lucide-react'
 
-const jetCategories = [
-  {
-    id: 'light-jet',
-    title: 'Light Jet',
-    subtitle: 'Efficient Short-Range Jets',
-    description: 'Perfect for short to medium-range flights with excellent fuel efficiency and comfortable seating for small groups.',
-    specs: {
-      passengers: '4-8',
-      range: '1,500-2,500 nm',
-      speed: '400-500 mph',
-      airports: '5,000+'
-    },
-    features: [
-      'Cost-effective for short trips',
-      'Access to smaller airports',
-      'Quick boarding process',
-      'Fuel efficient'
-    ],
-    popular: false
-  },
-  {
-    id: 'mid-jet',
-    title: 'Mid Jet',
-    subtitle: 'Balanced Performance Jets',
-    description: 'Ideal balance of comfort, range, and performance for medium-distance travel with enhanced cabin space.',
-    specs: {
-      passengers: '6-10',
-      range: '2,000-3,500 nm',
-      speed: '450-550 mph',
-      airports: '3,500+'
-    },
-    features: [
-      'Spacious cabin design',
-      'Extended range capabilities',
-      'Enhanced comfort features',
-      'Reliable performance'
-    ],
-    popular: true
-  },
-  {
-    id: 'heavy-jet',
-    title: 'Heavy Jet',
-    subtitle: 'Long-Range Luxury Jets',
-    description: 'Maximum luxury and range for long-distance flights with premium amenities and spacious cabins.',
-    specs: {
-      passengers: '8-16',
-      range: '3,500-7,000 nm',
-      speed: '500-600 mph',
-      airports: '3,000+'
-    },
-    features: [
-      'Luxury cabin amenities',
-      'Long-range capabilities',
-      'Premium dining options',
-      'Full-size lavatories'
-    ],
-    popular: false
-  },
-  {
-    id: 'ultra-long-haul',
-    title: 'Ultra Long Haul',
-    subtitle: 'Intercontinental Jets',
-    description: 'Ultimate in luxury and range for intercontinental flights with hotel-like amenities.',
-    specs: {
-      passengers: '10-19',
-      range: '6,000+ nm',
-      speed: '550-650 mph',
-      airports: '2,500+'
-    },
-    features: [
-      'Bedroom and shower facilities',
-      'Conference room setup',
-      'Gourmet dining service',
-      'Global range capability'
-    ],
-    popular: false
-  },
-  {
-    id: 'vip-airline',
-    title: 'VIP Airline',
-    subtitle: 'Premium Airline Services',
-    description: 'Commercial airline VIP services with first-class amenities and priority boarding.',
-    specs: {
-      passengers: '1-4',
-      range: 'Global',
-      speed: '500-600 mph',
-      airports: 'Major hubs'
-    },
-    features: [
-      'First-class cabin access',
-      'Priority boarding',
-      'Dedicated check-in',
-      'Global network'
-    ],
-    popular: false
-  }
-]
-
 export default function JetsPage() {
+  const t = useTranslations()
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const jetCategories = [
+    {
+      id: 'light-jet',
+      title: t('jets.categories.lightJet.title'),
+      subtitle: t('jets.categories.lightJet.subtitle'),
+      description: t('jets.categories.lightJet.description'),
+      specs: {
+        passengers: '4-8',
+        range: '1,500-2,500 nm',
+        speed: '400-500 mph',
+        airports: '5,000+'
+      },
+      features: [
+        t('jets.categories.lightJet.features.0'),
+        t('jets.categories.lightJet.features.1'),
+        t('jets.categories.lightJet.features.2'),
+        t('jets.categories.lightJet.features.3')
+      ],
+      popular: false
+    },
+    {
+      id: 'mid-jet',
+      title: t('jets.categories.midJet.title'),
+      subtitle: t('jets.categories.midJet.subtitle'),
+      description: t('jets.categories.midJet.description'),
+      specs: {
+        passengers: '6-10',
+        range: '2,000-3,500 nm',
+        speed: '450-550 mph',
+        airports: '3,500+'
+      },
+      features: [
+        t('jets.categories.midJet.features.0'),
+        t('jets.categories.midJet.features.1'),
+        t('jets.categories.midJet.features.2'),
+        t('jets.categories.midJet.features.3')
+      ],
+      popular: true
+    },
+    {
+      id: 'heavy-jet',
+      title: t('jets.categories.heavyJet.title'),
+      subtitle: t('jets.categories.heavyJet.subtitle'),
+      description: t('jets.categories.heavyJet.description'),
+      specs: {
+        passengers: '8-16',
+        range: '3,500-7,000 nm',
+        speed: '500-600 mph',
+        airports: '3,000+'
+      },
+      features: [
+        t('jets.categories.heavyJet.features.0'),
+        t('jets.categories.heavyJet.features.1'),
+        t('jets.categories.heavyJet.features.2'),
+        t('jets.categories.heavyJet.features.3')
+      ],
+      popular: false
+    },
+    {
+      id: 'ultra-long-haul',
+      title: t('jets.categories.ultraLongHaul.title'),
+      subtitle: t('jets.categories.ultraLongHaul.subtitle'),
+      description: t('jets.categories.ultraLongHaul.description'),
+      specs: {
+        passengers: '10-19',
+        range: '6,000+ nm',
+        speed: '550-650 mph',
+        airports: '2,500+'
+      },
+      features: [
+        t('jets.categories.ultraLongHaul.features.0'),
+        t('jets.categories.ultraLongHaul.features.1'),
+        t('jets.categories.ultraLongHaul.features.2'),
+        t('jets.categories.ultraLongHaul.features.3')
+      ],
+      popular: false
+    },
+    {
+      id: 'vip-airline',
+      title: t('jets.categories.vipAirline.title'),
+      subtitle: t('jets.categories.vipAirline.subtitle'),
+      description: t('jets.categories.vipAirline.description'),
+      specs: {
+        passengers: '1-4',
+        range: 'Global',
+        speed: '500-600 mph',
+        airports: 'Major hubs'
+      },
+      features: [
+        t('jets.categories.vipAirline.features.0'),
+        t('jets.categories.vipAirline.features.1'),
+        t('jets.categories.vipAirline.features.2'),
+        t('jets.categories.vipAirline.features.3')
+      ],
+      popular: false
+    }
+  ]
 
   return (
     <div className="bg-background text-foreground min-h-screen">
@@ -145,10 +146,10 @@ export default function JetsPage() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              Private Jets
+              {t('jets.title')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Experience luxury, comfort, and efficiency with our comprehensive private jet fleet
+              {t('jets.subtitle')}
             </p>
           </motion.div>
 
@@ -198,14 +199,14 @@ export default function JetsPage() {
                         <div className="flex items-center gap-2">
                           <Users className="h-4 w-4 text-muted-foreground" />
                           <div>
-                            <p className="text-xs text-muted-foreground">Passengers</p>
+                            <p className="text-xs text-muted-foreground">{t('jets.specs.passengers')}</p>
                             <p className="text-sm font-medium text-foreground">{jet.specs.passengers}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
                           <MapPin className="h-4 w-4 text-muted-foreground" />
                           <div>
-                            <p className="text-xs text-muted-foreground">Range</p>
+                            <p className="text-xs text-muted-foreground">{t('jets.specs.range')}</p>
                             <p className="text-sm font-medium text-foreground">{jet.specs.range}</p>
                           </div>
                         </div>
@@ -214,14 +215,14 @@ export default function JetsPage() {
                         <div className="flex items-center gap-2">
                           <Gauge className="h-4 w-4 text-muted-foreground" />
                           <div>
-                            <p className="text-xs text-muted-foreground">Speed</p>
+                            <p className="text-xs text-muted-foreground">{t('jets.specs.speed')}</p>
                             <p className="text-sm font-medium text-foreground">{jet.specs.speed}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
                           <Clock className="h-4 w-4 text-muted-foreground" />
                           <div>
-                            <p className="text-xs text-muted-foreground">Airports</p>
+                            <p className="text-xs text-muted-foreground">{t('jets.specs.airports')}</p>
                             <p className="text-sm font-medium text-foreground">{jet.specs.airports}</p>
                           </div>
                         </div>
@@ -245,7 +246,7 @@ export default function JetsPage() {
                       ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
                       : 'border border-border bg-muted/30 text-foreground hover:bg-muted/50'
                     } transition-all duration-300 group mt-auto`}>
-                      Request Quote
+                      {t('jets.cta.requestQuote')}
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </CardContent>
@@ -266,13 +267,13 @@ export default function JetsPage() {
                 <Shield className="h-8 w-8 text-muted-foreground" />
               </div>
               <h3 className="text-2xl font-bold text-foreground mb-6">
-                Safety & Certification
+                {t('jets.safety.title')}
               </h3>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                All VONAER aircraft meet the highest safety standards and are operated by certified professionals with extensive experience.
+                {t('jets.safety.description')}
               </p>
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold">
-                Learn About Safety
+                {t('jets.safety.learnMore')}
               </Button>
             </Card>
           </motion.div>

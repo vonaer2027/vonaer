@@ -1,11 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { VonaerHeader } from '@/components/vonaer-header'
+import { VonaerMenuOverlay } from '@/components/vonaer-menu-overlay'
 import { FlightCard } from '@/components/flight-card'
 import { UserManagement } from '@/components/user-management'
 import { MarginSettings } from '@/components/margin-settings'
 import { BookingRequests } from '@/components/booking-requests'
-import { ThemeToggle } from '@/components/theme-toggle'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -17,10 +19,12 @@ import { Toaster } from '@/components/ui/sonner'
 import { toast } from 'sonner'
 
 export default function AdminDashboard() {
+  const t = useTranslations()
   const [flights, setFlights] = useState<Flight[]>([])
   const [marginSetting, setMarginSetting] = useState<MarginSetting | null>(null)
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const loadData = async () => {
     try {
@@ -55,7 +59,7 @@ export default function AdminDashboard() {
 
   const handleMarginUpdate = (newMargin: MarginSetting) => {
     setMarginSetting(newMargin)
-    toast.success('마진 설정이 성공적으로 업데이트되었습니다')
+    toast.success(t('marginSettings.updateSuccess'))
   }
 
   const handlePriceUpdate = async (flightId: number, newPrice: number) => {
@@ -76,7 +80,7 @@ export default function AdminDashboard() {
 
   const testCustomPriceUpdate = async () => {
     if (flights.length === 0) {
-      toast.error('No flights available to test')
+      toast.error(t('admin.noFlights'))
       return
     }
     
@@ -85,13 +89,13 @@ export default function AdminDashboard() {
       const result = await flightService.testCustomPriceUpdate(firstFlight.id)
       console.log('Test result:', result)
       if (result.success) {
-        toast.success('Custom price update test successful!')
+        toast.success(t('admin.priceTestSuccess'))
       } else {
-        toast.error(`Test failed: ${result.error}`)
+        toast.error(`${t('admin.priceTestFailed')}: ${result.error}`)
       }
     } catch (error) {
       console.error('Test error:', error)
-      toast.error('Test failed with error')
+      toast.error(t('admin.priceTestError'))
     }
   }
 
@@ -106,18 +110,45 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <RefreshCw className="h-8 w-8 animate-spin mx-auto text-primary" />
-          <p className="text-muted-foreground">VONAER 대시보드 로딩 중...</p>
+      <div className="bg-primary text-primary-foreground relative min-h-screen">
+        {/* Sticky Header */}
+        <VonaerHeader 
+          menuOpen={menuOpen}
+          onMenuToggle={() => setMenuOpen(!menuOpen)}
+        />
+
+        {/* Full Screen Menu Overlay */}
+        <VonaerMenuOverlay 
+          isOpen={menuOpen}
+          onClose={() => setMenuOpen(false)}
+        />
+
+        <div className="min-h-screen bg-background flex items-center justify-center pt-20">
+          <div className="text-center space-y-4">
+            <RefreshCw className="h-8 w-8 animate-spin mx-auto text-primary" />
+            <p className="text-muted-foreground">{t('admin.loading')}</p>
+          </div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 lg:px-6 py-4 lg:py-8">
+    <div className="bg-primary text-primary-foreground relative min-h-screen">
+      {/* Sticky Header */}
+      <VonaerHeader 
+        menuOpen={menuOpen}
+        onMenuToggle={() => setMenuOpen(!menuOpen)}
+      />
+
+      {/* Full Screen Menu Overlay */}
+      <VonaerMenuOverlay 
+        isOpen={menuOpen}
+        onClose={() => setMenuOpen(false)}
+      />
+
+      <div className="min-h-screen bg-background pt-20">
+        <div className="container mx-auto px-4 lg:px-6 py-4 lg:py-8">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -126,7 +157,7 @@ export default function AdminDashboard() {
         >
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
-              <h1 className="text-2xl lg:text-3xl font-bold text-foreground">VONAER 관리자 대시보드</h1>
+              <h1 className="text-2xl lg:text-3xl font-bold text-foreground">{t('admin.title')}</h1>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               <Button 
@@ -137,8 +168,8 @@ export default function AdminDashboard() {
               >
                 <a href="/" target="_blank" rel="noopener noreferrer">
                   <Home className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">랜딩 페이지 보기</span>
-                  <span className="sm:hidden">홈</span>
+                  <span className="hidden sm:inline">{t('admin.viewLanding')}</span>
+                  <span className="sm:hidden">{t('common.home')}</span>
                 </a>
               </Button>
               <Button 
@@ -149,20 +180,19 @@ export default function AdminDashboard() {
               >
                 <a href="/empty" target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">고객 사이트 보기</span>
-                  <span className="sm:hidden">고객</span>
+                  <span className="hidden sm:inline">{t('admin.viewCustomer')}</span>
+                  <span className="sm:hidden">{t('common.customer')}</span>
                 </a>
               </Button>
-              <ThemeToggle />
               <Button 
                 onClick={loadData} 
                 disabled={refreshing}
                 variant="outline"
                 size="sm"
-                className="flex-1 sm:flex-none"
+                className="flex-1 sm:flex-none text-foreground hover:text-foreground"
               >
                 <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-                <span className="hidden sm:inline">새로고침</span>
+                <span className="hidden sm:inline">{t('admin.refresh')}</span>
               </Button>
               <Button 
                 onClick={testCustomPriceUpdate}
@@ -170,8 +200,8 @@ export default function AdminDashboard() {
                 size="sm"
                 className="flex-1 sm:flex-none"
               >
-                <span className="hidden sm:inline">가격 테스트</span>
-                <span className="sm:hidden">테스트</span>
+                <span className="hidden sm:inline">{t('admin.priceTest')}</span>
+                <span className="sm:hidden">{t('common.test')}</span>
               </Button>
             </div>
           </div>
@@ -186,33 +216,33 @@ export default function AdminDashboard() {
         >
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">전체 항공편</CardTitle>
+              <CardTitle className="text-sm font-medium">{t('admin.stats.totalFlights')}</CardTitle>
               <Plane className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalFlights}</div>
               <p className="text-xs text-muted-foreground">
-                이용 가능한 빈 항공편
+                {t('admin.flights.description')}
               </p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">한국 노선</CardTitle>
+              <CardTitle className="text-sm font-medium">{t('admin.stats.koreaRoutes')}</CardTitle>
               <Badge variant="outline" className="text-xs">KR</Badge>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.koreaFlights}</div>
               <p className="text-xs text-muted-foreground">
-                한국 관련 항공편
+                {t('admin.stats.koreaRoutes')}
               </p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">평균 가격</CardTitle>
+              <CardTitle className="text-sm font-medium">{t('admin.stats.averagePrice')}</CardTitle>
               <TrendingUp className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -220,20 +250,20 @@ export default function AdminDashboard() {
                 ${stats.averagePrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}
               </div>
               <p className="text-xs text-muted-foreground">
-                평균 항공편 가격
+                {t('admin.stats.averagePrice')}
               </p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">현재 마진</CardTitle>
+              <CardTitle className="text-sm font-medium">{t('admin.stats.currentMargin')}</CardTitle>
               <Settings className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.currentMargin}%</div>
               <p className="text-xs text-muted-foreground">
-                모든 항공편에 적용
+                {t('admin.stats.currentMargin')}
               </p>
             </CardContent>
           </Card>
@@ -249,29 +279,29 @@ export default function AdminDashboard() {
             <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto">
               <TabsTrigger value="flights" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
                 <Plane className="h-3 w-3 lg:h-4 lg:w-4" />
-                <span className="hidden sm:inline">항공편 ({flights.length})</span>
+                <span className="hidden sm:inline">{t('admin.tabs.flights')} ({flights.length})</span>
                 <span className="sm:hidden">{flights.length}</span>
               </TabsTrigger>
               <TabsTrigger value="bookings" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
                 <Phone className="h-3 w-3 lg:h-4 lg:w-4" />
-                <span className="hidden sm:inline">예약</span>
+                <span className="hidden sm:inline">{t('admin.tabs.bookings')}</span>
               </TabsTrigger>
               <TabsTrigger value="users" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
                 <Users className="h-3 w-3 lg:h-4 lg:w-4" />
-                <span className="hidden sm:inline">사용자</span>
+                <span className="hidden sm:inline">{t('admin.tabs.users')}</span>
               </TabsTrigger>
               <TabsTrigger value="settings" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
                 <Settings className="h-3 w-3 lg:h-4 lg:w-4" />
-                <span className="hidden sm:inline">설정</span>
+                <span className="hidden sm:inline">{t('admin.tabs.settings')}</span>
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="flights" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>빈 항공편</CardTitle>
+                  <CardTitle>{t('admin.flights.title')}</CardTitle>
                   <CardDescription>
-                    현재 가격이 적용된 모든 이용 가능한 빈 항공편
+                    {t('admin.flights.description')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -279,10 +309,10 @@ export default function AdminDashboard() {
                     <div className="text-center py-12">
                       <Plane className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                       <h3 className="text-lg font-medium text-muted-foreground mb-2">
-                        이용 가능한 항공편이 없습니다
+                        {t('admin.flights.noFlights')}
                       </h3>
                       <p className="text-sm text-muted-foreground">
-                        새로운 빈 항공편 기회를 확인하려면 나중에 다시 확인하세요
+                        {t('admin.flights.noFlightsDescription')}
                       </p>
                     </div>
                   ) : (
@@ -323,6 +353,7 @@ export default function AdminDashboard() {
             </TabsContent>
           </Tabs>
         </motion.div>
+        </div>
       </div>
       
       <Toaster />

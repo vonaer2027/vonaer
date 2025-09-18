@@ -1,0 +1,663 @@
+{
+  "hero": {
+    "title": "VONAER",
+    "subtitle": "提出新生活方式的平台，VONAER是城市航空移动服务。",
+    "bookFlight": "预订航班"
+  },
+  "services": {
+    "title": "VONAER服务",
+    "subtitle": "提出新生活方式的平台，VONAER是城市航空移动服务。",
+    "vonPrivate": {
+      "title": "VON私人",
+      "subtitle": "为最重视时间的人提供的VIP服务",
+      "description": "VON私人提供可灵活指定目的地和时间的VIP包机服务，带来无缝旅行体验。",
+      "features": {
+        "feature1": "便捷的出发地和目的地选择",
+        "feature2": "无入会费。购买积分后通过应用预订",
+        "feature3": "机场护送、VON携带、VON贵宾室服务"
+      }
+    },
+    "vonRoutine": {
+      "title": "VON常规",
+      "subtitle": "从江南到仁川机场20分钟",
+      "description": "VON常规提供江南和仁川机场之间快速舒适的航空班车服务。只需通过VONAER应用预订。",
+      "features": {
+        "feature1": "体验从江南到仁川机场的下一级舒适",
+        "feature2": "便捷快速的交通",
+        "feature3": "直升机包机服务可用"
+      }
+    },
+    "vonTour": {
+      "title": "VON旅游",
+      "subtitle": "享受韩国令人叹为观止的天空景色",
+      "description": "通过我们的风景直升机之旅以前所未有的方式体验韩国。提供多种旅游套餐。",
+      "features": {
+        "feature1": "冠岳山旅游 - 秋叶和春花旅游",
+        "feature2": "汉江旅游 - 首尔天际线和樱花旅游",
+        "feature3": "DMZ旅游 - 仅在韩国可见的历史地标"
+      }
+    },
+    "learnMore": "了解更多",
+    "tourPackages": {
+      "title": "旅游套餐",
+      "gwanakMountain": {
+        "name": "冠岳山",
+        "route": "见证仅在韩国可见的历史地标。从天空俯瞰DMZ另一边的朝鲜壮观景色。",
+        "tags": {
+          "tag1": "历史",
+          "tag2": "风景",
+          "tag3": "独特"
+        }
+      },
+      "hanRiver": {
+        "name": "汉江",
+        "route": "首尔 → 汉江 → 首尔",
+        "tags": {
+          "tag1": "城市旅游",
+          "tag2": "河景",
+          "tag3": "天际线"
+        }
+      },
+      "bukhanMountain": {
+        "name": "北汉山",
+        "route": "COEX → 乐天塔 → 石村湖 → 北汉山 → 道峰山",
+        "tags": {
+          "tag1": "北汉山国立公园",
+          "tag2": "首尔洛基山旅游"
+        }
+      },
+      "dmz": {
+        "name": "DMZ旅游",
+        "route": "见证仅在韩国可见的历史地标。从天空观看DMZ外的朝鲜景色。",
+        "tags": {
+          "tag1": "DMZ旅游"
+        }
+      }
+    },
+    "usageGuide": {
+      "title": "如何使用VONAER",
+      "subtitle": "预订高级航空体验的简单步骤",
+      "steps": {
+        "step1": {
+          "title": "下载应用",
+          "description": "从App Store或Google Play下载VONAER应用"
+        },
+        "step2": {
+          "title": "创建账户",
+          "description": "用所需文件注册并验证您的账户"
+        },
+        "step3": {
+          "title": "选择服务",
+          "description": "从VON私人、VON常规或VON旅游中选择"
+        },
+        "step4": {
+          "title": "预订和飞行",
+          "description": "进行预订并享受您的高级航空体验"
+        },
+        "step5": {
+          "title": "登机",
+          "description": "在预定时间到达直升机停机坪，并遵循安全人员的指示"
+        },
+        "step6": {
+          "title": "下机",
+          "description": "着陆后，继续使用VON租车或VON豪华轿车进行最后一英里的转移"
+        }
+      }
+    }
+  },
+  "about": {
+    "coreValues": [
+      {
+        "title": "为您的宝贵时间增添价值",
+        "description": "VONAER通过私人飞机增强时间的价值并重新定义生活方式，在视觉表现力设计中体现其核心价值和愿景。"
+      },
+      {
+        "title": "让梦想和想象成为现实",
+        "description": "我们通过尖端技术和卓越服务将您的航空梦想变为现实。"
+      },
+      {
+        "title": "设定新标准的趋势引领者",
+        "description": "通过创新解决方案和开创性方法引领空中交通服务行业。"
+      }
+    ],
+    "companyStory": {
+      "title": "成立于2021年，VONAER经历了快速增长",
+      "description": "众多领先企业与我们合作，革新空中交通行业。"
+    },
+    "appDownload": {
+      "title": "下载VONAER应用程序",
+      "subtitle": "体验空中交通的未来",
+      "button": "立即下载"
+    }
+  },
+  "common": {
+    "imagePlaceholder": "图像占位符",
+    "learnMore": "了解更多",
+    "home": "首页",
+    "customer": "客户",
+    "test": "测试"
+  },
+  "membership": {
+    "title": "VONAER会员",
+    "subtitle": "选择最适合您航空旅行需求的会员等级",
+    "mostPopular": "最受欢迎",
+    "annualDues": "年费",
+    "bookingFee": "预订费",
+    "charterPrice": "包机价格",
+    "getStarted": "开始",
+    "joinNow": "立即加入",
+    "termsTitle": "会员条款和福利",
+    "terms": [
+      "支付年费后会员资格即完成。",
+      "会员资格有效期为一年。可用飞行时间必须在该期间内使用。",
+      "如果在会员资格结束前购买额外时间，剩余时间将结转。",
+      "一旦专用飞行时间用完，将适用会员状态内的适用费率。",
+      "除冰、吸烟和特殊餐饮服务可能收取额外费用。"
+    ],
+    "tiers": {
+      "aerMember": {
+        "name": "AER会员",
+        "annualDues": "不适用",
+        "bookingFee": "$495",
+        "charterPrice": "动态",
+        "features": [
+          {
+            "name": "机场护送",
+            "included": false
+          },
+          {
+            "name": "私人航站楼",
+            "included": true
+          },
+          {
+            "name": "VONAER活动",
+            "included": false
+          },
+          {
+            "name": "空腿折扣",
+            "included": false,
+            "value": ""
+          }
+        ]
+      },
+      "von": {
+        "name": "VON",
+        "annualDues": "$92,500",
+        "bookingFee": "免费",
+        "charterPrice": "动态",
+        "features": [
+          {
+            "name": "飞机改装",
+            "included": false
+          },
+          {
+            "name": "机场护送",
+            "included": true
+          },
+          {
+            "name": "私人航站楼",
+            "included": true
+          },
+          {
+            "name": "VONAER活动",
+            "included": true
+          },
+          {
+            "name": "空腿折扣",
+            "included": true,
+            "value": "2%"
+          }
+        ]
+      },
+      "vonPremiere": {
+        "name": "VON高级",
+        "annualDues": "$234,000",
+        "bookingFee": "免费",
+        "charterPrice": "动态",
+        "features": [
+          {
+            "name": "飞机改装",
+            "included": true
+          },
+          {
+            "name": "机场护送",
+            "included": true
+          },
+          {
+            "name": "私人航站楼",
+            "included": true
+          },
+          {
+            "name": "VONAER活动",
+            "included": true
+          },
+          {
+            "name": "空腿折扣",
+            "included": true,
+            "value": "3%"
+          }
+        ]
+      },
+      "vonUltimate": {
+        "name": "VON终极",
+        "annualDues": "$350,000",
+        "bookingFee": "免费",
+        "charterPrice": "动态",
+        "features": [
+          {
+            "name": "高级飞机",
+            "included": true
+          },
+          {
+            "name": "机场护送",
+            "included": true
+          },
+          {
+            "name": "私人航站楼",
+            "included": true
+          },
+          {
+            "name": "VONAER活动",
+            "included": true
+          },
+          {
+            "name": "空腿折扣",
+            "included": true,
+            "value": "5%"
+          }
+        ]
+      }
+    }
+  },
+  "ancillary": {
+    "title": "辅助服务",
+    "subtitle": "通过我们全面的辅助服务增强VONAER服务",
+    "services": [
+      {
+        "id": "von-escort",
+        "title": "VON护送",
+        "description": "为真正VIP体验提供卓越的机场护送服务",
+        "features": [
+          "机场内个人护送",
+          "快速安检和出入境",
+          "VIP休息室使用",
+          "行李协助"
+        ]
+      },
+      {
+        "id": "von-carry",
+        "title": "VON携带",
+        "description": "将您的行李运送到最终目的地的高级行李递送服务",
+        "features": [
+          "门到门行李递送",
+          "实时跟踪",
+          "保险覆盖",
+          "白手套处理"
+        ]
+      },
+      {
+        "id": "von-connect",
+        "title": "VON连接",
+        "description": "直升机场和机场航站楼之间的汽车服务",
+        "features": [
+          "无缝航站楼转机",
+          "专业司机",
+          "豪华车队",
+          "实时协调"
+        ]
+      },
+      {
+        "id": "von-lounge",
+        "title": "VON休息室",
+        "description": "VON会员专属休息室",
+        "features": [
+          "私人休息室使用",
+          "高级餐饮选择",
+          "商务设施",
+          "礼宾服务"
+        ]
+      },
+      {
+        "id": "von-limousine",
+        "title": "VON豪华轿车",
+        "description": "VON豪华轿车为首末英里提供VIP黑色汽车服务。",
+        "features": [
+          "豪华轿车车队",
+          "专业司机",
+          "首末英里服务",
+          "高级设施"
+        ]
+      },
+      {
+        "id": "von-rentcar",
+        "title": "VON租车",
+        "description": "允许客户驾驶到最终目的地的租车服务",
+        "features": [
+          "高级车辆选择",
+          "灵活租赁条件",
+          "机场交付",
+          "24/7支持"
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "newsletter": {
+      "title": "通讯",
+      "subtitle": "获取VONAER的最新消息和独家优惠",
+      "placeholder": "输入您的邮箱",
+      "subscribe": "订阅"
+    },
+    "sections": {
+      "vonaerService": "VONAER服务",
+      "ancillaryService": "辅助服务",
+      "company": "公司",
+      "contact": "联系"
+    },
+    "services": [
+      "VONAER喷气机",
+      "VON私人",
+      "VON常规",
+      "VON旅游"
+    ],
+    "ancillaryServices": [
+      "会员",
+      "公司"
+    ],
+    "companyLinks": [
+      "关于我们",
+      "职业",
+      "个人信息政策",
+      "使用条款"
+    ],
+    "contact": {
+      "phone": "+82 1600 9064",
+      "email": "business@VONAER.com",
+      "businessHours": "营业时间",
+      "businessDays": "工作日 | 09:00 ~ 18:00",
+      "holidays": "节假日",
+      "sns": "社交媒体"
+    },
+    "company": {
+      "name": "公司 : 摩维申有限公司 | 营业执照号: 216-81-49698",
+      "address": "地址 : 首尔江南区德黑兰路87街22号，韩国城市机场2楼",
+      "ecommerce": "电子商务注册号 : 2022-首尔江南-00453 | 电子商务注册机关 : 江南区厅",
+      "copyright": "版权所有 摩维申有限公司. All Rights Reserved."
+    }
+  },
+  "menu": {
+    "title": "菜单",
+    "categories": {
+      "vonaerService": "VONAER服务",
+      "privateJets": "私人喷气机",
+      "helicopter": "直升机",
+      "luxuryTransport": "豪华交通",
+      "ancillaryService": "辅助服务"
+    },
+    "items": {
+      "allServices": "所有服务",
+      "bookFlight": "预订航班",
+      "allJets": "所有喷气机",
+      "lightJet": "轻型喷气机",
+      "midJet": "中型喷气机",
+      "heavyJet": "重型喷气机",
+      "ultraLongHaul": "超长程",
+      "vipAirline": "VIP航空",
+      "helicopterServices": "直升机服务",
+      "superCar": "超级跑车",
+      "superYacht": "超级游艇",
+      "allAncillaryServices": "所有辅助服务"
+    },
+    "other": {
+      "home": "首页",
+      "aboutUs": "关于我们",
+      "membership": "会员",
+      "aircraft": "飞机",
+      "emptyLeg": "空腿",
+      "pr": "公关",
+      "contact": "联系"
+    }
+  },
+  "booking": {
+    "title": "预订航班",
+    "subtitle": "请填写表格以联系我们的销售团队。私人喷气机包机费用因各种因素而异，起价为每小时$5,000。",
+    "tripType": {
+      "oneWay": "单程",
+      "roundTrip": "往返"
+    },
+    "placeholders": {
+      "departureCity": "出发城市",
+      "destinationCity": "目的地城市"
+    },
+    "passengers": "乘客",
+    "passengersPlural": "乘客",
+    "search": "搜索"
+  },
+  "jets": {
+    "title": "私人喷气机",
+    "subtitle": "通过我们全面的私人喷气机机队体验豪华、舒适和效率",
+    "mostPopular": "最受欢迎",
+    "aircraftImage": "飞机图像",
+    "passengers": "乘客",
+    "range": "航程",
+    "speed": "速度",
+    "airports": "机场",
+    "requestQuote": "请求报价",
+    "safety": {
+      "title": "安全和认证",
+      "description": "所有VONAER飞机都符合最高安全标准，由经验丰富的认证专业人员操作。",
+      "learnMore": "了解安全"
+    },
+    "categories": {
+      "lightJet": {
+        "title": "轻型喷气机",
+        "subtitle": "高效短程喷气机",
+        "description": "具有出色的燃油效率和舒适座椅，非常适合小团体的短到中程飞行。",
+        "specs": {
+          "passengers": "4-8人",
+          "range": "1,500-2,500 nm",
+          "speed": "400-500 mph",
+          "airports": "5,000+"
+        },
+        "features": [
+          "短途旅行成本效益高",
+          "可进入较小机场",
+          "快速登机流程",
+          "燃油效率高"
+        ]
+      },
+      "midJet": {
+        "title": "中型喷气机",
+        "subtitle": "平衡性能喷气机",
+        "description": "为中程旅行提供舒适性、航程和性能的理想平衡，具有增强的客舱空间。",
+        "specs": {
+          "passengers": "6-10人",
+          "range": "2,000-3,500 nm",
+          "speed": "450-550 mph",
+          "airports": "3,500+"
+        },
+        "features": [
+          "宽敞的客舱设计",
+          "扩展航程能力",
+          "增强的舒适功能",
+          "可靠的性能"
+        ]
+      },
+      "heavyJet": {
+        "title": "重型喷气机",
+        "subtitle": "长程豪华喷气机",
+        "description": "为长程飞行提供最大的豪华和航程，配备高级设施和宽敞的客舱。",
+        "specs": {
+          "passengers": "8-16人",
+          "range": "3,500-7,000 nm",
+          "speed": "500-600 mph",
+          "airports": "3,000+"
+        },
+        "features": [
+          "豪华客舱设施",
+          "长程能力",
+          "高级餐饮选择",
+          "全尺寸洗手间"
+        ]
+      },
+      "ultraLongHaul": {
+        "title": "超长程",
+        "subtitle": "洲际喷气机",
+        "description": "为洲际飞行提供终极的豪华和航程，配备酒店式设施。",
+        "specs": {
+          "passengers": "10-19人",
+          "range": "6,000+ nm",
+          "speed": "550-650 mph",
+          "airports": "2,500+"
+        },
+        "features": [
+          "卧室和淋浴设施",
+          "会议室设置",
+          "美食餐饮服务",
+          "全球航程能力"
+        ]
+      },
+      "vipAirline": {
+        "title": "VIP航空",
+        "subtitle": "高级航空服务",
+        "description": "提供头等舱设施和优先登机的商用航空VIP服务。",
+        "specs": {
+          "passengers": "1-4人",
+          "range": "全球",
+          "speed": "500-600 mph",
+          "airports": "主要枢纽"
+        },
+        "features": [
+          "头等舱使用",
+          "优先登机",
+          "专用值机",
+          "全球网络"
+        ]
+      }
+    }
+  },
+  "admin": {
+    "title": "VONAER管理员仪表板",
+    "loading": "VONAER仪表板加载中...",
+    "viewLanding": "查看着陆页",
+    "viewCustomer": "查看客户网站",
+    "refresh": "刷新",
+    "priceTest": "价格测试",
+    "stats": {
+      "totalFlights": "总航班",
+      "koreaRoutes": "韩国航线",
+      "averagePrice": "平均价格",
+      "currentMargin": "当前利润率"
+    },
+    "tabs": {
+      "flights": "航班",
+      "bookings": "预订",
+      "users": "用户",
+      "settings": "设置"
+    },
+    "flights": {
+      "title": "空腿航班",
+      "description": "所有可用的空腿航班，应用当前定价",
+      "noFlights": "没有可用航班",
+      "noFlightsDescription": "请稍后查看新的空腿航班机会"
+    }
+  },
+  "client": {
+    "title": "空腿航班",
+    "subtitle": "查看可用的空腿航班并进行预订",
+    "loading": "加载可用航班中...",
+    "refresh": "刷新",
+    "availableFlights": "可用航班",
+    "flightsAvailable": "空腿航班可用",
+    "updateDate": "更新:",
+    "sortBy": "排序:",
+    "sortOptions": {
+      "priceLow": "价格: 低到高",
+      "priceHigh": "价格: 高到低",
+      "dateNear": "日期: 最近优先",
+      "dateFar": "日期: 最远优先"
+    },
+    "noFlights": "没有可用航班",
+    "noFlightsDescription": "请稍后查看新的空腿航班机会"
+  },
+  "flightCard": {
+    "luxuryAircraft": "豪华飞机",
+    "departure": "出发",
+    "arrival": "到达",
+    "emptyLegFlight": "空腿航班",
+    "flightDate": "航班日期",
+    "capacity": "容量",
+    "price": "价格",
+    "totalFlightCost": "总航班费用",
+    "bookingRequest": "预订请求",
+    "tbd": "待定",
+    "undecided": "未定"
+  },
+  "bookingDialog": {
+    "title": "预订请求",
+    "subtitle": "收到您的详细信息后，我们将在24小时内与您联系。",
+    "contactInfo": "联系信息",
+    "fullName": "姓名",
+    "fullNamePlaceholder": "请输入您的姓名",
+    "phone": "电话号码",
+    "phonePlaceholder": "010-1234-5678",
+    "email": "电子邮件地址（可选）",
+    "emailPlaceholder": "your.email@example.com",
+    "privacyAndConsent": "隐私和同意",
+    "contactConsent": "我同意VONAER就航班预订事宜与我联系。",
+    "privacyConsent": "通过使用服务，我确认已阅读并同意",
+    "privacyPolicy": "隐私政策",
+    "cancel": "取消",
+    "submitting": "提交中...",
+    "submitRequest": "提交请求",
+    "nameRequired": "请输入您的姓名",
+    "phoneRequired": "请输入您的电话号码",
+    "contactConsentRequired": "请提供VONAER联系同意",
+    "privacyConsentRequired": "请同意隐私政策",
+    "bookingRequestFailed": "预订请求失败",
+    "unknownError": "发生未知错误",
+    "seats": "座位"
+  },
+  "bookingRequests": {
+    "title": "预订请求",
+    "subtitle": "空腿航班的客户咨询",
+    "loading": "加载预订请求中...",
+    "refresh": "刷新",
+    "stats": {
+      "totalRequests": "总请求",
+      "pendingCalls": "待处理通话",
+      "completedCalls": "已完成通话"
+    },
+    "pendingCalls": "待处理通话",
+    "pendingCallsDescription": "需要联系的新预订请求",
+    "completedCalls": "已完成通话",
+    "completedCallsDescription": "已联系的客户",
+    "customer": "客户",
+    "flight": "航班",
+    "route": "路线",
+    "flightDate": "航班日期",
+    "requestDate": "请求日期",
+    "actions": "操作",
+    "callCompleted": "通话完成",
+    "viewDetails": "查看详情",
+    "delete": "删除",
+    "noRequests": "还没有预订请求",
+    "noRequestsDescription": "客户预订请求将在此处显示",
+    "details": {
+      "title": "预订详情",
+      "subtitle": "预订请求",
+      "customer": "客户",
+      "phone": "电话",
+      "email": "邮箱",
+      "status": "状态",
+      "requestDate": "请求日期",
+      "pending": "待处理",
+      "completed": "已完成",
+      "consent": "隐私同意",
+      "agreed": "已同意",
+      "notAgreed": "未同意",
+      "markCompleted": "标记为已完成",
+      "close": "关闭"
+    }
+  }
+}

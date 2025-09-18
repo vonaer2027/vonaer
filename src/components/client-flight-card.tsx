@@ -6,6 +6,8 @@ import { Plane, Calendar, Users, MapPin, ArrowRight } from "lucide-react"
 import { Flight, MarginSetting } from "@/lib/supabase"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { useTranslations } from 'next-intl'
+import { useLocale } from '@/components/locale-provider'
 
 interface ClientFlightCardProps {
   flight: Flight
@@ -14,6 +16,8 @@ interface ClientFlightCardProps {
 }
 
 export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: ClientFlightCardProps) {
+  const t = useTranslations()
+  const { locale } = useLocale()
   const roundUpToNearestHundred = (price: number) => {
     return Math.ceil(price / 100) * 100
   }
@@ -41,9 +45,20 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
   }
 
   const formatDate = (dateString?: string) => {
-    if (!dateString) return '날짜 미정'
+    if (!dateString) return t('clientFlightCard.dateTBD')
     const date = new Date(dateString)
-    return date.toLocaleDateString('ko-KR', {
+    
+    // Map our locale codes to proper locale strings
+    const localeMap: { [key: string]: string } = {
+      'en': 'en-US',
+      'kr': 'ko-KR', 
+      'jp': 'ja-JP',
+      'cn': 'zh-CN'
+    }
+    
+    const browserLocale = localeMap[locale] || 'en-US'
+    
+    return date.toLocaleDateString(browserLocale, {
       weekday: 'short',
       month: 'long',
       day: 'numeric',
@@ -76,7 +91,7 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
           <div className="flex items-start justify-between">
             <CardTitle className="text-xl font-bold flex items-center gap-2 text-foreground">
               <Plane className="h-5 w-5 text-primary" />
-{flight.aircraft || '럭셔리 항공기'}
+{flight.aircraft || t('clientFlightCard.luxuryAircraft')}
             </CardTitle>
           </div>
         </CardHeader>
@@ -88,10 +103,10 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
               <div className="text-center flex-1">
                 <div className="flex items-center justify-center gap-1 text-sm text-muted-foreground mb-2">
                   <MapPin className="h-4 w-4" />
-출발
+{t('clientFlightCard.departure')}
                 </div>
                 <div className="font-bold text-lg text-foreground">
-{flight.from_city || '미정'}
+{flight.from_city || t('clientFlightCard.tbd')}
                 </div>
                 <div className="text-sm text-muted-foreground">
                   {flight.from_country}
@@ -103,17 +118,17 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
                   <ArrowRight className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-xs text-muted-foreground font-medium">
-빈 항공편
+{t('clientFlightCard.emptyLeg')}
                 </div>
               </div>
               
               <div className="text-center flex-1">
                 <div className="flex items-center justify-center gap-1 text-sm text-muted-foreground mb-2">
                   <MapPin className="h-4 w-4" />
-도착
+{t('clientFlightCard.arrival')}
                 </div>
                 <div className="font-bold text-lg text-foreground">
-{flight.to_city || '미정'}
+{flight.to_city || t('clientFlightCard.tbd')}
                 </div>
                 <div className="text-sm text-muted-foreground">
                   {flight.to_country}
@@ -127,7 +142,7 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
             <div className="flex items-center justify-center gap-3">
               <Calendar className="h-6 w-6 text-primary" />
               <div className="text-center">
-                <div className="text-sm text-muted-foreground font-medium">항공편 날짜</div>
+                <div className="text-sm text-muted-foreground font-medium">{t('clientFlightCard.flightDate')}</div>
                 <div className="text-lg font-bold text-foreground">
                   {formatDate(flight.flight_date)}
                 </div>
@@ -140,9 +155,9 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
             <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
               <Users className="h-5 w-5 text-primary" />
               <div>
-                <div className="text-xs text-muted-foreground font-medium">수용 인원</div>
+                <div className="text-xs text-muted-foreground font-medium">{t('clientFlightCard.capacity')}</div>
                 <div className="text-sm font-semibold text-foreground">
-{flight.seats ? `${flight.seats}명` : '미정'}
+{flight.seats ? `${flight.seats}${t('clientFlightCard.people')}` : t('clientFlightCard.tbd')}
                 </div>
               </div>
             </div>
@@ -153,13 +168,13 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
             <div className="flex items-end justify-between">
               <div className="space-y-1">
                 <div className="text-sm font-medium text-muted-foreground">
-가격
+{t('clientFlightCard.price')}
                 </div>
                 <div className="text-3xl font-bold text-primary">
                   {formatPrice()}
                 </div>
                 <div className="text-xs text-muted-foreground">
-총 항공편 비용
+{t('clientFlightCard.totalCost')}
                 </div>
               </div>
               
@@ -168,7 +183,7 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
                 size="lg"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
-예약 요청
+{t('clientFlightCard.bookRequest')}
               </Button>
             </div>
           </div>

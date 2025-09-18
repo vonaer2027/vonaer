@@ -8,21 +8,11 @@ import {
   Car, 
   Anchor, 
   Zap, 
-  Crown,
   Users,
   Phone,
   ChevronRight,
-  ChevronDown,
   Home,
-  Star,
-  Gift,
-  Settings,
-  Clock,
-  Heart,
-  Shield,
-  Package,
-  Coffee,
-  FileText
+  Star
 } from 'lucide-react'
 
 interface VonaerMenuOverlayProps {
@@ -32,40 +22,12 @@ interface VonaerMenuOverlayProps {
 
 const menuItems = [
   {
-    category: 'VONAER SERVICE',
+    category: 'SERVICES',
     items: [
-      { id: 'services', label: 'All Services', icon: Plane, anchor: '#services' },
-      { id: 'book-flight', label: 'Book a Flight', icon: Crown, anchor: '#book-flight' },
-    ]
-  },
-  {
-    category: 'PRIVATE JETS',
-    items: [
-      { id: 'jets', label: 'All Jets', icon: Plane, href: '/jets' },
-      { id: 'light-jet', label: 'Light Jet', icon: Plane, href: '/jets#light-jet' },
-      { id: 'mid-jet', label: 'Mid Jet', icon: Plane, href: '/jets#mid-jet' },
-      { id: 'heavy-jet', label: 'Heavy Jet', icon: Plane, href: '/jets#heavy-jet' },
-      { id: 'ultra-long-haul', label: 'Ultra Long Haul', icon: Plane, href: '/jets#ultra-long-haul' },
-      { id: 'vip-airline', label: 'VIP Airline', icon: Crown, href: '/jets#vip-airline' },
-    ]
-  },
-  {
-    category: 'HELICOPTER',
-    items: [
-      { id: 'helicopter', label: 'Helicopter Services', icon: Zap, href: '/helicopter' },
-    ]
-  },
-  {
-    category: 'LUXURY TRANSPORT',
-    items: [
+      { id: 'jets', label: 'Private Jets', icon: Plane, href: '/jets' },
+      { id: 'helicopter', label: 'Helicopter', icon: Zap, href: '/helicopter' },
       { id: 'supercar', label: 'Super Car', icon: Car, href: '/supercar' },
       { id: 'superyacht', label: 'Super Yacht', icon: Anchor, href: '/superyacht' },
-    ]
-  },
-  {
-    category: 'ANCILLARY SERVICE',
-    items: [
-      { id: 'ancillary', label: 'All Ancillary Services', icon: Gift, anchor: '#ancillary' },
     ]
   }
 ]
@@ -74,9 +36,7 @@ const otherItems = [
   { id: 'home', label: 'HOME', icon: Home, anchor: '#home' },
   { id: 'about', label: 'ABOUT US', icon: Users, anchor: '#about' },
   { id: 'membership', label: 'MEMBERSHIP', icon: Star, anchor: '#membership' },
-  { id: 'aircraft', label: 'AIRCRAFT', icon: Plane, href: '/aircraft' },
   { id: 'empty-leg', label: 'EMPTY LEG', icon: Plane, href: '/empty' },
-  { id: 'pr', label: 'PR', icon: FileText, href: '/pr' },
   { id: 'contact', label: 'CONTACT', icon: Phone, anchor: '#contact' }
 ]
 
@@ -84,19 +44,29 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
 
   const handleSmoothScroll = (anchor: string) => {
-    const element = document.querySelector(anchor)
-    if (element) {
-      // Calculate offset for fixed header (approximately 80px)
-      const headerOffset = 80
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
+    // Check if we're on the main page (has #home element)
+    const homeElement = document.querySelector('#home')
+    if (homeElement) {
+      // On main page, scroll to the section
+      const element = document.querySelector(anchor)
+      if (element) {
+        // Close menu first to avoid interference
+        onClose()
+        
+        // Wait for menu animation to complete, then scroll
+        setTimeout(() => {
+          // Use scrollIntoView for better browser compatibility
+          element.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start',
+            inline: 'nearest'
+          })
+        }, 300) // Wait for menu close animation (300ms)
+      }
+    } else {
+      // On other pages, navigate to main page with anchor
+      window.location.href = `/${anchor}`
     }
-    onClose()
   }
 
   const toggleCategory = (category: string) => {
@@ -153,7 +123,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
 
           {/* Menu Content */}
           <div className="flex-1 overflow-y-auto py-4">
-            {/* Main Menu Categories */}
+            {/* Services Section */}
             {menuItems.map((category, categoryIndex) => {
               const isExpanded = expandedCategories.has(category.category)
               
@@ -179,7 +149,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
                     </motion.div>
                   </Button>
                   
-                  {/* Subcategory items - expandable/collapsible */}
+                  {/* Services items - expandable/collapsible */}
                   <AnimatePresence>
                     {isExpanded && (
                       <motion.div
@@ -191,32 +161,18 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
                       >
                         <div className="pl-6 pb-2 space-y-1">
                           {category.items.map((item, itemIndex) => (
-                            item.href ? (
-                              <motion.a
-                                key={item.id}
-                                href={item.href}
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: itemIndex * 0.05 }}
-                                className="flex items-center gap-3 w-full text-left py-2 px-4 text-white/70 hover:text-primary-foreground hover:bg-primary-foreground/5 text-sm transition-all duration-200 rounded-md"
-                                onClick={onClose}
-                              >
-                                <item.icon className="h-4 w-4 flex-shrink-0" />
-                                {item.label}
-                              </motion.a>
-                            ) : (
-                              <motion.button
-                                key={item.id}
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: itemIndex * 0.05 }}
-                                className="flex items-center gap-3 w-full text-left py-2 px-4 text-white/70 hover:text-primary-foreground hover:bg-primary-foreground/5 text-sm transition-all duration-200 rounded-md"
-                                onClick={() => handleSmoothScroll(item.anchor!)}
-                              >
-                                <item.icon className="h-4 w-4 flex-shrink-0" />
-                                {item.label}
-                              </motion.button>
-                            )
+                            <motion.a
+                              key={item.id}
+                              href={item.href}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: itemIndex * 0.05 }}
+                              className="flex items-center gap-3 w-full text-left py-2 px-4 text-white/70 hover:text-primary-foreground hover:bg-primary-foreground/5 text-sm transition-all duration-200 rounded-md"
+                              onClick={onClose}
+                            >
+                              <item.icon className="h-4 w-4 flex-shrink-0" />
+                              {item.label}
+                            </motion.a>
                           ))}
                         </div>
                       </motion.div>
@@ -226,7 +182,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
               )
             })}
 
-            {/* Other Menu Items */}
+            {/* Other Menu Items (without arrows) */}
             {otherItems.map((item, index) => (
               <motion.div
                 key={item.id}
@@ -238,7 +194,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
                 {item.href ? (
                   <Button
                     variant="ghost"
-                    className="w-full justify-between py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
+                    className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
                     asChild
                   >
                     <a href={item.href}>
@@ -246,20 +202,18 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
                         <item.icon className="h-4 w-4" />
                         <span>{item.label}</span>
                       </div>
-                      <ChevronRight className="h-4 w-4" />
                     </a>
                   </Button>
                 ) : (
                   <Button
                     variant="ghost"
-                    className="w-full justify-between py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
+                    className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
                     onClick={() => handleSmoothScroll(item.anchor!)}
                   >
                     <div className="flex items-center gap-3">
                       <item.icon className="h-4 w-4" />
                       <span>{item.label}</span>
                     </div>
-                    <ChevronRight className="h-4 w-4" />
                   </Button>
                 )}
               </motion.div>

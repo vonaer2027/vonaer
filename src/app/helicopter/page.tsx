@@ -8,102 +8,116 @@ import { VonaerHeader } from '@/components/vonaer-header'
 import { VonaerMenuOverlay } from '@/components/vonaer-menu-overlay'
 import { VonaerFooter } from '@/components/vonaer-footer'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { 
   Zap, 
-  Users, 
-  Gauge, 
-  MapPin, 
-  Clock,
   ArrowRight,
   Mountain,
   Building,
   Shield
 } from 'lucide-react'
 
-const helicopterServices = [
-  {
-    id: 'von-routine',
-    title: 'VON Routine',
-    subtitle: 'Regular Shuttle Service',
-    description: 'Fast and comfortable air shuttle service between Gangnam and Incheon Airport in just 20 minutes.',
-    route: 'Gangnam ↔ Incheon Airport',
-    duration: '20 minutes',
-    frequency: 'Multiple daily flights',
-    features: [
-      'Express airport transfers',
-      'Premium helicopter fleet',
-      'Professional pilots',
-      'Weather monitoring'
-    ],
-    popular: true
-  },
-  {
-    id: 'von-tour',
-    title: 'VON Tour',
-    subtitle: 'Scenic Helicopter Tours',
-    description: 'Scenic helicopter tours offering breathtaking aerial views of Korea\'s most beautiful landmarks.',
-    route: 'Various scenic routes',
-    duration: '30-90 minutes',
-    frequency: 'On-demand',
-    features: [
-      'Scenic route options',
-      'Professional tour guides',
-      'Photography opportunities',
-      'Flexible scheduling'
-    ],
-    popular: false
-  },
-  {
-    id: 'von-private',
-    title: 'VON Private Helicopter',
-    subtitle: 'Private Helicopter Charter',
-    description: 'Custom helicopter charter service with flexible destinations and personalized flight experience.',
-    route: 'Custom destinations',
-    duration: 'As needed',
-    frequency: 'On-demand',
-    features: [
-      'Custom flight planning',
-      'VIP service',
-      'Flexible timing',
-      'Premium amenities'
-    ],
-    popular: false
-  }
-]
-
-const tourRoutes = [
-  {
-    name: 'GwanAk Mountain Tour',
-    route: 'COEX → Jamsil → Yangjae Forest → Seoul Amusement Park → GwanAk Mountain',
-    duration: '45 minutes',
-    highlights: ['Autumn Leaves', 'Spring Flowers', 'Seoul Amusement Park'],
-    icon: Mountain
-  },
-  {
-    name: 'Han River Tour',
-    route: 'COEX → Lotte Tower → Seokchon Lake → Olympic Park → Amsa Heritage → Namyangju',
-    duration: '60 minutes',
-    highlights: ['Seoul Skyline', 'Cherry Blossoms', 'Olympic Park'],
-    icon: Building
-  },
-  {
-    name: 'BukHan Mountain Tour',
-    route: 'COEX → Lotte Tower → Seokchon Lake → BukHan Mountain → Dobong Mountain',
-    duration: '75 minutes',
-    highlights: ['National Park', 'Rocky Mountains', 'Mountain Views'],
-    icon: Mountain
-  },
-  {
-    name: 'DMZ Tour',
-    route: 'Historical landmarks and North Korea views from above the DMZ',
-    duration: '90 minutes',
-    highlights: ['Historical Sites', 'DMZ Views', 'Unique Experience'],
-    icon: Shield
-  }
-]
-
 export default function HelicopterPage() {
+  const t = useTranslations()
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const helicopterServices = [
+    {
+      id: 'von-routine',
+      title: t('helicopter.services.vonRoutine.title'),
+      subtitle: t('helicopter.services.vonRoutine.subtitle'),
+      description: t('helicopter.services.vonRoutine.description'),
+      route: t('helicopter.services.vonRoutine.route'),
+      duration: t('helicopter.services.vonRoutine.duration'),
+      frequency: t('helicopter.services.vonRoutine.frequency'),
+      features: [
+        t('helicopter.services.vonRoutine.features.0'),
+        t('helicopter.services.vonRoutine.features.1'),
+        t('helicopter.services.vonRoutine.features.2'),
+        t('helicopter.services.vonRoutine.features.3')
+      ],
+      popular: true
+    },
+    {
+      id: 'von-tour',
+      title: t('helicopter.services.vonTour.title'),
+      subtitle: t('helicopter.services.vonTour.subtitle'),
+      description: t('helicopter.services.vonTour.description'),
+      route: t('helicopter.services.vonTour.route'),
+      duration: t('helicopter.services.vonTour.duration'),
+      frequency: t('helicopter.services.vonTour.frequency'),
+      features: [
+        t('helicopter.services.vonTour.features.0'),
+        t('helicopter.services.vonTour.features.1'),
+        t('helicopter.services.vonTour.features.2'),
+        t('helicopter.services.vonTour.features.3')
+      ],
+      popular: false
+    },
+    {
+      id: 'von-private',
+      title: t('helicopter.services.vonPrivate.title'),
+      subtitle: t('helicopter.services.vonPrivate.subtitle'),
+      description: t('helicopter.services.vonPrivate.description'),
+      route: t('helicopter.services.vonPrivate.route'),
+      duration: t('helicopter.services.vonPrivate.duration'),
+      frequency: t('helicopter.services.vonPrivate.frequency'),
+      features: [
+        t('helicopter.services.vonPrivate.features.0'),
+        t('helicopter.services.vonPrivate.features.1'),
+        t('helicopter.services.vonPrivate.features.2'),
+        t('helicopter.services.vonPrivate.features.3')
+      ],
+      popular: false
+    }
+  ]
+
+  const tourRoutes = [
+    {
+      name: t('helicopter.tours.gwanakMountain.name'),
+      route: t('helicopter.tours.gwanakMountain.route'),
+      duration: t('helicopter.tours.gwanakMountain.duration'),
+      highlights: [
+        t('helicopter.tours.gwanakMountain.highlights.0'),
+        t('helicopter.tours.gwanakMountain.highlights.1'),
+        t('helicopter.tours.gwanakMountain.highlights.2')
+      ],
+      icon: Mountain
+    },
+    {
+      name: t('helicopter.tours.hanRiver.name'),
+      route: t('helicopter.tours.hanRiver.route'),
+      duration: t('helicopter.tours.hanRiver.duration'),
+      highlights: [
+        t('helicopter.tours.hanRiver.highlights.0'),
+        t('helicopter.tours.hanRiver.highlights.1'),
+        t('helicopter.tours.hanRiver.highlights.2')
+      ],
+      icon: Building
+    },
+    {
+      name: t('helicopter.tours.bukhanMountain.name'),
+      route: t('helicopter.tours.bukhanMountain.route'),
+      duration: t('helicopter.tours.bukhanMountain.duration'),
+      highlights: [
+        t('helicopter.tours.bukhanMountain.highlights.0'),
+        t('helicopter.tours.bukhanMountain.highlights.1'),
+        t('helicopter.tours.bukhanMountain.highlights.2')
+      ],
+      icon: Mountain
+    },
+    {
+      name: t('helicopter.tours.dmz.name'),
+      route: t('helicopter.tours.dmz.route'),
+      duration: t('helicopter.tours.dmz.duration'),
+      highlights: [
+        t('helicopter.tours.dmz.highlights.0'),
+        t('helicopter.tours.dmz.highlights.1'),
+        t('helicopter.tours.dmz.highlights.2')
+      ],
+      icon: Shield
+    }
+  ]
 
   return (
     <div className="bg-background text-foreground min-h-screen">
@@ -130,10 +144,10 @@ export default function HelicopterPage() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              Helicopter Services
+              {t('helicopter.title')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Versatile helicopter services for transportation, tours, and unique aerial experiences
+              {t('helicopter.subtitle')}
             </p>
           </motion.div>
 
@@ -180,15 +194,15 @@ export default function HelicopterPage() {
                     {/* Service Details */}
                     <div className="space-y-3">
                       <div className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-                        <span className="text-sm text-muted-foreground">Route</span>
+                        <span className="text-sm text-muted-foreground">{t('helicopter.details.route')}</span>
                         <span className="text-sm font-medium text-foreground">{service.route}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-                        <span className="text-sm text-muted-foreground">Duration</span>
+                        <span className="text-sm text-muted-foreground">{t('helicopter.details.duration')}</span>
                         <span className="text-sm font-medium text-foreground">{service.duration}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-                        <span className="text-sm text-muted-foreground">Frequency</span>
+                        <span className="text-sm text-muted-foreground">{t('helicopter.details.frequency')}</span>
                         <span className="text-sm font-medium text-foreground">{service.frequency}</span>
                       </div>
                     </div>
@@ -210,7 +224,7 @@ export default function HelicopterPage() {
                       ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
                       : 'border border-border bg-muted/30 text-foreground hover:bg-muted/50'
                     } transition-all duration-300 group mt-auto`}>
-                      Book Now
+                      {t('helicopter.cta.bookNow')}
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </CardContent>
@@ -227,7 +241,7 @@ export default function HelicopterPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
-              Scenic Tour Routes
+              {t('helicopter.tours.title')}
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {tourRoutes.map((tour, index) => (
@@ -264,20 +278,20 @@ export default function HelicopterPage() {
           >
             <Card className="border shadow-lg p-12 text-center">
               <h3 className="text-2xl font-bold text-foreground mb-6">
-                How to Book
+                {t('helicopter.booking.title')}
               </h3>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Booking a helicopter with VONAER is simple and convenient through our mobile app or website.
+                {t('helicopter.booking.description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold">
-                  Download App
+                  {t('helicopter.booking.downloadApp')}
                 </Button>
                 <Button 
                   variant="outline" 
                   className="border-border text-muted-foreground hover:bg-muted/30 hover:text-foreground px-8 py-3 text-lg font-semibold"
                 >
-                  Book Online
+                  {t('helicopter.booking.bookOnline')}
                 </Button>
               </div>
             </Card>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -11,31 +11,33 @@ import Image from "next/image"
 import { BookingRequest, bookingRequestService } from "@/lib/supabase"
 import { motion } from "framer-motion"
 import { toast } from 'sonner'
+import { useTranslations } from 'next-intl'
 
 export function BookingRequests() {
+  const t = useTranslations()
   const [bookingRequests, setBookingRequests] = useState<BookingRequest[]>([])
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
   const [selectedFlight, setSelectedFlight] = useState<BookingRequest | null>(null)
   const [flightDetailsOpen, setFlightDetailsOpen] = useState(false)
 
-  const loadBookingRequests = async () => {
+  const loadBookingRequests = useCallback(async () => {
     try {
       setRefreshing(true)
       const data = await bookingRequestService.getAll()
       setBookingRequests(data)
     } catch (error) {
       console.error('Error loading booking requests:', error)
-      toast.error('예약 요청 로드에 실패했습니다')
+      toast.error(t('bookingRequests.loading.failed'))
     } finally {
       setLoading(false)
       setRefreshing(false)
     }
-  }
+  }, [t])
 
   useEffect(() => {
     loadBookingRequests()
-  }, [])
+  }, [loadBookingRequests])
 
   const handleMarkAsCalled = async (id: number) => {
     try {
@@ -45,23 +47,23 @@ export function BookingRequests() {
           request.id === id ? { ...request, called: true } : request
         )
       )
-      toast.success('통화 완료로 표시되었습니다')
+      toast.success(t('bookingRequests.success.markedAsCalled'))
     } catch (error) {
       console.error('Error marking as called:', error)
-      toast.error('상태 업데이트에 실패했습니다')
+      toast.error(t('bookingRequests.error.statusUpdateFailed'))
     }
   }
 
   const handleDelete = async (id: number) => {
-    if (!confirm('정말로 이 예약 요청을 삭제하시겠습니까?')) return
+    if (!confirm(t('bookingRequests.confirmDelete'))) return
     
     try {
       await bookingRequestService.delete(id)
       setBookingRequests(prev => prev.filter(request => request.id !== id))
-      toast.success('예약 요청이 삭제되었습니다')
+      toast.success(t('bookingRequests.success.deleted'))
     } catch (error) {
       console.error('Error deleting booking request:', error)
-      toast.error('예약 요청 삭제에 실패했습니다')
+      toast.error(t('bookingRequests.error.deleteFailed'))
     }
   }
 
@@ -101,7 +103,7 @@ export function BookingRequests() {
       <Card>
         <CardContent className="text-center py-12">
           <RefreshCw className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
-          <p className="text-muted-foreground">예약 요청 로딩 중...</p>
+          <p className="text-muted-foreground">{t('bookingRequests.loading.text')}</p>
         </CardContent>
       </Card>
     )
@@ -112,9 +114,9 @@ export function BookingRequests() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h3 className="text-lg font-semibold">예약 요청</h3>
+          <h3 className="text-lg font-semibold">{t('bookingRequests.title')}</h3>
           <p className="text-sm text-muted-foreground">
-            빈 항공편에 대한 고객 문의
+            {t('bookingRequests.subtitle')}
           </p>
         </div>
         <Button 
@@ -125,7 +127,7 @@ export function BookingRequests() {
           className="self-start sm:self-auto"
         >
           <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-새로고침
+{t('bookingRequests.refresh')}
         </Button>
       </div>
 
@@ -133,7 +135,7 @@ export function BookingRequests() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">전체 요청</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('bookingRequests.stats.totalRequests')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{bookingRequests.length}</div>
@@ -142,19 +144,19 @@ export function BookingRequests() {
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">대기 중인 통화</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('bookingRequests.stats.pendingCalls')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-600">{pendingRequests.length}</div>
+            <div className="text-2xl font-bold text-primary">{pendingRequests.length}</div>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">통화 완료</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('bookingRequests.stats.completedCalls')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">{completedRequests.length}</div>
+            <div className="text-2xl font-bold text-muted-foreground">{completedRequests.length}</div>
           </CardContent>
         </Card>
       </div>
@@ -164,7 +166,7 @@ export function BookingRequests() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Phone className="h-5 w-5 text-orange-600" />
+              <Phone className="h-5 w-5 text-primary" />
 대기 중인 통화 ({pendingRequests.length})
             </CardTitle>
             <CardDescription>
@@ -244,7 +246,7 @@ export function BookingRequests() {
                           <Button
                             size="sm"
                             onClick={() => handleMarkAsCalled(request.id)}
-                            className="bg-green-600 hover:bg-green-700 text-xs h-8 flex-shrink-0"
+                            className="bg-primary hover:bg-primary/90 text-primary-foreground text-xs h-8 flex-shrink-0"
                           >
                             <Check className="h-3 w-3 mr-1" />
                             <span className="hidden sm:inline">통화 완료</span>
@@ -253,7 +255,7 @@ export function BookingRequests() {
                             size="sm"
                             variant="ghost"
                             onClick={() => handleDelete(request.id)}
-                            className="h-8 w-8 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 flex-shrink-0"
+                            className="h-8 w-8 p-0 text-destructive hover:text-destructive/80 hover:bg-destructive/10 flex-shrink-0"
                           >
                             <Trash2 className="h-3 w-3" />
                           </Button>
@@ -274,7 +276,7 @@ export function BookingRequests() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Check className="h-5 w-5 text-green-600" />
+              <Check className="h-5 w-5 text-muted-foreground" />
 통화 완료 ({completedRequests.length})
             </CardTitle>
             <CardDescription>
@@ -345,7 +347,7 @@ export function BookingRequests() {
                           >
                             <Eye className="h-3 w-3" />
                           </Button>
-                          <Badge className="bg-green-100 text-green-800 hover:bg-green-100 text-xs">
+                          <Badge className="bg-muted text-muted-foreground hover:bg-muted text-xs">
                             <Check className="h-3 w-3 mr-1" />
 통화 완료
                           </Badge>
@@ -353,7 +355,7 @@ export function BookingRequests() {
                             size="sm"
                             variant="ghost"
                             onClick={() => handleDelete(request.id)}
-                            className="h-8 w-8 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                            className="h-8 w-8 p-0 text-destructive hover:text-destructive/80 hover:bg-destructive/10"
                           >
                             <Trash2 className="h-3 w-3" />
                           </Button>
@@ -424,9 +426,9 @@ export function BookingRequests() {
                     <div className="text-xs text-muted-foreground">상태</div>
                     <div>
                       {selectedFlight.called ? (
-                        <Badge className="bg-green-100 text-green-800 text-xs h-5">통화 완료</Badge>
+                        <Badge className="bg-muted text-muted-foreground text-xs h-5">통화 완료</Badge>
                       ) : (
-                        <Badge className="bg-orange-100 text-orange-800 text-xs h-5">대기 중</Badge>
+                        <Badge className="bg-primary/10 text-primary text-xs h-5">대기 중</Badge>
                       )}
                     </div>
                   </div>
@@ -485,12 +487,12 @@ export function BookingRequests() {
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-muted-foreground">개인정보 동의</span>
                   {selectedFlight.consent_given ? (
-                    <Badge variant="secondary" className="bg-green-100 text-green-800 text-xs h-5">
+                    <Badge variant="secondary" className="bg-muted text-muted-foreground text-xs h-5">
                       <Check className="h-2 w-2 mr-1" />
 동의함
                     </Badge>
                   ) : (
-                    <Badge variant="secondary" className="bg-red-100 text-red-800 text-xs h-5">
+                    <Badge variant="secondary" className="bg-destructive/10 text-destructive text-xs h-5">
 동의 안함
                     </Badge>
                   )}
@@ -504,7 +506,7 @@ export function BookingRequests() {
             {selectedFlight && !selectedFlight.called && (
               <Button
                 onClick={() => handleMarkAsCalled(selectedFlight.id)}
-                className="flex-1 bg-green-600 hover:bg-green-700 text-xs h-8"
+                className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground text-xs h-8"
                 size="sm"
               >
                 <Check className="h-3 w-3 mr-1" />

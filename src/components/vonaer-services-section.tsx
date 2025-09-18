@@ -1,86 +1,95 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { 
-  Plane, 
   Clock, 
   Crown, 
-  MapPin, 
-  Star,
   ArrowRight,
-  Shield,
-  Zap,
   Heart
 } from 'lucide-react'
 
-const services = [
-  {
-    id: 'von-private',
-    title: 'VON Private',
-    subtitle: 'VIP service for those who value their time over everything else',
-    description: 'VON Private offers a VIP charter service with flexibility to specify your destination and time for a seamless travel experience.',
-    features: [
-      'Pick your departure and destination at your convenience',
-      'No initiation fee. Purchase credits and make reservation through app',
-      'Airport escort, VON Carry, and Von Lounge service'
-    ],
-    icon: Crown,
-    image: '/api/placeholder/600/400'
-  },
-  {
-    id: 'von-routine',
-    title: 'VON Routine',
-    subtitle: 'From Gangnam to ICN in 20 minutes',
-    description: 'VON Routine offers fast and comfortable air shuttle service between Gangnam and Incheon Airport. Simply make reservation through VONAER app.',
-    features: [
-      'Experience next level of comfort from Gangnam to Incheon Airport',
-      'Convenient and fast transportation',
-      'Helicopter charter service available'
-    ],
-    icon: Clock,
-    image: '/api/placeholder/600/400'
-  },
-  {
-    id: 'von-tour',
-    title: 'VON Tour',
-    subtitle: 'Enjoy a breath taking sky view of Korea',
-    description: 'Experience Korea like never before with our scenic helicopter tours. Multiple tour packages available.',
-    features: [
-      'GwanAk Mountain Tour - Autumn Leaves & Spring Flower Tours',
-      'Han River Tour - Seoul Skyline & Cherry Blossom Tours',
-      'DMZ Tour - Historical landmarks only available in South Korea'
-    ],
-    icon: Heart,
-    image: '/api/placeholder/600/400'
-  }
-]
-
-const tourPackages = [
-  {
-    name: 'GwanAk Mountain Tour',
-    route: 'COEX → Jamsil → Yangjae Forest → Seoul Amusement Park → GwanAk Mountain',
-    tags: ['#Autumn Leaves Tour', '#Spring Flower Tour', '#Seoul Amusement Park Tour']
-  },
-  {
-    name: 'Han River Tour',
-    route: 'COEX → Lotte Tower → Seokchon Lake → Olympic Park → Amsa Heritage → Namyangju',
-    tags: ['#Seoul Skyline', '#Seokchon Lake Cherry Blossom Tour']
-  },
-  {
-    name: 'BukHan Mountain Tour',
-    route: 'COEX → Lotte Tower → Seokchon Lake → BukHan Mountain → Dobong Mountain',
-    tags: ['#Bukhan mountain National Park', '#Seoul Rocky Mountains Tour']
-  },
-  {
-    name: 'DMZ Tour',
-    route: 'Witness the historical landmarks only available in South Korea. View of North Korea beyond DMZ from the sky.',
-    tags: ['#DMZ Tour']
-  }
-]
-
 export function VonaerServicesSection() {
+  const t = useTranslations()
+  
+  const services = [
+    {
+      id: 'von-private',
+      title: t('services.vonPrivate.title'),
+      subtitle: t('services.vonPrivate.subtitle'),
+      description: t('services.vonPrivate.description'),
+      features: [
+        t('services.vonPrivate.features.feature1'),
+        t('services.vonPrivate.features.feature2'),
+        t('services.vonPrivate.features.feature3')
+      ],
+      icon: Crown,
+      image: '/api/placeholder/600/400'
+    },
+    {
+      id: 'von-routine',
+      title: t('services.vonRoutine.title'),
+      subtitle: t('services.vonRoutine.subtitle'),
+      description: t('services.vonRoutine.description'),
+      features: [
+        t('services.vonRoutine.features.feature1'),
+        t('services.vonRoutine.features.feature2'),
+        t('services.vonRoutine.features.feature3')
+      ],
+      icon: Clock,
+      image: '/api/placeholder/600/400'
+    },
+    {
+      id: 'von-tour',
+      title: t('services.vonTour.title'),
+      subtitle: t('services.vonTour.subtitle'),
+      description: t('services.vonTour.description'),
+      features: [
+        t('services.vonTour.features.feature1'),
+        t('services.vonTour.features.feature2'),
+        t('services.vonTour.features.feature3')
+      ],
+      icon: Heart,
+      image: '/api/placeholder/600/400'
+    }
+  ]
+
+  const tourPackages = [
+    {
+      name: t('services.tourPackages.gwanakMountain.name'),
+      route: t('services.tourPackages.gwanakMountain.route'),
+      tags: [
+        t('services.tourPackages.gwanakMountain.tags.tag1'),
+        t('services.tourPackages.gwanakMountain.tags.tag2'),
+        t('services.tourPackages.gwanakMountain.tags.tag3')
+      ]
+    },
+    {
+      name: t('services.tourPackages.hanRiver.name'),
+      route: t('services.tourPackages.hanRiver.route'),
+      tags: [
+        t('services.tourPackages.hanRiver.tags.tag1'),
+        t('services.tourPackages.hanRiver.tags.tag2')
+      ]
+    },
+    {
+      name: t('services.tourPackages.bukhanMountain.name'),
+      route: t('services.tourPackages.bukhanMountain.route'),
+      tags: [
+        t('services.tourPackages.bukhanMountain.tags.tag1'),
+        t('services.tourPackages.bukhanMountain.tags.tag2')
+      ]
+    },
+    {
+      name: t('services.tourPackages.dmz.name'),
+      route: t('services.tourPackages.dmz.route'),
+      tags: [
+        t('services.tourPackages.dmz.tags.tag1')
+      ]
+    }
+  ]
   return (
     <section id="services" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-6">
@@ -93,10 +102,10 @@ export function VonaerServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            VONAER SERVICE
+            {t('services.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A platform proposing a new lifestyle, VONAER is an Urban Air Mobility service.
+            {t('services.subtitle')}
           </p>
         </motion.div>
 
@@ -141,7 +150,7 @@ export function VonaerServicesSection() {
                 <Button
                   className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 px-8 py-3 text-lg font-semibold group"
                 >
-                  Learn More
+                  {t('services.learnMore')}
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </div>
@@ -152,7 +161,7 @@ export function VonaerServicesSection() {
                   <div className="text-center text-muted-foreground">
                     <service.icon className="h-16 w-16 mx-auto mb-4 opacity-50" />
                     <p className="text-lg font-medium">{service.title}</p>
-                    <p className="text-sm">Image Placeholder</p>
+                    <p className="text-sm">{t('common.imagePlaceholder')}</p>
                   </div>
                 </div>
               </div>
@@ -169,7 +178,7 @@ export function VonaerServicesSection() {
           className="mt-32"
         >
           <h3 className="text-3xl font-bold text-foreground mb-12 text-center">
-            VON Tour Packages
+            {t('services.tourPackages.title')}
           </h3>
           <div className="grid md:grid-cols-2 gap-8">
             {tourPackages.map((tour, index) => (
@@ -202,21 +211,21 @@ export function VonaerServicesSection() {
           className="mt-32 bg-card rounded-3xl p-12 shadow-lg border"
         >
           <h3 className="text-3xl font-bold text-foreground mb-8 text-center">
-            VONAER Helicopter Usage Guide
+            {t('services.usageGuide.title')}
           </h3>
           <p className="text-center text-muted-foreground mb-16 text-lg max-w-3xl mx-auto">
-            With the VONAER service, booking a helicopter is quick and easy via the app.
+            {t('services.usageGuide.subtitle')}
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             {[
-              { step: 1, title: 'Sign Up', description: 'Download the VONAER app and complete the personal verification process. Only adults 19 years or older can register.' },
-              { step: 2, title: 'Select Your Service', description: 'Choose from VON Private for premium experience, VON Routine for fast transfers, or VON Tour for scenic flights.' },
-              { step: 3, title: 'Make a Reservation', description: 'Choose your preferred location and date, and submit your reservation request.' },
-              { step: 4, title: 'Reservation Approval', description: 'Once an administrator reviews and approves your reservation details, your booking will be confirmed.' },
-              { step: 5, title: 'Boarding', description: 'Arrive at the helipad at your scheduled time and follow the safety staff\'s instructions.' },
-              { step: 6, title: 'Disembarkation', description: 'After landing, continue your journey with VON RentCar or VON Limousine for your Last Mile transfer.' }
-            ].map((step, index) => (
+              { step: 1, title: t('services.usageGuide.steps.step1.title'), description: t('services.usageGuide.steps.step1.description') },
+              { step: 2, title: t('services.usageGuide.steps.step2.title'), description: t('services.usageGuide.steps.step2.description') },
+              { step: 3, title: t('services.usageGuide.steps.step3.title'), description: t('services.usageGuide.steps.step3.description') },
+              { step: 4, title: t('services.usageGuide.steps.step4.title'), description: t('services.usageGuide.steps.step4.description') },
+              { step: 5, title: t('services.usageGuide.steps.step5.title'), description: t('services.usageGuide.steps.step5.description') },
+              { step: 6, title: t('services.usageGuide.steps.step6.title'), description: t('services.usageGuide.steps.step6.description') }
+            ].map((step) => (
               <div key={step.step} className="text-center">
                 <div className="w-12 h-12 rounded-full border border-border bg-muted/30 text-muted-foreground font-bold text-lg flex items-center justify-center mx-auto mb-6">
                   {step.step}

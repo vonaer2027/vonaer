@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useTranslations } from 'next-intl'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { VonaerHeader } from '@/components/vonaer-header'
@@ -14,8 +15,7 @@ import {
   FileText, 
   Image,
   Video,
-  Download,
-  ArrowRight
+  Download
 } from 'lucide-react'
 
 const pressReleases = [
@@ -94,6 +94,7 @@ const mediaKit = [
 ]
 
 export default function PRPage() {
+  const t = useTranslations()
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -121,10 +122,10 @@ export default function PRPage() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              Press & Media
+              {t('pr.title')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Latest news, press releases, and media resources from VONAER
+              {t('pr.subtitle')}
             </p>
           </motion.div>
 
@@ -136,7 +137,7 @@ export default function PRPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
-              Media Kit
+              {t('pr.mediaKit.title')}
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               {mediaKit.map((item, index) => (
@@ -185,6 +186,7 @@ export default function PRPage() {
                         <div className="md:w-1/3">
                           <div className="h-48 md:h-full bg-muted/30 border-r border-border flex items-center justify-center">
                             <div className="text-center text-muted-foreground">
+                              {/* eslint-disable-next-line jsx-a11y/alt-text */}
                               <Image className="h-12 w-12 mx-auto mb-2 opacity-50" />
                               <p className="text-sm">Press Image</p>
                             </div>

@@ -1,11 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 import { Component } from '@/components/ui/etheral-shadow'
 
 export function VonaerHeroNew() {
+  const t = useTranslations()
   return (
     <div id="home" className="relative">
       {/* Main Hero Section */}
@@ -32,10 +34,10 @@ export function VonaerHeroNew() {
             className="mb-16"
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-primary-foreground mb-8 leading-tight tracking-wide">
-              Exploring The World With You
+              {t('hero.title')}
             </h1>
             <p className="text-xl md:text-2xl text-primary-foreground/80 max-w-4xl mx-auto mb-12 leading-relaxed">
-              Korea&apos;s first Air Mobility Platform
+              {t('hero.subtitle')}
             </p>
             
             {/* Book Flight CTA */}
@@ -61,7 +63,7 @@ export function VonaerHeroNew() {
                   }
                 }}
               >
-                Book Flight
+                {t('hero.bookFlight')}
                 <ArrowRight className="ml-4 h-6 w-6 transition-transform group-hover:translate-x-2" />
               </Button>
             </motion.div>

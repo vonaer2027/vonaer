@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -15,6 +16,7 @@ import { motion } from 'framer-motion'
 import { toast } from 'sonner'
 
 export function UserManagement() {
+  const t = useTranslations()
   const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -24,21 +26,21 @@ export function UserManagement() {
     phone_number: ''
   })
 
-  const loadUsers = async () => {
+  const loadUsers = useCallback(async () => {
     try {
       const data = await userService.getAll()
       setUsers(data)
     } catch (error) {
       console.error('Error loading users:', error)
-      toast.error('사용자 로드에 실패했습니다')
+      toast.error(t('userManagement.loadUsersFailed'))
     } finally {
       setLoading(false)
     }
-  }
+  }, [t])
 
   useEffect(() => {
     loadUsers()
-  }, [])
+  }, [loadUsers])
 
   const formatPhoneForStorage = (phone: string) => {
     // Store phone numbers as entered to maintain consistency
@@ -157,64 +159,62 @@ export function UserManagement() {
         <CardHeader>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <CardTitle>사용자 관리</CardTitle>
+              <CardTitle>{t('userManagement.title')}</CardTitle>
               <CardDescription>
-                VONAER 고객 계정 및 연락처 정보를 관리합니다
+                {t('userManagement.subtitle')}
               </CardDescription>
             </div>
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
               <DialogTrigger asChild>
                 <Button onClick={resetForm} className="self-start sm:self-auto">
                   <Plus className="h-4 w-4 mr-2" />
-사용자 추가
+{t('userManagement.addUser')}
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <form onSubmit={handleSubmit}>
                   <DialogHeader>
                     <DialogTitle>
-                      {editingUser ? '사용자 수정' : '새 사용자 추가'}
+                      {editingUser ? t('userManagement.editUser') : t('userManagement.addUser')}
                     </DialogTitle>
                     <DialogDescription>
-                      {editingUser 
-                        ? '아래에서 사용자 정보를 업데이트하세요.' 
-                        : '아래에 사용자 세부 정보를 입력하세요.'}
+                      {t('userManagement.subtitle')}
                     </DialogDescription>
                   </DialogHeader>
                   
                   <div className="grid gap-4 py-4">
                     <div className="grid gap-2">
-                      <Label htmlFor="name">이름 *</Label>
+                      <Label htmlFor="name">{t('userManagement.name')} *</Label>
                       <Input
                         id="name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="전체 이름을 입력하세요"
+                        placeholder={t('userManagement.namePlaceholder')}
                         required
                       />
                     </div>
                     
                     <div className="grid gap-2">
-                      <Label htmlFor="phone">전화번호 *</Label>
+                      <Label htmlFor="phone">{t('userManagement.phone')} *</Label>
                       <Input
                         id="phone"
                         value={formData.phone_number}
                         onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
-                        placeholder="01099343991 또는 010-9934-3992"
+                        placeholder={t('userManagement.phonePlaceholder')}
                         required
                       />
                       <p className="text-xs text-muted-foreground">
-전화번호를 입력하세요 (대시 포함 또는 제외)
+{t('userManagement.phoneHelper')}
                       </p>
                     </div>
                   </div>
                   
                   <DialogFooter>
                     <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>
-취소
+{t('userManagement.cancel')}
                     </Button>
                     <Button type="submit">
-                      {editingUser ? '사용자 업데이트' : '사용자 생성'}
+                      {editingUser ? t('userManagement.save') : t('userManagement.addUser')}
                     </Button>
                   </DialogFooter>
                 </form>
@@ -228,14 +228,14 @@ export function UserManagement() {
             <div className="text-center py-12">
               <UserIcon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-medium text-muted-foreground mb-2">
-                사용자를 찾을 수 없습니다
+                {t('userManagement.noUsers')}
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
-                첫 번째 사용자를 추가하여 시작하세요
+                {t('userManagement.noUsersDescription')}
               </p>
               <Button onClick={() => setDialogOpen(true)}>
                 <Plus className="h-4 w-4 mr-2" />
-첫 사용자 추가
+{t('userManagement.addFirstUser')}
               </Button>
             </div>
           ) : (
@@ -245,11 +245,11 @@ export function UserManagement() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="min-w-[120px]">이름</TableHead>
-                        <TableHead className="min-w-[140px]">연락처</TableHead>
-                        <TableHead className="min-w-[80px]">상태</TableHead>
-                        <TableHead className="min-w-[100px]">생성일</TableHead>
-                        <TableHead className="text-right min-w-[80px]">작업</TableHead>
+                        <TableHead className="min-w-[120px]">{t('userManagement.name')}</TableHead>
+                        <TableHead className="min-w-[140px]">{t('userManagement.phone')}</TableHead>
+                        <TableHead className="min-w-[80px]">{t('userManagement.status')}</TableHead>
+                        <TableHead className="min-w-[100px]">{t('userManagement.createdAt')}</TableHead>
+                        <TableHead className="text-right min-w-[80px]">{t('userManagement.actions')}</TableHead>
                       </TableRow>
                     </TableHeader>
                 <TableBody>
@@ -269,7 +269,7 @@ export function UserManagement() {
                       </TableCell>
                       <TableCell>
                         <Badge variant={user.is_active ? "default" : "secondary"}>
-                          {user.is_active ? "활성" : "비활성"}
+                          {user.is_active ? t('userManagement.active') : t('userManagement.inactive')}
                         </Badge>
                       </TableCell>
                       <TableCell className="text-muted-foreground">
@@ -285,14 +285,14 @@ export function UserManagement() {
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem onClick={() => handleEdit(user)}>
                               <Edit className="h-4 w-4 mr-2" />
-수정
+{t('userManagement.edit')}
                             </DropdownMenuItem>
                             <DropdownMenuItem 
                               onClick={() => handleDelete(user)}
                               className="text-destructive"
                             >
                               <Trash2 className="h-4 w-4 mr-2" />
-삭제
+{t('userManagement.delete')}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>

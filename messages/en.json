@@ -1,0 +1,1048 @@
+{
+  "hero": {
+    "title": "VONAER",
+    "subtitle": "A platform proposing a new lifestyle, VONAER is an Urban Air Mobility service.",
+    "bookFlight": "Book Flight"
+  },
+  "services": {
+    "title": "VONAER SERVICE",
+    "subtitle": "A platform proposing a new lifestyle, VONAER is an Urban Air Mobility service.",
+    "vonPrivate": {
+      "title": "VON Private",
+      "subtitle": "VIP service for those who value their time over everything else",
+      "description": "VON Private offers a VIP charter service with flexibility to specify your destination and time for a seamless travel experience.",
+      "features": {
+        "feature1": "Pick your departure and destination at your convenience",
+        "feature2": "No initiation fee. Purchase credits and make reservation through app",
+        "feature3": "Airport escort, VON Carry, and Von Lounge service"
+      }
+    },
+    "vonRoutine": {
+      "title": "VON Routine",
+      "subtitle": "From Gangnam to ICN in 20 minutes",
+      "description": "VON Routine offers fast and comfortable air shuttle service between Gangnam and Incheon Airport. Simply make reservation through VONAER app.",
+      "features": {
+        "feature1": "Experience next level of comfort from Gangnam to Incheon Airport",
+        "feature2": "Convenient and fast transportation",
+        "feature3": "Helicopter charter service available"
+      }
+    },
+    "vonTour": {
+      "title": "VON Tour",
+      "subtitle": "Enjoy a breath taking sky view of Korea",
+      "description": "Experience Korea like never before with our scenic helicopter tours. Multiple tour packages available.",
+      "features": {
+        "feature1": "GwanAk Mountain Tour - Autumn Leaves & Spring Flower Tours",
+        "feature2": "Han River Tour - Seoul Skyline & Cherry Blossom Tours",
+        "feature3": "DMZ Tour - Historical landmarks only available in South Korea"
+      }
+    },
+    "learnMore": "Learn More",
+    "tourPackages": {
+      "title": "Tour Packages",
+      "gwanakMountain": {
+        "name": "Gwanak Mountain",
+        "route": "Witness historical landmarks only visible in South Korea. Experience a breathtaking view of North Korea from the sky, across the DMZ.",
+        "tags": {
+          "tag1": "Historical",
+          "tag2": "Scenic",
+          "tag3": "Unique"
+        }
+      },
+      "hanRiver": {
+        "name": "Han River",
+        "route": "Seoul → Han River → Seoul",
+        "tags": {
+          "tag1": "City Tour",
+          "tag2": "River View",
+          "tag3": "Skyline"
+        }
+      },
+      "bukhanMountain": {
+        "name": "Bukhan Mountain",
+        "route": "COEX → Lotte Tower → Seokchon Lake → Bukhan Mountain → Dobong Mountain",
+        "tags": {
+          "tag1": "Bukhan Mountain National Park",
+          "tag2": "Seoul Rocky Mountains Tour"
+        }
+      },
+      "dmz": {
+        "name": "DMZ Tour",
+        "route": "Witness the historical landmarks only available in South Korea. View of North Korea beyond DMZ from the sky.",
+        "tags": {
+          "tag1": "DMZ Tour"
+        }
+      }
+    },
+    "usageGuide": {
+      "title": "How to Use VONAER",
+      "subtitle": "Simple steps to book your premium flight experience",
+      "steps": {
+        "step1": {
+          "title": "Download App",
+          "description": "Download the VONAER app from App Store or Google Play"
+        },
+        "step2": {
+          "title": "Create Account",
+          "description": "Sign up and verify your account with required documents"
+        },
+        "step3": {
+          "title": "Choose Service",
+          "description": "Select from VON Private, VON Routine, or VON Tour"
+        },
+        "step4": {
+          "title": "Book & Fly",
+          "description": "Make your reservation and enjoy your premium flight experience"
+        },
+        "step5": {
+          "title": "Boarding",
+          "description": "Arrive at the helipad at your scheduled time and follow the safety staff's instructions"
+        },
+        "step6": {
+          "title": "Disembarkation",
+          "description": "After landing, continue your journey with VON RentCar or VON Limousine for your Last Mile transfer"
+        }
+      }
+    }
+  },
+  "booking": {
+    "title": "Book Your Flight",
+    "subtitle": "Experience luxury air travel with VONAER's premium services",
+    "tripType": {
+      "oneWay": "One Way",
+      "roundTrip": "Round Trip"
+    },
+    "placeholders": {
+      "departureCity": "Departure City",
+      "destinationCity": "Destination City",
+      "departureDate": "Departure date",
+      "returnDate": "Return date"
+    },
+    "passengers": "passenger",
+    "passengersPlural": "passengers",
+    "search": "Search Flights"
+  },
+  "about": {
+    "coreValues": {
+      "value1": {
+        "title": "Time Efficiency",
+        "description": "We value your time above everything else, providing the fastest routes and minimal waiting times."
+      },
+      "value2": {
+        "title": "Safety First",
+        "description": "Our commitment to safety is unwavering, with rigorous maintenance and certified pilots."
+      },
+      "value3": {
+        "title": "Luxury Experience",
+        "description": "Every journey is crafted to provide the ultimate in comfort and sophistication."
+      },
+      "value4": {
+        "title": "Innovation",
+        "description": "We continuously innovate to bring you the latest in aviation technology and service."
+      }
+    },
+    "companyStory": {
+      "title": "Our Story",
+      "description": "VONAER was founded with a vision to revolutionize urban air mobility in Korea. We believe that premium air travel should be accessible, efficient, and environmentally conscious. Our team of aviation experts and technology innovators work tirelessly to bring you the future of transportation today."
+    },
+    "appDownload": {
+      "title": "Download VONAER App",
+      "subtitle": "Experience the future of air travel at your fingertips",
+      "button": "Download App"
+    }
+  },
+  "membership": {
+    "title": "VONAER Membership",
+    "subtitle": "Choose the membership tier that suits your lifestyle and travel needs",
+    "mostPopular": "Most Popular",
+    "annualDues": "Annual Dues",
+    "bookingFee": "Booking Fee",
+    "charterPrice": "Charter Price",
+    "getStarted": "Get Started",
+    "joinNow": "Join Now",
+    "termsTitle": "Membership Terms & Conditions",
+    "terms": {
+      "term1": "All memberships are valid for 12 months from the date of purchase.",
+      "term2": "Membership benefits are non-transferable and cannot be shared with third parties.",
+      "term3": "If additional hours are purchased before the membership ends, any remaining hours will be carried over.",
+      "term4": "Once the dedicated flight hours are exhausted, applicable rate within the member status will apply.",
+      "term5": "Additional charges may apply for De-icing, Smoking, and Special Catering services."
+    },
+    "tiers": {
+      "aerMember": {
+        "name": "AER Member",
+        "annualDues": "N/A",
+        "bookingFee": "$495",
+        "charterPrice": "Dynamic",
+        "features": {
+          "0": { "name": "Airport Escort", "included": "false" },
+          "1": { "name": "Private Terminal", "included": "true" },
+          "2": { "name": "VONAER Event", "included": "false" },
+          "3": { "name": "Empty Leg Discount", "included": "false", "value": "" }
+        }
+      },
+      "von": {
+        "name": "VON",
+        "annualDues": "$92,500",
+        "bookingFee": "Complimentary",
+        "charterPrice": "Dynamic",
+        "features": {
+          "0": { "name": "Aircraft Alteration", "included": "false" },
+          "1": { "name": "Airport Escort", "included": "true" },
+          "2": { "name": "Private Terminal", "included": "true" },
+          "3": { "name": "VONAER Event", "included": "true" },
+          "4": { "name": "Empty Leg Discount", "included": "true", "value": "2%" }
+        }
+      },
+      "vonPremiere": {
+        "name": "VON Premiere",
+        "annualDues": "$234,000",
+        "bookingFee": "Complimentary",
+        "charterPrice": "Dynamic",
+        "features": {
+          "0": { "name": "Aircraft Alteration", "included": "true" },
+          "1": { "name": "Airport Escort", "included": "true" },
+          "2": { "name": "Private Terminal", "included": "true" },
+          "3": { "name": "VONAER Event", "included": "true" },
+          "4": { "name": "Empty Leg Discount", "included": "true", "value": "3%" }
+        }
+      },
+      "vonUltimate": {
+        "name": "VON Ultimate",
+        "annualDues": "$350,000",
+        "bookingFee": "Complimentary",
+        "charterPrice": "Dynamic",
+        "features": {
+          "0": { "name": "Premium Aircraft", "included": "true" },
+          "1": { "name": "Airport Escort", "included": "true" },
+          "2": { "name": "Private Terminal", "included": "true" },
+          "3": { "name": "VONAER Event", "included": "true" },
+          "4": { "name": "Empty Leg Discount", "included": "true", "value": "5%" }
+        }
+      }
+    }
+  },
+  "ancillary": {
+    "title": "Ancillary Service",
+    "subtitle": "Enhance VONAER service with our comprehensive ancillary services",
+    "services": {
+      "0": {
+        "id": "von-escort",
+        "title": "VON Escort",
+        "description": "Distinguished airport escort service for a true VIP experience",
+        "features": {
+          "0": "Personal escort through airport",
+          "1": "Fast-track security and immigration",
+          "2": "VIP lounge access",
+          "3": "Baggage assistance"
+        }
+      },
+      "1": {
+        "id": "von-carry",
+        "title": "VON Carry",
+        "description": "Premium baggage delivery service that delivers your luggage to your final destination",
+        "features": {
+          "0": "Door-to-door luggage delivery",
+          "1": "Real-time tracking",
+          "2": "Insurance coverage",
+          "3": "White-glove handling"
+        }
+      },
+      "2": {
+        "id": "von-connect",
+        "title": "VON Connect",
+        "description": "Car service between Heliport and Airport Terminal",
+        "features": {
+          "0": "Seamless terminal transfers",
+          "1": "Professional chauffeurs",
+          "2": "Luxury vehicle fleet",
+          "3": "Real-time coordination"
+        }
+      },
+      "3": {
+        "id": "von-lounge",
+        "title": "VON Lounge",
+        "description": "Exclusive Lounge for VON members",
+        "features": {
+          "0": "Private lounge access",
+          "1": "Premium dining options",
+          "2": "Business facilities",
+          "3": "Concierge services"
+        }
+      },
+      "4": {
+        "id": "von-limousine",
+        "title": "VON Limousine",
+        "description": "VON Limousine offers VIP black car service for first & last mile.",
+        "features": {
+          "0": "Luxury limousine fleet",
+          "1": "Professional chauffeurs",
+          "2": "First and last mile service",
+          "3": "Premium amenities"
+        }
+      },
+      "5": {
+        "id": "von-rentcar",
+        "title": "VON RentCar",
+        "description": "Rent-a-car service that allows our customers to drive to final destination.",
+        "features": {
+          "0": "Premium vehicle selection",
+          "1": "Flexible rental terms",
+          "2": "Airport delivery",
+          "3": "24/7 support"
+        }
+      }
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Stay Updated",
+      "subtitle": "Get the latest news and exclusive offers from VONAER",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe"
+    },
+    "sections": {
+      "vonaerService": "VONAER SERVICE",
+      "ancillaryService": "ANCILLARY SERVICE",
+      "company": "Company",
+      "contact": "Contact"
+    },
+    "services": {
+      "0": "VONAER Jet",
+      "1": "VON Private", 
+      "2": "VON Routine",
+      "3": "VON Tour"
+    },
+    "ancillaryServices": {
+      "0": "VON Escort",
+      "1": "VON Carry",
+      "2": "VON Connect",
+      "3": "VON Lounge",
+      "4": "VON Limousine",
+      "5": "VON RentCar"
+    },
+    "companyLinks": {
+      "0": "About Us",
+      "1": "Careers",
+      "2": "Press",
+      "3": "Contact"
+    },
+    "contact": {
+      "phone": "+82-2-1234-5678",
+      "email": "info@vonaer.com",
+      "businessHours": "Business Hours",
+      "businessDays": "Monday - Friday: 9:00 AM - 6:00 PM",
+      "holidays": "Weekends & Holidays: Closed",
+      "sns": "SNS"
+    },
+    "company": {
+      "name": "주식회사 모비에이션",
+      "address": "서울특별시 강남구 학동로 523, 1층 102호(청담동, 루나빌딩)",
+      "businessNumber": "사업등록번호 : 216-81-49698",
+      "representative": "대표 : 신민",
+      "telecomSales": "통신판매신고번호 : 제2022-서울강남-00453호",
+      "telecomAuthority": "통신판매업신고기관 : 서울특별시 강남구청",
+      "copyright": "Copyright Moviation Inc. All Rights Reserved. 2025"
+    }
+  },
+  "userManagement": {
+    "title": "User Management",
+    "subtitle": "Manage user accounts and permissions",
+    "addUser": "Add User",
+    "editUser": "Edit User",
+    "deleteUser": "Delete User",
+    "name": "Name",
+    "phone": "Phone",
+    "status": "Status",
+    "createdAt": "Created At",
+    "actions": "Actions",
+    "active": "Active",
+    "inactive": "Inactive",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "noUsers": "No users found",
+    "noUsersDescription": "Add your first user to get started",
+    "addFirstUser": "Add First User",
+    "namePlaceholder": "Enter user name",
+    "phonePlaceholder": "010-1234-5678 or 01012345678",
+    "phoneHelper": "Enter phone number (with or without dashes)",
+    "loadUsersFailed": "Failed to load users",
+    "createUserSuccess": "User created successfully",
+    "createUserFailed": "Failed to create user",
+    "updateUserSuccess": "User updated successfully",
+    "updateUserFailed": "Failed to update user",
+    "deleteUserSuccess": "User deleted successfully",
+    "deleteUserFailed": "Failed to delete user",
+    "deleteConfirm": "Are you sure you want to delete this user?",
+    "nameRequired": "Name is required",
+    "phoneRequired": "Phone number is required"
+  },
+  "marginSettings": {
+    "title": "Margin Settings",
+    "subtitle": "Set the margin percentage to be applied to all flight prices",
+    "marginPercentage": "Margin Percentage (%)",
+    "placeholder": "Enter percentage (e.g., 15.5)",
+    "currentMargin": "Current margin",
+    "save": "Save",
+    "saving": "Saving...",
+    "example": {
+      "title": "Price Example",
+      "basePrice": "Base Price",
+      "margin": "Margin",
+      "finalPrice": "Final Price"
+    },
+    "validation": {
+      "invalidPercentage": "Please enter a valid percentage between 0 and 100",
+      "alreadySet": "Margin percentage is already set to this value"
+    },
+    "error": {
+      "updateFailed": "Failed to update margin settings"
+    },
+    "warning": {
+      "title": "Important Notice",
+      "description": "Changing the margin will affect all flight prices displayed to customers. The new margin will be applied immediately to all existing and new flights."
+    }
+  },
+  "flightCard": {
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "seats": "Seats",
+    "price": "Price",
+    "tbd": "TBD",
+    "dateTBD": "Date TBD",
+    "priceTBD": "Price TBD",
+    "customPrice": "Custom Price",
+    "margin": "Margin",
+    "adjustPrice": "Adjust Price",
+    "newPrice": "New Price (USD)",
+    "pricePlaceholder": "Enter price",
+    "cancel": "Cancel",
+    "save": "Save",
+    "validation": {
+      "invalidPrice": "Please enter a valid price"
+    },
+    "success": {
+      "priceUpdated": "Price updated successfully"
+    },
+    "error": {
+      "updateFailed": "Failed to update price"
+    }
+  },
+  "bookingDialog": {
+    "title": "Booking Request",
+    "subtitle": "Please provide your details and we will contact you within 24 hours.",
+    "seats": " seats",
+    "dateTBD": "Date TBD",
+    "contactInfo": "Contact Information",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "phone": "Phone",
+    "phonePlaceholder": "010-1234-5678",
+    "email": "Email Address (Optional)",
+    "emailPlaceholder": "your.email@example.com",
+    "consent": "Privacy & Consent",
+    "contactConsentText": "I agree to be contacted by VONAER regarding flight bookings.",
+    "privacyConsentText": "By using the service, I have read and understood the",
+    "privacyPolicy": "Privacy Policy",
+    "privacyConsentText2": " and agree to it.",
+    "cancel": "Cancel",
+    "submit": "Submit Request",
+    "submitting": "Submitting...",
+    "validation": {
+      "nameRequired": "Please enter your name",
+      "phoneRequired": "Please enter your phone number",
+      "contactConsentRequired": "Please provide VONAER contact consent",
+      "privacyConsentRequired": "Please agree to the privacy policy"
+    },
+    "error": {
+      "unknownError": "An unknown error occurred",
+      "submitFailed": "Booking request failed"
+    }
+  },
+  "clientFlightCard": {
+    "luxuryAircraft": "Luxury Aircraft",
+    "departure": "Departure",
+    "arrival": "Arrival",
+    "emptyLeg": "Empty Leg",
+    "flightDate": "Flight Date",
+    "capacity": "Capacity",
+    "people": " people",
+    "price": "Price",
+    "totalCost": "Total Flight Cost",
+    "bookRequest": "Book Request",
+    "tbd": "TBD",
+    "dateTBD": "Date TBD"
+  },
+  "bookingRequests": {
+    "title": "Booking Requests",
+    "subtitle": "Customer inquiries for Empty Leg flights",
+    "loading": {
+      "text": "Loading booking requests...",
+      "failed": "Failed to load booking requests"
+    },
+    "refresh": "Refresh",
+    "stats": {
+      "totalRequests": "Total Requests",
+      "pendingCalls": "Pending Calls",
+      "completedCalls": "Completed Calls"
+    },
+    "pendingCalls": "Pending Calls",
+    "pendingCallsDescription": "New booking requests requiring contact",
+    "completedCalls": "Completed Calls", 
+    "completedCallsDescription": "Customers who have been contacted",
+    "customer": "Customer",
+    "flight": "Flight",
+    "route": "Route",
+    "flightDate": "Flight Date",
+    "requestDate": "Request Date",
+    "actions": "Actions",
+    "callCompleted": "Call Completed",
+    "viewDetails": "View Details",
+    "delete": "Delete",
+    "noRequests": "No booking requests yet",
+    "noRequestsDescription": "Customer booking requests will appear here",
+    "details": {
+      "title": "Booking Details",
+      "subtitle": "Booking request from",
+      "customer": "Customer",
+      "phone": "Phone",
+      "email": "Email",
+      "status": "Status",
+      "requestDate": "Request Date",
+      "pending": "Pending",
+      "completed": "Completed",
+      "consent": "Privacy Consent",
+      "agreed": "Agreed",
+      "notAgreed": "Not Agreed",
+      "markCompleted": "Mark as Completed",
+      "close": "Close"
+    },
+    "success": {
+      "markedAsCalled": "Successfully marked as called",
+      "deleted": "Booking request deleted"
+    },
+    "error": {
+      "statusUpdateFailed": "Failed to update status",
+      "deleteFailed": "Failed to delete booking request"
+    },
+    "confirmDelete": "Are you sure you want to delete this booking request?"
+  },
+  "menu": {
+    "title": "MENU",
+    "categories": {
+      "services": "SERVICES"
+    },
+    "items": {
+      "allServices": "All Services",
+      "privateJets": "Private Jets",
+      "helicopter": "Helicopter",
+      "superCar": "Super Car",
+      "superYacht": "Super Yacht"
+    },
+    "other": {
+      "home": "HOME",
+      "aboutUs": "ABOUT US",
+      "membership": "MEMBERSHIP",
+      "emptyLeg": "EMPTY LEG",
+      "contact": "CONTACT"
+    }
+  },
+  "jets": {
+    "title": "Private Jets",
+    "subtitle": "Experience luxury, comfort, and efficiency with our comprehensive private jet fleet",
+    "categories": {
+      "lightJet": {
+        "title": "Light Jet",
+        "subtitle": "Efficient Short-Range Jets",
+        "description": "Perfect for short to medium-range flights with excellent fuel efficiency and comfortable seating for small groups.",
+        "features": {
+          "0": "Cost-effective for short trips",
+          "1": "Access to smaller airports",
+          "2": "Quick boarding process",
+          "3": "Fuel efficient"
+        }
+      },
+      "midJet": {
+        "title": "Mid Jet",
+        "subtitle": "Balanced Performance Jets",
+        "description": "Ideal balance of comfort, range, and performance for medium-distance travel with enhanced cabin space.",
+        "features": {
+          "0": "Spacious cabin design",
+          "1": "Extended range capabilities",
+          "2": "Enhanced comfort features",
+          "3": "Reliable performance"
+        }
+      },
+      "heavyJet": {
+        "title": "Heavy Jet",
+        "subtitle": "Long-Range Luxury Jets",
+        "description": "Maximum luxury and range for long-distance flights with premium amenities and spacious cabins.",
+        "features": {
+          "0": "Luxury cabin amenities",
+          "1": "Long-range capabilities",
+          "2": "Premium dining options",
+          "3": "Full-size lavatories"
+        }
+      },
+      "ultraLongHaul": {
+        "title": "Ultra Long Haul",
+        "subtitle": "Intercontinental Jets",
+        "description": "Ultimate in luxury and range for intercontinental flights with hotel-like amenities.",
+        "features": {
+          "0": "Bedroom and shower facilities",
+          "1": "Conference room setup",
+          "2": "Gourmet dining service",
+          "3": "Global range capability"
+        }
+      },
+      "vipAirline": {
+        "title": "VIP Airline",
+        "subtitle": "Premium Airline Services",
+        "description": "Commercial airline VIP services with first-class amenities and priority boarding.",
+        "features": {
+          "0": "First-class cabin access",
+          "1": "Priority boarding",
+          "2": "Dedicated check-in",
+          "3": "Global network"
+        }
+      }
+    },
+    "specs": {
+      "passengers": "Passengers",
+      "range": "Range",
+      "speed": "Speed",
+      "airports": "Airports"
+    },
+    "cta": {
+      "requestQuote": "Request Quote"
+    },
+    "safety": {
+      "title": "Safety & Certification",
+      "description": "All VONAER aircraft meet the highest safety standards and are operated by certified professionals with extensive experience.",
+      "learnMore": "Learn About Safety"
+    }
+  },
+  "helicopter": {
+    "title": "Helicopter Services",
+    "subtitle": "Versatile helicopter services for transportation, tours, and unique aerial experiences",
+    "services": {
+      "vonRoutine": {
+        "title": "VON Routine",
+        "subtitle": "Regular Shuttle Service",
+        "description": "Fast and comfortable air shuttle service between Gangnam and Incheon Airport in just 20 minutes.",
+        "route": "Gangnam ↔ Incheon Airport",
+        "duration": "20 minutes",
+        "frequency": "Multiple daily flights",
+        "features": {
+          "0": "Express airport transfers",
+          "1": "Premium helicopter fleet",
+          "2": "Professional pilots",
+          "3": "Weather monitoring"
+        }
+      },
+      "vonTour": {
+        "title": "VON Tour",
+        "subtitle": "Scenic Helicopter Tours",
+        "description": "Scenic helicopter tours offering breathtaking aerial views of Korea's most beautiful landmarks.",
+        "route": "Various scenic routes",
+        "duration": "30-90 minutes",
+        "frequency": "On-demand",
+        "features": {
+          "0": "Scenic route options",
+          "1": "Professional tour guides",
+          "2": "Photography opportunities",
+          "3": "Flexible scheduling"
+        }
+      },
+      "vonPrivate": {
+        "title": "VON Private Helicopter",
+        "subtitle": "Private Helicopter Charter",
+        "description": "Custom helicopter charter service with flexible destinations and personalized flight experience.",
+        "route": "Custom destinations",
+        "duration": "As needed",
+        "frequency": "On-demand",
+        "features": {
+          "0": "Custom flight planning",
+          "1": "VIP service",
+          "2": "Flexible timing",
+          "3": "Premium amenities"
+        }
+      }
+    },
+    "details": {
+      "route": "Route",
+      "duration": "Duration",
+      "frequency": "Frequency"
+    },
+    "tours": {
+      "title": "Scenic Tour Routes",
+      "gwanakMountain": {
+        "name": "GwanAk Mountain Tour",
+        "route": "COEX → Jamsil → Yangjae Forest → Seoul Amusement Park → GwanAk Mountain",
+        "duration": "45 minutes",
+        "highlights": {
+          "0": "Autumn Leaves",
+          "1": "Spring Flowers",
+          "2": "Seoul Amusement Park"
+        }
+      },
+      "hanRiver": {
+        "name": "Han River Tour",
+        "route": "COEX → Lotte Tower → Seokchon Lake → Olympic Park → Amsa Heritage → Namyangju",
+        "duration": "60 minutes",
+        "highlights": {
+          "0": "Seoul Skyline",
+          "1": "Cherry Blossoms",
+          "2": "Olympic Park"
+        }
+      },
+      "bukhanMountain": {
+        "name": "BukHan Mountain Tour",
+        "route": "COEX → Lotte Tower → Seokchon Lake → BukHan Mountain → Dobong Mountain",
+        "duration": "75 minutes",
+        "highlights": {
+          "0": "National Park",
+          "1": "Rocky Mountains",
+          "2": "Mountain Views"
+        }
+      },
+      "dmz": {
+        "name": "DMZ Tour",
+        "route": "Historical landmarks and North Korea views from above the DMZ",
+        "duration": "90 minutes",
+        "highlights": {
+          "0": "Historical Sites",
+          "1": "DMZ Views",
+          "2": "Unique Experience"
+        }
+      }
+    },
+    "booking": {
+      "title": "How to Book",
+      "description": "Booking a helicopter with VONAER is simple and convenient through our mobile app or website.",
+      "downloadApp": "Download App",
+      "bookOnline": "Book Online"
+    },
+    "cta": {
+      "bookNow": "Book Now"
+    }
+  },
+  "supercar": {
+    "title": "Super Car",
+    "subtitle": "Experience the ultimate in luxury ground transportation with our premium supercar fleet",
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "Our luxury supercar service is currently in development. Experience premium ground transportation that matches the excellence of our aviation services.",
+      "features": {
+        "luxuryFleet": {
+          "title": "Luxury Fleet",
+          "description": "Premium supercars from top manufacturers"
+        },
+        "professionalService": {
+          "title": "Professional Service",
+          "description": "Expert drivers and concierge service"
+        },
+        "flexibleBooking": {
+          "title": "Flexible Booking",
+          "description": "On-demand and scheduled services"
+        }
+      },
+      "cta": {
+        "getNotified": "Get Notified",
+        "contactSales": "Contact Sales"
+      }
+    }
+  },
+  "superyacht": {
+    "title": "Super Yacht",
+    "subtitle": "Luxury yacht charters for the ultimate maritime experience",
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "Our luxury yacht charter service is currently in development. Experience the finest maritime luxury with VONAER's upcoming yacht fleet.",
+      "features": {
+        "luxuryFleet": {
+          "title": "Luxury Fleet",
+          "description": "Premium yachts with world-class amenities"
+        },
+        "coastalAccess": {
+          "title": "Coastal Access",
+          "description": "Access to premium marinas and destinations"
+        },
+        "fullService": {
+          "title": "Full Service",
+          "description": "Complete crew and concierge services"
+        }
+      },
+      "cta": {
+        "getNotified": "Get Notified",
+        "contactSales": "Contact Sales"
+      }
+    }
+  },
+  "aircraft": {
+    "title": "Aircraft Fleet",
+    "subtitle": "Choose from our comprehensive fleet of aircraft to meet your specific travel needs",
+    "categories": {
+      "lightJet": {
+        "title": "Light Jet",
+        "subtitle": "전용기 - 라이트 제트",
+        "description": "Perfect for short to medium-range flights with excellent fuel efficiency and comfortable seating for small groups.",
+        "features": {
+          "0": "Cost-effective for short trips",
+          "1": "Access to smaller airports",
+          "2": "Quick boarding process",
+          "3": "Fuel efficient"
+        }
+      },
+      "midJet": {
+        "title": "Mid Jet",
+        "subtitle": "전용기 - 미드 제트",
+        "description": "Ideal balance of comfort, range, and performance for medium-distance travel with enhanced cabin space.",
+        "features": {
+          "0": "Spacious cabin design",
+          "1": "Extended range capabilities",
+          "2": "Enhanced comfort features",
+          "3": "Reliable performance"
+        }
+      },
+      "heavyJet": {
+        "title": "Heavy Jet",
+        "subtitle": "전용기 - 헤비 제트",
+        "description": "Maximum luxury and range for long-distance flights with premium amenities and spacious cabins.",
+        "features": {
+          "0": "Luxury cabin amenities",
+          "1": "Long-range capabilities",
+          "2": "Premium dining options",
+          "3": "Full-size lavatories"
+        }
+      },
+      "ultraLongHaul": {
+        "title": "Ultra Long Haul",
+        "subtitle": "전용기 - 울트라 롱홀",
+        "description": "Ultimate in luxury and range for intercontinental flights with hotel-like amenities.",
+        "features": {
+          "0": "Bedroom and shower facilities",
+          "1": "Conference room setup",
+          "2": "Gourmet dining service",
+          "3": "Global range capability"
+        }
+      },
+      "vipAirline": {
+        "title": "VIP Airline",
+        "subtitle": "전용기 - VIP 항공",
+        "description": "Commercial airline VIP services with first-class amenities and priority boarding.",
+        "features": {
+          "0": "First-class cabin access",
+          "1": "Priority boarding",
+          "2": "Dedicated check-in",
+          "3": "Global network"
+        }
+      },
+      "helicopter": {
+        "title": "Helicopter",
+        "subtitle": "헬기",
+        "description": "Versatile rotorcraft for short-distance travel, scenic tours, and access to restricted areas.",
+        "features": {
+          "0": "Vertical takeoff/landing",
+          "1": "Access to city centers",
+          "2": "Scenic flight capabilities",
+          "3": "Flexible scheduling"
+        }
+      }
+    },
+    "specs": {
+      "passengers": "Passengers",
+      "range": "Range",
+      "speed": "Speed",
+      "airports": "Airports"
+    },
+    "cta": {
+      "requestQuote": "Request Quote"
+    },
+    "help": {
+      "title": "Need Help Choosing?",
+      "description": "Our aviation experts are here to help you select the perfect aircraft for your specific needs and requirements.",
+      "contactExperts": "Contact Our Experts"
+    }
+  },
+  "pr": {
+    "title": "Press & Media",
+    "subtitle": "Latest news, press releases, and media resources from VONAER",
+    "mediaKit": {
+      "title": "Media Kit",
+      "logos": {
+        "title": "Company Logos",
+        "description": "High-resolution VONAER logos in various formats",
+        "type": "Images"
+      },
+      "pressKit": {
+        "title": "Press Kit",
+        "description": "Company overview, executive bios, and fact sheets",
+        "type": "Documents"
+      },
+      "videos": {
+        "title": "Product Videos",
+        "description": "Promotional and educational videos about VONAER services",
+        "type": "Videos"
+      },
+      "download": "Download"
+    },
+    "pressReleases": {
+      "title": "Press Releases",
+      "categories": {
+        "companyNews": "Company News",
+        "partnerships": "Partnerships",
+        "serviceLaunch": "Service Launch",
+        "funding": "Funding",
+        "safety": "Safety"
+      },
+      "readMore": "Read More"
+    },
+    "mediaInquiries": {
+      "title": "Media Inquiries",
+      "description": "For press inquiries, interview requests, or additional information, please contact our media relations team.",
+      "contactTeam": "Contact Media Team",
+      "downloadKit": "Download Media Kit"
+    }
+  },
+  "client": {
+    "loading": "Loading...",
+    "title": "Available Flights",
+    "subtitle": "Book your next empty leg flight",
+    "sortBy": "Sort by",
+    "priceLow": "Price: Low to High",
+    "priceHigh": "Price: High to Low",
+    "dateNear": "Date: Nearest First",
+    "dateFar": "Date: Furthest First",
+    "noFlights": "No flights available",
+    "noFlightsDescription": "There are currently no flights available. Please check back later or contact us for more information.",
+    "bookFlight": "Book Flight",
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "price": "Price",
+    "passengers": "Passengers",
+    "aircraft": "Aircraft",
+    "refresh": "Refresh",
+    "availableFlights": "Available Flights",
+    "flightsAvailable": "Empty leg flights available",
+    "updateDate": "Updated:",
+    "sortOptions": {
+      "priceLow": "Price: Low to High",
+      "priceHigh": "Price: High to Low",
+      "dateNear": "Date: Nearest First",
+      "dateFar": "Date: Furthest First"
+    },
+    "flightCard": {
+      "emptyLeg": "Empty Leg",
+      "departure": "Departure",
+      "arrival": "Arrival",
+      "flightDate": "Flight Date",
+      "capacity": "Capacity",
+      "totalCost": "Total Flight Cost",
+      "bookingRequest": "Booking Request"
+    },
+    "clientFlightCard": {
+      "dateTBD": "Date TBD",
+      "luxuryAircraft": "Luxury Aircraft",
+      "departure": "Departure",
+      "tbd": "TBD",
+      "emptyLeg": "Empty Leg",
+      "arrival": "Arrival",
+      "flightDate": "Flight Date",
+      "capacity": "Capacity",
+      "people": " people",
+      "price": "Price",
+      "totalCost": "Total Flight Cost",
+      "bookRequest": "Book Request"
+    }
+  },
+  "admin": {
+    "loading": "Loading...",
+    "title": "Admin Dashboard",
+    "viewLanding": "View Landing Page",
+    "viewCustomer": "View Customer Page",
+    "dashboard": "Dashboard",
+    "flights": "Flights",
+    "users": "Users",
+    "settings": "Settings",
+    "bookingRequests": "Booking Requests",
+    "totalFlights": "Total Flights",
+    "averagePrice": "Average Price",
+    "currentMargin": "Current Margin",
+    "refresh": "Refresh",
+    "noFlights": "No flights available",
+    "noFlightsDescription": "There are currently no flights in the system. Add some flights to get started.",
+    "priceTest": "Price Test",
+    "stats": {
+      "totalFlights": "Total Flights",
+      "koreaRoutes": "Korea Routes",
+      "averagePrice": "Average Price",
+      "currentMargin": "Current Margin"
+    },
+    "tabs": {
+      "flights": "Flights",
+      "bookings": "Bookings",
+      "users": "Users",
+      "settings": "Settings"
+    },
+    "flights": {
+      "title": "Empty Leg Flights",
+      "description": "All available empty leg flights with current pricing applied"
+    }
+  },
+  "common": {
+    "imagePlaceholder": "Image Placeholder",
+    "learnMore": "Learn More",
+    "home": "Home",
+    "customer": "Customer",
+    "test": "Test",
+    "switchLanguage": "Switch Language",
+    "toggleTheme": "Toggle Theme",
+    "refresh": "Refresh",
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "price": "Price",
+    "passengers": "Passengers",
+    "aircraft": "Aircraft",
+    "departure": "Departure",
+    "arrival": "Arrival",
+    "flightDate": "Flight Date",
+    "capacity": "Capacity",
+    "totalCost": "Total Cost",
+    "bookingRequest": "Booking Request",
+    "emptyLeg": "Empty Leg",
+    "priceAdjustment": "Price Adjustment",
+    "individualPriceAdjustment": "Individual Price Adjustment",
+    "margin": "Margin",
+    "selectDate": "Select departure date",
+    "passenger": "Passenger",
+    "weekdays": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    },
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    }
+  }
+}

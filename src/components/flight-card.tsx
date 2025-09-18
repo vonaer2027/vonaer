@@ -11,6 +11,8 @@ import { Flight, MarginSetting, flightService } from "@/lib/supabase"
 import { motion } from "framer-motion"
 import { toast } from "sonner"
 import Image from "next/image"
+import { useTranslations } from 'next-intl'
+import { useLocale } from '@/components/locale-provider'
 
 interface FlightCardProps {
   flight: Flight
@@ -19,6 +21,8 @@ interface FlightCardProps {
 }
 
 export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardProps) {
+  const t = useTranslations()
+  const { locale } = useLocale()
   const [customPrice, setCustomPrice] = useState<number | null>(flight.custom_price || null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [priceInput, setPriceInput] = useState('')
@@ -70,7 +74,7 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
   const handleSavePriceAdjustment = async () => {
     const newPrice = parseInt(priceInput)
     if (isNaN(newPrice) || newPrice <= 0) {
-      toast.error('유효한 가격을 입력하세요')
+      toast.error(t('flightCard.validation.invalidPrice'))
       return
     }
     
@@ -83,7 +87,7 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
       
       setCustomPrice(newPrice)
       setDialogOpen(false)
-      toast.success('가격이 성공적으로 업데이트되었습니다')
+      toast.success(t('flightCard.success.priceUpdated'))
       
       if (onPriceUpdate) {
         onPriceUpdate(flight.id, newPrice)
@@ -93,9 +97,9 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
       console.error('Error details:', JSON.stringify(error, null, 2))
       
       // More specific error message
-      let errorMessage = '가격 업데이트에 실패했습니다'
+      let errorMessage = t('flightCard.error.updateFailed')
       if (error && typeof error === 'object' && 'message' in error) {
-        errorMessage = `가격 업데이트 실패: ${error.message}`
+        errorMessage = `${t('flightCard.error.updateFailed')}: ${error.message}`
       }
       
       toast.error(errorMessage)
@@ -103,8 +107,19 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
   }
 
   const formatDate = (dateString?: string) => {
-    if (!dateString) return 'Date TBD'
-    return new Date(dateString).toLocaleDateString('en-US', {
+    if (!dateString) return t('flightCard.dateTBD')
+    
+    // Map our locale codes to proper locale strings
+    const localeMap: { [key: string]: string } = {
+      'en': 'en-US',
+      'kr': 'ko-KR', 
+      'jp': 'ja-JP',
+      'cn': 'zh-CN'
+    }
+    
+    const browserLocale = localeMap[locale] || 'en-US'
+    
+    return new Date(dateString).toLocaleDateString(browserLocale, {
       month: 'short',
       day: 'numeric',
       year: 'numeric'
@@ -157,10 +172,10 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
             <div className="text-center">
               <div className="flex items-center gap-1 text-sm text-muted-foreground mb-1">
                 <MapPin className="h-3 w-3" />
-                From
+                {t('flightCard.from')}
               </div>
               <div className="font-medium text-sm">
-                {flight.from_city || 'TBD'}
+                {flight.from_city || t('flightCard.tbd')}
               </div>
               <div className="text-xs text-muted-foreground">
                 {flight.from_country}
@@ -174,10 +189,10 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
             <div className="text-center">
               <div className="flex items-center gap-1 text-sm text-muted-foreground mb-1">
                 <MapPin className="h-3 w-3" />
-                To
+                {t('flightCard.to')}
               </div>
               <div className="font-medium text-sm">
-                {flight.to_city || 'TBD'}
+                {flight.to_city || t('flightCard.tbd')}
               </div>
               <div className="text-xs text-muted-foreground">
                 {flight.to_country}
@@ -190,7 +205,7 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4 text-muted-foreground" />
               <div>
-                <div className="text-xs text-muted-foreground">날짜</div>
+                <div className="text-xs text-muted-foreground">{t('flightCard.date')}</div>
                 <div className="text-sm font-medium">
                   {formatDate(flight.flight_date)}
                 </div>
@@ -200,9 +215,9 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
             <div className="flex items-center gap-2">
               <Users className="h-4 w-4 text-muted-foreground" />
               <div>
-                <div className="text-xs text-muted-foreground">석</div>
+                <div className="text-xs text-muted-foreground">{t('flightCard.seats')}</div>
                 <div className="text-sm font-medium">
-                  {flight.seats || 'TBD'}
+                  {flight.seats || t('flightCard.tbd')}
                 </div>
               </div>
             </div>
@@ -212,7 +227,7 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
           <div className="border-t pt-4">
             <div className="flex items-center justify-between">
               <div className="flex-1">
-                <div className="text-xs text-muted-foreground">가격</div>
+                <div className="text-xs text-muted-foreground">{t('flightCard.price')}</div>
                 {(marginSetting && marginSetting.margin_percentage > 0) || customPrice !== null || flight.custom_price ? (
                   <div className="space-y-1">
                     {getOriginalPrice() && (
@@ -225,17 +240,17 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
                     </div>
                     {(customPrice !== null || flight.custom_price) ? (
                       <div className="text-xs text-blue-600">
-                        개별 조정 가격
+                        {t('flightCard.customPrice')}
                       </div>
                     ) : marginSetting && (
                       <div className="text-xs text-green-600">
-                        +{marginSetting.margin_percentage}% 마진
+                        +{marginSetting.margin_percentage}% {t('flightCard.margin')}
                       </div>
                     )}
                   </div>
                 ) : (
                   <div className="text-lg font-bold text-primary">
-                    {flight.price || 'Price TBD'}
+                    {flight.price || t('flightCard.priceTBD')}
                   </div>
                 )}
               </div>
@@ -244,12 +259,12 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
                 <DialogTrigger asChild>
                   <Button size="sm" variant="outline" onClick={handlePriceAdjustment} className="ml-2">
                     <Edit className="h-3 w-3 mr-1" />
-                    가격 조정
+                    {t('flightCard.adjustPrice')}
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                   <DialogHeader>
-                    <DialogTitle>가격 조정</DialogTitle>
+                    <DialogTitle>{t('flightCard.adjustPrice')}</DialogTitle>
                     <DialogDescription>
                       {flight.aircraft} - {flight.from_city} → {flight.to_city}
                     </DialogDescription>
@@ -257,23 +272,23 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
                   <div className="grid gap-4 py-4">
                     <div className="grid gap-2">
                       <label htmlFor="price" className="text-sm font-medium">
-                        새 가격 (USD)
+                        {t('flightCard.newPrice')}
                       </label>
                       <Input
                         id="price"
                         type="number"
                         value={priceInput}
                         onChange={(e) => setPriceInput(e.target.value)}
-                        placeholder="가격을 입력하세요"
+                        placeholder={t('flightCard.pricePlaceholder')}
                       />
                     </div>
                   </div>
                   <div className="flex justify-end gap-2">
                     <Button variant="outline" onClick={() => setDialogOpen(false)}>
-                      취소
+                      {t('flightCard.cancel')}
                     </Button>
                     <Button onClick={handleSavePriceAdjustment}>
-                      저장
+                      {t('flightCard.save')}
                     </Button>
                   </div>
                 </DialogContent>
