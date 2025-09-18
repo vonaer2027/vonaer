@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Plane, Calendar, Users, ArrowRight, Phone, User, Shield, Send, Loader2 } from "lucide-react"
+import { Plane, Calendar, Users, ArrowRight, Phone, User, Shield, Send, Loader2, Mail } from "lucide-react"
 import { Flight, bookingRequestService } from "@/lib/supabase"
 import { toast } from 'sonner'
 
@@ -20,6 +20,7 @@ interface BookingDialogProps {
 interface BookingFormData {
   customerName: string
   customerPhone: string
+  customerEmail: string
   contactConsent: boolean
   privacyConsent: boolean
 }
@@ -28,6 +29,7 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
   const [formData, setFormData] = useState<BookingFormData>({
     customerName: '',
     customerPhone: '',
+    customerEmail: '',
     contactConsent: false,
     privacyConsent: false
   })
@@ -39,22 +41,22 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
     if (!flight) return
     
     if (!formData.customerName.trim()) {
-      toast.error('Please enter your name')
+      toast.error('성명을 입력해주세요')
       return
     }
     
     if (!formData.customerPhone.trim()) {
-      toast.error('Please enter your phone number')
+      toast.error('전화번호를 입력해주세요')
       return
     }
     
     if (!formData.contactConsent) {
-      toast.error('Please provide consent for Vonaer to contact you')
+      toast.error('VONAER 연락 동의를 제공해주세요')
       return
     }
     
     if (!formData.privacyConsent) {
-      toast.error('Please acknowledge that you have read and agree to the Privacy Policy')
+      toast.error('개인정보처리방침에 동의해주세요')
       return
     }
 
@@ -66,6 +68,7 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
         flight_id: flight.flight_id,
         customer_name: formData.customerName.trim(),
         customer_phone: formData.customerPhone.trim(),
+        customer_email: formData.customerEmail.trim() || undefined,
         consent_given: formData.contactConsent && formData.privacyConsent,
         called: false
       })
@@ -74,6 +77,7 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
       setFormData({
         customerName: '',
         customerPhone: '',
+        customerEmail: '',
         contactConsent: false,
         privacyConsent: false
       })
@@ -83,7 +87,7 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
       console.error('Error submitting booking request:', error)
       
       // More detailed error handling
-      let errorMessage = 'Unknown error occurred'
+      let errorMessage = '알 수 없는 오류가 발생했습니다'
       
       if (error && typeof error === 'object' && 'message' in error) {
         errorMessage = String(error.message)
@@ -100,16 +104,16 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
       // Log full error for debugging
       console.log('Full error object:', JSON.stringify(error, null, 2))
       
-      toast.error(`Booking request failed: ${errorMessage}`)
+      toast.error(`예약 요청 실패: ${errorMessage}`)
     } finally {
       setIsSubmitting(false)
     }
   }
 
   const formatDate = (dateString?: string) => {
-    if (!dateString) return 'Date TBD'
+    if (!dateString) return '날짜 미정'
     const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString('ko-KR', {
       weekday: 'long',
       month: 'long',
       day: 'numeric',
@@ -125,10 +129,10 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
         <DialogHeader className="flex-shrink-0">
           <DialogTitle className="text-xl font-bold flex items-center gap-2">
             <Plane className="h-5 w-5 text-primary" />
-            Request Booking
+예약 요청
           </DialogTitle>
           <DialogDescription className="text-sm">
-            Submit your details and we&apos;ll contact you within 24 hours.
+세부 정보를 입력하시면 24시간 이내에 연락드리겠습니다.
           </DialogDescription>
         </DialogHeader>
 
@@ -149,7 +153,7 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
                 </span>
                 <span className="flex items-center gap-1">
                   <Users className="h-3 w-3" />
-                  {flight.seats} seats
+                  {flight.seats}석
                 </span>
               </div>
             </div>
@@ -161,18 +165,18 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
             <div className="space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Contact Information
+연락처 정보
               </h3>
               
               <div className="space-y-3">
                 <div className="space-y-1">
                   <Label htmlFor="customerName" className="text-xs font-medium">
-                    Full Name *
+성명 *
                   </Label>
                   <Input
                     id="customerName"
                     type="text"
-                    placeholder="Enter your full name"
+                    placeholder="성명을 입력하세요"
                     value={formData.customerName}
                     onChange={(e) => setFormData(prev => ({ ...prev, customerName: e.target.value }))}
                     className="h-9"
@@ -182,7 +186,7 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
 
                 <div className="space-y-1">
                   <Label htmlFor="customerPhone" className="text-xs font-medium">
-                    Phone Number *
+전화번호 *
                   </Label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
@@ -197,6 +201,23 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
                     />
                   </div>
                 </div>
+
+                <div className="space-y-1">
+                  <Label htmlFor="customerEmail" className="text-xs font-medium">
+이메일 주소 (선택사항)
+                  </Label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+                    <Input
+                      id="customerEmail"
+                      type="email"
+                      placeholder="your.email@example.com"
+                      value={formData.customerEmail}
+                      onChange={(e) => setFormData(prev => ({ ...prev, customerEmail: e.target.value }))}
+                      className="h-9 pl-9"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -204,7 +225,7 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
             <div className="space-y-4">
               <h3 className="font-medium flex items-center gap-2">
                 <Shield className="h-4 w-4" />
-                Privacy & Consent
+개인정보 및 동의
               </h3>
               
               <div className="space-y-4 p-4 bg-muted/30 rounded-lg">
@@ -217,7 +238,7 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
                     className="mt-0.5"
                   />
                   <span className="text-sm leading-relaxed">
-                    I hereby consent to be contacted by Vonaer regarding my flight booking.
+                    VONAER에서 항공편 예약과 관련하여 연락하는 것에 동의합니다.
                   </span>
                 </label>
                 
@@ -230,10 +251,10 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
                     className="mt-0.5"
                   />
                   <span className="text-sm leading-relaxed">
-                    By using the services, I acknowledge that I have read, understood, and agree to the{' '}
+                    서비스를 이용함으로써{' '}
                     <a href="#" className="text-primary underline hover:text-primary/80">
-                      Privacy Policy
-                    </a>.
+                      개인정보처리방침
+                    </a>을 읽고 이해했으며 동의함을 확인합니다.
                   </span>
                 </label>
               </div>
@@ -248,7 +269,7 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
                 className="flex-1"
                 disabled={isSubmitting}
               >
-                Cancel
+취소
               </Button>
               <Button
                 type="submit"
@@ -258,12 +279,12 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
                 {isSubmitting ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Submitting...
+제출 중...
                   </>
                 ) : (
                   <>
                     <Send className="h-4 w-4 mr-2" />
-                    Submit Request
+요청 제출
                   </>
                 )}
               </Button>

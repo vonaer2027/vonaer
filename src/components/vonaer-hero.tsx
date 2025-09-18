@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export function VonaerHero() {
   return (
@@ -154,7 +154,7 @@ export function VonaerHero() {
               <h3 className="text-lg font-light text-white mb-4">Contact</h3>
               <div className="space-y-2 text-gray-400 text-sm">
                 <p>+82 1600 9064</p>
-                <p>business@vonaer.com</p>
+                <p>business@VONAER.com</p>
                 <p>Seoul, Korea</p>
               </div>
             </motion.div>
@@ -184,7 +184,7 @@ export function VonaerHero() {
               <div className="space-y-2 text-gray-400 text-sm">
                 <p>Moviation Inc</p>
                 <p>Urban Air Mobility</p>
-                <p>Korea's First Platform</p>
+                <p>Korea&apos;s First Platform</p>
               </div>
             </motion.div>
           </div>

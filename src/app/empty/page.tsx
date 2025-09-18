@@ -47,7 +47,7 @@ export default function ClientFlightsPage() {
       setMarginSetting(marginData)
     } catch (error) {
       console.error('Error loading data:', error)
-      toast.error('Failed to load flights')
+      toast.error('항공편 로드에 실패했습니다')
     } finally {
       setLoading(false)
       setRefreshing(false)
@@ -106,7 +106,7 @@ export default function ClientFlightsPage() {
   }
 
   const handleBookingSuccess = () => {
-    toast.success('Booking request submitted successfully! We\'ll contact you soon.')
+    toast.success('예약 요청이 성공적으로 제출되었습니다! 곧 연락드리겠습니다.')
     setBookingDialogOpen(false)
     setSelectedFlight(null)
   }
@@ -116,7 +116,7 @@ export default function ClientFlightsPage() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center space-y-4">
           <RefreshCw className="h-8 w-8 animate-spin mx-auto text-primary" />
-          <p className="text-muted-foreground">Loading available flights...</p>
+          <p className="text-muted-foreground">이용 가능한 항공편 로딩 중...</p>
         </div>
       </div>
     )
@@ -133,10 +133,7 @@ export default function ClientFlightsPage() {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-foreground">Vonaer Empty Leg Flights</h1>
-              <p className="text-muted-foreground mt-1">
-                Discover exclusive empty leg opportunities at exceptional prices
-              </p>
+              <h1 className="text-3xl font-bold text-foreground">VONAER 빈 항공편</h1>
             </div>
             <div className="flex items-center gap-2">
               <ThemeToggle />
@@ -147,7 +144,7 @@ export default function ClientFlightsPage() {
                 size="sm"
               >
                 <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-                Refresh
+새로고침
               </Button>
             </div>
           </div>
@@ -166,14 +163,14 @@ export default function ClientFlightsPage() {
                 <div>
                   <CardTitle className="flex items-center gap-2">
                     <Plane className="h-5 w-5" />
-                    Available Flights
+이용 가능한 항공편
                   </CardTitle>
                   <CardDescription>
-                    {filteredFlights.length} empty leg flights available
+{filteredFlights.length}개의 빈 항공편이 이용 가능합니다
                   </CardDescription>
                 </div>
                 <Badge variant="outline" className="text-sm">
-                  Updated {new Date().toLocaleDateString()}
+업데이트: {new Date().toLocaleDateString('ko-KR')}
                 </Badge>
               </div>
             </CardHeader>
@@ -181,7 +178,7 @@ export default function ClientFlightsPage() {
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
                   <Filter className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm font-medium">Sort by:</span>
+                  <span className="text-sm font-medium">정렬 기준:</span>
                 </div>
                 <Select value={sortBy} onValueChange={(value: SortOption) => setSortBy(value)}>
                   <SelectTrigger className="w-48">
@@ -192,28 +189,28 @@ export default function ClientFlightsPage() {
                       <div className="flex items-center gap-2">
                         <DollarSign className="h-4 w-4" />
                         <SortAsc className="h-4 w-4" />
-                        Price: Low to High
+가격: 낮은 순
                       </div>
                     </SelectItem>
                     <SelectItem value="price-high">
                       <div className="flex items-center gap-2">
                         <DollarSign className="h-4 w-4" />
                         <SortDesc className="h-4 w-4" />
-                        Price: High to Low
+가격: 높은 순
                       </div>
                     </SelectItem>
                     <SelectItem value="date-near">
                       <div className="flex items-center gap-2">
                         <Calendar className="h-4 w-4" />
                         <SortAsc className="h-4 w-4" />
-                        Date: Nearest First
+날짜: 가까운 순
                       </div>
                     </SelectItem>
                     <SelectItem value="date-far">
                       <div className="flex items-center gap-2">
                         <Calendar className="h-4 w-4" />
                         <SortDesc className="h-4 w-4" />
-                        Date: Farthest First
+날짜: 먼 순
                       </div>
                     </SelectItem>
                   </SelectContent>
@@ -234,10 +231,10 @@ export default function ClientFlightsPage() {
               <CardContent className="text-center py-12">
                 <Plane className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-muted-foreground mb-2">
-                  No flights available
+                  이용 가능한 항공편이 없습니다
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Check back later for new empty leg opportunities
+                  새로운 빈 항공편 기회를 확인하려면 나중에 다시 확인하세요
                 </p>
               </CardContent>
             </Card>

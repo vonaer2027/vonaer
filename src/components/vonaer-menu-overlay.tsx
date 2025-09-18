@@ -10,13 +10,11 @@ import {
   Crown,
   Users,
   Phone,
-  LogIn,
   ChevronRight
 } from 'lucide-react'
 
 interface VonaerMenuOverlayProps {
   isOpen: boolean
-  currentSection: string
   onSectionChange: (section: string) => void
   onClose: () => void
 }
@@ -60,7 +58,7 @@ const otherItems = [
   { id: 'contact', label: 'CONTACT', icon: Phone }
 ]
 
-export function VonaerMenuOverlay({ isOpen, currentSection, onSectionChange, onClose }: VonaerMenuOverlayProps) {
+export function VonaerMenuOverlay({ isOpen, onSectionChange, onClose }: VonaerMenuOverlayProps) {
   const handleSectionChange = (section: string) => {
     onSectionChange(section)
     onClose()
@@ -191,7 +189,7 @@ export function VonaerMenuOverlay({ isOpen, currentSection, onSectionChange, onC
             
             <div className="text-primary-foreground/50 text-xs space-y-1">
               <p>+82 1600 9064</p>
-              <p>business@vonaer.com</p>
+              <p>business@VONAER.com</p>
             </div>
           </div>
         </div>

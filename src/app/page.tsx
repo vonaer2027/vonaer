@@ -17,14 +17,11 @@ export default function VonaerLanding() {
       <VonaerHeader 
         menuOpen={menuOpen}
         onMenuToggle={() => setMenuOpen(!menuOpen)}
-        currentSection={currentSection}
-        onSectionChange={setCurrentSection}
       />
 
       {/* Full Screen Menu Overlay */}
       <VonaerMenuOverlay 
         isOpen={menuOpen}
-        currentSection={currentSection}
         onSectionChange={setCurrentSection}
         onClose={() => setMenuOpen(false)}
       />

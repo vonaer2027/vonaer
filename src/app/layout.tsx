@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -13,9 +13,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const notoSansKR = Noto_Sans_KR({
+  variable: "--font-noto-sans-kr",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+});
+
 export const metadata: Metadata = {
-  title: "Vonaer Empty Leg Management",
-  description: "Vonaer's comprehensive platform for managing empty leg flights, users, and pricing settings",
+  title: "VONAER Empty Leg Management",
+  description: "VONAER's comprehensive platform for managing empty leg flights, users, and pricing settings",
 };
 
 export default function RootLayout({
@@ -26,7 +32,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${notoSansKR.variable} antialiased font-[family-name:var(--font-noto-sans-kr)]`}
+        suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"

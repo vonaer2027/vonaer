@@ -14,9 +14,25 @@ interface ClientFlightCardProps {
 }
 
 export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: ClientFlightCardProps) {
+  const roundUpToNearestHundred = (price: number) => {
+    return Math.ceil(price / 100) * 100
+  }
+
   const calculateFinalPrice = () => {
-    if (!flight.price_numeric || !marginSetting) return flight.price_numeric || 0
-    return flight.price_numeric * (1 + (marginSetting.margin_percentage / 100))
+    if (!flight.price_numeric) return flight.price_numeric || 0
+    
+    // If custom price is set, use that
+    if (flight.custom_price !== null && flight.custom_price !== undefined) {
+      return flight.custom_price
+    }
+    
+    // Apply margin and round up to nearest hundred
+    if (marginSetting && marginSetting.margin_percentage > 0) {
+      const adjustedPrice = flight.price_numeric * (1 + (marginSetting.margin_percentage / 100))
+      return roundUpToNearestHundred(adjustedPrice)
+    }
+    
+    return flight.price_numeric
   }
 
   const formatPrice = () => {
@@ -25,11 +41,11 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
   }
 
   const formatDate = (dateString?: string) => {
-    if (!dateString) return 'Date TBD'
+    if (!dateString) return '날짜 미정'
     const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString('ko-KR', {
       weekday: 'short',
-      month: 'short',
+      month: 'long',
       day: 'numeric',
       year: 'numeric'
     })
@@ -60,7 +76,7 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
           <div className="flex items-start justify-between">
             <CardTitle className="text-xl font-bold flex items-center gap-2 text-foreground">
               <Plane className="h-5 w-5 text-primary" />
-              {flight.aircraft || 'Luxury Aircraft'}
+{flight.aircraft || '럭셔리 항공기'}
             </CardTitle>
           </div>
         </CardHeader>
@@ -72,10 +88,10 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
               <div className="text-center flex-1">
                 <div className="flex items-center justify-center gap-1 text-sm text-muted-foreground mb-2">
                   <MapPin className="h-4 w-4" />
-                  Departure
+출발
                 </div>
                 <div className="font-bold text-lg text-foreground">
-                  {flight.from_city || 'TBD'}
+{flight.from_city || '미정'}
                 </div>
                 <div className="text-sm text-muted-foreground">
                   {flight.from_country}
@@ -87,17 +103,17 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
                   <ArrowRight className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-xs text-muted-foreground font-medium">
-                  Empty Leg
+빈 항공편
                 </div>
               </div>
               
               <div className="text-center flex-1">
                 <div className="flex items-center justify-center gap-1 text-sm text-muted-foreground mb-2">
                   <MapPin className="h-4 w-4" />
-                  Arrival
+도착
                 </div>
                 <div className="font-bold text-lg text-foreground">
-                  {flight.to_city || 'TBD'}
+{flight.to_city || '미정'}
                 </div>
                 <div className="text-sm text-muted-foreground">
                   {flight.to_country}
@@ -111,7 +127,7 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
             <div className="flex items-center justify-center gap-3">
               <Calendar className="h-6 w-6 text-primary" />
               <div className="text-center">
-                <div className="text-sm text-muted-foreground font-medium">Flight Date</div>
+                <div className="text-sm text-muted-foreground font-medium">항공편 날짜</div>
                 <div className="text-lg font-bold text-foreground">
                   {formatDate(flight.flight_date)}
                 </div>
@@ -124,9 +140,9 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
             <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
               <Users className="h-5 w-5 text-primary" />
               <div>
-                <div className="text-xs text-muted-foreground font-medium">Capacity</div>
+                <div className="text-xs text-muted-foreground font-medium">수용 인원</div>
                 <div className="text-sm font-semibold text-foreground">
-                  {flight.seats ? `${flight.seats} passengers` : 'TBD'}
+{flight.seats ? `${flight.seats}명` : '미정'}
                 </div>
               </div>
             </div>
@@ -137,13 +153,13 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
             <div className="flex items-end justify-between">
               <div className="space-y-1">
                 <div className="text-sm font-medium text-muted-foreground">
-                  Price
+가격
                 </div>
                 <div className="text-3xl font-bold text-primary">
                   {formatPrice()}
                 </div>
                 <div className="text-xs text-muted-foreground">
-                  Total flight cost
+총 항공편 비용
                 </div>
               </div>
               
@@ -152,7 +168,7 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
                 size="lg"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                Request Booking
+예약 요청
               </Button>
             </div>
           </div>

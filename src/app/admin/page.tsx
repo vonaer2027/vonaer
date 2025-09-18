@@ -55,7 +55,44 @@ export default function AdminDashboard() {
 
   const handleMarginUpdate = (newMargin: MarginSetting) => {
     setMarginSetting(newMargin)
-    toast.success('Margin settings updated successfully')
+    toast.success('마진 설정이 성공적으로 업데이트되었습니다')
+  }
+
+  const handlePriceUpdate = async (flightId: number, newPrice: number) => {
+    // Update local flight data with new custom price
+    setFlights(prev => prev.map(flight => 
+      flight.id === flightId 
+        ? { ...flight, custom_price: newPrice }
+        : flight
+    ))
+    
+    // Also refresh the data to ensure we have the latest from database
+    try {
+      await loadData()
+    } catch (error) {
+      console.warn('Failed to refresh data after price update:', error)
+    }
+  }
+
+  const testCustomPriceUpdate = async () => {
+    if (flights.length === 0) {
+      toast.error('No flights available to test')
+      return
+    }
+    
+    const firstFlight = flights[0]
+    try {
+      const result = await flightService.testCustomPriceUpdate(firstFlight.id)
+      console.log('Test result:', result)
+      if (result.success) {
+        toast.success('Custom price update test successful!')
+      } else {
+        toast.error(`Test failed: ${result.error}`)
+      }
+    } catch (error) {
+      console.error('Test error:', error)
+      toast.error('Test failed with error')
+    }
   }
 
   const stats = {
@@ -72,7 +109,7 @@ export default function AdminDashboard() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center space-y-4">
           <RefreshCw className="h-8 w-8 animate-spin mx-auto text-primary" />
-          <p className="text-muted-foreground">Loading Vonaer dashboard...</p>
+          <p className="text-muted-foreground">VONAER 대시보드 로딩 중...</p>
         </div>
       </div>
     )
@@ -89,10 +126,7 @@ export default function AdminDashboard() {
         >
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
-              <h1 className="text-2xl lg:text-3xl font-bold text-foreground">Vonaer Admin Dashboard</h1>
-              <p className="text-muted-foreground mt-1 text-sm lg:text-base">
-                Comprehensive platform for managing empty leg flights, users, and pricing
-              </p>
+              <h1 className="text-2xl lg:text-3xl font-bold text-foreground">VONAER 관리자 대시보드</h1>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               <Button 
@@ -103,8 +137,8 @@ export default function AdminDashboard() {
               >
                 <a href="/" target="_blank" rel="noopener noreferrer">
                   <Home className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">View Landing Page</span>
-                  <span className="sm:hidden">Home</span>
+                  <span className="hidden sm:inline">랜딩 페이지 보기</span>
+                  <span className="sm:hidden">홈</span>
                 </a>
               </Button>
               <Button 
@@ -115,8 +149,8 @@ export default function AdminDashboard() {
               >
                 <a href="/empty" target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">View Client Site</span>
-                  <span className="sm:hidden">Client</span>
+                  <span className="hidden sm:inline">고객 사이트 보기</span>
+                  <span className="sm:hidden">고객</span>
                 </a>
               </Button>
               <ThemeToggle />
@@ -128,7 +162,16 @@ export default function AdminDashboard() {
                 className="flex-1 sm:flex-none"
               >
                 <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-                <span className="hidden sm:inline">Refresh</span>
+                <span className="hidden sm:inline">새로고침</span>
+              </Button>
+              <Button 
+                onClick={testCustomPriceUpdate}
+                variant="outline"
+                size="sm"
+                className="flex-1 sm:flex-none"
+              >
+                <span className="hidden sm:inline">가격 테스트</span>
+                <span className="sm:hidden">테스트</span>
               </Button>
             </div>
           </div>
@@ -143,33 +186,33 @@ export default function AdminDashboard() {
         >
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Flights</CardTitle>
+              <CardTitle className="text-sm font-medium">전체 항공편</CardTitle>
               <Plane className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalFlights}</div>
               <p className="text-xs text-muted-foreground">
-                Available empty legs
+                이용 가능한 빈 항공편
               </p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Korea Routes</CardTitle>
+              <CardTitle className="text-sm font-medium">한국 노선</CardTitle>
               <Badge variant="outline" className="text-xs">KR</Badge>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.koreaFlights}</div>
               <p className="text-xs text-muted-foreground">
-                Flights involving Korea
+                한국 관련 항공편
               </p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Avg. Price</CardTitle>
+              <CardTitle className="text-sm font-medium">평균 가격</CardTitle>
               <TrendingUp className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -177,20 +220,20 @@ export default function AdminDashboard() {
                 ${stats.averagePrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}
               </div>
               <p className="text-xs text-muted-foreground">
-                Average flight price
+                평균 항공편 가격
               </p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Current Margin</CardTitle>
+              <CardTitle className="text-sm font-medium">현재 마진</CardTitle>
               <Settings className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.currentMargin}%</div>
               <p className="text-xs text-muted-foreground">
-                Applied to all flights
+                모든 항공편에 적용
               </p>
             </CardContent>
           </Card>
@@ -206,29 +249,29 @@ export default function AdminDashboard() {
             <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto">
               <TabsTrigger value="flights" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
                 <Plane className="h-3 w-3 lg:h-4 lg:w-4" />
-                <span className="hidden sm:inline">Flights ({flights.length})</span>
+                <span className="hidden sm:inline">항공편 ({flights.length})</span>
                 <span className="sm:hidden">{flights.length}</span>
               </TabsTrigger>
               <TabsTrigger value="bookings" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
                 <Phone className="h-3 w-3 lg:h-4 lg:w-4" />
-                <span className="hidden sm:inline">Bookings</span>
+                <span className="hidden sm:inline">예약</span>
               </TabsTrigger>
               <TabsTrigger value="users" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
                 <Users className="h-3 w-3 lg:h-4 lg:w-4" />
-                <span className="hidden sm:inline">Users</span>
+                <span className="hidden sm:inline">사용자</span>
               </TabsTrigger>
               <TabsTrigger value="settings" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
                 <Settings className="h-3 w-3 lg:h-4 lg:w-4" />
-                <span className="hidden sm:inline">Settings</span>
+                <span className="hidden sm:inline">설정</span>
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="flights" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Empty Leg Flights</CardTitle>
+                  <CardTitle>빈 항공편</CardTitle>
                   <CardDescription>
-                    All available empty leg flights with current pricing
+                    현재 가격이 적용된 모든 이용 가능한 빈 항공편
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -236,10 +279,10 @@ export default function AdminDashboard() {
                     <div className="text-center py-12">
                       <Plane className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                       <h3 className="text-lg font-medium text-muted-foreground mb-2">
-                        No flights available
+                        이용 가능한 항공편이 없습니다
                       </h3>
                       <p className="text-sm text-muted-foreground">
-                        Check back later for new empty leg opportunities
+                        새로운 빈 항공편 기회를 확인하려면 나중에 다시 확인하세요
                       </p>
                     </div>
                   ) : (
@@ -254,6 +297,7 @@ export default function AdminDashboard() {
                           <FlightCard 
                             flight={flight} 
                             marginSetting={marginSetting || undefined}
+                            onPriceUpdate={handlePriceUpdate}
                           />
                         </motion.div>
                       ))}

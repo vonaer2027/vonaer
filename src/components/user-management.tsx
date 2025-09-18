@@ -30,7 +30,7 @@ export function UserManagement() {
       setUsers(data)
     } catch (error) {
       console.error('Error loading users:', error)
-      toast.error('Failed to load users')
+      toast.error('사용자 로드에 실패했습니다')
     } finally {
       setLoading(false)
     }
@@ -51,7 +51,7 @@ export function UserManagement() {
     
     // Basic validation - ensure phone number is not empty
     if (!formData.phone_number.trim()) {
-      toast.error('Please enter a phone number')
+      toast.error('전화번호를 입력하세요')
       return
     }
 
@@ -64,10 +64,10 @@ export function UserManagement() {
     try {
       if (editingUser) {
         await userService.update(editingUser.id, userData)
-        toast.success('User updated successfully')
+        toast.success('사용자가 성공적으로 업데이트되었습니다')
       } else {
         await userService.create(userData)
-        toast.success('User created successfully')
+        toast.success('사용자가 성공적으로 생성되었습니다')
       }
       
       setDialogOpen(false)
@@ -77,9 +77,9 @@ export function UserManagement() {
       console.error('Error saving user:', error)
       const errorMessage = error instanceof Error ? error.message : String(error)
       if (errorMessage.includes('duplicate key')) {
-        toast.error('Phone number already exists')
+        toast.error('전화번호가 이미 존재합니다')
       } else {
-        toast.error('Failed to save user')
+        toast.error('사용자 저장에 실패했습니다')
       }
     }
   }
@@ -99,15 +99,15 @@ export function UserManagement() {
   }
 
   const handleDelete = async (user: User) => {
-    if (!confirm(`Are you sure you want to delete ${user.name}?`)) return
+    if (!confirm(`정말로 ${user.name}님을 삭제하시겠습니까?`)) return
     
     try {
       await userService.delete(user.id)
-      toast.success('User deleted successfully')
+      toast.success('사용자가 성공적으로 삭제되었습니다')
       loadUsers()
     } catch (error) {
       console.error('Error deleting user:', error)
-      toast.error('Failed to delete user')
+      toast.error('사용자 삭제에 실패했습니다')
     }
   }
 
@@ -140,7 +140,7 @@ export function UserManagement() {
         <CardContent className="flex items-center justify-center py-12">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-            <p className="text-muted-foreground">Loading users...</p>
+            <p className="text-muted-foreground">사용자 로딩 중...</p>
           </div>
         </CardContent>
       </Card>
@@ -157,64 +157,64 @@ export function UserManagement() {
         <CardHeader>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <CardTitle>User Management</CardTitle>
+              <CardTitle>사용자 관리</CardTitle>
               <CardDescription>
-                Manage Vonaer customer accounts and contact information
+                VONAER 고객 계정 및 연락처 정보를 관리합니다
               </CardDescription>
             </div>
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
               <DialogTrigger asChild>
                 <Button onClick={resetForm} className="self-start sm:self-auto">
                   <Plus className="h-4 w-4 mr-2" />
-                  Add User
+사용자 추가
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <form onSubmit={handleSubmit}>
                   <DialogHeader>
                     <DialogTitle>
-                      {editingUser ? 'Edit User' : 'Add New User'}
+                      {editingUser ? '사용자 수정' : '새 사용자 추가'}
                     </DialogTitle>
                     <DialogDescription>
                       {editingUser 
-                        ? 'Update user information below.' 
-                        : 'Enter the user details below.'}
+                        ? '아래에서 사용자 정보를 업데이트하세요.' 
+                        : '아래에 사용자 세부 정보를 입력하세요.'}
                     </DialogDescription>
                   </DialogHeader>
                   
                   <div className="grid gap-4 py-4">
                     <div className="grid gap-2">
-                      <Label htmlFor="name">Name *</Label>
+                      <Label htmlFor="name">이름 *</Label>
                       <Input
                         id="name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Enter full name"
+                        placeholder="전체 이름을 입력하세요"
                         required
                       />
                     </div>
                     
                     <div className="grid gap-2">
-                      <Label htmlFor="phone">Phone Number *</Label>
+                      <Label htmlFor="phone">전화번호 *</Label>
                       <Input
                         id="phone"
                         value={formData.phone_number}
                         onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
-                        placeholder="01099343991 or 010-9934-3992"
+                        placeholder="01099343991 또는 010-9934-3992"
                         required
                       />
                       <p className="text-xs text-muted-foreground">
-                        Enter phone number (with or without dashes)
+전화번호를 입력하세요 (대시 포함 또는 제외)
                       </p>
                     </div>
                   </div>
                   
                   <DialogFooter>
                     <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>
-                      Cancel
+취소
                     </Button>
                     <Button type="submit">
-                      {editingUser ? 'Update User' : 'Create User'}
+                      {editingUser ? '사용자 업데이트' : '사용자 생성'}
                     </Button>
                   </DialogFooter>
                 </form>
@@ -228,14 +228,14 @@ export function UserManagement() {
             <div className="text-center py-12">
               <UserIcon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-medium text-muted-foreground mb-2">
-                No users found
+                사용자를 찾을 수 없습니다
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Start by adding your first user
+                첫 번째 사용자를 추가하여 시작하세요
               </p>
               <Button onClick={() => setDialogOpen(true)}>
                 <Plus className="h-4 w-4 mr-2" />
-                Add First User
+첫 사용자 추가
               </Button>
             </div>
           ) : (
@@ -245,11 +245,11 @@ export function UserManagement() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="min-w-[120px]">Name</TableHead>
-                        <TableHead className="min-w-[140px]">Contact</TableHead>
-                        <TableHead className="min-w-[80px]">Status</TableHead>
-                        <TableHead className="min-w-[100px]">Created</TableHead>
-                        <TableHead className="text-right min-w-[80px]">Actions</TableHead>
+                        <TableHead className="min-w-[120px]">이름</TableHead>
+                        <TableHead className="min-w-[140px]">연락처</TableHead>
+                        <TableHead className="min-w-[80px]">상태</TableHead>
+                        <TableHead className="min-w-[100px]">생성일</TableHead>
+                        <TableHead className="text-right min-w-[80px]">작업</TableHead>
                       </TableRow>
                     </TableHeader>
                 <TableBody>
@@ -269,7 +269,7 @@ export function UserManagement() {
                       </TableCell>
                       <TableCell>
                         <Badge variant={user.is_active ? "default" : "secondary"}>
-                          {user.is_active ? "Active" : "Inactive"}
+                          {user.is_active ? "활성" : "비활성"}
                         </Badge>
                       </TableCell>
                       <TableCell className="text-muted-foreground">
@@ -285,14 +285,14 @@ export function UserManagement() {
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem onClick={() => handleEdit(user)}>
                               <Edit className="h-4 w-4 mr-2" />
-                              Edit
+수정
                             </DropdownMenuItem>
                             <DropdownMenuItem 
                               onClick={() => handleDelete(user)}
                               className="text-destructive"
                             >
                               <Trash2 className="h-4 w-4 mr-2" />
-                              Delete
+삭제
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>

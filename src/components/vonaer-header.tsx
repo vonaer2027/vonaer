@@ -7,11 +7,9 @@ import { Menu, X, Phone } from 'lucide-react'
 interface VonaerHeaderProps {
   menuOpen: boolean
   onMenuToggle: () => void
-  currentSection: string
-  onSectionChange?: (section: string) => void
 }
 
-export function VonaerHeader({ menuOpen, onMenuToggle, currentSection, onSectionChange }: VonaerHeaderProps) {
+export function VonaerHeader({ menuOpen, onMenuToggle }: VonaerHeaderProps) {
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
@@ -41,7 +39,7 @@ export function VonaerHeader({ menuOpen, onMenuToggle, currentSection, onSection
           </div>
 
 
-          {/* Center: VONAER Logo */}
+          {/* Center: vonaer Logo */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <motion.div
               className="cursor-pointer"

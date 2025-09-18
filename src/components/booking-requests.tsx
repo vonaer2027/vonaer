@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Phone, Calendar, Plane, ArrowRight, Check, RefreshCw, Trash2, Eye, Users } from "lucide-react"
+import Image from "next/image"
 import { BookingRequest, bookingRequestService } from "@/lib/supabase"
 import { motion } from "framer-motion"
 import { toast } from 'sonner'
@@ -25,7 +26,7 @@ export function BookingRequests() {
       setBookingRequests(data)
     } catch (error) {
       console.error('Error loading booking requests:', error)
-      toast.error('Failed to load booking requests')
+      toast.error('예약 요청 로드에 실패했습니다')
     } finally {
       setLoading(false)
       setRefreshing(false)
@@ -44,23 +45,23 @@ export function BookingRequests() {
           request.id === id ? { ...request, called: true } : request
         )
       )
-      toast.success('Marked as called')
+      toast.success('통화 완료로 표시되었습니다')
     } catch (error) {
       console.error('Error marking as called:', error)
-      toast.error('Failed to update status')
+      toast.error('상태 업데이트에 실패했습니다')
     }
   }
 
   const handleDelete = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this booking request?')) return
+    if (!confirm('정말로 이 예약 요청을 삭제하시겠습니까?')) return
     
     try {
       await bookingRequestService.delete(id)
       setBookingRequests(prev => prev.filter(request => request.id !== id))
-      toast.success('Booking request deleted')
+      toast.success('예약 요청이 삭제되었습니다')
     } catch (error) {
       console.error('Error deleting booking request:', error)
-      toast.error('Failed to delete booking request')
+      toast.error('예약 요청 삭제에 실패했습니다')
     }
   }
 
@@ -100,7 +101,7 @@ export function BookingRequests() {
       <Card>
         <CardContent className="text-center py-12">
           <RefreshCw className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
-          <p className="text-muted-foreground">Loading booking requests...</p>
+          <p className="text-muted-foreground">예약 요청 로딩 중...</p>
         </CardContent>
       </Card>
     )
@@ -111,9 +112,9 @@ export function BookingRequests() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h3 className="text-lg font-semibold">Booking Requests</h3>
+          <h3 className="text-lg font-semibold">예약 요청</h3>
           <p className="text-sm text-muted-foreground">
-            Customer inquiries for empty leg flights
+            빈 항공편에 대한 고객 문의
           </p>
         </div>
         <Button 
@@ -124,7 +125,7 @@ export function BookingRequests() {
           className="self-start sm:self-auto"
         >
           <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-          Refresh
+새로고침
         </Button>
       </div>
 
@@ -132,7 +133,7 @@ export function BookingRequests() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Total Requests</CardTitle>
+            <CardTitle className="text-sm font-medium">전체 요청</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{bookingRequests.length}</div>
@@ -141,7 +142,7 @@ export function BookingRequests() {
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Pending Calls</CardTitle>
+            <CardTitle className="text-sm font-medium">대기 중인 통화</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-orange-600">{pendingRequests.length}</div>
@@ -150,7 +151,7 @@ export function BookingRequests() {
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Called</CardTitle>
+            <CardTitle className="text-sm font-medium">통화 완료</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">{completedRequests.length}</div>
@@ -164,10 +165,10 @@ export function BookingRequests() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Phone className="h-5 w-5 text-orange-600" />
-              Pending Calls ({pendingRequests.length})
+대기 중인 통화 ({pendingRequests.length})
             </CardTitle>
             <CardDescription>
-              New booking requests that need to be contacted
+연락이 필요한 새로운 예약 요청
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -176,12 +177,12 @@ export function BookingRequests() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="min-w-[150px] sm:w-[200px]">Customer</TableHead>
-                      <TableHead className="min-w-[120px] sm:w-[180px]">Flight</TableHead>
-                      <TableHead className="min-w-[140px] sm:w-[160px]">Route</TableHead>
-                      <TableHead className="min-w-[100px] sm:w-[140px]">Flight Date</TableHead>
-                      <TableHead className="min-w-[100px] sm:w-[140px]">Requested</TableHead>
-                      <TableHead className="min-w-[120px] sm:w-[160px]">Actions</TableHead>
+                      <TableHead className="min-w-[150px] sm:w-[200px]">고객</TableHead>
+                      <TableHead className="min-w-[120px] sm:w-[180px]">항공편</TableHead>
+                      <TableHead className="min-w-[140px] sm:w-[160px]">노선</TableHead>
+                      <TableHead className="min-w-[100px] sm:w-[140px]">항공편 날짜</TableHead>
+                      <TableHead className="min-w-[100px] sm:w-[140px]">요청일</TableHead>
+                      <TableHead className="min-w-[120px] sm:w-[160px]">작업</TableHead>
                     </TableRow>
                   </TableHeader>
                 <TableBody>
@@ -201,6 +202,11 @@ export function BookingRequests() {
                           <div className="text-sm text-muted-foreground font-mono bg-muted/50 px-2 py-1 rounded font-medium">
                             {request.customer_phone}
                           </div>
+                          {request.customer_email && (
+                            <div className="text-xs text-muted-foreground">
+                              {request.customer_email}
+                            </div>
+                          )}
                         </div>
                       </TableCell>
                       <TableCell className="py-4">
@@ -241,7 +247,7 @@ export function BookingRequests() {
                             className="bg-green-600 hover:bg-green-700 text-xs h-8 flex-shrink-0"
                           >
                             <Check className="h-3 w-3 mr-1" />
-                            <span className="hidden sm:inline">Called</span>
+                            <span className="hidden sm:inline">통화 완료</span>
                           </Button>
                           <Button
                             size="sm"
@@ -269,10 +275,10 @@ export function BookingRequests() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Check className="h-5 w-5 text-green-600" />
-              Called ({completedRequests.length})
+통화 완료 ({completedRequests.length})
             </CardTitle>
             <CardDescription>
-              Customers that have been contacted
+연락이 완료된 고객
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -281,12 +287,12 @@ export function BookingRequests() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="min-w-[150px] sm:w-[200px]">Customer</TableHead>
-                      <TableHead className="min-w-[120px] sm:w-[180px]">Flight</TableHead>
-                      <TableHead className="min-w-[140px] sm:w-[160px]">Route</TableHead>
-                      <TableHead className="min-w-[100px] sm:w-[140px]">Flight Date</TableHead>
-                      <TableHead className="min-w-[100px] sm:w-[140px]">Requested</TableHead>
-                      <TableHead className="min-w-[100px] sm:w-[120px]">Actions</TableHead>
+                      <TableHead className="min-w-[150px] sm:w-[200px]">고객</TableHead>
+                      <TableHead className="min-w-[120px] sm:w-[180px]">항공편</TableHead>
+                      <TableHead className="min-w-[140px] sm:w-[160px]">노선</TableHead>
+                      <TableHead className="min-w-[100px] sm:w-[140px]">항공편 날짜</TableHead>
+                      <TableHead className="min-w-[100px] sm:w-[140px]">요청일</TableHead>
+                      <TableHead className="min-w-[100px] sm:w-[120px]">작업</TableHead>
                     </TableRow>
                   </TableHeader>
                 <TableBody>
@@ -300,6 +306,11 @@ export function BookingRequests() {
                           <div className="text-sm text-muted-foreground font-mono bg-muted/50 px-2 py-1 rounded font-medium">
                             {request.customer_phone}
                           </div>
+                          {request.customer_email && (
+                            <div className="text-xs text-muted-foreground">
+                              {request.customer_email}
+                            </div>
+                          )}
                         </div>
                       </TableCell>
                       <TableCell className="py-4">
@@ -336,7 +347,7 @@ export function BookingRequests() {
                           </Button>
                           <Badge className="bg-green-100 text-green-800 hover:bg-green-100 text-xs">
                             <Check className="h-3 w-3 mr-1" />
-                            Called
+통화 완료
                           </Badge>
                           <Button
                             size="sm"
@@ -362,12 +373,12 @@ export function BookingRequests() {
         <Card>
           <CardContent className="text-center py-12">
             <Phone className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-muted-foreground mb-2">
-              No booking requests yet
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Customer booking requests will appear here
-            </p>
+              <h3 className="text-lg font-medium text-muted-foreground mb-2">
+                예약 요청이 아직 없습니다
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                고객 예약 요청이 여기에 나타납니다
+              </p>
           </CardContent>
         </Card>
       )}
@@ -378,10 +389,10 @@ export function BookingRequests() {
           <DialogHeader className="pb-2">
             <DialogTitle className="text-base font-bold flex items-center gap-2">
               <Plane className="h-4 w-4 text-primary" />
-              Booking Details
+예약 세부사항
             </DialogTitle>
             <DialogDescription className="text-xs">
-              {selectedFlight?.customer_name}&apos;s booking request
+{selectedFlight?.customer_name}님의 예약 요청
             </DialogDescription>
           </DialogHeader>
 
@@ -392,29 +403,35 @@ export function BookingRequests() {
                 {/* Customer Info */}
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <div className="text-xs text-muted-foreground">Customer</div>
+                    <div className="text-xs text-muted-foreground">고객</div>
                     <div className="font-semibold text-xs">{selectedFlight.customer_name}</div>
                   </div>
                   <div>
-                    <div className="text-xs text-muted-foreground">Phone</div>
+                    <div className="text-xs text-muted-foreground">전화번호</div>
                     <div className="font-mono font-semibold text-xs">{selectedFlight.customer_phone}</div>
+                    {selectedFlight.customer_email && (
+                      <>
+                        <div className="text-xs text-muted-foreground mt-1">이메일</div>
+                        <div className="font-mono text-xs">{selectedFlight.customer_email}</div>
+                      </>
+                    )}
                   </div>
                 </div>
                 
                 {/* Status & Request Date */}
                 <div className="grid grid-cols-2 gap-2 pt-1 border-t border-muted">
                   <div>
-                    <div className="text-xs text-muted-foreground">Status</div>
+                    <div className="text-xs text-muted-foreground">상태</div>
                     <div>
                       {selectedFlight.called ? (
-                        <Badge className="bg-green-100 text-green-800 text-xs h-5">Called</Badge>
+                        <Badge className="bg-green-100 text-green-800 text-xs h-5">통화 완료</Badge>
                       ) : (
-                        <Badge className="bg-orange-100 text-orange-800 text-xs h-5">Pending</Badge>
+                        <Badge className="bg-orange-100 text-orange-800 text-xs h-5">대기 중</Badge>
                       )}
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs text-muted-foreground">Requested</div>
+                    <div className="text-xs text-muted-foreground">요청일</div>
                     <div className="text-xs font-medium">{formatDate(selectedFlight.created_at)}</div>
                   </div>
                 </div>
@@ -452,10 +469,12 @@ export function BookingRequests() {
               {/* Aircraft Image - Extra Compact */}
               {selectedFlight.flight?.image_urls && selectedFlight.flight.image_urls.length > 0 && (
                 <div className="relative h-20 w-full overflow-hidden rounded-lg">
-                  <img
+                  <Image
                     src={selectedFlight.flight.image_urls[0]}
                     alt={`${selectedFlight.flight.aircraft || 'Aircraft'} image`}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                 </div>
@@ -464,15 +483,15 @@ export function BookingRequests() {
               {/* Consent Info */}
               <div className="bg-muted/30 rounded-lg p-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">Privacy Consent</span>
+                  <span className="text-xs text-muted-foreground">개인정보 동의</span>
                   {selectedFlight.consent_given ? (
                     <Badge variant="secondary" className="bg-green-100 text-green-800 text-xs h-5">
                       <Check className="h-2 w-2 mr-1" />
-                      Given
+동의함
                     </Badge>
                   ) : (
                     <Badge variant="secondary" className="bg-red-100 text-red-800 text-xs h-5">
-                      Not Given
+동의 안함
                     </Badge>
                   )}
                 </div>
@@ -489,7 +508,7 @@ export function BookingRequests() {
                 size="sm"
               >
                 <Check className="h-3 w-3 mr-1" />
-                Mark as Called
+통화 완료로 표시
               </Button>
             )}
             <Button
@@ -498,7 +517,7 @@ export function BookingRequests() {
               className="flex-1 text-xs h-8"
               size="sm"
             >
-              Close
+닫기
             </Button>
           </div>
         </DialogContent>

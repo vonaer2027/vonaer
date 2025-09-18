@@ -3,14 +3,10 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { 
   Plane, 
-  Clock, 
   MapPin, 
-  Star, 
   Users, 
-  Shield,
   ArrowRight,
   Calendar,
   Phone,
@@ -290,7 +286,7 @@ export function VonaerServices({ section }: VonaerServicesProps) {
                     </div>
                     <div className="flex items-center gap-3">
                       <Mail className="h-5 w-5 text-gray-400" />
-                      <span className="text-white">business@vonaer.com</span>
+                      <span className="text-white">business@VONAER.com</span>
                     </div>
                     <div className="flex items-start gap-3">
                       <MapPin className="h-5 w-5 text-gray-400 mt-1" />

@@ -108,7 +108,7 @@ export function VonaerSidebar({ currentSection, onSectionChange, isOpen, onToggl
                 URBAN AIR MOBILITY
               </p>
               <p className="text-xs text-sidebar-foreground/40 mt-1">
-                Korea's First Air Mobility Platform
+                Korea&apos;s First Air Mobility Platform
               </p>
             </motion.div>
           </div>
