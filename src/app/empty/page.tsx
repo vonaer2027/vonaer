@@ -133,7 +133,7 @@ export default function ClientFlightsPage() {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-foreground">VONAER 빈 항공편</h1>
+              <h1 className="text-3xl font-bold text-foreground">VONAER 어드민</h1>
             </div>
             <div className="flex items-center gap-2">
               <ThemeToggle />

@@ -404,7 +404,7 @@ export const bookingRequestService = {
 
   async sendGoogleChatNotification(bookingRequest: BookingRequest, flightId: string) {
     const webhookUrl = process.env.NEXT_PUBLIC_GOOGLE_CHAT_WEBHOOK_URL || 
-      'https://chat.googleapis.com/v1/spaces/AAQAx5xO6FY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hWcSRLTVCNGvw4_PHrAW3wXJqjaJmKUXW2jvXupKXtA'
+      'https://chat.googleapis.com/v1/spaces/AAQAdrRiLik/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=ellKxXXHRShH47vz1AzoBls8uis2A4wwTqI79klWpzc'
     
     // Get flight details for the notification
     let flightDetails = null
@@ -462,7 +462,7 @@ export const bookingRequestService = {
 
   async testGoogleChatWebhook() {
     const webhookUrl = process.env.NEXT_PUBLIC_GOOGLE_CHAT_WEBHOOK_URL || 
-      'https://chat.googleapis.com/v1/spaces/AAQAx5xO6FY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hWcSRLTVCNGvw4_PHrAW3wXJqjaJmKUXW2jvXupKXtA'
+      'https://chat.googleapis.com/v1/spaces/AAQAdrRiLik/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=ellKxXXHRShH47vz1AzoBls8uis2A4wwTqI79klWpzc'
     
     const testMessage = {
       text: `🧪 *VONAER 웹훅 테스트*\n\n` +
