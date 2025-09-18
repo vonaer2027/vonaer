@@ -168,6 +168,15 @@
     letter-spacing: var(--tracking-normal);
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   }
+  
+  /* Font switching classes */
+  .font-noto-sans-kr {
+    font-family: var(--font-noto-sans-kr), ui-sans-serif, system-ui, sans-serif;
+  }
+  
+  .font-pretendard {
+    font-family: var(--font-pretendard), ui-sans-serif, system-ui, sans-serif;
+  }
 }
 
 /* Custom luxury styles for vonaer */

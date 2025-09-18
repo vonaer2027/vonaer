@@ -40,8 +40,6 @@ export function FlightDatePicker({
     'jp': 'ja-JP',
     'cn': 'zh-CN'
   }
-  
-  const browserLocale = localeMap[locale] || 'en-US'
 
   const formatDate = (date: Date) => {
     // Use consistent MMDDYYYY format for all locales

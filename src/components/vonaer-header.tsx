@@ -59,7 +59,7 @@ export function VonaerHeader({ menuOpen, onMenuToggle }: VonaerHeaderProps) {
           </div>
 
           {/* Right: Language, Font & Theme Toggle */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <LanguageDropdown />
             <FontToggle />
             <ThemeToggle />
