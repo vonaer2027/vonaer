@@ -1,7 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
+import { useLocale } from './locale-provider'
 import { Button } from '@/components/ui/button'
 import { 
   Menu, 
@@ -31,46 +33,61 @@ const handleSectionChange = (section: string, onSectionChange: (section: string)
   }
 }
 
-const menuItems = [
-  {
-    category: '전용기',
-    items: [
-      { id: 'light-jet', label: 'Light Jet', icon: Plane },
-      { id: 'mid-jet', label: 'Mid Jet', icon: Plane },
-      { id: 'heavy-jet', label: 'Heavy Jet', icon: Plane },
-      { id: 'ultra-long-haul', label: 'Ultra Long Haul', icon: Plane },
-      { id: 'vip-airline', label: 'VIP Airline', icon: Crown },
-    ]
-  },
-  {
-    category: '헬기',
-    items: [
-      { id: 'helicopter', label: 'Helicopter', icon: Zap }
-    ]
-  },
-  {
-    category: 'Super Car',
-    items: [
-      { id: 'super-car', label: 'Super Car', icon: Car }
-    ]
-  },
-  {
-    category: 'Super Yacht',
-    items: [
-      { id: 'super-yacht', label: 'Super Yacht', icon: Anchor }
-    ]
-  }
-]
-
-const otherItems = [
-  { id: 'about', label: 'ABOUT US', icon: Users },
-  { id: 'pr', label: 'PR', icon: Users },
-  { id: 'careers', label: 'CAREERS', icon: Users },
-  { id: 'contact', label: 'CONTACT', icon: Phone }
-]
+// Menu items will be created dynamically using translations
 
 export function VonaerSidebar({ currentSection, onSectionChange, isOpen, onToggle }: VonaerSidebarProps) {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
+  const t = useTranslations('sidebar')
+  const { locale } = useLocale()
+
+  // Debug: Check if translations are working
+  console.log('Current locale:', locale)
+  console.log('Current sidebar translations:', {
+    privateJets: t('categories.privateJets'),
+    lightJet: t('jetTypes.lightJet'),
+    aboutUs: t('otherItems.aboutUs'),
+    tagline: t('tagline')
+  })
+
+
+  // Create menu items dynamically using translations with useMemo to ensure re-creation on locale change
+  const menuItems = useMemo(() => [
+    {
+      category: t('categories.privateJets'),
+      items: [
+        { id: 'light-jet', label: t('jetTypes.lightJet'), icon: Plane },
+        { id: 'mid-jet', label: t('jetTypes.midJet'), icon: Plane },
+        { id: 'heavy-jet', label: t('jetTypes.heavyJet'), icon: Plane },
+        { id: 'ultra-long-haul', label: t('jetTypes.ultraLongHaul'), icon: Plane },
+        { id: 'vip-airline', label: t('jetTypes.vipAirline'), icon: Crown },
+      ]
+    },
+    {
+      category: t('categories.helicopter'),
+      items: [
+        { id: 'helicopter', label: t('categories.helicopter'), icon: Zap }
+      ]
+    },
+    {
+      category: t('categories.superCar'),
+      items: [
+        { id: 'super-car', label: t('categories.superCar'), icon: Car }
+      ]
+    },
+    {
+      category: t('categories.superYacht'),
+      items: [
+        { id: 'super-yacht', label: t('categories.superYacht'), icon: Anchor }
+      ]
+    }
+  ], [t, locale])
+
+  const otherItems = useMemo(() => [
+    { id: 'about', label: t('otherItems.aboutUs'), icon: Users },
+    { id: 'pr', label: t('otherItems.pr'), icon: Users },
+    { id: 'careers', label: t('otherItems.careers'), icon: Users },
+    { id: 'contact', label: t('otherItems.contact'), icon: Phone }
+  ], [t, locale])
 
   return (
     <>
@@ -101,14 +118,16 @@ export function VonaerSidebar({ currentSection, onSectionChange, isOpen, onToggl
               className="cursor-pointer"
               onClick={() => handleSectionChange('home', onSectionChange, onToggle)}
             >
-              <h1 className="text-2xl font-bold tracking-wider text-sidebar-foreground">
-                VONAER
-              </h1>
+              <img 
+                src="/vonaer.svg" 
+                alt="VONAER" 
+                className="h-8 w-auto mb-2"
+              />
               <p className="text-xs text-sidebar-foreground/60 mt-1 tracking-wide">
-                URBAN AIR MOBILITY
+                {t('tagline')}
               </p>
               <p className="text-xs text-sidebar-foreground/40 mt-1">
-                Korea&apos;s First Air Mobility Platform
+                {t('description')}
               </p>
             </motion.div>
           </div>
@@ -214,7 +233,7 @@ export function VonaerSidebar({ currentSection, onSectionChange, isOpen, onToggl
               onClick={() => handleSectionChange('membership', onSectionChange, onToggle)}
             >
               <LogIn className="h-4 w-4 mr-2" />
-              Membership Lounge
+              {t('membershipLounge')}
             </Button>
           </motion.div>
         </div>

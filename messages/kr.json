@@ -824,25 +824,29 @@
     "tbd": "미정",
     "dateTBD": "날짜 미정"
   },
-  "menu": {
-    "title": "메뉴",
+  "sidebar": {
+    "tagline": "도시 항공 모빌리티",
+    "description": "한국 최초 항공 모빌리티 플랫폼",
     "categories": {
-      "services": "서비스"
-    },
-    "items": {
-      "allServices": "모든 서비스",
-      "privateJets": "프라이빗 제트",
-      "helicopter": "헬리콥터",
+      "privateJets": "전용기",
+      "helicopter": "헬기",
       "superCar": "슈퍼카",
       "superYacht": "슈퍼요트"
     },
-    "other": {
-      "home": "홈",
+    "jetTypes": {
+      "lightJet": "라이트 제트",
+      "midJet": "미드 제트",
+      "heavyJet": "헤비 제트",
+      "ultraLongHaul": "울트라 롱홀",
+      "vipAirline": "VIP 항공"
+    },
+    "otherItems": {
       "aboutUs": "회사 소개",
-      "membership": "멤버십",
-      "emptyLeg": "엠프티 레그",
+      "pr": "PR",
+      "careers": "채용",
       "contact": "연락처"
-    }
+    },
+    "membershipLounge": "멤버십 라운지"
   },
   "jets": {
     "title": "프라이빗 제트",

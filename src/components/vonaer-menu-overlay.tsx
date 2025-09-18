@@ -1,7 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslations } from 'next-intl'
+import { useLocale } from './locale-provider'
 import { Button } from '@/components/ui/button'
 import { 
   Plane, 
@@ -20,28 +22,32 @@ interface VonaerMenuOverlayProps {
   onClose: () => void
 }
 
-const menuItems = [
-  {
-    category: 'SERVICES',
-    items: [
-      { id: 'jets', label: 'Private Jets', icon: Plane, href: '/jets' },
-      { id: 'helicopter', label: 'Helicopter', icon: Zap, href: '/helicopter' },
-      { id: 'supercar', label: 'Super Car', icon: Car, href: '/supercar' },
-      { id: 'superyacht', label: 'Super Yacht', icon: Anchor, href: '/superyacht' },
-    ]
-  }
-]
-
-const otherItems = [
-  { id: 'home', label: 'HOME', icon: Home, anchor: '#home' },
-  { id: 'about', label: 'ABOUT US', icon: Users, anchor: '#about' },
-  { id: 'membership', label: 'MEMBERSHIP', icon: Star, anchor: '#membership' },
-  { id: 'empty-leg', label: 'EMPTY LEG', icon: Plane, href: '/empty' },
-  { id: 'contact', label: 'CONTACT', icon: Phone, anchor: '#contact' }
-]
-
 export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
+  const t = useTranslations('sidebar')
+  const tCommon = useTranslations('common')
+  const { locale } = useLocale()
+
+  // Create menu items dynamically using translations with useMemo to ensure re-creation on locale change
+  const menuItems = useMemo(() => [
+    {
+      category: t('categories.privateJets').toUpperCase(),
+      items: [
+        { id: 'jets', label: t('categories.privateJets'), icon: Plane, href: '/jets' },
+        { id: 'helicopter', label: t('categories.helicopter'), icon: Zap, href: '/helicopter' },
+        { id: 'supercar', label: t('categories.superCar'), icon: Car, href: '/supercar' },
+        { id: 'superyacht', label: t('categories.superYacht'), icon: Anchor, href: '/superyacht' },
+      ]
+    }
+  ], [t, locale])
+
+  const otherItems = useMemo(() => [
+    { id: 'home', label: tCommon('home').toUpperCase(), icon: Home, anchor: '#home' },
+    { id: 'about', label: t('otherItems.aboutUs').toUpperCase(), icon: Users, anchor: '#about' },
+    { id: 'membership', label: t('membershipLounge').toUpperCase(), icon: Star, anchor: '#membership' },
+    { id: 'empty-leg', label: tCommon('emptyLeg').toUpperCase(), icon: Plane, href: '/empty' },
+    { id: 'contact', label: t('otherItems.contact').toUpperCase(), icon: Phone, anchor: '#contact' }
+  ], [t, tCommon, locale])
 
   const handleSmoothScroll = (anchor: string) => {
     // Check if we're on the main page (has #home element)

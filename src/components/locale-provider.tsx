@@ -54,6 +54,7 @@ export function LocaleProvider({ children }: LocaleProviderProps) {
   return (
     <LocaleContext.Provider value={{ locale, setLocale: handleSetLocale }}>
       <NextIntlClientProvider 
+        key={locale} // Force re-render when locale changes
         locale={locale} 
         messages={messages[locale]}
         timeZone="Asia/Seoul"

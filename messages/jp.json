@@ -532,25 +532,29 @@
     },
     "confirmDelete": "この予約リクエストを削除してもよろしいですか？"
   },
-  "menu": {
-    "title": "メニュー",
+  "sidebar": {
+    "tagline": "都市航空モビリティ",
+    "description": "韓国初の航空モビリティプラットフォーム",
     "categories": {
-      "services": "サービス"
-    },
-    "items": {
-      "allServices": "すべてのサービス",
       "privateJets": "プライベートジェット",
       "helicopter": "ヘリコプター",
       "superCar": "スーパーカー",
       "superYacht": "スーパーヨット"
     },
-    "other": {
-      "home": "ホーム",
+    "jetTypes": {
+      "lightJet": "ライトジェット",
+      "midJet": "ミドルジェット",
+      "heavyJet": "ヘビージェット",
+      "ultraLongHaul": "ウルトラロングホール",
+      "vipAirline": "VIP航空"
+    },
+    "otherItems": {
       "aboutUs": "会社概要",
-      "membership": "メンバーシップ",
-      "emptyLeg": "エンプティレッグ",
+      "pr": "PR",
+      "careers": "採用",
       "contact": "お問い合わせ"
-    }
+    },
+    "membershipLounge": "メンバーシップロウンジ"
   },
   "jets": {
     "title": "プライベートジェット",

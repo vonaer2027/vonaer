@@ -52,9 +52,11 @@ export function VonaerHeader({ menuOpen, onMenuToggle }: VonaerHeaderProps) {
                 }
               }}
             >
-              <h1 className="text-xl lg:text-2xl font-bold tracking-widest text-primary-foreground">
-                VONAER
-              </h1>
+              <img 
+                src="/vonaer.svg" 
+                alt="VONAER" 
+                className="h-4 lg:h-6 w-auto"
+              />
             </motion.div>
           </div>
 

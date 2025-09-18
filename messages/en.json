@@ -530,25 +530,29 @@
     },
     "confirmDelete": "Are you sure you want to delete this booking request?"
   },
-  "menu": {
-    "title": "MENU",
+  "sidebar": {
+    "tagline": "URBAN AIR MOBILITY",
+    "description": "Korea's First Air Mobility Platform",
     "categories": {
-      "services": "SERVICES"
-    },
-    "items": {
-      "allServices": "All Services",
       "privateJets": "Private Jets",
       "helicopter": "Helicopter",
       "superCar": "Super Car",
       "superYacht": "Super Yacht"
     },
-    "other": {
-      "home": "HOME",
+    "jetTypes": {
+      "lightJet": "Light Jet",
+      "midJet": "Mid Jet",
+      "heavyJet": "Heavy Jet",
+      "ultraLongHaul": "Ultra Long Haul",
+      "vipAirline": "VIP Airline"
+    },
+    "otherItems": {
       "aboutUs": "ABOUT US",
-      "membership": "MEMBERSHIP",
-      "emptyLeg": "EMPTY LEG",
+      "pr": "PR",
+      "careers": "CAREERS",
       "contact": "CONTACT"
-    }
+    },
+    "membershipLounge": "Membership Lounge"
   },
   "jets": {
     "title": "Private Jets",

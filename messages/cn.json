@@ -530,25 +530,29 @@
     },
     "confirmDelete": "您确定要删除此预订请求吗？"
   },
-  "menu": {
-    "title": "菜单",
+  "sidebar": {
+    "tagline": "城市空中交通",
+    "description": "韩国首个空中交通平台",
     "categories": {
-      "services": "服务"
-    },
-    "items": {
-      "allServices": "所有服务",
       "privateJets": "私人飞机",
       "helicopter": "直升机",
       "superCar": "超级跑车",
       "superYacht": "超级游艇"
     },
-    "other": {
-      "home": "首页",
+    "jetTypes": {
+      "lightJet": "轻型飞机",
+      "midJet": "中型飞机",
+      "heavyJet": "重型飞机",
+      "ultraLongHaul": "超远程飞机",
+      "vipAirline": "VIP航空"
+    },
+    "otherItems": {
       "aboutUs": "关于我们",
-      "membership": "会员",
-      "emptyLeg": "空腿",
+      "pr": "公关",
+      "careers": "招聘",
       "contact": "联系我们"
-    }
+    },
+    "membershipLounge": "会员休息室"
   },
   "jets": {
     "title": "私人飞机",

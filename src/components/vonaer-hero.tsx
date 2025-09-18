@@ -68,9 +68,11 @@ export function VonaerHero() {
           transition={{ duration: 1, delay: 0.5 }}
           className="mb-16"
         >
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-widest text-primary-foreground mb-4">
-            VONAER
-          </h1>
+          <img 
+            src="/vonaer.svg" 
+            alt="VONAER" 
+            className="h-24 md:h-32 lg:h-40 w-auto mx-auto mb-4"
+          />
           <div className="h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-30 max-w-md mx-auto" />
         </motion.div>
 
