@@ -5,13 +5,19 @@
   "env": {
     "NEXT_PUBLIC_SUPABASE_URL": "https://qyipzxwadmmhitvuiade.supabase.co",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5aXB6eHdhZG1taGl0dnVpYWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc5OTIxNDUsImV4cCI6MjA3MzU2ODE0NX0.t-rlufbLcXcCoduqThuSE6YQ04vO68tVwmVZLlGFzqw",
-    "SUPABASE_SERVICE_ROLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5aXB6eHdhZG1taGl0dnVpYWRlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1Nzk5MjE0NSwiZXhwIjoyMDczNTY4MTQ1fQ.QYXqq2Mh2YmAJ1XOdREhLyhrfy3R4_DZ5lgrUp3s_mY"
+    "SUPABASE_SERVICE_ROLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5aXB6eHdhZG1taGl0dnVpYWRlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1Nzk5MjE0NSwiZXhwIjoyMDczNTY4MTQ1fQ.QYXqq2Mh2YmAJ1XOdREhLyhrfy3R4_DZ5lgrUp3s_mY",
+    "NEXT_PUBLIC_GOOGLE_CHAT_WEBHOOK_URL": "https://chat.googleapis.com/v1/spaces/AAQAdrRiLik/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=ellKxXXHRShH47vz1AzoBls8uis2A4wwTqI79klWpzc",
+    "BIZGO_API_KEY": "mars_ak_92fbaf90-13b0-4878-94c3-aac34bed54d0",
+    "BIZGO_BASE_URL": "https://mars.ibapi.kr/api/comm"
   },
   "build": {
     "env": {
       "NEXT_PUBLIC_SUPABASE_URL": "https://qyipzxwadmmhitvuiade.supabase.co",
       "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5aXB6eHdhZG1taGl0dnVpYWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc5OTIxNDUsImV4cCI6MjA3MzU2ODE0NX0.t-rlufbLcXcCoduqThuSE6YQ04vO68tVwmVZLlGFzqw",
-      "SUPABASE_SERVICE_ROLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5aXB6eHdhZG1taGl0dnVpYWRlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1Nzk5MjE0NSwiZXhwIjoyMDczNTY4MTQ1fQ.QYXqq2Mh2YmAJ1XOdREhLyhrfy3R4_DZ5lgrUp3s_mY"
+      "SUPABASE_SERVICE_ROLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5aXB6eHdhZG1taGl0dnVpYWRlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1Nzk5MjE0NSwiZXhwIjoyMDczNTY4MTQ1fQ.QYXqq2Mh2YmAJ1XOdREhLyhrfy3R4_DZ5lgrUp3s_mY",
+      "NEXT_PUBLIC_GOOGLE_CHAT_WEBHOOK_URL": "https://chat.googleapis.com/v1/spaces/AAQAdrRiLik/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=ellKxXXHRShH47vz1AzoBls8uis2A4wwTqI79klWpzc",
+      "BIZGO_API_KEY": "mars_ak_92fbaf90-13b0-4878-94c3-aac34bed54d0",
+      "BIZGO_BASE_URL": "https://mars.ibapi.kr/api/comm"
     }
   },
   "functions": {

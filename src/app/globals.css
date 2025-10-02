@@ -36,7 +36,7 @@
   --sidebar-accent-foreground: rgb(34, 64, 66);
   --sidebar-border: rgb(222, 226, 230);
   --sidebar-ring: rgb(34, 64, 66);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-pretendard);
   --font-serif: Georgia;
   --font-mono: var(--font-geist-mono);
   --radius: 0.5rem;
@@ -85,7 +85,7 @@
   --sidebar-accent-foreground: rgb(240, 247, 247);
   --sidebar-border: rgb(34, 64, 66);
   --sidebar-ring: rgb(58, 108, 111);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-pretendard);
   --font-serif: Georgia;
   --font-mono: var(--font-geist-mono);
   --radius: 0.5rem;
@@ -169,14 +169,6 @@
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   }
   
-  /* Font switching classes */
-  .font-noto-sans-kr {
-    font-family: var(--font-noto-sans-kr), ui-sans-serif, system-ui, sans-serif;
-  }
-  
-  .font-pretendard {
-    font-family: var(--font-pretendard), ui-sans-serif, system-ui, sans-serif;
-  }
 }
 
 /* Custom luxury styles for vonaer */

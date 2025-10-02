@@ -21,6 +21,7 @@ export const getSupabaseClient = () => {
   return supabaseClient
 }
 
+
 // Types for our database tables
 export interface Flight {
   id: number
@@ -213,6 +214,51 @@ export const flightService = {
       updated: updatedFlight,
       message: 'Test completed successfully' 
     }
+  },
+
+  async create(flight: Omit<Flight, 'id' | 'created_at' | 'updated_at'>) {
+    const response = await fetch('/api/flights', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(flight),
+    })
+    
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to create flight')
+    }
+    
+    return response.json()
+  },
+
+  async update(id: number, flight: Partial<Flight>) {
+    const response = await fetch(`/api/flights/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(flight),
+    })
+    
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to update flight')
+    }
+    
+    return response.json()
+  },
+
+  async delete(id: number) {
+    const response = await fetch(`/api/flights/${id}`, {
+      method: 'DELETE',
+    })
+    
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to delete flight')
+    }
   }
 }
 
@@ -242,38 +288,48 @@ export const userService = {
   },
 
   async create(user: Omit<User, 'id' | 'created_at' | 'updated_at'>) {
-    const supabase = getSupabaseClient()
-    const { data, error } = await supabase
-      .from('users')
-      .insert([user])
-      .select()
-      .single()
+    const response = await fetch('/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
     
-    if (error) throw error
-    return data as User
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to create user')
+    }
+    
+    return response.json()
   },
 
   async update(id: number, user: Partial<User>) {
-    const supabase = getSupabaseClient()
-    const { data, error } = await supabase
-      .from('users')
-      .update(user)
-      .eq('id', id)
-      .select()
-      .single()
+    const response = await fetch(`/api/users/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
     
-    if (error) throw error
-    return data as User
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to update user')
+    }
+    
+    return response.json()
   },
 
   async delete(id: number) {
-    const supabase = getSupabaseClient()
-    const { error } = await supabase
-      .from('users')
-      .delete()
-      .eq('id', id)
+    const response = await fetch(`/api/users/${id}`, {
+      method: 'DELETE',
+    })
     
-    if (error) throw error
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to delete user')
+    }
   }
 }
 
@@ -294,26 +350,23 @@ export const marginService = {
   },
 
   async update(marginPercentage: number, createdBy?: string) {
-    const supabase = getSupabaseClient()
-    // Deactivate current margin
-    await supabase
-      .from('margin_settings')
-      .update({ is_active: false })
-      .eq('is_active', true)
-
-    // Create new active margin
-    const { data, error } = await supabase
-      .from('margin_settings')
-      .insert([{
+    const response = await fetch('/api/margin-settings', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         margin_percentage: marginPercentage,
-        is_active: true,
         created_by: createdBy || 'admin'
-      }])
-      .select()
-      .single()
+      }),
+    })
     
-    if (error) throw error
-    return data as MarginSetting
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to update margin setting')
+    }
+    
+    return response.json()
   },
 
   async getHistory() {
@@ -345,61 +398,20 @@ export const bookingRequestService = {
   },
 
   async create(bookingRequest: Omit<BookingRequest, 'id' | 'created_at' | 'updated_at' | 'flight'>) {
-    const supabase = getSupabaseClient()
+    const response = await fetch('/api/booking-requests', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bookingRequest),
+    })
     
-    // First, check if user already exists with this phone number
-    const existingUser = await userService.getByPhoneNumber(bookingRequest.customer_phone)
-    
-    // If user doesn't exist, create them automatically
-    if (!existingUser) {
-      try {
-        await userService.create({
-          name: bookingRequest.customer_name,
-          phone_number: bookingRequest.customer_phone,
-          is_active: true,
-          notes: `Auto-created from booking request for flight ${bookingRequest.flight_id}`
-        })
-        console.log(`Auto-created user: ${bookingRequest.customer_name} (${bookingRequest.customer_phone})`)
-      } catch (userCreateError) {
-        console.warn('Failed to create user, but continuing with booking request:', userCreateError)
-        // Continue with booking request even if user creation fails
-        // This could happen due to race conditions or database constraints
-      }
-    } else {
-      // User exists, optionally update their name if it's different
-      if (existingUser.name !== bookingRequest.customer_name) {
-        try {
-          await userService.update(existingUser.id, {
-            name: bookingRequest.customer_name,
-            notes: existingUser.notes ? 
-              `${existingUser.notes}; Name updated from booking request` : 
-              'Name updated from booking request'
-          })
-          console.log(`Updated existing user name: ${bookingRequest.customer_name} (${bookingRequest.customer_phone})`)
-        } catch (updateError) {
-          console.warn('Failed to update user name:', updateError)
-        }
-      }
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to create booking request')
     }
     
-    // Create the booking request
-    const { data, error } = await supabase
-      .from('booking_requests')
-      .insert([bookingRequest])
-      .select()
-      .single()
-    
-    if (error) throw error
-    
-    // Send notification to Google Chat
-    try {
-      await this.sendGoogleChatNotification(data, bookingRequest.flight_id)
-    } catch (notificationError) {
-      console.warn('Failed to send Google Chat notification:', notificationError)
-      // Don't throw error - booking request should still succeed even if notification fails
-    }
-    
-    return data as BookingRequest
+    return response.json()
   },
 
   async sendGoogleChatNotification(bookingRequest: BookingRequest, flightId: string) {
@@ -502,25 +514,26 @@ export const bookingRequestService = {
   },
 
   async markAsCalled(id: number) {
-    const supabase = getSupabaseClient()
-    const { data, error } = await supabase
-      .from('booking_requests')
-      .update({ called: true })
-      .eq('id', id)
-      .select()
-      .single()
+    const response = await fetch(`/api/booking-requests/${id}/mark-called`, {
+      method: 'PUT',
+    })
     
-    if (error) throw error
-    return data as BookingRequest
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to mark booking request as called')
+    }
+    
+    return response.json()
   },
 
   async delete(id: number) {
-    const supabase = getSupabaseClient()
-    const { error } = await supabase
-      .from('booking_requests')
-      .delete()
-      .eq('id', id)
+    const response = await fetch(`/api/booking-requests/${id}`, {
+      method: 'DELETE',
+    })
     
-    if (error) throw error
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to delete booking request')
+    }
   }
 }

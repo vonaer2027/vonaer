@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/plane_img_jt/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'qyipzxwadmmhitvuiade.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**',
+      },
     ],
   },
 };

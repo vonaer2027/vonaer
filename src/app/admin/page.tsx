@@ -5,14 +5,17 @@ import { useTranslations } from 'next-intl'
 import { VonaerHeader } from '@/components/vonaer-header'
 import { VonaerMenuOverlay } from '@/components/vonaer-menu-overlay'
 import { FlightCard } from '@/components/flight-card'
+import { FlightForm } from '@/components/flight-form'
 import { UserManagement } from '@/components/user-management'
 import { MarginSettings } from '@/components/margin-settings'
 import { BookingRequests } from '@/components/booking-requests'
+import { MMSMessaging } from '@/components/mms-messaging'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Plane, Users, Settings, RefreshCw, TrendingUp, Phone, ExternalLink, Home } from 'lucide-react'
+import { Plus } from 'lucide-react'
+import { Plane, Users, Settings, RefreshCw, TrendingUp, Phone, MessageSquare } from 'lucide-react'
 import { Flight, MarginSetting, flightService, marginService } from '@/lib/supabase'
 import { motion } from 'framer-motion'
 import { Toaster } from '@/components/ui/sonner'
@@ -23,12 +26,12 @@ export default function AdminDashboard() {
   const [flights, setFlights] = useState<Flight[]>([])
   const [marginSetting, setMarginSetting] = useState<MarginSetting | null>(null)
   const [loading, setLoading] = useState(true)
-  const [refreshing, setRefreshing] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isFormOpen, setIsFormOpen] = useState(false)
+  const [editingFlight, setEditingFlight] = useState<Flight | null>(null)
 
   const loadData = async () => {
     try {
-      setRefreshing(true)
       
       // Check if environment variables are available
       if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
@@ -49,7 +52,6 @@ export default function AdminDashboard() {
       toast.error('Failed to load data')
     } finally {
       setLoading(false)
-      setRefreshing(false)
     }
   }
 
@@ -78,26 +80,27 @@ export default function AdminDashboard() {
     }
   }
 
-  const testCustomPriceUpdate = async () => {
-    if (flights.length === 0) {
-      toast.error(t('admin.noFlights'))
-      return
-    }
-    
-    const firstFlight = flights[0]
-    try {
-      const result = await flightService.testCustomPriceUpdate(firstFlight.id)
-      console.log('Test result:', result)
-      if (result.success) {
-        toast.success(t('admin.priceTestSuccess'))
-      } else {
-        toast.error(`${t('admin.priceTestFailed')}: ${result.error}`)
-      }
-    } catch (error) {
-      console.error('Test error:', error)
-      toast.error(t('admin.priceTestError'))
-    }
+  const handleCreateFlight = () => {
+    setEditingFlight(null)
+    setIsFormOpen(true)
   }
+
+  const handleEditFlight = (flight: Flight) => {
+    setEditingFlight(flight)
+    setIsFormOpen(true)
+  }
+
+  const handleFormSuccess = () => {
+    loadData()
+    setIsFormOpen(false)
+    setEditingFlight(null)
+  }
+
+  const handleFormClose = () => {
+    setIsFormOpen(false)
+    setEditingFlight(null)
+  }
+
 
   const stats = {
     totalFlights: flights.length,
@@ -158,51 +161,6 @@ export default function AdminDashboard() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
               <h1 className="text-2xl lg:text-3xl font-bold text-foreground">{t('admin.title')}</h1>
-            </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <Button 
-                asChild
-                variant="outline"
-                size="sm"
-                className="flex-1 sm:flex-none"
-              >
-                <a href="/" target="_blank" rel="noopener noreferrer">
-                  <Home className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">{t('admin.viewLanding')}</span>
-                  <span className="sm:hidden">{t('common.home')}</span>
-                </a>
-              </Button>
-              <Button 
-                asChild
-                variant="outline"
-                size="sm"
-                className="flex-1 sm:flex-none"
-              >
-                <a href="/empty" target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">{t('admin.viewCustomer')}</span>
-                  <span className="sm:hidden">{t('common.customer')}</span>
-                </a>
-              </Button>
-              <Button 
-                onClick={loadData} 
-                disabled={refreshing}
-                variant="outline"
-                size="sm"
-                className="flex-1 sm:flex-none text-foreground hover:text-foreground"
-              >
-                <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-                <span className="hidden sm:inline">{t('admin.refresh')}</span>
-              </Button>
-              <Button 
-                onClick={testCustomPriceUpdate}
-                variant="outline"
-                size="sm"
-                className="flex-1 sm:flex-none"
-              >
-                <span className="hidden sm:inline">{t('admin.priceTest')}</span>
-                <span className="sm:hidden">{t('common.test')}</span>
-              </Button>
             </div>
           </div>
         </motion.div>
@@ -276,7 +234,7 @@ export default function AdminDashboard() {
           transition={{ delay: 0.2 }}
         >
           <Tabs defaultValue="flights" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 h-auto">
               <TabsTrigger value="flights" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
                 <Plane className="h-3 w-3 lg:h-4 lg:w-4" />
                 <span className="hidden sm:inline">{t('admin.tabs.flights')} ({flights.length})</span>
@@ -285,6 +243,10 @@ export default function AdminDashboard() {
               <TabsTrigger value="bookings" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
                 <Phone className="h-3 w-3 lg:h-4 lg:w-4" />
                 <span className="hidden sm:inline">{t('admin.tabs.bookings')}</span>
+              </TabsTrigger>
+              <TabsTrigger value="mms" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
+                <MessageSquare className="h-3 w-3 lg:h-4 lg:w-4" />
+                <span className="hidden sm:inline">{t('admin.tabs.mms')}</span>
               </TabsTrigger>
               <TabsTrigger value="users" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
                 <Users className="h-3 w-3 lg:h-4 lg:w-4" />
@@ -299,10 +261,18 @@ export default function AdminDashboard() {
             <TabsContent value="flights" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>{t('admin.flights.title')}</CardTitle>
-                  <CardDescription>
-                    {t('admin.flights.description')}
-                  </CardDescription>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle>{t('admin.flights.title')}</CardTitle>
+                      <CardDescription>
+                        {t('admin.flights.description')}
+                      </CardDescription>
+                    </div>
+                    <Button onClick={handleCreateFlight} className="flex items-center gap-2">
+                      <Plus className="h-4 w-4" />
+                      {t('admin.flights.addFlight')}
+                    </Button>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   {flights.length === 0 ? (
@@ -311,9 +281,13 @@ export default function AdminDashboard() {
                       <h3 className="text-lg font-medium text-muted-foreground mb-2">
                         {t('admin.flights.noFlights')}
                       </h3>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-muted-foreground mb-4">
                         {t('admin.flights.noFlightsDescription')}
                       </p>
+                      <Button onClick={handleCreateFlight} variant="outline">
+                        <Plus className="h-4 w-4 mr-2" />
+                        {t('admin.flights.addFirstFlight')}
+                      </Button>
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -328,6 +302,8 @@ export default function AdminDashboard() {
                             flight={flight} 
                             marginSetting={marginSetting || undefined}
                             onPriceUpdate={handlePriceUpdate}
+                            onEdit={handleEditFlight}
+                            onDelete={() => loadData()}
                           />
                         </motion.div>
                       ))}
@@ -339,6 +315,10 @@ export default function AdminDashboard() {
 
             <TabsContent value="bookings">
               <BookingRequests />
+            </TabsContent>
+
+            <TabsContent value="mms">
+              <MMSMessaging />
             </TabsContent>
 
             <TabsContent value="users">
@@ -355,6 +335,15 @@ export default function AdminDashboard() {
         </motion.div>
         </div>
       </div>
+      
+      {/* Flight Form Dialog */}
+      <FlightForm
+        flight={editingFlight}
+        isOpen={isFormOpen}
+        onClose={handleFormClose}
+        onSuccess={handleFormSuccess}
+        mode={editingFlight ? 'edit' : 'create'}
+      />
       
       <Toaster />
     </div>

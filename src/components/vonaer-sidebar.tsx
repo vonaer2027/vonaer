@@ -8,13 +8,6 @@ import { Button } from '@/components/ui/button'
 import { 
   Menu, 
   X, 
-  Plane, 
-  Car, 
-  Anchor, 
-  Zap, 
-  Crown,
-  Users,
-  Phone,
   LogIn
 } from 'lucide-react'
 
@@ -50,43 +43,14 @@ export function VonaerSidebar({ currentSection, onSectionChange, isOpen, onToggl
   })
 
 
-  // Create menu items dynamically using translations with useMemo to ensure re-creation on locale change
+  // Create simplified menu items using new structure
   const menuItems = useMemo(() => [
-    {
-      category: t('categories.privateJets'),
-      items: [
-        { id: 'light-jet', label: t('jetTypes.lightJet'), icon: Plane },
-        { id: 'mid-jet', label: t('jetTypes.midJet'), icon: Plane },
-        { id: 'heavy-jet', label: t('jetTypes.heavyJet'), icon: Plane },
-        { id: 'ultra-long-haul', label: t('jetTypes.ultraLongHaul'), icon: Plane },
-        { id: 'vip-airline', label: t('jetTypes.vipAirline'), icon: Crown },
-      ]
-    },
-    {
-      category: t('categories.helicopter'),
-      items: [
-        { id: 'helicopter', label: t('categories.helicopter'), icon: Zap }
-      ]
-    },
-    {
-      category: t('categories.superCar'),
-      items: [
-        { id: 'super-car', label: t('categories.superCar'), icon: Car }
-      ]
-    },
-    {
-      category: t('categories.superYacht'),
-      items: [
-        { id: 'super-yacht', label: t('categories.superYacht'), icon: Anchor }
-      ]
-    }
-  ], [t, locale])
-
-  const otherItems = useMemo(() => [
-    { id: 'about', label: t('otherItems.aboutUs'), icon: Users },
-    { id: 'pr', label: t('otherItems.pr'), icon: Users },
-    { id: 'careers', label: t('otherItems.careers'), icon: Users },
-    { id: 'contact', label: t('otherItems.contact'), icon: Phone }
+    { id: 'home', label: t('menuItems.home'), href: '/' },
+    { id: 'charter', label: t('menuItems.charter'), href: '/jets' },
+    { id: 'aircraft', label: t('menuItems.aircraft'), href: '/aircraft' },
+    { id: 'empty-leg', label: t('menuItems.emptyLeg'), href: '/empty' },
+    { id: 'pr', label: t('menuItems.pr'), href: '/pr' },
+    { id: 'contact', label: t('menuItems.contact'), anchor: '#contact' }
   ], [t, locale])
 
   return (
@@ -134,82 +98,47 @@ export function VonaerSidebar({ currentSection, onSectionChange, isOpen, onToggl
 
           {/* Menu Items */}
           <div className="flex-1 overflow-y-auto py-6">
-            <div className="space-y-8 px-6">
-              {menuItems.map((category, categoryIndex) => (
-                <motion.div
-                  key={category.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + categoryIndex * 0.1 }}
-                >
-                  <h3 className="text-xs uppercase tracking-widest text-sidebar-foreground/50 font-medium mb-4">
-                    {category.category}
-                  </h3>
-                  <div className="space-y-2">
-                    {category.items.map((item) => {
-                      const Icon = item.icon
-                      const isActive = currentSection === item.id
-                      const isHovered = hoveredItem === item.id
-
-                      return (
-                        <motion.button
-                          key={item.id}
-                          className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200 ${
-                            isActive 
-                              ? 'bg-sidebar-primary/20 text-sidebar-primary-foreground border border-sidebar-primary/30' 
-                              : 'text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/50'
-                          }`}
-                          onClick={() => handleSectionChange(item.id, onSectionChange, onToggle)}
-                          onMouseEnter={() => setHoveredItem(item.id)}
-                          onMouseLeave={() => setHoveredItem(null)}
-                          whileHover={{ x: 4 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <Icon className={`h-4 w-4 transition-colors ${
-                            isActive || isHovered ? 'text-sidebar-primary-foreground' : 'text-sidebar-foreground/50'
-                          }`} />
-                          <span className="font-medium tracking-wide">
-                            {item.label}
-                          </span>
-                        </motion.button>
-                      )
-                    })}
-                  </div>
-                </motion.div>
-              ))}
-
-              {/* Divider */}
-              <div className="border-t border-sidebar-border my-8" />
-
-              {/* Other Menu Items */}
+            <div className="px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
+                transition={{ delay: 0.3 }}
                 className="space-y-2"
               >
-                {otherItems.map((item) => {
-                  const Icon = item.icon
+                {menuItems.map((item, index) => {
                   const isActive = currentSection === item.id
                   const isHovered = hoveredItem === item.id
+
+                  const handleClick = () => {
+                    if (item.href) {
+                      window.location.href = item.href
+                    } else if (item.anchor) {
+                      const element = document.querySelector(item.anchor)
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' })
+                      }
+                    } else {
+                      handleSectionChange(item.id, onSectionChange, onToggle)
+                    }
+                  }
 
                   return (
                     <motion.button
                       key={item.id}
-                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200 ${
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 + index * 0.1 }}
+                      className={`w-full flex items-center px-4 py-3 rounded-lg text-left transition-all duration-200 ${
                         isActive 
                           ? 'bg-sidebar-primary/20 text-sidebar-primary-foreground border border-sidebar-primary/30' 
                           : 'text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/50'
                       }`}
-                      onClick={() => handleSectionChange(item.id, onSectionChange, onToggle)}
+                      onClick={handleClick}
                       onMouseEnter={() => setHoveredItem(item.id)}
                       onMouseLeave={() => setHoveredItem(null)}
                       whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Icon className={`h-4 w-4 transition-colors ${
-                        isActive || isHovered ? 'text-sidebar-primary-foreground' : 'text-sidebar-foreground/50'
-                      }`} />
                       <span className="font-medium tracking-wide">
                         {item.label}
                       </span>

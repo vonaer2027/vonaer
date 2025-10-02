@@ -41,34 +41,34 @@
     "tourPackages": {
       "title": "Tour Packages",
       "gwanakMountain": {
-        "name": "Gwanak Mountain",
-        "route": "Witness historical landmarks only visible in South Korea. Experience a breathtaking view of North Korea from the sky, across the DMZ.",
+        "name": "GwanAk Mountain",
+        "route": "COEX → Jamsil → Yangjae Forest → Seoul Amusement Park → GwanAk Mountain",
         "tags": {
-          "tag1": "Historical",
-          "tag2": "Scenic",
-          "tag3": "Unique"
+          "tag1": "Autumn Leaves Tour",
+          "tag2": "Spring Flower Tour",
+          "tag3": "Seoul Amusement Park Tour"
         }
       },
       "hanRiver": {
         "name": "Han River",
-        "route": "Seoul → Han River → Seoul",
+        "route": "COEX → Lotte Tower → Seokchon Lake → Olympic Park → Amsa Heritage → Namyangju",
         "tags": {
-          "tag1": "City Tour",
-          "tag2": "River View",
-          "tag3": "Skyline"
+          "tag1": "Seoul Skyline",
+          "tag2": "Seokchon Lake Cherry Blossom Tour",
+          "tag3": "Olympic Park"
         }
       },
       "bukhanMountain": {
-        "name": "Bukhan Mountain",
-        "route": "COEX → Lotte Tower → Seokchon Lake → Bukhan Mountain → Dobong Mountain",
+        "name": "BukHan Mountain",
+        "route": "COEX → Lotte Tower → Seokchon Lake → BukHan Mountain → Dobong Mountain",
         "tags": {
-          "tag1": "Bukhan Mountain National Park",
+          "tag1": "Bukhan mountain National Park",
           "tag2": "Seoul Rocky Mountains Tour"
         }
       },
       "dmz": {
         "name": "DMZ Tour",
-        "route": "Witness the historical landmarks only available in South Korea. View of North Korea beyond DMZ from the sky.",
+        "route": "Witness historical landmarks only available in South Korea. Experience a breathtaking view of North Korea from the sky, across the DMZ.",
         "tags": {
           "tag1": "DMZ Tour"
         }
@@ -79,28 +79,28 @@
       "subtitle": "Simple steps to book your premium flight experience",
       "steps": {
         "step1": {
-          "title": "Download App",
-          "description": "Download the VONAER app from App Store or Google Play"
+          "title": "Sign Up",
+          "description": "Download the VONAER app and complete the personal verification process. Only adults 19 years or older can register."
         },
         "step2": {
-          "title": "Create Account",
-          "description": "Sign up and verify your account with required documents"
+          "title": "Select Your Service",
+          "description": "For a premium, customized travel experience, choose the VIP charter service, VON Private. If you want a fast transfer between Gangnam and Incheon Airport, select VON Routine. To create unforgettable memories in the sky, opt for VON Tour."
         },
         "step3": {
-          "title": "Choose Service",
-          "description": "Select from VON Private, VON Routine, or VON Tour"
+          "title": "Make a Reservation",
+          "description": "Choose your preferred location and date, and submit your reservation request."
         },
         "step4": {
-          "title": "Book & Fly",
-          "description": "Make your reservation and enjoy your premium flight experience"
+          "title": "Reservation Approval and Confirmation",
+          "description": "Once an administrator reviews and approves your reservation details, your booking will be confirmed."
         },
         "step5": {
           "title": "Boarding",
-          "description": "Arrive at the helipad at your scheduled time and follow the safety staff's instructions"
+          "description": "Arrive at the helipad at your scheduled time, complete a quick boarding procedure, and follow the safety staff's instructions to board the helicopter."
         },
         "step6": {
           "title": "Disembarkation",
-          "description": "After landing, continue your journey with VON RentCar or VON Limousine for your Last Mile transfer"
+          "description": "After landing, continue your journey comfortably to your final destination with VON RentCar or VON Limousine for your Last Mile transfer."
         }
       }
     }
@@ -120,7 +120,8 @@
     },
     "passengers": "passenger",
     "passengersPlural": "passengers",
-    "search": "Search Flights"
+    "search": "Search Flights",
+    "searchRequest": "Flight Search Request"
   },
   "about": {
     "coreValues": {
@@ -162,8 +163,8 @@
     "joinNow": "Join Now",
     "termsTitle": "Membership Terms & Conditions",
     "terms": {
-      "term1": "All memberships are valid for 12 months from the date of purchase.",
-      "term2": "Membership benefits are non-transferable and cannot be shared with third parties.",
+      "term1": "Membership is completed upon payment of the annual dues.",
+      "term2": "The membership is valid for one year. Available flight hours must be used within that period.",
       "term3": "If additional hours are purchased before the membership ends, any remaining hours will be carried over.",
       "term4": "Once the dedicated flight hours are exhausted, applicable rate within the member status will apply.",
       "term5": "Additional charges may apply for De-icing, Smoking, and Special Catering services."
@@ -328,11 +329,11 @@
       "3": "Contact"
     },
     "contact": {
-      "phone": "+82-2-1234-5678",
-      "email": "info@vonaer.com",
+      "phone": "+82 1600 9064",
+      "email": "business@vonaer.com",
       "businessHours": "Business Hours",
-      "businessDays": "Monday - Friday: 9:00 AM - 6:00 PM",
-      "holidays": "Weekends & Holidays: Closed",
+      "businessDays": "Business days | 09:00 ~ 18:00",
+      "holidays": "Holidays",
       "sns": "SNS"
     },
     "company": {
@@ -405,32 +406,6 @@
       "description": "Changing the margin will affect all flight prices displayed to customers. The new margin will be applied immediately to all existing and new flights."
     }
   },
-  "flightCard": {
-    "from": "From",
-    "to": "To",
-    "date": "Date",
-    "seats": "Seats",
-    "price": "Price",
-    "tbd": "TBD",
-    "dateTBD": "Date TBD",
-    "priceTBD": "Price TBD",
-    "customPrice": "Custom Price",
-    "margin": "Margin",
-    "adjustPrice": "Adjust Price",
-    "newPrice": "New Price (USD)",
-    "pricePlaceholder": "Enter price",
-    "cancel": "Cancel",
-    "save": "Save",
-    "validation": {
-      "invalidPrice": "Please enter a valid price"
-    },
-    "success": {
-      "priceUpdated": "Price updated successfully"
-    },
-    "error": {
-      "updateFailed": "Failed to update price"
-    }
-  },
   "bookingDialog": {
     "title": "Booking Request",
     "subtitle": "Please provide your details and we will contact you within 24 hours.",
@@ -460,6 +435,50 @@
     "error": {
       "unknownError": "An unknown error occurred",
       "submitFailed": "Booking request failed"
+    }
+  },
+  "flightSearchDialog": {
+    "title": "Flight Search Request",
+    "subtitle": "Please provide your details and flight requirements. We will contact you within 24 hours.",
+    "flightInfo": "Flight Information",
+    "tripType": "Trip Type",
+    "oneWay": "One Way",
+    "roundTrip": "Round Trip",
+    "from": "From",
+    "to": "To",
+    "departureDate": "Departure Date",
+    "returnDate": "Return Date",
+    "passengers": "Passengers",
+    "contactInfo": "Contact Information",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "phone": "Phone",
+    "phonePlaceholder": "010-1234-5678",
+    "email": "Email Address (Optional)",
+    "emailPlaceholder": "your.email@example.com",
+    "consent": "Privacy & Consent",
+    "contactConsentText": "I agree to be contacted by VONAER regarding flight bookings.",
+    "privacyConsentText": "By using the service, I have read and understood the",
+    "privacyPolicy": "Privacy Policy",
+    "privacyConsentText2": " and agree to it.",
+    "cancel": "Cancel",
+    "submit": "Submit Request",
+    "submitting": "Submitting...",
+    "validation": {
+      "nameRequired": "Please enter your name",
+      "phoneRequired": "Please enter your phone number",
+      "fromRequired": "Please select departure city",
+      "toRequired": "Please select destination city",
+      "dateRequired": "Please select departure date",
+      "contactConsentRequired": "Please provide VONAER contact consent",
+      "privacyConsentRequired": "Please agree to the privacy policy"
+    },
+    "error": {
+      "unknownError": "An unknown error occurred",
+      "submitFailed": "Flight search request failed"
+    },
+    "success": {
+      "submitted": "Flight search request submitted successfully! We will contact you within 24 hours."
     }
   },
   "clientFlightCard": {
@@ -533,26 +552,14 @@
   "sidebar": {
     "tagline": "URBAN AIR MOBILITY",
     "description": "Korea's First Air Mobility Platform",
-    "categories": {
-      "privateJets": "Private Jets",
-      "helicopter": "Helicopter",
-      "superCar": "Super Car",
-      "superYacht": "Super Yacht"
-    },
-    "jetTypes": {
-      "lightJet": "Light Jet",
-      "midJet": "Mid Jet",
-      "heavyJet": "Heavy Jet",
-      "ultraLongHaul": "Ultra Long Haul",
-      "vipAirline": "VIP Airline"
-    },
-    "otherItems": {
-      "aboutUs": "ABOUT US",
+    "menuItems": {
+      "home": "HOME",
+      "charter": "CHARTER",
+      "aircraft": "Aircraft",
+      "emptyLeg": "Empty Leg",
       "pr": "PR",
-      "careers": "CAREERS",
-      "contact": "CONTACT"
-    },
-    "membershipLounge": "Membership Lounge"
+      "contact": "Contact Us"
+    }
   },
   "jets": {
     "title": "Private Jets",
@@ -688,9 +695,9 @@
         "route": "COEX → Jamsil → Yangjae Forest → Seoul Amusement Park → GwanAk Mountain",
         "duration": "45 minutes",
         "highlights": {
-          "0": "Autumn Leaves",
-          "1": "Spring Flowers",
-          "2": "Seoul Amusement Park"
+          "0": "Autumn Leaves Tour",
+          "1": "Spring Flower Tour",
+          "2": "Seoul Amusement Park Tour"
         }
       },
       "hanRiver": {
@@ -699,7 +706,7 @@
         "duration": "60 minutes",
         "highlights": {
           "0": "Seoul Skyline",
-          "1": "Cherry Blossoms",
+          "1": "Seokchon Lake Cherry Blossom Tour",
           "2": "Olympic Park"
         }
       },
@@ -708,14 +715,14 @@
         "route": "COEX → Lotte Tower → Seokchon Lake → BukHan Mountain → Dobong Mountain",
         "duration": "75 minutes",
         "highlights": {
-          "0": "National Park",
-          "1": "Rocky Mountains",
+          "0": "Bukhan mountain National Park",
+          "1": "Seoul Rocky Mountains Tour",
           "2": "Mountain Views"
         }
       },
       "dmz": {
         "name": "DMZ Tour",
-        "route": "Historical landmarks and North Korea views from above the DMZ",
+        "route": "Witness historical landmarks only available in South Korea. View of North Korea beyond DMZ from the sky.",
         "duration": "90 minutes",
         "highlights": {
           "0": "Historical Sites",
@@ -940,15 +947,6 @@
       "dateNear": "Date: Nearest First",
       "dateFar": "Date: Furthest First"
     },
-    "flightCard": {
-      "emptyLeg": "Empty Leg",
-      "departure": "Departure",
-      "arrival": "Arrival",
-      "flightDate": "Flight Date",
-      "capacity": "Capacity",
-      "totalCost": "Total Flight Cost",
-      "bookingRequest": "Booking Request"
-    },
     "clientFlightCard": {
       "dateTBD": "Date TBD",
       "luxuryAircraft": "Luxury Aircraft",
@@ -970,7 +968,6 @@
     "viewLanding": "View Landing Page",
     "viewCustomer": "View Customer Page",
     "dashboard": "Dashboard",
-    "flights": "Flights",
     "users": "Users",
     "settings": "Settings",
     "bookingRequests": "Booking Requests",
@@ -990,12 +987,114 @@
     "tabs": {
       "flights": "Flights",
       "bookings": "Bookings",
+      "mms": "MMS Messaging",
       "users": "Users",
       "settings": "Settings"
     },
     "flights": {
       "title": "Empty Leg Flights",
-      "description": "All available empty leg flights with current pricing applied"
+      "description": "All available empty leg flights with current pricing applied",
+      "addFlight": "Add Flight",
+      "addFirstFlight": "Add First Flight",
+      "noFlights": "No flights available",
+      "noFlightsDescription": "There are currently no flights in the system. Add some flights to get started."
+    },
+    "flightForm": {
+      "createTitle": "Add New Flight",
+      "editTitle": "Edit Flight",
+      "createDescription": "Add a new empty leg flight to the system",
+      "editDescription": "Edit flight details and information",
+      "flightId": "Flight ID",
+      "aircraft": "Aircraft",
+      "flightDate": "Flight Date",
+      "seats": "Seats",
+      "price": "Price",
+      "currency": "Currency",
+      "fromCity": "From City",
+      "fromCountry": "From Country",
+      "toCity": "To City",
+      "toCountry": "To Country",
+      "routeSummary": "Route Summary",
+      "rawText": "Additional Details",
+      "koreaRoute": "Korea Route",
+      "images": "Images",
+      "uploadImages": "Upload Images",
+      "uploading": "Uploading...",
+      "imageUploadHint": "Upload aircraft images (max 5MB each)",
+      "create": "Create Flight",
+      "update": "Update Flight",
+      "creating": "Creating...",
+      "updating": "Updating...",
+      "cancel": "Cancel",
+      "deleteFlight": "Delete Flight",
+      "confirmDelete": "Are you sure you want to delete this flight? This action cannot be undone.",
+      "success": {
+        "created": "Flight created successfully",
+        "updated": "Flight updated successfully",
+        "deleted": "Flight deleted successfully"
+      },
+      "error": {
+        "createFailed": "Failed to create flight",
+        "updateFailed": "Failed to update flight",
+        "deleteFailed": "Failed to delete flight"
+      }
+    },
+    "flightCard": {
+      "from": "From",
+      "to": "To",
+      "date": "Date",
+      "seats": "Seats",
+      "price": "Price",
+      "dateTBD": "Date TBD",
+      "tbd": "TBD",
+      "priceTBD": "Price TBD",
+      "customPrice": "Custom Price",
+      "margin": "Margin Applied",
+      "adjustPrice": "Adjust Price",
+      "newPrice": "New Price",
+      "pricePlaceholder": "Enter new price",
+      "cancel": "Cancel",
+      "save": "Save",
+      "edit": "Edit",
+      "deleteFlight": "Delete",
+      "confirmDelete": "Are you sure you want to delete this flight?",
+      "deleted": "Flight deleted successfully",
+      "deleteError": "Failed to delete flight",
+      "validation": {
+        "invalidPrice": "Please enter a valid price"
+      },
+      "success": {
+        "priceUpdated": "Price updated successfully"
+      },
+      "error": {
+        "updateFailed": "Failed to update price"
+      }
+    },
+    "flightManagement": {
+      "title": "Flight Management",
+      "description": "Manage all flights in the system",
+      "of": "of",
+      "addFlight": "Add Flight",
+      "filters": "Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search flights...",
+      "filterByAircraft": "Filter by Aircraft",
+      "filterByKorea": "Filter by Korea Routes",
+      "allAircraft": "All Aircraft",
+      "allRoutes": "All Routes",
+      "koreaRoutes": "Korea Routes",
+      "nonKoreaRoutes": "Non-Korea Routes",
+      "noMatchingFlights": "No flights match your search criteria",
+      "noFlights": "No flights available",
+      "addFirstFlight": "Add First Flight",
+      "confirmDelete": "Are you sure you want to delete this flight?",
+      "deleted": "Flight deleted successfully",
+      "deleteError": "Failed to delete flight",
+      "tbd": "TBD",
+      "date": "Date",
+      "seats": "Seats",
+      "price": "Price",
+      "koreaRoute": "Korea Route"
     }
   },
   "common": {

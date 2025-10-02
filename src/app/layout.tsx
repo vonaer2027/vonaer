@@ -4,7 +4,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LocaleProvider } from "@/components/locale-provider";
-// import { FontProvider } from "@/components/font-provider"
 import { ScrollToTop } from "@/components/scroll-to-top";
 
 const geistSans = Geist({
@@ -76,8 +75,29 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "VONAER Empty Leg Management",
-  description: "VONAER's comprehensive platform for managing empty leg flights, users, and pricing settings",
+  title: "VONAER 본에어 - 도시 항공 모빌리티의 새로운 시대",
+  description: "프리미엄 항공 여행의 혁신적 플랫폼. 본에어와 함께 도시 항공 모빌리티를 경험하세요.",
+  keywords: "본에어, VONAER, 도시항공모빌리티, 프리미엄항공, 헬리콥터, 전세기, 엠프티레그",
+  openGraph: {
+    title: "VONAER 본에어 - 도시 항공 모빌리티의 새로운 시대",
+    description: "프리미엄 항공 여행의 혁신적 플랫폼. 본에어와 함께 도시 항공 모빌리티를 경험하세요.",
+    images: [
+      {
+        url: "/vonaer.png",
+        width: 1200,
+        height: 630,
+        alt: "VONAER 본에어 - 도시 항공 모빌리티",
+      },
+    ],
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "VONAER 본에어 - 도시 항공 모빌리티의 새로운 시대",
+    description: "프리미엄 항공 여행의 혁신적 플랫폼. 본에어와 함께 도시 항공 모빌리티를 경험하세요.",
+    images: ["/vonaer.png"],
+  },
 };
 
 export default function RootLayout({

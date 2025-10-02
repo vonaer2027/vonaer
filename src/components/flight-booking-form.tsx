@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { CitySearchInput } from '@/components/city-search-input'
 import { FlightDatePicker } from '@/components/flight-date-picker'
+import { FlightSearchBookingDialog } from '@/components/flight-search-booking-dialog'
+import { Toaster } from 'sonner'
 import { 
   Minus, 
   Plus
@@ -14,23 +16,28 @@ import {
 
 export function FlightBookingForm() {
   const t = useTranslations()
-  const [tripType, setTripType] = useState('one-way')
+  const [tripType, setTripType] = useState<'one-way' | 'round-trip'>('one-way')
   const [passengers, setPassengers] = useState(1)
   const [fromLocation, setFromLocation] = useState('')
   const [toLocation, setToLocation] = useState('')
   const [departDate, setDepartDate] = useState<Date | undefined>()
   const [returnDate, setReturnDate] = useState<Date | undefined>()
+  const [dialogOpen, setDialogOpen] = useState(false)
 
   const handleSearch = () => {
-    // Handle flight search logic
-    console.log({
-      tripType,
-      passengers,
-      fromLocation,
-      toLocation,
-      departDate,
-      returnDate
-    })
+    // Open the flight search booking dialog
+    setDialogOpen(true)
+  }
+
+  const handleDialogSuccess = () => {
+    setDialogOpen(false)
+    // Reset form
+    setFromLocation('')
+    setToLocation('')
+    setDepartDate(undefined)
+    setReturnDate(undefined)
+    setPassengers(1)
+    setTripType('one-way')
   }
 
   return (
@@ -53,7 +60,7 @@ export function FlightBookingForm() {
 
           {/* Trip Type Selector */}
           <div className="mb-8">
-            <Tabs value={tripType} onValueChange={setTripType} className="w-full">
+            <Tabs value={tripType} onValueChange={(value) => setTripType(value as 'one-way' | 'round-trip')} className="w-full">
               <TabsList className="grid w-full max-w-sm grid-cols-2 h-12">
                 <TabsTrigger value="one-way" className="text-sm font-medium">
                   {t('booking.tripType.oneWay')}
@@ -153,6 +160,23 @@ export function FlightBookingForm() {
           </div>
         </motion.div>
       </div>
+
+      {/* Flight Search Booking Dialog */}
+      <FlightSearchBookingDialog
+        flightData={dialogOpen ? {
+          tripType,
+          fromLocation,
+          toLocation,
+          departDate,
+          returnDate,
+          passengers
+        } : null}
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        onSuccess={handleDialogSuccess}
+      />
+      
+      <Toaster />
     </section>
   )
 }

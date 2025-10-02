@@ -1,21 +1,10 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useLocale } from './locale-provider'
 import { Button } from '@/components/ui/button'
-import { 
-  Plane, 
-  Car, 
-  Anchor, 
-  Zap, 
-  Users,
-  Phone,
-  ChevronRight,
-  Home,
-  Star
-} from 'lucide-react'
 
 interface VonaerMenuOverlayProps {
   isOpen: boolean
@@ -23,31 +12,19 @@ interface VonaerMenuOverlayProps {
 }
 
 export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
   const t = useTranslations('sidebar')
-  const tCommon = useTranslations('common')
   const { locale } = useLocale()
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
 
-  // Create menu items dynamically using translations with useMemo to ensure re-creation on locale change
+  // Create simplified menu items using new structure
   const menuItems = useMemo(() => [
-    {
-      category: t('categories.privateJets').toUpperCase(),
-      items: [
-        { id: 'jets', label: t('categories.privateJets'), icon: Plane, href: '/jets' },
-        { id: 'helicopter', label: t('categories.helicopter'), icon: Zap, href: '/helicopter' },
-        { id: 'supercar', label: t('categories.superCar'), icon: Car, href: '/supercar' },
-        { id: 'superyacht', label: t('categories.superYacht'), icon: Anchor, href: '/superyacht' },
-      ]
-    }
+    { id: 'home', label: t('menuItems.home'), href: '/' },
+    { id: 'charter', label: t('menuItems.charter'), href: '/jets' },
+    { id: 'aircraft', label: t('menuItems.aircraft'), href: '/aircraft' },
+    { id: 'empty-leg', label: t('menuItems.emptyLeg'), href: '/empty' },
+    { id: 'pr', label: t('menuItems.pr'), href: '/pr' },
+    { id: 'contact', label: t('menuItems.contact'), anchor: '#contact' }
   ], [t, locale])
-
-  const otherItems = useMemo(() => [
-    { id: 'home', label: tCommon('home').toUpperCase(), icon: Home, anchor: '#home' },
-    { id: 'about', label: t('otherItems.aboutUs').toUpperCase(), icon: Users, anchor: '#about' },
-    { id: 'membership', label: t('membershipLounge').toUpperCase(), icon: Star, anchor: '#membership' },
-    { id: 'empty-leg', label: tCommon('emptyLeg').toUpperCase(), icon: Plane, href: '/empty' },
-    { id: 'contact', label: t('otherItems.contact').toUpperCase(), icon: Phone, anchor: '#contact' }
-  ], [t, tCommon, locale])
 
   const handleSmoothScroll = (anchor: string) => {
     // Check if we're on the main page (has #home element)
@@ -129,72 +106,13 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
 
           {/* Menu Content */}
           <div className="flex-1 overflow-y-auto py-4">
-            {/* Services Section */}
-            {menuItems.map((category, categoryIndex) => {
-              const isExpanded = expandedCategories.has(category.category)
-              
-              return (
-                <motion.div
-                  key={category.category}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 + categoryIndex * 0.05 }}
-                  className="border-b border-primary/20"
-                >
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-between py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
-                    onClick={() => toggleCategory(category.category)}
-                  >
-                    <span>{category.category}</span>
-                    <motion.div
-                      animate={{ rotate: isExpanded ? 90 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ChevronRight className="h-4 w-4" />
-                    </motion.div>
-                  </Button>
-                  
-                  {/* Services items - expandable/collapsible */}
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pl-6 pb-2 space-y-1">
-                          {category.items.map((item, itemIndex) => (
-                            <motion.a
-                              key={item.id}
-                              href={item.href}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: itemIndex * 0.05 }}
-                              className="flex items-center gap-3 w-full text-left py-2 px-4 text-white/70 hover:text-primary-foreground hover:bg-primary-foreground/5 text-sm transition-all duration-200 rounded-md"
-                              onClick={onClose}
-                            >
-                              <item.icon className="h-4 w-4 flex-shrink-0" />
-                              {item.label}
-                            </motion.a>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              )
-            })}
-
-            {/* Other Menu Items (without arrows) */}
-            {otherItems.map((item, index) => (
+            {/* Menu Items */}
+            {menuItems.map((item, index) => (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 + index * 0.05 }}
+                transition={{ delay: 0.1 + index * 0.05 }}
                 className="border-b border-primary/20"
               >
                 {item.href ? (
@@ -203,23 +121,22 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
                     className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
                     asChild
                   >
-                    <a href={item.href}>
-                      <div className="flex items-center gap-3">
-                        <item.icon className="h-4 w-4" />
-                        <span>{item.label}</span>
-                      </div>
+                    <a href={item.href} onClick={onClose}>
+                      <span>{item.label}</span>
                     </a>
                   </Button>
                 ) : (
                   <Button
                     variant="ghost"
                     className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
-                    onClick={() => handleSmoothScroll(item.anchor!)}
+                    onClick={() => {
+                      if (item.anchor) {
+                        handleSmoothScroll(item.anchor)
+                      }
+                      onClose()
+                    }}
                   >
-                    <div className="flex items-center gap-3">
-                      <item.icon className="h-4 w-4" />
-                      <span>{item.label}</span>
-                    </div>
+                    <span>{item.label}</span>
                   </Button>
                 )}
               </motion.div>

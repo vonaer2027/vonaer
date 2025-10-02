@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Plane, Calendar, Users, MapPin, ArrowRight, Edit } from "lucide-react"
+import { Plane, Calendar, Users, MapPin, ArrowRight, Edit, MoreVertical, Trash2 } from "lucide-react"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Flight, MarginSetting, flightService } from "@/lib/supabase"
 import { motion } from "framer-motion"
 import { toast } from "sonner"
@@ -18,14 +19,17 @@ interface FlightCardProps {
   flight: Flight
   marginSetting?: MarginSetting
   onPriceUpdate?: (flightId: number, newPrice: number) => void
+  onEdit?: (flight: Flight) => void
+  onDelete?: () => void
 }
 
-export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardProps) {
+export function FlightCard({ flight, marginSetting, onPriceUpdate, onEdit, onDelete }: FlightCardProps) {
   const t = useTranslations()
   const { locale } = useLocale()
   const [customPrice, setCustomPrice] = useState<number | null>(flight.custom_price || null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [priceInput, setPriceInput] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
   const roundUpToNearestHundred = (price: number) => {
     return Math.ceil(price / 100) * 100
   }
@@ -74,7 +78,7 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
   const handleSavePriceAdjustment = async () => {
     const newPrice = parseInt(priceInput)
     if (isNaN(newPrice) || newPrice <= 0) {
-      toast.error(t('flightCard.validation.invalidPrice'))
+      toast.error(t('admin.flightCard.validation.invalidPrice'))
       return
     }
     
@@ -87,7 +91,7 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
       
       setCustomPrice(newPrice)
       setDialogOpen(false)
-      toast.success(t('flightCard.success.priceUpdated'))
+      toast.success(t('admin.flightCard.success.priceUpdated'))
       
       if (onPriceUpdate) {
         onPriceUpdate(flight.id, newPrice)
@@ -97,9 +101,9 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
       console.error('Error details:', JSON.stringify(error, null, 2))
       
       // More specific error message
-      let errorMessage = t('flightCard.error.updateFailed')
+      let errorMessage = t('admin.flightCard.error.updateFailed')
       if (error && typeof error === 'object' && 'message' in error) {
-        errorMessage = `${t('flightCard.error.updateFailed')}: ${error.message}`
+        errorMessage = `${t('admin.flightCard.error.updateFailed')}: ${error.message}`
       }
       
       toast.error(errorMessage)
@@ -107,7 +111,7 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
   }
 
   const formatDate = (dateString?: string) => {
-    if (!dateString) return t('flightCard.dateTBD')
+    if (!dateString) return t('admin.flightCard.dateTBD')
     
     // Map our locale codes to proper locale strings
     const localeMap: { [key: string]: string } = {
@@ -124,6 +128,24 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
       day: 'numeric',
       year: 'numeric'
     })
+  }
+
+  const handleDelete = async () => {
+    if (!onDelete) return
+    
+    if (!confirm(t('admin.flightCard.confirmDelete'))) return
+
+    setIsDeleting(true)
+    try {
+      await flightService.delete(flight.id)
+      toast.success(t('admin.flightCard.deleted'))
+      onDelete()
+    } catch (error) {
+      console.error('Delete error:', error)
+      toast.error(t('admin.flightCard.deleteError'))
+    } finally {
+      setIsDeleting(false)
+    }
   }
 
   return (
@@ -144,10 +166,41 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
               className="object-cover transition-transform duration-300 hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-            <div className="absolute top-2 right-2">
+            <div className="absolute top-2 right-2 flex items-center gap-2">
               <Badge variant="secondary" className="text-xs bg-black/70 text-white">
                 {flight.flight_id}
               </Badge>
+              {(onEdit || onDelete) && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="h-6 w-6 p-0 bg-black/70 hover:bg-black/80 text-white"
+                    >
+                      <MoreVertical className="h-3 w-3" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    {onEdit && (
+                      <DropdownMenuItem onClick={() => onEdit(flight)}>
+                        <Edit className="h-3 w-3 mr-2" />
+                        {t('admin.flightCard.edit')}
+                      </DropdownMenuItem>
+                    )}
+                    {onDelete && (
+                      <DropdownMenuItem 
+                        onClick={handleDelete}
+                        disabled={isDeleting}
+                        className="text-destructive focus:text-destructive"
+                      >
+                        <Trash2 className="h-3 w-3 mr-2" />
+                        {t('admin.flightCard.deleteFlight')}
+                      </DropdownMenuItem>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
             </div>
           </div>
         )}
@@ -158,11 +211,44 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
               <Plane className="h-5 w-5 text-primary" />
               {flight.aircraft || 'Aircraft TBD'}
             </CardTitle>
-            {(!flight.image_urls || flight.image_urls.length === 0) && (
-              <Badge variant="secondary" className="text-xs">
-                {flight.flight_id}
-              </Badge>
-            )}
+            <div className="flex items-center gap-2">
+              {(!flight.image_urls || flight.image_urls.length === 0) && (
+                <Badge variant="secondary" className="text-xs">
+                  {flight.flight_id}
+                </Badge>
+              )}
+              {(onEdit || onDelete) && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="h-8 w-8 p-0 hover:bg-gray-100"
+                    >
+                      <MoreVertical className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    {onEdit && (
+                      <DropdownMenuItem onClick={() => onEdit(flight)}>
+                        <Edit className="h-4 w-4 mr-2" />
+                        {t('admin.flightCard.edit')}
+                      </DropdownMenuItem>
+                    )}
+                    {onDelete && (
+                      <DropdownMenuItem 
+                        onClick={handleDelete}
+                        disabled={isDeleting}
+                        className="text-destructive focus:text-destructive"
+                      >
+                        <Trash2 className="h-4 w-4 mr-2" />
+                        {t('admin.flightCard.deleteFlight')}
+                      </DropdownMenuItem>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
+            </div>
           </div>
         </CardHeader>
         
@@ -172,10 +258,10 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
             <div className="text-center">
               <div className="flex items-center gap-1 text-sm text-muted-foreground mb-1">
                 <MapPin className="h-3 w-3" />
-                {t('flightCard.from')}
+                {t('admin.flightCard.from')}
               </div>
               <div className="font-medium text-sm">
-                {flight.from_city || t('flightCard.tbd')}
+                {flight.from_city || t('admin.flightCard.tbd')}
               </div>
               <div className="text-xs text-muted-foreground">
                 {flight.from_country}
@@ -189,10 +275,10 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
             <div className="text-center">
               <div className="flex items-center gap-1 text-sm text-muted-foreground mb-1">
                 <MapPin className="h-3 w-3" />
-                {t('flightCard.to')}
+                {t('admin.flightCard.to')}
               </div>
               <div className="font-medium text-sm">
-                {flight.to_city || t('flightCard.tbd')}
+                {flight.to_city || t('admin.flightCard.tbd')}
               </div>
               <div className="text-xs text-muted-foreground">
                 {flight.to_country}
@@ -205,7 +291,7 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4 text-muted-foreground" />
               <div>
-                <div className="text-xs text-muted-foreground">{t('flightCard.date')}</div>
+                <div className="text-xs text-muted-foreground">{t('admin.flightCard.date')}</div>
                 <div className="text-sm font-medium">
                   {formatDate(flight.flight_date)}
                 </div>
@@ -215,9 +301,9 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
             <div className="flex items-center gap-2">
               <Users className="h-4 w-4 text-muted-foreground" />
               <div>
-                <div className="text-xs text-muted-foreground">{t('flightCard.seats')}</div>
+                <div className="text-xs text-muted-foreground">{t('admin.flightCard.seats')}</div>
                 <div className="text-sm font-medium">
-                  {flight.seats || t('flightCard.tbd')}
+                  {flight.seats || t('admin.flightCard.tbd')}
                 </div>
               </div>
             </div>
@@ -227,7 +313,7 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
           <div className="border-t pt-4">
             <div className="flex items-center justify-between">
               <div className="flex-1">
-                <div className="text-xs text-muted-foreground">{t('flightCard.price')}</div>
+                <div className="text-xs text-muted-foreground">{t('admin.flightCard.price')}</div>
                 {(marginSetting && marginSetting.margin_percentage > 0) || customPrice !== null || flight.custom_price ? (
                   <div className="space-y-1">
                     {getOriginalPrice() && (
@@ -240,17 +326,17 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
                     </div>
                     {(customPrice !== null || flight.custom_price) ? (
                       <div className="text-xs text-blue-600">
-                        {t('flightCard.customPrice')}
+                        {t('admin.flightCard.customPrice')}
                       </div>
                     ) : marginSetting && (
                       <div className="text-xs text-green-600">
-                        +{marginSetting.margin_percentage}% {t('flightCard.margin')}
+                        +{marginSetting.margin_percentage}% {t('admin.flightCard.margin')}
                       </div>
                     )}
                   </div>
                 ) : (
                   <div className="text-lg font-bold text-primary">
-                    {flight.price || t('flightCard.priceTBD')}
+                    {flight.price || t('admin.flightCard.priceTBD')}
                   </div>
                 )}
               </div>
@@ -259,12 +345,12 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
                 <DialogTrigger asChild>
                   <Button size="sm" variant="outline" onClick={handlePriceAdjustment} className="ml-2">
                     <Edit className="h-3 w-3 mr-1" />
-                    {t('flightCard.adjustPrice')}
+                    {t('admin.flightCard.adjustPrice')}
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                   <DialogHeader>
-                    <DialogTitle>{t('flightCard.adjustPrice')}</DialogTitle>
+                    <DialogTitle>{t('admin.flightCard.adjustPrice')}</DialogTitle>
                     <DialogDescription>
                       {flight.aircraft} - {flight.from_city} → {flight.to_city}
                     </DialogDescription>
@@ -272,23 +358,23 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate }: FlightCardP
                   <div className="grid gap-4 py-4">
                     <div className="grid gap-2">
                       <label htmlFor="price" className="text-sm font-medium">
-                        {t('flightCard.newPrice')}
+                        {t('admin.flightCard.newPrice')}
                       </label>
                       <Input
                         id="price"
                         type="number"
                         value={priceInput}
                         onChange={(e) => setPriceInput(e.target.value)}
-                        placeholder={t('flightCard.pricePlaceholder')}
+                        placeholder={t('admin.flightCard.pricePlaceholder')}
                       />
                     </div>
                   </div>
                   <div className="flex justify-end gap-2">
                     <Button variant="outline" onClick={() => setDialogOpen(false)}>
-                      {t('flightCard.cancel')}
+                      {t('admin.flightCard.cancel')}
                     </Button>
                     <Button onClick={handleSavePriceAdjustment}>
-                      {t('flightCard.save')}
+                      {t('admin.flightCard.save')}
                     </Button>
                   </div>
                 </DialogContent>

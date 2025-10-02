@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { FontToggle } from '@/components/font-toggle'
 import { LanguageDropdown } from '@/components/language-dropdown'
 import { Menu, X } from 'lucide-react'
 
@@ -60,10 +59,9 @@ export function VonaerHeader({ menuOpen, onMenuToggle }: VonaerHeaderProps) {
             </motion.div>
           </div>
 
-          {/* Right: Language, Font & Theme Toggle */}
+          {/* Right: Language & Theme Toggle */}
           <div className="flex items-center gap-3">
             <LanguageDropdown />
-            <FontToggle />
             <ThemeToggle />
           </div>
         </div>
