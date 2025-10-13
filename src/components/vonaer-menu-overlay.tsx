@@ -22,6 +22,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
     { id: 'charter', label: t('menuItems.charter'), href: '/jets' },
     { id: 'aircraft', label: t('menuItems.aircraft'), href: '/aircraft' },
     { id: 'empty-leg', label: t('menuItems.emptyLeg'), href: '/empty' },
+    { id: 'membership', label: t('menuItems.membership'), href: '/membership' },
     { id: 'pr', label: t('menuItems.pr'), href: '/pr' },
     { id: 'contact', label: t('menuItems.contact'), anchor: '#contact' }
   ], [t, locale])
