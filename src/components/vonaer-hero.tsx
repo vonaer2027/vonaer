@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 
@@ -91,10 +92,10 @@ export function VonaerHero() {
             className="bg-white text-black hover:bg-gray-100 transition-all duration-300 px-16 py-6 text-xl font-semibold tracking-wide group shadow-2xl border-2 border-white hover:border-gray-200 hover:shadow-3xl transform hover:scale-105"
             asChild
           >
-            <a href="/empty">
+            <Link href="/empty">
               Book a Flight
               <ArrowRight className="ml-4 h-6 w-6 transition-transform group-hover:translate-x-2" />
-            </a>
+            </Link>
           </Button>
         </motion.div>
 
