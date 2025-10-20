@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
@@ -17,6 +17,27 @@ function LoginForm() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
+  // Suppress browser extension runtime errors
+  useEffect(() => {
+    const originalError = console.error
+    console.error = (...args) => {
+      const errorString = args.join(' ')
+      // Filter out known browser extension errors
+      if (
+        errorString.includes('runtime.lastError') ||
+        errorString.includes('message port closed') ||
+        errorString.includes('web-client-content-script')
+      ) {
+        return
+      }
+      originalError.apply(console, args)
+    }
+
+    return () => {
+      console.error = originalError
+    }
+  }, [])
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
@@ -29,21 +50,32 @@ function LoginForm() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
+        credentials: 'include', // Ensure cookies are sent/received
       })
+
+      if (!response.ok) {
+        const data = await response.json()
+        setError(data.error || 'Invalid credentials')
+        setLoading(false)
+        return
+      }
 
       const data = await response.json()
 
       if (data.success) {
+        // Small delay to ensure session cookie is set
+        await new Promise(resolve => setTimeout(resolve, 100))
+
         // Redirect to admin dashboard or original page
         router.push(redirect)
         router.refresh()
       } else {
         setError(data.error || 'Invalid credentials')
+        setLoading(false)
       }
     } catch (err) {
       setError('An error occurred. Please try again.')
       console.error('Login error:', err)
-    } finally {
       setLoading(false)
     }
   }
