@@ -31,6 +31,29 @@ export default function AdminDashboard() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editingFlight, setEditingFlight] = useState<Flight | null>(null)
+  const [authChecking, setAuthChecking] = useState(true)
+
+  // Client-side authentication check
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/auth/session')
+        const data = await response.json()
+
+        if (!data.isLoggedIn) {
+          router.push('/admin/login')
+          return
+        }
+
+        setAuthChecking(false)
+      } catch (error) {
+        console.error('Auth check failed:', error)
+        router.push('/admin/login')
+      }
+    }
+
+    checkAuth()
+  }, [router])
 
   const handleLogout = async () => {
     try {
@@ -131,17 +154,29 @@ export default function AdminDashboard() {
     currentMargin: marginSetting?.margin_percentage || 0
   }
 
+  // Show loading screen while checking authentication
+  if (authChecking) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <RefreshCw className="h-8 w-8 animate-spin mx-auto text-primary" />
+          <p className="text-muted-foreground">Verifying authentication...</p>
+        </div>
+      </div>
+    )
+  }
+
   if (loading) {
     return (
       <div className="bg-primary text-primary-foreground relative min-h-screen">
         {/* Sticky Header */}
-        <VonaerHeader 
+        <VonaerHeader
           menuOpen={menuOpen}
           onMenuToggle={() => setMenuOpen(!menuOpen)}
         />
 
         {/* Full Screen Menu Overlay */}
-        <VonaerMenuOverlay 
+        <VonaerMenuOverlay
           isOpen={menuOpen}
           onClose={() => setMenuOpen(false)}
         />

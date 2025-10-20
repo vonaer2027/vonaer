@@ -14,23 +14,30 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // Protect /admin routes
+  // Protect ALL /admin routes - require valid session
   if (pathname.startsWith('/admin')) {
     try {
       const response = NextResponse.next()
       const session = await getIronSession<SessionData>(request, response, sessionOptions)
 
-      // Check if session is valid
+      // Strict session validation - must have valid session with userId and isLoggedIn=true
       if (!isSessionValid(session)) {
-        // Redirect to login page
+        console.log(`[Auth] Unauthorized access attempt to: ${pathname}`)
         const loginUrl = new URL('/admin/login', request.url)
         loginUrl.searchParams.set('redirect', pathname)
         return NextResponse.redirect(loginUrl)
       }
 
+      // Additional check: verify session data integrity
+      if (!session.username || session.username !== 'vonaer') {
+        console.log(`[Auth] Invalid session data for: ${pathname}`)
+        const loginUrl = new URL('/admin/login', request.url)
+        return NextResponse.redirect(loginUrl)
+      }
+
       return response
     } catch (error) {
-      console.error('Middleware error:', error)
+      console.error('[Auth] Middleware error:', error)
       const loginUrl = new URL('/admin/login', request.url)
       return NextResponse.redirect(loginUrl)
     }
@@ -41,6 +48,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    '/admin',
     '/admin/:path*',
     '/api/admin/:path*',
   ],
