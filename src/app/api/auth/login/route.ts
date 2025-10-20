@@ -9,7 +9,7 @@ const ADMIN_CREDENTIALS = {
   username: 'vonaer',
   // This is the bcrypt hash of 'vonaer@2027'
   // Generated using: bcrypt.hashSync('vonaer@2027', 10)
-  passwordHash: '$2a$10$8kqJ3VN5JZvmXYp.rPQXDOrY9qXN7FxQVJ5WZvLlHmJ8KqW.Q5GVu',
+  passwordHash: '$2b$10$WfCA0T/ZZfEudGm5o0bVN.5NSZttzfo9R5qa2cx5gDeGBdnRqc9BC',
 }
 
 export async function POST(request: NextRequest) {
