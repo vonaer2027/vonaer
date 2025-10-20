@@ -113,9 +113,9 @@
       "roundTrip": "往復"
     },
     "placeholders": {
-      "departureCity": "出発都市",
-      "destinationCity": "到着都市",
-      "departureDate": "出発日",
+      "departureCity": "出発",
+      "destinationCity": "到着",
+      "departureDate": "日付",
       "returnDate": "帰国日"
     },
     "passengers": "乗客",
@@ -476,9 +476,11 @@
     "name": "名前",
     "namePlaceholder": "名前を入力",
     "phone": "電話番号",
-    "phonePlaceholder": "010-1234-5678",
-    "email": "メールアドレス（任意）",
+    "phonePlaceholder": "",
+    "email": "メールアドレス",
     "emailPlaceholder": "your.email@example.com",
+    "inquiryDetail": "お問い合わせ内容",
+    "inquiryDetailPlaceholder": "お問い合わせの詳細をご記入ください...",
     "consent": "プライバシーと同意",
     "contactConsentText": "フライト予約に関してVONAERからの連絡を受けることに同意します。",
     "privacyConsentText": "サービスを利用することにより、私は",
@@ -500,6 +502,8 @@
   },
   "flightSearchDialog": {
     "title": "フライト検索リクエスト",
+    "carTitle": "スーパーカーのお問い合わせ",
+    "yachtTitle": "スーパーヨットのお問い合わせ",
     "subtitle": "詳細情報とフライトのご要望をお教えください。24時間以内にご連絡いたします。",
     "flightInfo": "フライト情報",
     "tripType": "旅行タイプ",
@@ -514,9 +518,11 @@
     "name": "お名前",
     "namePlaceholder": "お名前を入力してください",
     "phone": "電話番号",
-    "phonePlaceholder": "010-1234-5678",
-    "email": "メールアドレス（任意）",
+    "phonePlaceholder": "",
+    "email": "メールアドレス",
     "emailPlaceholder": "your.email@example.com",
+    "inquiryDetail": "お問い合わせ内容",
+    "inquiryDetailPlaceholder": "お問い合わせの詳細をご記入ください...",
     "consent": "プライバシーと同意",
     "contactConsentText": "フライト予約に関してVONAERからのご連絡に同意いたします。",
     "privacyConsentText": "このサービスをご利用いただくことで、",
@@ -528,6 +534,7 @@
     "validation": {
       "nameRequired": "お名前を入力してください",
       "phoneRequired": "電話番号を入力してください",
+      "emailRequired": "メールアドレスを入力してください",
       "fromRequired": "出発都市を選択してください",
       "toRequired": "目的地都市を選択してください",
       "dateRequired": "出発日を選択してください",
@@ -613,13 +620,17 @@
   "sidebar": {
     "tagline": "都市航空モビリティ",
     "description": "韓国初の航空モビリティプラットフォーム",
+    "membershipLounge": "メンバーシップラウンジ",
     "menuItems": {
       "home": "ホーム",
       "charter": "チャーター",
       "aircraft": "航空機",
       "emptyLeg": "エンプティレッグ",
+      "supercar": "スーパーカー",
+      "membership": "メンバーシップ専用",
       "pr": "広報",
-      "contact": "お問い合わせ"
+      "contact": "お問い合わせ",
+      "yacht": "ヨット"
     }
   },
   "jets": {
@@ -941,7 +952,7 @@
     }
   },
   "pr": {
-    "title": "プレス＆メディア",
+    "title": "PR",
     "subtitle": "VONAERからの最新ニュース、プレスリリース、メディアリソース",
     "mediaKit": {
       "title": "メディアキット",
@@ -1157,6 +1168,17 @@
       "price": "価格",
       "koreaRoute": "韓国内ルート"
     }
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "VONAERへのお問い合わせまたは当社の所在地をご訪問ください",
+    "email": "メール",
+    "kakao": "カカオトークチャンネル",
+    "instagram": "インスタグラム",
+    "social": "ソーシャルメディア",
+    "phone": "電話",
+    "locations": "VONAER所在地",
+    "contactInfo": "連絡先"
   },
   "common": {
     "imagePlaceholder": "画像プレースホルダー",

@@ -113,9 +113,9 @@
       "roundTrip": "往返"
     },
     "placeholders": {
-      "departureCity": "出发城市",
-      "destinationCity": "目的地城市",
-      "departureDate": "出发日期",
+      "departureCity": "出发",
+      "destinationCity": "到达",
+      "departureDate": "日期",
       "returnDate": "返程日期"
     },
     "passengers": "乘客",
@@ -476,7 +476,7 @@
     "name": "姓名",
     "namePlaceholder": "输入您的姓名",
     "phone": "电话",
-    "phonePlaceholder": "010-1234-5678",
+    "phonePlaceholder": "",
     "email": "电子邮件地址（可选）",
     "emailPlaceholder": "your.email@example.com",
     "consent": "隐私与同意",
@@ -500,6 +500,8 @@
   },
   "flightSearchDialog": {
     "title": "航班搜索请求",
+    "carTitle": "超级跑车咨询",
+    "yachtTitle": "超级游艇咨询",
     "subtitle": "请提供您的详细信息和航班要求。我们将在24小时内联系您。",
     "flightInfo": "航班信息",
     "tripType": "行程类型",
@@ -514,9 +516,11 @@
     "name": "姓名",
     "namePlaceholder": "请输入您的姓名",
     "phone": "电话",
-    "phonePlaceholder": "010-1234-5678",
-    "email": "邮箱地址（可选）",
+    "phonePlaceholder": "",
+    "email": "邮箱地址",
     "emailPlaceholder": "your.email@example.com",
+    "inquiryDetail": "咨询详情",
+    "inquiryDetailPlaceholder": "请提供有关您咨询的任何其他详细信息...",
     "consent": "隐私与同意",
     "contactConsentText": "我同意VONAER就航班预订事宜与我联系。",
     "privacyConsentText": "通过使用本服务，我已阅读并理解",
@@ -528,6 +532,7 @@
     "validation": {
       "nameRequired": "请输入您的姓名",
       "phoneRequired": "请输入您的电话号码",
+      "emailRequired": "请输入您的电子邮件地址",
       "fromRequired": "请选择出发城市",
       "toRequired": "请选择目的地城市",
       "dateRequired": "请选择出发日期",
@@ -613,13 +618,17 @@
   "sidebar": {
     "tagline": "城市空中交通",
     "description": "韩国首个空中交通平台",
+    "membershipLounge": "会员休息室",
     "menuItems": {
       "home": "首页",
       "charter": "包机",
       "aircraft": "飞机",
       "emptyLeg": "空腿航班",
+      "supercar": "豪华车",
+      "membership": "会员专用",
       "pr": "媒体",
-      "contact": "联系我们"
+      "contact": "联系我们",
+      "yacht": "游艇"
     }
   },
   "jets": {
@@ -941,7 +950,7 @@
     }
   },
   "pr": {
-    "title": "媒体与新闻",
+    "title": "PR",
     "subtitle": "来自VONAER的最新消息、新闻稿和媒体资源",
     "mediaKit": {
       "title": "媒体资料包",
@@ -1157,6 +1166,17 @@
       "price": "价格",
       "koreaRoute": "韩国航线"
     }
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "联系VONAER或访问我们的位置",
+    "email": "电子邮件",
+    "kakao": "KakaoTalk频道",
+    "instagram": "Instagram",
+    "social": "社交媒体",
+    "phone": "电话",
+    "locations": "VONAER位置",
+    "contactInfo": "联系方式"
   },
   "common": {
     "imagePlaceholder": "图片占位符",

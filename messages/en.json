@@ -113,9 +113,9 @@
       "roundTrip": "Round Trip"
     },
     "placeholders": {
-      "departureCity": "Departure City",
-      "destinationCity": "Destination City",
-      "departureDate": "Departure date",
+      "departureCity": "Departure",
+      "destinationCity": "Arrival",
+      "departureDate": "Date",
       "returnDate": "Return date"
     },
     "passengers": "passenger",
@@ -176,10 +176,23 @@
         "bookingFee": "$495",
         "charterPrice": "Dynamic",
         "features": {
-          "0": { "name": "Airport Escort", "included": "false" },
-          "1": { "name": "Private Terminal", "included": "true" },
-          "2": { "name": "VONAER Event", "included": "false" },
-          "3": { "name": "Empty Leg Discount", "included": "false", "value": "" }
+          "0": {
+            "name": "Airport Escort",
+            "included": "false"
+          },
+          "1": {
+            "name": "Private Terminal",
+            "included": "true"
+          },
+          "2": {
+            "name": "VONAER Event",
+            "included": "false"
+          },
+          "3": {
+            "name": "Empty Leg Discount",
+            "included": "false",
+            "value": ""
+          }
         }
       },
       "von": {
@@ -188,11 +201,27 @@
         "bookingFee": "Complimentary",
         "charterPrice": "Dynamic",
         "features": {
-          "0": { "name": "Aircraft Alteration", "included": "false" },
-          "1": { "name": "Airport Escort", "included": "true" },
-          "2": { "name": "Private Terminal", "included": "true" },
-          "3": { "name": "VONAER Event", "included": "true" },
-          "4": { "name": "Empty Leg Discount", "included": "true", "value": "2%" }
+          "0": {
+            "name": "Aircraft Alteration",
+            "included": "false"
+          },
+          "1": {
+            "name": "Airport Escort",
+            "included": "true"
+          },
+          "2": {
+            "name": "Private Terminal",
+            "included": "true"
+          },
+          "3": {
+            "name": "VONAER Event",
+            "included": "true"
+          },
+          "4": {
+            "name": "Empty Leg Discount",
+            "included": "true",
+            "value": "2%"
+          }
         }
       },
       "vonPremiere": {
@@ -201,11 +230,27 @@
         "bookingFee": "Complimentary",
         "charterPrice": "Dynamic",
         "features": {
-          "0": { "name": "Aircraft Alteration", "included": "true" },
-          "1": { "name": "Airport Escort", "included": "true" },
-          "2": { "name": "Private Terminal", "included": "true" },
-          "3": { "name": "VONAER Event", "included": "true" },
-          "4": { "name": "Empty Leg Discount", "included": "true", "value": "3%" }
+          "0": {
+            "name": "Aircraft Alteration",
+            "included": "true"
+          },
+          "1": {
+            "name": "Airport Escort",
+            "included": "true"
+          },
+          "2": {
+            "name": "Private Terminal",
+            "included": "true"
+          },
+          "3": {
+            "name": "VONAER Event",
+            "included": "true"
+          },
+          "4": {
+            "name": "Empty Leg Discount",
+            "included": "true",
+            "value": "3%"
+          }
         }
       },
       "vonUltimate": {
@@ -214,11 +259,27 @@
         "bookingFee": "Complimentary",
         "charterPrice": "Dynamic",
         "features": {
-          "0": { "name": "Premium Aircraft", "included": "true" },
-          "1": { "name": "Airport Escort", "included": "true" },
-          "2": { "name": "Private Terminal", "included": "true" },
-          "3": { "name": "VONAER Event", "included": "true" },
-          "4": { "name": "Empty Leg Discount", "included": "true", "value": "5%" }
+          "0": {
+            "name": "Premium Aircraft",
+            "included": "true"
+          },
+          "1": {
+            "name": "Airport Escort",
+            "included": "true"
+          },
+          "2": {
+            "name": "Private Terminal",
+            "included": "true"
+          },
+          "3": {
+            "name": "VONAER Event",
+            "included": "true"
+          },
+          "4": {
+            "name": "Empty Leg Discount",
+            "included": "true",
+            "value": "5%"
+          }
         }
       }
     }
@@ -310,7 +371,7 @@
     },
     "services": {
       "0": "VONAER Jet",
-      "1": "VON Private", 
+      "1": "VON Private",
       "2": "VON Routine",
       "3": "VON Tour"
     },
@@ -415,9 +476,11 @@
     "name": "Name",
     "namePlaceholder": "Enter your name",
     "phone": "Phone",
-    "phonePlaceholder": "010-1234-5678",
-    "email": "Email Address (Optional)",
+    "phonePlaceholder": "",
+    "email": "Email Address",
     "emailPlaceholder": "your.email@example.com",
+    "inquiryDetail": "Inquiry Detail",
+    "inquiryDetailPlaceholder": "Please provide any additional details about your inquiry...",
     "consent": "Privacy & Consent",
     "contactConsentText": "I agree to be contacted by VONAER regarding flight bookings.",
     "privacyConsentText": "By using the service, I have read and understood the",
@@ -439,6 +502,8 @@
   },
   "flightSearchDialog": {
     "title": "Flight Search Request",
+    "carTitle": "Super Car Inquiry",
+    "yachtTitle": "Super Yacht Inquiry",
     "subtitle": "Please provide your details and flight requirements. We will contact you within 24 hours.",
     "flightInfo": "Flight Information",
     "tripType": "Trip Type",
@@ -453,9 +518,11 @@
     "name": "Name",
     "namePlaceholder": "Enter your name",
     "phone": "Phone",
-    "phonePlaceholder": "010-1234-5678",
-    "email": "Email Address (Optional)",
+    "phonePlaceholder": "",
+    "email": "Email Address",
     "emailPlaceholder": "your.email@example.com",
+    "inquiryDetail": "Inquiry Detail",
+    "inquiryDetailPlaceholder": "Please provide any additional details about your inquiry...",
     "consent": "Privacy & Consent",
     "contactConsentText": "I agree to be contacted by VONAER regarding flight bookings.",
     "privacyConsentText": "By using the service, I have read and understood the",
@@ -467,6 +534,7 @@
     "validation": {
       "nameRequired": "Please enter your name",
       "phoneRequired": "Please enter your phone number",
+      "emailRequired": "Please enter your email address",
       "fromRequired": "Please select departure city",
       "toRequired": "Please select destination city",
       "dateRequired": "Please select departure date",
@@ -510,7 +578,7 @@
     },
     "pendingCalls": "Pending Calls",
     "pendingCallsDescription": "New booking requests requiring contact",
-    "completedCalls": "Completed Calls", 
+    "completedCalls": "Completed Calls",
     "completedCallsDescription": "Customers who have been contacted",
     "customer": "Customer",
     "flight": "Flight",
@@ -552,14 +620,17 @@
   "sidebar": {
     "tagline": "URBAN AIR MOBILITY",
     "description": "Korea's First Air Mobility Platform",
+    "membershipLounge": "Membership Lounge",
     "menuItems": {
       "home": "HOME",
       "charter": "CHARTER",
       "aircraft": "Aircraft",
       "emptyLeg": "Empty Leg",
+      "supercar": "Super Car",
       "membership": "Membership Only",
       "pr": "PR",
-      "contact": "Contact Us"
+      "contact": "Contact Us",
+      "yacht": "Yacht"
     }
   },
   "jets": {
@@ -578,7 +649,7 @@
         }
       },
       "midJet": {
-        "title": "Mid Jet",
+        "title": "Midsize Jet",
         "subtitle": "Balanced Performance Jets",
         "description": "Ideal balance of comfort, range, and performance for medium-distance travel with enhanced cabin space.",
         "features": {
@@ -600,7 +671,7 @@
         }
       },
       "ultraLongHaul": {
-        "title": "Ultra Long Haul",
+        "title": "Ultra Long Range Jet",
         "subtitle": "Intercontinental Jets",
         "description": "Ultimate in luxury and range for intercontinental flights with hotel-like amenities.",
         "features": {
@@ -611,7 +682,7 @@
         }
       },
       "vipAirline": {
-        "title": "VIP Airline",
+        "title": "Executive Airliner",
         "subtitle": "Premium Airline Services",
         "description": "Commercial airline VIP services with first-class amenities and priority boarding.",
         "features": {
@@ -810,7 +881,7 @@
         }
       },
       "midJet": {
-        "title": "Mid Jet",
+        "title": "Midsize Jet",
         "subtitle": "전용기 - 미드 제트",
         "description": "Ideal balance of comfort, range, and performance for medium-distance travel with enhanced cabin space.",
         "features": {
@@ -832,7 +903,7 @@
         }
       },
       "ultraLongHaul": {
-        "title": "Ultra Long Haul",
+        "title": "Ultra Long Range Jet",
         "subtitle": "전용기 - 울트라 롱홀",
         "description": "Ultimate in luxury and range for intercontinental flights with hotel-like amenities.",
         "features": {
@@ -843,7 +914,7 @@
         }
       },
       "vipAirline": {
-        "title": "VIP Airline",
+        "title": "Executive Airliner",
         "subtitle": "전용기 - VIP 항공",
         "description": "Commercial airline VIP services with first-class amenities and priority boarding.",
         "features": {
@@ -881,7 +952,7 @@
     }
   },
   "pr": {
-    "title": "Press & Media",
+    "title": "PR",
     "subtitle": "Latest news, press releases, and media resources from VONAER",
     "mediaKit": {
       "title": "Media Kit",
@@ -1097,6 +1168,17 @@
       "price": "Price",
       "koreaRoute": "Korea Route"
     }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with VONAER or visit our locations",
+    "email": "Email",
+    "kakao": "KakaoTalk Channel",
+    "instagram": "Instagram",
+    "social": "Social Media",
+    "phone": "Phone",
+    "locations": "VONAER Locations",
+    "contactInfo": "Contact Information"
   },
   "common": {
     "imagePlaceholder": "Image Placeholder",
