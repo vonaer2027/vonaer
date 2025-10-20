@@ -1181,6 +1181,42 @@
     "locations": "VONAER 위치",
     "contactInfo": "연락처"
   },
+  "immigration": {
+    "title": "프라이빗 출입국 서비스",
+    "subtitle": "VONAER Jet은 일반 항공 대비 최대 90% 빠른 출입국 절차를 제공합니다.",
+    "regular": {
+      "title": "일반 항공 이용 시",
+      "duration": "약 2-3시간 소요",
+      "complexity": "복잡한 8단계 절차",
+      "steps": {
+        "arrival": "공항 도착",
+        "checkin": "항공사 탑승수속 및 수하물 위탁 (좌석배정)",
+        "customs": "세관신고 병무/검역신고",
+        "departurehall": "출국장으로 이동",
+        "security": "보안검색 (X-RAY 휴대품검사)",
+        "immigration": "출국심사 (탑승권, 여권확인)",
+        "gate": "탑승구로 이동 (면세품 구입 및 인수)",
+        "boarding": "항공기 탑승 (항공권 준비)"
+      }
+    },
+    "vonaer": {
+      "title": "VONAER Jet 이용 시",
+      "duration": "약 15-20분 소요",
+      "faster": "더 빠름",
+      "simplicity": "간편한 3단계 절차",
+      "simplified": "대부분의 절차가 생략되거나 간소화됩니다",
+      "steps": {
+        "arrival": "공항 도착",
+        "checkin": "간편한 탑승 수속",
+        "boarding": "바로 항공기 탑승"
+      }
+    },
+    "benefits": {
+      "faster": "더 빠른 절차",
+      "steps": "간단한 단계",
+      "service": "프리미엄 서비스"
+    }
+  },
   "common": {
     "imagePlaceholder": "이미지 플레이스홀더",
     "learnMore": "더 알아보기",

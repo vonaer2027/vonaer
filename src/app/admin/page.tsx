@@ -14,8 +14,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Plus } from 'lucide-react'
+import { Plus, LogOut } from 'lucide-react'
 import { Plane, Users, Settings, RefreshCw, TrendingUp, Phone, MessageSquare } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { Flight, MarginSetting, flightService, marginService } from '@/lib/supabase'
 import { motion } from 'framer-motion'
 import { Toaster } from '@/components/ui/sonner'
@@ -23,12 +24,31 @@ import { toast } from 'sonner'
 
 export default function AdminDashboard() {
   const t = useTranslations()
+  const router = useRouter()
   const [flights, setFlights] = useState<Flight[]>([])
   const [marginSetting, setMarginSetting] = useState<MarginSetting | null>(null)
   const [loading, setLoading] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editingFlight, setEditingFlight] = useState<Flight | null>(null)
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/auth/logout', {
+        method: 'POST',
+      })
+
+      if (response.ok) {
+        router.push('/admin/login')
+        router.refresh()
+      } else {
+        toast.error('Logout failed')
+      }
+    } catch (error) {
+      console.error('Logout error:', error)
+      toast.error('Logout failed')
+    }
+  }
 
   const loadData = async () => {
     try {
@@ -153,7 +173,7 @@ export default function AdminDashboard() {
       <div className="min-h-screen bg-background pt-20">
         <div className="container mx-auto px-4 lg:px-6 py-4 lg:py-8">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
@@ -162,6 +182,14 @@ export default function AdminDashboard() {
             <div>
               <h1 className="text-2xl lg:text-3xl font-bold text-foreground">{t('admin.title')}</h1>
             </div>
+            <Button
+              onClick={handleLogout}
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <LogOut className="h-4 w-4" />
+              Logout
+            </Button>
           </div>
         </motion.div>
 

@@ -1180,6 +1180,42 @@
     "locations": "VONAER Locations",
     "contactInfo": "Contact Information"
   },
+  "immigration": {
+    "title": "Private Immigration Service",
+    "subtitle": "VONAER Jet provides up to 90% faster immigration procedures compared to regular flights.",
+    "regular": {
+      "title": "Regular Flight Process",
+      "duration": "Takes 2-3 hours",
+      "complexity": "Complex 8-step procedure",
+      "steps": {
+        "arrival": "Airport Arrival",
+        "checkin": "Check-in & Baggage Drop (Seat Assignment)",
+        "customs": "Customs, Military & Quarantine Declaration",
+        "departurehall": "Move to Departure Hall",
+        "security": "Security Check (X-Ray Baggage Screening)",
+        "immigration": "Immigration Check (Boarding Pass & Passport)",
+        "gate": "Gate Area (Duty-Free Shopping)",
+        "boarding": "Aircraft Boarding (Boarding Pass Ready)"
+      }
+    },
+    "vonaer": {
+      "title": "VONAER Jet Process",
+      "duration": "Takes 15-20 minutes",
+      "faster": "Faster",
+      "simplicity": "Simple 3-step procedure",
+      "simplified": "Most procedures are simplified or eliminated",
+      "steps": {
+        "arrival": "Airport Arrival",
+        "checkin": "Quick Check-in",
+        "boarding": "Direct Aircraft Boarding"
+      }
+    },
+    "benefits": {
+      "faster": "Faster Process",
+      "steps": "Simple Steps",
+      "service": "Premium Service"
+    }
+  },
   "common": {
     "imagePlaceholder": "Image Placeholder",
     "learnMore": "Learn More",

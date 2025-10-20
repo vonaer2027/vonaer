@@ -1180,6 +1180,42 @@
     "locations": "VONAER所在地",
     "contactInfo": "連絡先"
   },
+  "immigration": {
+    "title": "プライベート出入国サービス",
+    "subtitle": "VONAER Jetは一般航空と比較して最大90%速い出入国手続きを提供します。",
+    "regular": {
+      "title": "一般航空利用時",
+      "duration": "約2-3時間",
+      "complexity": "複雑な8段階手続き",
+      "steps": {
+        "arrival": "空港到着",
+        "checkin": "チェックイン・荷物預け（座席指定）",
+        "customs": "税関・検疫申告",
+        "departurehall": "出発ロビーへ移動",
+        "security": "保安検査（X線手荷物検査）",
+        "immigration": "出国審査（搭乗券・パスポート確認）",
+        "gate": "搭乗ゲートへ移動（免税品購入）",
+        "boarding": "航空機搭乗（搭乗券準備）"
+      }
+    },
+    "vonaer": {
+      "title": "VONAER Jet利用時",
+      "duration": "約15-20分",
+      "faster": "より速く",
+      "simplicity": "簡単な3段階手続き",
+      "simplified": "ほとんどの手続きが省略または簡素化されます",
+      "steps": {
+        "arrival": "空港到着",
+        "checkin": "簡単なチェックイン",
+        "boarding": "直接航空機搭乗"
+      }
+    },
+    "benefits": {
+      "faster": "より速い手続き",
+      "steps": "シンプルなステップ",
+      "service": "プレミアムサービス"
+    }
+  },
   "common": {
     "imagePlaceholder": "画像プレースホルダー",
     "learnMore": "詳細を見る",

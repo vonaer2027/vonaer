@@ -1178,6 +1178,42 @@
     "locations": "VONAER位置",
     "contactInfo": "联系方式"
   },
+  "immigration": {
+    "title": "私人出入境服务",
+    "subtitle": "VONAER Jet提供比普通航班快90%的出入境程序。",
+    "regular": {
+      "title": "普通航班流程",
+      "duration": "需要2-3小时",
+      "complexity": "复杂的8步程序",
+      "steps": {
+        "arrival": "到达机场",
+        "checkin": "办理登机手续和托运行李（分配座位）",
+        "customs": "海关、边检、检疫申报",
+        "departurehall": "前往出发大厅",
+        "security": "安全检查（X光行李检查）",
+        "immigration": "出境检查（登机牌和护照）",
+        "gate": "前往登机口（免税购物）",
+        "boarding": "登机（准备登机牌）"
+      }
+    },
+    "vonaer": {
+      "title": "VONAER Jet流程",
+      "duration": "需要15-20分钟",
+      "faster": "更快",
+      "simplicity": "简单的3步程序",
+      "simplified": "大多数程序被简化或省略",
+      "steps": {
+        "arrival": "到达机场",
+        "checkin": "快速办理登机",
+        "boarding": "直接登机"
+      }
+    },
+    "benefits": {
+      "faster": "更快的流程",
+      "steps": "简单步骤",
+      "service": "高级服务"
+    }
+  },
   "common": {
     "imagePlaceholder": "图片占位符",
     "learnMore": "了解更多",
