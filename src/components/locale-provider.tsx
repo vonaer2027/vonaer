@@ -39,10 +39,13 @@ export function LocaleProvider({ children }: LocaleProviderProps) {
   const [locale, setLocale] = useState<Locale>('kr')
 
   useEffect(() => {
-    // Load saved locale from localStorage
+    // Load saved locale from localStorage, default to Korean
     const savedLocale = localStorage.getItem('locale') as Locale
     if (savedLocale && ['en', 'kr', 'jp', 'cn'].includes(savedLocale)) {
       setLocale(savedLocale)
+    } else {
+      // Set default Korean locale if no saved preference
+      localStorage.setItem('locale', 'kr')
     }
   }, [])
 
