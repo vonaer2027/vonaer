@@ -330,10 +330,10 @@
       "bookFlight": "Book a Flight",
       "allJets": "All Jets",
       "lightJet": "Light Jet",
-      "midJet": "Mid Jet",
+      "midJet": "Midsize Jet",
       "heavyJet": "Heavy Jet",
-      "ultraLongHaul": "Ultra Long Haul",
-      "vipAirline": "VIP Airline",
+      "ultraLongHaul": "Ultra Long Range Jet",
+      "vipAirline": "Executive Airliner",
       "helicopterServices": "Helicopter Services",
       "superCar": "Super Car",
       "superYacht": "Super Yacht",
@@ -398,7 +398,7 @@
         ]
       },
       "midJet": {
-        "title": "Mid Jet",
+        "title": "Midsize Jet",
         "subtitle": "Balanced Performance Jets",
         "description": "Ideal balance of comfort, range, and performance for medium-distance travel with enhanced cabin space.",
         "specs": {
@@ -432,7 +432,7 @@
         ]
       },
       "ultraLongHaul": {
-        "title": "Ultra Long Haul",
+        "title": "Ultra Long Range Jet",
         "subtitle": "Intercontinental Jets",
         "description": "Ultimate in luxury and range for intercontinental flights with hotel-like amenities.",
         "specs": {
@@ -449,7 +449,7 @@
         ]
       },
       "vipAirline": {
-        "title": "VIP Airline",
+        "title": "Executive Airliner",
         "subtitle": "Premium Airline Services",
         "description": "Commercial airline VIP services with first-class amenities and priority boarding.",
         "specs": {

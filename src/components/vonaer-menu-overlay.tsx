@@ -1,10 +1,13 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useTranslations } from 'next-intl'
-import { useLocale } from './locale-provider'
 import { Button } from '@/components/ui/button'
+import { useTranslations } from 'next-intl'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { LanguageDropdown } from '@/components/language-dropdown'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 
 interface VonaerMenuOverlayProps {
   isOpen: boolean
@@ -12,56 +15,25 @@ interface VonaerMenuOverlayProps {
 }
 
 export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
-  const t = useTranslations('sidebar')
-  const { locale } = useLocale()
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
+  const [charterExpanded, setCharterExpanded] = useState(false)
 
-  // Create simplified menu items using new structure
+  // Charter sub-items (accordion items)
+  const charterSubItems = useMemo(() => [
+    { id: 'jet-helicopter', label: 'Jet & Helicopter', href: '/aircraft' },
+    { id: 'supercar', label: 'Super Car', href: '/supercar' },
+    { id: 'super-yacht', label: 'Super Yacht', href: '/yacht' }
+  ], [])
+
+  // Main menu items (Charter removed, replaced with accordion)
   const menuItems = useMemo(() => [
-    { id: 'home', label: t('menuItems.home'), href: '/' },
-    { id: 'charter', label: t('menuItems.charter'), href: '/jets' },
-    { id: 'aircraft', label: t('menuItems.aircraft'), href: '/aircraft' },
-    { id: 'empty-leg', label: t('menuItems.emptyLeg'), href: '/empty' },
-    { id: 'membership', label: t('menuItems.membership'), href: '/membership' },
-    { id: 'pr', label: t('menuItems.pr'), href: '/pr' },
-    { id: 'contact', label: t('menuItems.contact'), anchor: '#contact' }
-  ], [t, locale])
+    { id: 'home', label: 'Home', href: '/' },
+    { id: 'empty-leg', label: 'Empty Leg', href: '/empty' },
+    { id: 'pr', label: 'PR', href: '/pr' },
+    { id: 'contact', label: 'Contact', href: '/contact' }
+  ], [])
 
-  const handleSmoothScroll = (anchor: string) => {
-    // Check if we're on the main page (has #home element)
-    const homeElement = document.querySelector('#home')
-    if (homeElement) {
-      // On main page, scroll to the section
-      const element = document.querySelector(anchor)
-      if (element) {
-        // Close menu first to avoid interference
-        onClose()
-        
-        // Wait for menu animation to complete, then scroll
-        setTimeout(() => {
-          // Use scrollIntoView for better browser compatibility
-          element.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start',
-            inline: 'nearest'
-          })
-        }, 300) // Wait for menu close animation (300ms)
-      }
-    } else {
-      // On other pages, navigate to main page with anchor
-      window.location.href = `/${anchor}`
-    }
-  }
-
-  const toggleCategory = (category: string) => {
-    const newExpanded = new Set(expandedCategories)
-    if (newExpanded.has(category)) {
-      newExpanded.delete(category)
-    } else {
-      newExpanded.add(category)
-    }
-    setExpandedCategories(newExpanded)
-  }
+  // Membership item shown separately at bottom
+  const membershipItem = { id: 'membership', label: 'Membership', href: '/membership' }
 
   return (
     <>
@@ -107,52 +79,127 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
 
           {/* Menu Content */}
           <div className="flex-1 overflow-y-auto py-4">
-            {/* Menu Items */}
-            {menuItems.map((item, index) => (
+            {/* Home */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="border-b border-primary/20"
+            >
+              <Button
+                variant="ghost"
+                className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
+                asChild
+              >
+                <Link href="/" onClick={onClose}>
+                  <span>Home</span>
+                </Link>
+              </Button>
+            </motion.div>
+
+            {/* Charter Accordion */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.15 }}
+              className="border-b border-primary/20"
+            >
+              <Button
+                variant="ghost"
+                className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left relative"
+                onClick={() => setCharterExpanded(!charterExpanded)}
+              >
+                <span>Charter</span>
+                <span className="absolute right-6">
+                  {charterExpanded ? (
+                    <ChevronUp className="h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4" />
+                  )}
+                </span>
+              </Button>
+
+              {/* Charter Sub-items */}
+              <AnimatePresence>
+                {charterExpanded && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden bg-primary-foreground/5"
+                  >
+                    {charterSubItems.map((subItem, subIndex) => (
+                      <Button
+                        key={subItem.id}
+                        variant="ghost"
+                        className="w-full justify-start py-3 pl-12 pr-6 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground font-normal tracking-wide text-left text-sm"
+                        asChild
+                      >
+                        <Link href={subItem.href} onClick={onClose}>
+                          <span>{subItem.label}</span>
+                        </Link>
+                      </Button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Remaining Menu Items */}
+            {menuItems.slice(1).map((item, index) => (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1 + index * 0.05 }}
+                transition={{ delay: 0.2 + index * 0.05 }}
                 className="border-b border-primary/20"
               >
-                {item.href ? (
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
-                    asChild
-                  >
-                    <a href={item.href} onClick={onClose}>
-                      <span>{item.label}</span>
-                    </a>
-                  </Button>
-                ) : (
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
-                    onClick={() => {
-                      if (item.anchor) {
-                        handleSmoothScroll(item.anchor)
-                      }
-                      onClose()
-                    }}
-                  >
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
+                  asChild
+                >
+                  <Link href={item.href} onClick={onClose}>
                     <span>{item.label}</span>
-                  </Button>
-                )}
+                  </Link>
+                </Button>
               </motion.div>
             ))}
-          </div>
 
-          {/* Bottom Section */}
-          <div className="p-6 border-t border-primary/20">
-            <div className="text-primary-foreground/50 text-xs space-y-1">
-              <p>+82 1600 9064</p>
-              <p>business@VONAER.com</p>
-              <p className="text-primary-foreground/30 mt-2">
-                © 2024 Moviation Inc.
-              </p>
-            </div>
+            {/* Membership Only Section - Distinguished from other menu items */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.35 }}
+              className="border-b border-primary/20 mt-4"
+            >
+              <Button
+                variant="ghost"
+                className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary/10 hover:text-primary-foreground font-medium tracking-wider text-left border-t-2 border-primary/40 bg-primary/5"
+                asChild
+              >
+                <Link href={membershipItem.href} onClick={onClose}>
+                  <span>{membershipItem.label}</span>
+                </Link>
+              </Button>
+            </motion.div>
+
+            {/* Settings Section - Language & Theme Toggle (Mobile Only) */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+              className="mt-6 px-6 md:hidden"
+            >
+              <div className="border-t border-primary/20 pt-4">
+                <span className="text-primary-foreground text-xs font-medium tracking-wider mb-3 block">SETTINGS</span>
+                <div className="flex items-center gap-3">
+                  <LanguageDropdown />
+                  <ThemeToggle />
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </motion.div>

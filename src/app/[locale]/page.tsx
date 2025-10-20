@@ -6,7 +6,6 @@ import { VonaerFooter } from '@/components/vonaer-footer'
 import { VonaerMenuOverlay } from '@/components/vonaer-menu-overlay'
 import { DesignProvider } from '@/contexts/design-context'
 import { DesignRouter } from '@/components/design-router'
-import { DesignSwitcher } from '@/components/design-switcher'
 
 export default function VonaerLanding() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -26,10 +25,7 @@ export default function VonaerLanding() {
           onClose={() => setMenuOpen(false)}
         />
 
-        {/* Design Switcher - Floating Button */}
-        <DesignSwitcher />
-
-        {/* Main Content - Renders based on selected design */}
+        {/* Main Content - Minimal-2 Design */}
         <main className="relative">
           <DesignRouter />
           <VonaerFooter />

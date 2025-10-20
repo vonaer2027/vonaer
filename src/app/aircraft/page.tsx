@@ -7,12 +7,15 @@ import { Badge } from '@/components/ui/badge'
 import { VonaerHeader } from '@/components/vonaer-header'
 import { VonaerMenuOverlay } from '@/components/vonaer-menu-overlay'
 import { VonaerFooter } from '@/components/vonaer-footer'
+import { InquiryDialog } from '@/components/inquiry-dialog'
+import { Toaster } from 'sonner'
 import { useState } from 'react'
-import { 
-  Plane, 
-  Users, 
-  Gauge, 
-  MapPin, 
+import { useTranslations } from 'next-intl'
+import {
+  Plane,
+  Users,
+  Gauge,
+  MapPin,
   Clock,
   ArrowRight,
   Zap
@@ -25,6 +28,7 @@ const aircraftCategories = [
     subtitle: '전용기 - 라이트 제트',
     description: 'Perfect for short to medium-range flights with excellent fuel efficiency and comfortable seating for small groups.',
     icon: Plane,
+    mostPopular: false,
     specs: {
       passengers: '4-8',
       range: '1,500-2,500 nm',
@@ -41,10 +45,11 @@ const aircraftCategories = [
   },
   {
     id: 'mid-jet',
-    title: 'Mid Jet',
+    title: 'Midsize Jet',
     subtitle: '전용기 - 미드 제트',
     description: 'Ideal balance of comfort, range, and performance for medium-distance travel with enhanced cabin space.',
     icon: Plane,
+    mostPopular: false,
     specs: {
       passengers: '6-10',
       range: '2,000-3,500 nm',
@@ -65,6 +70,7 @@ const aircraftCategories = [
     subtitle: '전용기 - 헤비 제트',
     description: 'Maximum luxury and range for long-distance flights with premium amenities and spacious cabins.',
     icon: Plane,
+    mostPopular: true,
     specs: {
       passengers: '8-16',
       range: '3,500-7,000 nm',
@@ -81,10 +87,11 @@ const aircraftCategories = [
   },
   {
     id: 'ultra-long-haul',
-    title: 'Ultra Long Haul',
+    title: 'Ultra Long Range Jet',
     subtitle: '전용기 - 울트라 롱홀',
     description: 'Ultimate in luxury and range for intercontinental flights with hotel-like amenities.',
     icon: Plane,
+    mostPopular: false,
     specs: {
       passengers: '10-19',
       range: '6,000+ nm',
@@ -101,10 +108,11 @@ const aircraftCategories = [
   },
   {
     id: 'vip-airline',
-    title: 'VIP Airline',
+    title: 'Executive Airliner',
     subtitle: '전용기 - VIP 항공',
     description: 'Commercial airline VIP services with first-class amenities and priority boarding.',
     icon: Plane,
+    mostPopular: false,
     specs: {
       passengers: '1-4',
       range: 'Global',
@@ -125,6 +133,7 @@ const aircraftCategories = [
     subtitle: '헬기',
     description: 'Versatile rotorcraft for short-distance travel, scenic tours, and access to restricted areas.',
     icon: Zap,
+    mostPopular: false,
     specs: {
       passengers: '2-8',
       range: '200-400 nm',
@@ -143,6 +152,19 @@ const aircraftCategories = [
 
 export default function AircraftPage() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [inquiryDialogOpen, setInquiryDialogOpen] = useState(false)
+  const [selectedAircraft, setSelectedAircraft] = useState<string>('')
+  const t = useTranslations('aircraft')
+
+  const handleRequestQuote = (aircraftTitle: string) => {
+    setSelectedAircraft(aircraftTitle)
+    setInquiryDialogOpen(true)
+  }
+
+  const handleInquirySuccess = () => {
+    setInquiryDialogOpen(false)
+    setSelectedAircraft('')
+  }
 
   return (
     <div className="bg-background text-foreground min-h-screen">
@@ -169,11 +191,8 @@ export default function AircraftPage() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              Aircraft Fleet
+              Jet & Helicopter
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Choose from our comprehensive fleet of aircraft to meet your specific travel needs
-            </p>
           </motion.div>
 
           {/* Aircraft Grid */}
@@ -189,6 +208,11 @@ export default function AircraftPage() {
                 <Card className="border shadow-lg hover:shadow-xl transition-all duration-300 h-full">
                   {/* Image Placeholder */}
                   <div className="relative h-48 bg-muted/30 border-b flex items-center justify-center">
+                    {aircraft.mostPopular && (
+                      <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground font-semibold">
+                        Most Popular
+                      </Badge>
+                    )}
                     <div className="text-center text-muted-foreground">
                       <aircraft.icon className="h-12 w-12 mx-auto mb-2 opacity-50" />
                       <p className="text-sm">Aircraft Image</p>
@@ -196,14 +220,9 @@ export default function AircraftPage() {
                   </div>
 
                   <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <CardTitle className="text-xl font-bold text-foreground">
-                        {aircraft.title}
-                      </CardTitle>
-                      <Badge variant="outline" className="text-xs">
-                        {aircraft.subtitle}
-                      </Badge>
-                    </div>
+                    <CardTitle className="text-xl font-bold text-foreground">
+                      {aircraft.title}
+                    </CardTitle>
                   </CardHeader>
 
                   <CardContent className="space-y-6 flex-1 flex flex-col">
@@ -260,7 +279,10 @@ export default function AircraftPage() {
                     </div>
 
                     {/* CTA Button */}
-                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 group mt-auto">
+                    <Button
+                      onClick={() => handleRequestQuote(aircraft.title)}
+                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 group mt-auto"
+                    >
                       Request Quote
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Button>
@@ -269,31 +291,22 @@ export default function AircraftPage() {
               </motion.div>
             ))}
           </div>
-
-          {/* Additional Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-center"
-          >
-            <Card className="border shadow-lg p-12">
-              <h3 className="text-2xl font-bold text-foreground mb-6">
-                Need Help Choosing?
-              </h3>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Our aviation experts are here to help you select the perfect aircraft for your specific needs and requirements.
-              </p>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold">
-                Contact Our Experts
-              </Button>
-            </Card>
-          </motion.div>
         </div>
       </main>
 
       {/* Footer */}
       <VonaerFooter />
+
+      {/* Inquiry Dialog */}
+      <InquiryDialog
+        open={inquiryDialogOpen}
+        onOpenChange={setInquiryDialogOpen}
+        onSuccess={handleInquirySuccess}
+        inquiryType="aircraft"
+        itemName={selectedAircraft}
+      />
+
+      <Toaster />
     </div>
   )
 }

@@ -31,7 +31,7 @@ const serviceContent = {
     icon: Plane
   },
   'mid-jet': {
-    title: 'Mid Jet',
+    title: 'Midsize Jet',
     subtitle: 'Balanced performance for continental travel',
     description: 'Our mid-size jets offer the perfect balance of comfort, range, and performance for longer journeys.',
     features: ['6-9 passengers', 'Range: 3,000-4,500 km', 'Speed: 850 km/h', 'Enhanced comfort'],
@@ -47,7 +47,7 @@ const serviceContent = {
     icon: Plane
   },
   'ultra-long-haul': {
-    title: 'Ultra Long Haul',
+    title: 'Ultra Long Range Jet',
     subtitle: 'Non-stop global connectivity',
     description: 'Connect any two points on Earth with our ultra-long-haul aircraft, featuring bedroom suites and office spaces.',
     features: ['12-19 passengers', 'Range: 12,000+ km', 'Speed: 950 km/h', 'Bedroom suites'],
@@ -55,9 +55,9 @@ const serviceContent = {
     icon: Plane
   },
   'vip-airline': {
-    title: 'VIP Airline',
+    title: 'Executive Airliner',
     subtitle: 'Commercial aviation redefined',
-    description: 'Experience commercial aviation like never before with our VIP airline services and dedicated terminals.',
+    description: 'Experience commercial aviation like never before with our Executive Airliner services and dedicated terminals.',
     features: ['Private terminals', 'Expedited boarding', 'Luxury amenities', 'Global network'],
     image: '/api/placeholder/800/600',
     icon: Crown

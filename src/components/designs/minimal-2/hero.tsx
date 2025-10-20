@@ -37,16 +37,31 @@ export function Minimal2Hero() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="lg:col-span-5"
           >
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-extralight text-white mb-8 leading-none">
-              {t('hero.title')}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extralight text-white mb-8 leading-none">
+              <img src="/vonaer.svg" alt="VONAER" className="h-12 md:h-14 lg:h-16 w-auto" />
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-2xl font-light leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-200 mb-12 max-w-2xl font-light leading-relaxed">
               {t('hero.subtitle')}
             </p>
 
             <div>
-              <button className="group px-10 py-5 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2">
+              <button
+                onClick={() => {
+                  const element = document.querySelector('#book-flight');
+                  if (element) {
+                    const headerOffset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
+                className="group text-white text-xl underline underline-offset-8 hover:text-gray-300 transition-colors duration-300 flex items-center gap-2 bg-transparent border-none p-0 cursor-pointer"
+              >
                 {t('hero.bookFlight')}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>

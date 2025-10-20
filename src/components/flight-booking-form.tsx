@@ -24,10 +24,20 @@ export function FlightBookingForm() {
   const [returnDate, setReturnDate] = useState<Date | undefined>()
   const [dialogOpen, setDialogOpen] = useState(false)
 
+  const handleTripTypeChange = (value: 'one-way' | 'round-trip') => {
+    setTripType(value)
+    // Clear dates when switching trip type
+    setDepartDate(undefined)
+    setReturnDate(undefined)
+  }
+
   const handleSearch = () => {
     // Open the flight search booking dialog
     setDialogOpen(true)
   }
+
+  // Check if all required fields are filled
+  const isFormValid = fromLocation.trim() !== '' && toLocation.trim() !== '' && departDate !== undefined
 
   const handleDialogSuccess = () => {
     setDialogOpen(false)
@@ -51,31 +61,40 @@ export function FlightBookingForm() {
           className="max-w-6xl mx-auto"
         >
           {/* Header */}
-          <div className="mb-12">
+          <div className="mb-12 text-center">
             <h2 className="text-4xl font-bold text-foreground mb-4">{t('booking.title')}</h2>
             <p className="text-muted-foreground text-lg">
               {t('booking.subtitle')}
             </p>
           </div>
 
-          {/* Trip Type Selector */}
-          <div className="mb-8">
-            <Tabs value={tripType} onValueChange={(value) => setTripType(value as 'one-way' | 'round-trip')} className="w-full">
-              <TabsList className="grid w-full max-w-sm grid-cols-2 h-12">
-                <TabsTrigger value="one-way" className="text-sm font-medium">
-                  {t('booking.tripType.oneWay')}
-                </TabsTrigger>
-                <TabsTrigger value="round-trip" className="text-sm font-medium">
-                  {t('booking.tripType.roundTrip')}
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
-          </div>
-
           {/* Booking Form */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 items-end">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4">
+            {/* Trip Type Selector - aligned with fields */}
+            <div className="sm:col-span-1 lg:col-span-2">
+              <Tabs value={tripType} onValueChange={(value) => handleTripTypeChange(value as 'one-way' | 'round-trip')} className="w-full">
+                <TabsList className="grid w-full grid-cols-2 h-14">
+                  <TabsTrigger
+                    value="one-way"
+                    className="text-sm font-medium data-[state=active]:shadow-[0_0_20px_rgba(34,64,66,0.6),0_0_40px_rgba(34,64,66,0.3)] transition-all duration-300"
+                  >
+                    {t('booking.tripType.oneWay')}
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="round-trip"
+                    className="text-sm font-medium data-[state=active]:shadow-[0_0_20px_rgba(34,64,66,0.6),0_0_40px_rgba(34,64,66,0.3)] transition-all duration-300"
+                  >
+                    {t('booking.tripType.roundTrip')}
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+
+            {/* Spacer for alignment */}
+            <div className="hidden lg:block lg:col-span-10"></div>
+
             {/* From */}
-            <div className="lg:col-span-2">
+            <div className="sm:col-span-1 lg:col-span-2">
               <CitySearchInput
                 id="from"
                 placeholder={t('booking.placeholders.departureCity')}
@@ -87,7 +106,7 @@ export function FlightBookingForm() {
             </div>
 
             {/* To */}
-            <div className="lg:col-span-2">
+            <div className="sm:col-span-1 lg:col-span-2">
               <CitySearchInput
                 id="to"
                 placeholder={t('booking.placeholders.destinationCity')}
@@ -98,49 +117,39 @@ export function FlightBookingForm() {
               />
             </div>
 
-            {/* Depart Date */}
-            <div className="lg:col-span-2">
+            {/* Date Picker - fixed width */}
+            <div className="sm:col-span-2 lg:col-span-4">
               <FlightDatePicker
                 date={departDate}
                 onDateSelect={setDepartDate}
+                returnDate={returnDate}
+                onReturnDateSelect={setReturnDate}
                 placeholder={t('booking.placeholders.departureDate')}
-                className="h-14"
+                isRoundTrip={tripType === 'round-trip'}
+                className="h-14 w-full"
               />
             </div>
 
-            {/* Return Date - only show for round trip */}
-            {tripType === 'round-trip' && (
-              <div className="lg:col-span-2">
-                <FlightDatePicker
-                  date={returnDate}
-                  onDateSelect={setReturnDate}
-                  placeholder={t('booking.placeholders.returnDate')}
-                  minDate={departDate}
-                  className="h-14"
-                />
-              </div>
-            )}
-
             {/* Passengers */}
-            <div className={`${tripType === 'round-trip' ? 'lg:col-span-2' : 'lg:col-span-4'}`}>
+            <div className="sm:col-span-1 lg:col-span-2">
               <div className="flex items-center border rounded-md h-14 bg-background">
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
-                  className="h-full px-4 text-foreground hover:bg-muted/50"
+                  className="h-full px-3 sm:px-4 text-foreground hover:bg-muted/50"
                   onClick={() => setPassengers(Math.max(1, passengers - 1))}
                 >
                   <Minus className="h-4 w-4 text-foreground" />
                 </Button>
-                <span className="flex-1 text-center font-medium text-foreground text-base">
+                <span className="flex-1 text-center font-medium text-foreground text-sm sm:text-base">
                   {passengers} {passengers === 1 ? t('booking.passengers') : t('booking.passengersPlural')}
                 </span>
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
-                  className="h-full px-4 text-foreground hover:bg-muted/50"
+                  className="h-full px-3 sm:px-4 text-foreground hover:bg-muted/50"
                   onClick={() => setPassengers(passengers + 1)}
                 >
                   <Plus className="h-4 w-4 text-foreground" />
@@ -149,10 +158,11 @@ export function FlightBookingForm() {
             </div>
 
             {/* Search Button */}
-            <div className="lg:col-span-2">
+            <div className="sm:col-span-1 lg:col-span-2">
               <Button
                 onClick={handleSearch}
-                className="w-full h-14 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 font-semibold tracking-wide text-base"
+                disabled={!isFormValid}
+                className="w-full h-14 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 font-semibold tracking-wide text-sm sm:text-base"
               >
                 {t('booking.search')}
               </Button>

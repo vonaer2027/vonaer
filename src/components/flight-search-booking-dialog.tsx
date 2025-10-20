@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Plane, Calendar, Users, ArrowRight, Phone, User, Shield, Send, Loader2, Mail } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Plane } from "lucide-react"
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
 import { useLocale } from '@/components/locale-provider'
@@ -29,6 +30,7 @@ interface FlightSearchBookingDialogProps {
 
 interface BookingFormData {
   customerName: string
+  customerCountryCode: string
   customerPhone: string
   customerEmail: string
   contactConsent: boolean
@@ -40,6 +42,7 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
   const { locale } = useLocale()
   const [formData, setFormData] = useState<BookingFormData>({
     customerName: '',
+    customerCountryCode: '+82',
     customerPhone: '',
     customerEmail: '',
     contactConsent: false,
@@ -62,7 +65,12 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
       toast.error(t('flightSearchDialog.validation.phoneRequired'))
       return
     }
-    
+
+    if (!formData.customerEmail.trim()) {
+      toast.error(t('flightSearchDialog.validation.emailRequired'))
+      return
+    }
+
     if (!flightData.fromLocation.trim()) {
       toast.error(t('flightSearchDialog.validation.fromRequired'))
       return
@@ -100,6 +108,7 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
       // Reset form
       setFormData({
         customerName: '',
+        customerCountryCode: '+82',
         customerPhone: '',
         customerEmail: '',
         contactConsent: false,
@@ -149,8 +158,7 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
 
         {/* Flight Information Summary */}
         <div className="bg-muted/30 rounded-lg p-4 space-y-3 border">
-          <h3 className="font-medium text-sm flex items-center gap-2">
-            <Plane className="h-4 w-4" />
+          <h3 className="font-medium text-sm">
             {t('flightSearchDialog.flightInfo')}
           </h3>
           
@@ -167,8 +175,7 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
             
             <div>
               <span className="text-muted-foreground">{t('flightSearchDialog.passengers')}:</span>
-              <div className="font-medium flex items-center gap-1">
-                <Users className="h-3 w-3" />
+              <div className="font-medium">
                 {flightData.passengers}
               </div>
             </div>
@@ -180,7 +187,7 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
                 <div className="font-medium">{flightData.fromLocation}</div>
                 <div className="text-xs text-muted-foreground">{t('flightSearchDialog.from')}</div>
               </div>
-              <ArrowRight className="h-4 w-4 text-muted-foreground" />
+              <div className="text-muted-foreground">→</div>
               <div className="text-right">
                 <div className="font-medium">{flightData.toLocation}</div>
                 <div className="text-xs text-muted-foreground">{t('flightSearchDialog.to')}</div>
@@ -190,17 +197,15 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
             <div className="flex items-center justify-between text-sm">
               <div>
                 <span className="text-muted-foreground">{t('flightSearchDialog.departureDate')}:</span>
-                <div className="font-medium flex items-center gap-1">
-                  <Calendar className="h-3 w-3" />
+                <div className="font-medium">
                   {formatDate(flightData.departDate)}
                 </div>
               </div>
-              
+
               {flightData.tripType === 'round-trip' && (
                 <div className="text-right">
                   <span className="text-muted-foreground">{t('flightSearchDialog.returnDate')}:</span>
-                  <div className="font-medium flex items-center gap-1 justify-end">
-                    <Calendar className="h-3 w-3" />
+                  <div className="font-medium">
                     {formatDate(flightData.returnDate)}
                   </div>
                 </div>
@@ -213,8 +218,7 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Contact Information */}
           <div className="space-y-3">
-            <h3 className="font-medium text-sm flex items-center gap-2">
-              <User className="h-4 w-4" />
+            <h3 className="font-medium text-sm">
               {t('flightSearchDialog.contactInfo')}
             </h3>
             
@@ -238,43 +242,64 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
                 <Label htmlFor="customerPhone" className="text-xs font-medium">
                   {t('flightSearchDialog.phone')} *
                 </Label>
-                <div className="relative">
-                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
-                  <Input
-                    id="customerPhone"
-                    type="tel"
-                    placeholder={t('flightSearchDialog.phonePlaceholder')}
-                    value={formData.customerPhone}
-                    onChange={(e) => setFormData(prev => ({ ...prev, customerPhone: e.target.value }))}
-                    className="h-9 pl-9"
-                    required
-                  />
+                <div className="flex gap-2">
+                  <Select
+                    value={formData.customerCountryCode}
+                    onValueChange={(value) => setFormData(prev => ({ ...prev, customerCountryCode: value }))}
+                  >
+                    <SelectTrigger className="h-9 w-32">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="+82">🇰🇷 +82</SelectItem>
+                      <SelectItem value="+1">🇺🇸 +1</SelectItem>
+                      <SelectItem value="+44">🇬🇧 +44</SelectItem>
+                      <SelectItem value="+81">🇯🇵 +81</SelectItem>
+                      <SelectItem value="+86">🇨🇳 +86</SelectItem>
+                      <SelectItem value="+33">🇫🇷 +33</SelectItem>
+                      <SelectItem value="+49">🇩🇪 +49</SelectItem>
+                      <SelectItem value="+39">🇮🇹 +39</SelectItem>
+                      <SelectItem value="+34">🇪🇸 +34</SelectItem>
+                      <SelectItem value="+61">🇦🇺 +61</SelectItem>
+                      <SelectItem value="+65">🇸🇬 +65</SelectItem>
+                      <SelectItem value="+852">🇭🇰 +852</SelectItem>
+                      <SelectItem value="+971">🇦🇪 +971</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <div className="flex-1">
+                    <Input
+                      id="customerPhone"
+                      type="tel"
+                      placeholder={t('flightSearchDialog.phonePlaceholder')}
+                      value={formData.customerPhone}
+                      onChange={(e) => setFormData(prev => ({ ...prev, customerPhone: e.target.value }))}
+                      className="h-9"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
 
               <div className="space-y-1">
                 <Label htmlFor="customerEmail" className="text-xs font-medium">
-                  {t('flightSearchDialog.email')}
+                  {t('flightSearchDialog.email')} *
                 </Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
-                  <Input
-                    id="customerEmail"
-                    type="email"
-                    placeholder={t('flightSearchDialog.emailPlaceholder')}
-                    value={formData.customerEmail}
-                    onChange={(e) => setFormData(prev => ({ ...prev, customerEmail: e.target.value }))}
-                    className="h-9 pl-9"
-                  />
-                </div>
+                <Input
+                  id="customerEmail"
+                  type="email"
+                  placeholder={t('flightSearchDialog.emailPlaceholder')}
+                  value={formData.customerEmail}
+                  onChange={(e) => setFormData(prev => ({ ...prev, customerEmail: e.target.value }))}
+                  className="h-9"
+                  required
+                />
               </div>
             </div>
           </div>
 
           {/* Consent Section */}
           <div className="space-y-3 pt-2">
-            <h3 className="font-medium text-sm flex items-center gap-2">
-              <Shield className="h-4 w-4" />
+            <h3 className="font-medium text-sm">
               {t('flightSearchDialog.consent')}
             </h3>
             
@@ -302,11 +327,17 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
                   }
                   className="mt-0.5"
                 />
-                <Label htmlFor="privacyConsent" className="text-xs leading-relaxed">
+                <Label htmlFor="privacyConsent" className="text-xs leading-relaxed cursor-pointer">
                   {t('flightSearchDialog.privacyConsentText')}
-                  <span className="text-primary underline cursor-pointer">
+                  <a
+                    href="/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline hover:text-primary/80"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     {t('flightSearchDialog.privacyPolicy')}
-                  </span>
+                  </a>
                   {t('flightSearchDialog.privacyConsentText2')}
                 </Label>
               </div>
@@ -329,17 +360,7 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
               className="flex-1 h-9 bg-primary text-primary-foreground hover:bg-primary/90"
               disabled={isSubmitting}
             >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-3 h-3 mr-2 animate-spin" />
-                  {t('flightSearchDialog.submitting')}
-                </>
-              ) : (
-                <>
-                  <Send className="w-3 h-3 mr-2" />
-                  {t('flightSearchDialog.submit')}
-                </>
-              )}
+              {isSubmitting ? t('flightSearchDialog.submitting') : t('flightSearchDialog.submit')}
             </Button>
           </div>
         </form>
@@ -367,7 +388,7 @@ async function sendFlightSearchRequestToGoogleChat({
     text: `🛩️ *새로운 VONAER 항공편 검색 요청*\n\n` +
           `👤 *고객 정보:*\n` +
           `• 이름: ${customerData.customerName}\n` +
-          `• 전화번호: ${customerData.customerPhone}\n` +
+          `• 전화번호: ${customerData.customerCountryCode} ${customerData.customerPhone}\n` +
           `${customerData.customerEmail ? `• 이메일: ${customerData.customerEmail}\n` : ''}` +
           `• 개인정보 동의: ${customerData.contactConsent && customerData.privacyConsent ? '✅ 동의함' : '❌ 동의 안함'}\n\n` +
           `✈️ *항공편 정보:*\n` +

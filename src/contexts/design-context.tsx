@@ -1,21 +1,19 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, ReactNode } from 'react'
 
-export type DesignVariant = 'minimal-1' | 'minimal-2' | 'minimal-3' | 'original'
+// Single design variant - Minimal-2
+export type DesignVariant = 'minimal-2'
 
 interface DesignContextType {
   design: DesignVariant
-  setDesign: (design: DesignVariant) => void
 }
 
 const DesignContext = createContext<DesignContextType | undefined>(undefined)
 
 export function DesignProvider({ children }: { children: ReactNode }) {
-  const [design, setDesign] = useState<DesignVariant>('minimal-1')
-
   return (
-    <DesignContext.Provider value={{ design, setDesign }}>
+    <DesignContext.Provider value={{ design: 'minimal-2' }}>
       {children}
     </DesignContext.Provider>
   )

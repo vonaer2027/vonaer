@@ -36,7 +36,7 @@ interface LocaleProviderProps {
 }
 
 export function LocaleProvider({ children }: LocaleProviderProps) {
-  const [locale, setLocale] = useState<Locale>('en')
+  const [locale, setLocale] = useState<Locale>('kr')
 
   useEffect(() => {
     // Load saved locale from localStorage

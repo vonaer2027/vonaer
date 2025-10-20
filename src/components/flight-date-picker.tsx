@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Calendar as CalendarIcon, Plane } from 'lucide-react'
+import { Calendar as CalendarIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useLocale } from '@/components/locale-provider'
 
@@ -18,6 +18,9 @@ interface FlightDatePickerProps {
   className?: string
   minDate?: Date
   maxDate?: Date
+  returnDate?: Date
+  onReturnDateSelect?: (date: Date | undefined) => void
+  isRoundTrip?: boolean
 }
 
 export function FlightDatePicker({
@@ -27,11 +30,15 @@ export function FlightDatePicker({
   disabled = false,
   className,
   minDate,
-  maxDate
+  maxDate,
+  returnDate,
+  onReturnDateSelect,
+  isRoundTrip = false
 }: FlightDatePickerProps) {
   const t = useTranslations()
   const { locale } = useLocale()
   const [open, setOpen] = React.useState(false)
+  const [selectingReturn, setSelectingReturn] = React.useState(false)
 
   // Map our locale codes to proper locale strings for date formatting
   const localeMap: { [key: string]: string } = {
@@ -50,12 +57,32 @@ export function FlightDatePicker({
   }
 
   const handleDateSelect = (selectedDate: Date | undefined) => {
-    onDateSelect?.(selectedDate)
-    setOpen(false)
+    if (isRoundTrip && !selectingReturn) {
+      // First selection for round trip - set departure date
+      onDateSelect?.(selectedDate)
+      setSelectingReturn(true)
+      // Don't close the popover, wait for return date selection
+    } else if (isRoundTrip && selectingReturn) {
+      // Second selection for round trip - set return date
+      onReturnDateSelect?.(selectedDate)
+      setSelectingReturn(false)
+      setOpen(false)
+    } else {
+      // One-way trip
+      onDateSelect?.(selectedDate)
+      setOpen(false)
+    }
+  }
+
+  const handleOpenChange = (newOpen: boolean) => {
+    setOpen(newOpen)
+    if (!newOpen) {
+      setSelectingReturn(false)
+    }
   }
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={handleOpenChange}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
@@ -69,44 +96,47 @@ export function FlightDatePicker({
         >
           <div className="flex items-center gap-3 w-full">
             <div className="flex items-center gap-2 text-primary flex-shrink-0">
-              <Plane className="h-4 w-4" />
               <CalendarIcon className="h-4 w-4" />
             </div>
             <div className="flex-1 text-left">
-              {date ? (
-                <div className="flex flex-col">
-                  <span className="text-sm font-semibold text-foreground">
-                    {formatDate(date)}
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    {t('common.flightDate')}
-                  </span>
-                </div>
+              {isRoundTrip ? (
+                <span className="text-sm text-foreground">
+                  {date && returnDate
+                    ? `${formatDate(date)} - ${formatDate(returnDate)}`
+                    : date
+                    ? `${formatDate(date)} - ${t('booking.placeholders.returnDate')}`
+                    : placeholder || t('common.selectDate')}
+                </span>
               ) : (
-                <div className="flex flex-col">
-                  <span className="text-sm text-muted-foreground">
-                    {placeholder || t('common.selectDate')}
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    {t('common.flightDate')}
-                  </span>
-                </div>
+                <span className="text-sm text-foreground">
+                  {date ? formatDate(date) : (placeholder || t('common.selectDate'))}
+                </span>
               )}
             </div>
           </div>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
+        <div className="p-3 border-b">
+          <p className="text-sm font-medium text-center">
+            {isRoundTrip
+              ? selectingReturn
+                ? t('booking.placeholders.returnDate')
+                : t('booking.placeholders.departureDate')
+              : placeholder || t('common.selectDate')}
+          </p>
+        </div>
         <Calendar
           mode="single"
-          selected={date}
+          selected={selectingReturn ? returnDate : date}
           onSelect={handleDateSelect}
-          disabled={(date) => {
-            if (minDate && date < minDate) return true
-            if (maxDate && date > maxDate) return true
+          disabled={(calDate) => {
+            if (selectingReturn && date && calDate < date) return true
+            if (minDate && calDate < minDate) return true
+            if (maxDate && calDate > maxDate) return true
             return false
           }}
-          className="rounded-md border shadow-sm"
+          className="rounded-md shadow-sm"
         />
       </PopoverContent>
     </Popover>
