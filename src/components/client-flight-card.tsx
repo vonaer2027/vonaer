@@ -40,6 +40,15 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
   }
 
   const formatPrice = () => {
+    // If no numeric price, check if it's "Enquire for Price" and translate it
+    if (!flight.price_numeric) {
+      // Check if price is "Enquire for Price" (case-insensitive)
+      if (flight.price && flight.price.toLowerCase().includes('enquire')) {
+        return t('clientFlightCard.enquirePrice')
+      }
+      return flight.price || t('clientFlightCard.enquirePrice')
+    }
+
     const finalPrice = calculateFinalPrice()
     return `$${finalPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   }

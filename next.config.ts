@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'asserts.avi-go.com',
         port: '',
-        pathname: '/plane_img_jt/**',
+        pathname: '/**',
       },
       {
         protocol: 'https',

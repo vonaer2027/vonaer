@@ -89,8 +89,10 @@ export const flightService = {
     const { data, error } = await supabase
       .from('flights')
       .select('*')
+      .eq('is_active', true)
+      .gte('flight_date', new Date().toISOString().split('T')[0])
       .order('flight_date', { ascending: true })
-    
+
     if (error) throw error
     return data as Flight[]
   },

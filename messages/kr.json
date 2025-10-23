@@ -562,7 +562,8 @@
     "totalCost": "총 항공 비용",
     "bookRequest": "예약 요청",
     "tbd": "미정",
-    "dateTBD": "날짜 미정"
+    "dateTBD": "날짜 미정",
+    "enquirePrice": "가격 문의"
   },
   "bookingRequests": {
     "title": "예약 요청",

@@ -1,0 +1,44 @@
+name: Crawl Empty Leg Flights
+
+on:
+  # Run every 6 hours
+  schedule:
+    - cron: '0 */6 * * *'
+
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Railway Crawler
+        run: |
+          echo "🚀 Triggering crawler at $(date)"
+
+          response=$(curl -s -w "\n%{http_code}" -X POST \
+            ${{ secrets.RAILWAY_CRAWLER_URL }}/crawl \
+            -H "Authorization: Bearer ${{ secrets.CRAWLER_SECRET }}" \
+            -H "Content-Type: application/json")
+
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | head -n-1)
+
+          echo "📊 Response Code: $http_code"
+          echo "📋 Response Body:"
+          echo "$body" | jq '.' || echo "$body"
+
+          if [ "$http_code" -ne 200 ]; then
+            echo "❌ Crawler failed with status $http_code"
+            exit 1
+          fi
+
+          echo "✅ Crawler completed successfully"
+
+      - name: Notify on Failure
+        if: failure()
+        run: |
+          echo "❌ Crawler job failed!"
+          echo "Check the logs above for details"
+          # Add Slack/Discord webhook notification here if needed

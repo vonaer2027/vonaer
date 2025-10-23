@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -41,7 +42,7 @@ const aircraftCategories = [
       'Quick boarding process',
       'Fuel efficient'
     ],
-    image: '/api/placeholder/600/400'
+    image: '/jet/Light Jet 1.webp'
   },
   {
     id: 'mid-jet',
@@ -62,7 +63,7 @@ const aircraftCategories = [
       'Enhanced comfort features',
       'Reliable performance'
     ],
-    image: '/api/placeholder/600/400'
+    image: '/jet/Mid Jet.jpg'
   },
   {
     id: 'heavy-jet',
@@ -83,7 +84,7 @@ const aircraftCategories = [
       'Premium dining options',
       'Full-size lavatories'
     ],
-    image: '/api/placeholder/600/400'
+    image: '/jet/Heavy Jet 1.jpg'
   },
   {
     id: 'ultra-long-haul',
@@ -104,7 +105,7 @@ const aircraftCategories = [
       'Gourmet dining service',
       'Global range capability'
     ],
-    image: '/api/placeholder/600/400'
+    image: '/jet/Ultra Long.jpg'
   },
   {
     id: 'vip-airline',
@@ -125,7 +126,7 @@ const aircraftCategories = [
       'Dedicated check-in',
       'Global network'
     ],
-    image: '/api/placeholder/600/400'
+    image: '/jet/boeing777x-hero-960x600.jpeg'
   },
   {
     id: 'helicopter',
@@ -146,7 +147,7 @@ const aircraftCategories = [
       'Scenic flight capabilities',
       'Flexible scheduling'
     ],
-    image: '/api/placeholder/600/400'
+    image: '/jet/helicopter.png'
   }
 ]
 
@@ -206,17 +207,20 @@ export default function AircraftPage() {
                 whileHover={{ y: -8, scale: 1.02 }}
               >
                 <Card className="border shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                  {/* Image Placeholder */}
-                  <div className="relative h-48 bg-muted/30 border-b flex items-center justify-center">
+                  {/* Aircraft Image */}
+                  <div className="relative h-48 bg-muted/30 border-b overflow-hidden">
                     {aircraft.mostPopular && (
-                      <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground font-semibold">
+                      <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground font-semibold z-10">
                         Most Popular
                       </Badge>
                     )}
-                    <div className="text-center text-muted-foreground">
-                      <aircraft.icon className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                      <p className="text-sm">Aircraft Image</p>
-                    </div>
+                    <Image
+                      src={aircraft.image}
+                      alt={aircraft.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
                   </div>
 
                   <CardHeader>

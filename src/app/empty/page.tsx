@@ -40,10 +40,10 @@ export default function ClientFlightsPage() {
       ])
       
       // Filter out flights without essential data for client view
-      const validFlights = flightsData.filter(flight => 
-        flight.price_numeric && 
-        flight.flight_date && 
-        flight.from_city && 
+      const validFlights = flightsData.filter(flight =>
+        (flight.price_numeric || flight.price) && // Allow both numeric prices and "Enquire for Price"
+        flight.flight_date &&
+        flight.from_city &&
         flight.to_city
       )
       
@@ -63,7 +63,8 @@ export default function ClientFlightsPage() {
   }, [loadData])
 
   const calculateFinalPrice = useCallback((flight: Flight): number => {
-    if (!flight.price_numeric || !marginSetting) return flight.price_numeric || 0
+    if (!flight.price_numeric) return 0 // Enquire-only flights sort to end
+    if (!marginSetting) return flight.price_numeric
     return flight.price_numeric * (1 + (marginSetting.margin_percentage / 100))
   }, [marginSetting])
 
