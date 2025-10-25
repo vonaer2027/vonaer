@@ -267,9 +267,26 @@ export function BookingDialog({ flight, open, onOpenChange, onSuccess }: Booking
                   />
                   <span className="text-sm leading-relaxed">
                     {t('bookingDialog.privacyConsentText')}{' '}
-                    <a href="#" className="text-primary underline hover:text-primary/80">
+                    <a
+                      href="/privacy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:text-primary/80"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       {t('bookingDialog.privacyPolicy')}
-                    </a>{t('bookingDialog.privacyConsentText2')}
+                    </a>
+                    {' '}및{' '}
+                    <a
+                      href="/terms"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:text-primary/80"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      위치기반서비스 이용약관
+                    </a>
+                    {t('bookingDialog.privacyConsentText2')}
                   </span>
                 </label>
               </div>

@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "VONAER",
-    "subtitle": "提出新生活方式的平台，VONAER是城市航空移动服务。",
+    "subtitle": "Elevate Your FlyStyle",
     "bookFlight": "预订航班"
   },
   "services": {
@@ -398,12 +398,12 @@
       "sns": "社交网络"
     },
     "company": {
-      "name": "주식회사 모비에이션",
-      "address": "서울특별시 강남구 학동로 523, 1층 102호(청담동, 루나빌딩)",
-      "businessNumber": "사업등록번호 : 216-81-49698",
-      "representative": "대표 : 신민",
-      "telecomSales": "통신판매신고번호 : 제2022-서울강남-00453호",
-      "telecomAuthority": "통신판매업신고기관 : 서울특별시 강남구청",
+      "name": "Moviation有限公司",
+      "address": "首尔特别市江南区鹤洞路523号1楼102号（清潭洞，Luna大楼）",
+      "businessNumber": "企业注册号：216-81-49698",
+      "representative": "代表：申敏",
+      "telecomSales": "通信销售申报号：第2022-首尔江南-00453号",
+      "telecomAuthority": "通信销售业申报机关：首尔特别市江南区厅",
       "copyright": "版权所有 Moviation Inc. 保留所有权利. 2025"
     }
   },
@@ -551,7 +551,7 @@
     "luxuryAircraft": "豪华飞机",
     "departure": "出发",
     "arrival": "到达",
-    "emptyLeg": "空腿航班",
+    "emptyLeg": "Empty Leg",
     "flightDate": "航班日期",
     "capacity": "容量",
     "people": "人",
@@ -623,7 +623,7 @@
       "home": "首页",
       "charter": "包机",
       "aircraft": "飞机",
-      "emptyLeg": "空腿航班",
+      "emptyLeg": "Empty Leg",
       "supercar": "豪华车",
       "membership": "会员专用",
       "pr": "媒体",
@@ -1022,7 +1022,7 @@
       "luxuryAircraft": "豪华飞机",
       "departure": "出发",
       "tbd": "待定",
-      "emptyLeg": "空腿航班",
+      "emptyLeg": "Empty Leg",
       "arrival": "到达",
       "flightDate": "航班日期",
       "capacity": "容量",
@@ -1235,7 +1235,7 @@
     "capacity": "容量",
     "totalCost": "总成本",
     "bookingRequest": "预订请求",
-    "emptyLeg": "空腿航班",
+    "emptyLeg": "Empty Leg",
     "priceAdjustment": "价格调整",
     "individualPriceAdjustment": "单独价格调整",
     "margin": "利润",

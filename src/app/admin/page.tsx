@@ -14,8 +14,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Plus, LogOut } from 'lucide-react'
-import { Plane, Users, Settings, RefreshCw, TrendingUp, Phone, MessageSquare } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { Flight, MarginSetting, flightService, marginService } from '@/lib/supabase'
 import { motion } from 'framer-motion'
@@ -159,7 +157,6 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center space-y-4">
-          <RefreshCw className="h-8 w-8 animate-spin mx-auto text-primary" />
           <p className="text-muted-foreground">Verifying authentication...</p>
         </div>
       </div>
@@ -183,7 +180,6 @@ export default function AdminDashboard() {
 
         <div className="min-h-screen bg-background flex items-center justify-center pt-20">
           <div className="text-center space-y-4">
-            <RefreshCw className="h-8 w-8 animate-spin mx-auto text-primary" />
             <p className="text-muted-foreground">{t('admin.loading')}</p>
           </div>
         </div>
@@ -220,9 +216,7 @@ export default function AdminDashboard() {
             <Button
               onClick={handleLogout}
               variant="outline"
-              className="flex items-center gap-2"
             >
-              <LogOut className="h-4 w-4" />
               Logout
             </Button>
           </div>
@@ -236,9 +230,8 @@ export default function AdminDashboard() {
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8"
         >
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium">{t('admin.stats.totalFlights')}</CardTitle>
-              <Plane className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalFlights}</div>
@@ -262,9 +255,8 @@ export default function AdminDashboard() {
           </Card>
 
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium">{t('admin.stats.averagePrice')}</CardTitle>
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
@@ -277,9 +269,8 @@ export default function AdminDashboard() {
           </Card>
 
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium">{t('admin.stats.currentMargin')}</CardTitle>
-              <Settings className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.currentMargin}%</div>
@@ -298,26 +289,25 @@ export default function AdminDashboard() {
         >
           <Tabs defaultValue="flights" className="space-y-6">
             <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 h-auto">
-              <TabsTrigger value="flights" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
-                <Plane className="h-3 w-3 lg:h-4 lg:w-4" />
+              <TabsTrigger value="flights" className="text-xs lg:text-sm p-2 lg:p-3">
                 <span className="hidden sm:inline">{t('admin.tabs.flights')} ({flights.length})</span>
                 <span className="sm:hidden">{flights.length}</span>
               </TabsTrigger>
-              <TabsTrigger value="bookings" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
-                <Phone className="h-3 w-3 lg:h-4 lg:w-4" />
+              <TabsTrigger value="bookings" className="text-xs lg:text-sm p-2 lg:p-3">
                 <span className="hidden sm:inline">{t('admin.tabs.bookings')}</span>
+                <span className="sm:hidden">Bookings</span>
               </TabsTrigger>
-              <TabsTrigger value="mms" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
-                <MessageSquare className="h-3 w-3 lg:h-4 lg:w-4" />
+              <TabsTrigger value="mms" className="text-xs lg:text-sm p-2 lg:p-3">
                 <span className="hidden sm:inline">{t('admin.tabs.mms')}</span>
+                <span className="sm:hidden">MMS</span>
               </TabsTrigger>
-              <TabsTrigger value="users" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
-                <Users className="h-3 w-3 lg:h-4 lg:w-4" />
+              <TabsTrigger value="users" className="text-xs lg:text-sm p-2 lg:p-3">
                 <span className="hidden sm:inline">{t('admin.tabs.users')}</span>
+                <span className="sm:hidden">Users</span>
               </TabsTrigger>
-              <TabsTrigger value="settings" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm p-2 lg:p-3">
-                <Settings className="h-3 w-3 lg:h-4 lg:w-4" />
+              <TabsTrigger value="settings" className="text-xs lg:text-sm p-2 lg:p-3">
                 <span className="hidden sm:inline">{t('admin.tabs.settings')}</span>
+                <span className="sm:hidden">Settings</span>
               </TabsTrigger>
             </TabsList>
 
@@ -331,8 +321,7 @@ export default function AdminDashboard() {
                         {t('admin.flights.description')}
                       </CardDescription>
                     </div>
-                    <Button onClick={handleCreateFlight} className="flex items-center gap-2">
-                      <Plus className="h-4 w-4" />
+                    <Button onClick={handleCreateFlight}>
                       {t('admin.flights.addFlight')}
                     </Button>
                   </div>
@@ -340,7 +329,6 @@ export default function AdminDashboard() {
                 <CardContent>
                   {flights.length === 0 ? (
                     <div className="text-center py-12">
-                      <Plane className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                       <h3 className="text-lg font-medium text-muted-foreground mb-2">
                         {t('admin.flights.noFlights')}
                       </h3>
@@ -348,7 +336,6 @@ export default function AdminDashboard() {
                         {t('admin.flights.noFlightsDescription')}
                       </p>
                       <Button onClick={handleCreateFlight} variant="outline">
-                        <Plus className="h-4 w-4 mr-2" />
                         {t('admin.flights.addFirstFlight')}
                       </Button>
                     </div>

@@ -22,7 +22,7 @@ const vehicles = [
       '궁극의 편안함',
       '프레스티지 럭셔리'
     ],
-    image: '/car/Maybach.jpg',
+    image: '/car/Benz.png',
     gradient: 'from-primary/5 to-primary/10'
   },
   {
@@ -35,7 +35,7 @@ const vehicles = [
       '높은 맞춤화',
       'VIP 편안함'
     ],
-    image: '/car/Sprinter.webp',
+    image: '/car/Sprinter.jpg',
     gradient: 'from-primary/5 to-primary/10'
   }
 ]
@@ -81,7 +81,7 @@ export default function SuperCarPage() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              Super Car
+              Chauffeured Car
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               프리미엄 럭셔리 차량으로 최고의 지상 교통을 경험하세요

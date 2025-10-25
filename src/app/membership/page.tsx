@@ -19,7 +19,7 @@ export default function MembershipPage() {
   }
 
   return (
-    <div className="bg-background text-foreground min-h-screen">
+    <div className="bg-black text-white min-h-screen">
       {/* Header */}
       <VonaerHeader
         menuOpen={menuOpen}
@@ -41,7 +41,7 @@ export default function MembershipPage() {
             transition={{ duration: 0.5 }}
             className="max-w-md mx-auto w-full"
           >
-            <Card className="border-2 shadow-2xl bg-gradient-to-br from-primary/5 via-background to-primary/10">
+            <Card className="border-2 shadow-2xl bg-card">
               <CardContent className="p-8 md:p-10">
                 {/* Title */}
                 <motion.div
@@ -50,8 +50,8 @@ export default function MembershipPage() {
                   transition={{ delay: 0.2 }}
                   className="text-center mb-8"
                 >
-                  <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-                    Von Membership Only
+                  <h1 className="text-3xl md:text-4xl font-bold text-foreground whitespace-nowrap">
+                    VON Members Only
                   </h1>
                 </motion.div>
 

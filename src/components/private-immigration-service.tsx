@@ -149,30 +149,6 @@ export function PrivateImmigrationService() {
             </Card>
           </motion.div>
         </div>
-
-        {/* Benefits Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 text-center"
-        >
-          <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="p-6 rounded-lg border border-border">
-              <div className="text-3xl font-bold text-foreground mb-2">90%</div>
-              <div className="text-sm text-muted-foreground">{t('benefits.faster')}</div>
-            </div>
-            <div className="p-6 rounded-lg border border-border">
-              <div className="text-3xl font-bold text-foreground mb-2">3</div>
-              <div className="text-sm text-muted-foreground">{t('benefits.steps')}</div>
-            </div>
-            <div className="p-6 rounded-lg border border-border">
-              <div className="text-3xl font-bold text-foreground mb-2">VIP</div>
-              <div className="text-sm text-muted-foreground">{t('benefits.service')}</div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )

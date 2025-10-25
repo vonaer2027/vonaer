@@ -1,0 +1,12 @@
+Add this in the newsroom add the following.
+
+<div class="newsroom-content"><img class="img" src="https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1743040830.jpg"><div class="title">본에어, 英 소라와 30인승 eVTOL 도입</div><div class="date">2025.03.11</div></div>
+
+<div class="newsroom-content"><img class="img" src="https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1736125077.png"><div class="title">본에어 서비스 그랜드 오픈</div><div class="date">2024.06.10</div></div>
+
+also add this artciles
+
+title: eVTOL 기반 새로운 항공 구현
+date: 2025.09.23
+url: https://www.mt.co.kr/future/2025/09/23/2025092316461423515
+photo: /Users/kjyoo/emptyleg/public/polina.jpg

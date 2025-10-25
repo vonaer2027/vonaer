@@ -54,7 +54,7 @@ export function VonaerHeader({ menuOpen, onMenuToggle }: VonaerHeaderProps) {
               <img
                 src="/vonaer.svg"
                 alt="VONAER"
-                className="h-4 lg:h-6 w-auto"
+                className="h-3 lg:h-5 w-auto"
               />
             </motion.div>
           </div>

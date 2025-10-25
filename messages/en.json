@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "VONAER",
-    "subtitle": "A platform proposing a new lifestyle, VONAER is an Urban Air Mobility service.",
+    "subtitle": "Elevate Your FlyStyle",
     "bookFlight": "Book Flight"
   },
   "services": {
@@ -398,12 +398,12 @@
       "sns": "SNS"
     },
     "company": {
-      "name": "주식회사 모비에이션",
-      "address": "서울특별시 강남구 학동로 523, 1층 102호(청담동, 루나빌딩)",
-      "businessNumber": "사업등록번호 : 216-81-49698",
-      "representative": "대표 : 신민",
-      "telecomSales": "통신판매신고번호 : 제2022-서울강남-00453호",
-      "telecomAuthority": "통신판매업신고기관 : 서울특별시 강남구청",
+      "name": "Moviation Inc.",
+      "address": "523 Hakdong-ro, Gangnam-gu, Seoul",
+      "businessNumber": "Business Registration Number: 216-81-49698",
+      "representative": "Representative: Shin Min",
+      "telecomSales": "E-commerce Registration Number: 2022-Seoul Gangnam-00453",
+      "telecomAuthority": "E-commerce Registration Authority: Gangnam-gu Office, Seoul",
       "copyright": "Copyright Moviation Inc. All Rights Reserved. 2025"
     }
   },

@@ -71,7 +71,7 @@ const serviceContent = {
     icon: Zap
   },
   'super-car': {
-    title: 'Super Car',
+    title: 'Chauffeured Car',
     subtitle: 'Ground transportation excellence',
     description: 'Complete your journey with our premium ground transportation fleet of luxury vehicles.',
     features: ['Luxury fleet', 'Professional drivers', 'Airport transfers', '24/7 availability'],

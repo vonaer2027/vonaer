@@ -1,43 +1,7 @@
-2022, Amels, The Netherlands
-Length
-77.8m (255.2ft)
-Guests
-14 guests in 7 cabins
-Full specification
-Some yachts are designed to follow trends. ENERGY, the 77.8m (255.2ft) full-custom Amels delivered in 2022, was built to set them. With a steel hull and aluminium superstructure built to Lloyd’s classification, styling by Espen Øino, and interiors by François Zuretti, ENERGY is the product of a design brief that challenged convention and placed the connection with the ocean at its core. The result is a motor yacht which redefines the modern yachting experience.
+1. in the main page header, make the vonaer logo slightly smaller
+2. The footer needs to be in different languages not just Korean (+82 1600 9064 · service@vonaer.com 주식회사 모비에이션 · 서울특별시 강남구 학동로 523 사업등록번호: 216-81-49698 · 통신판매신고번호: 제2022-서울강남-00453호 통신판매업신고기관: 서울특별시 강남구청)
+3. Jet & Helicopter 섹션에서 Heavy Jet을 가운데로 옮겨주세요. Most Popular text size needs to be a bit bigger
+4. in the sidebar navigation overlay, change the Membership 이름을 -> Member's Lounge. 
+5. /membership page the background needs to be black and also Von Membership Only -> VON Members Only all needs to be in one sentence, not two separate mobile and placed
+6. Super Car menu needs to be changed to Chauffeured Car
 
-----
-
-Built
-2013 (refitted 2025), Dunya Yachts, Turkey
-Length
-72m (236.2ft)
-Guests
-12 guests in 6 cabins
-Full specification
-Stunning 72m (236.2ft) AXIOMA is a steel-hull displacement yacht built by Turkish yard Dunya Yachts in 2013. She offers a large interior of 1,620GT and accommodation for 12 guests. Her exterior styling is by Sterling Scott, while her interior design is by Alberto Pinto. She is ABS, MCA Compliant.
-
-
-----
-
-Built
-2011 (refitted 2024), Trinity Yachts, United States Of America
-Length
-58.2m (190.9ft)
-Guests
-12 guests in 6 cabins
-Full specification
-The truly magnificent 58.2m (191ft) Trinity CARPE DIEM is a true testament to American design and craftsmanship. Built on Trinity’s highly efficient aluminum hull with a shallow draft and an expansive 10.2m (33.5ft) beam, she offers exceptional interior volume and generous deck spaces for a yacht of her size. CARPE DIEM features sleek exterior lines and naval architecture by Trinity’s renowned designer, Geoff van Aller. Her refined Art Deco-inspired interior, with a striking black-and-white palette, was envisioned by Carol Williamson & Associates. CARPE DIEM presents in immaculate condition having only one owner since new.
-
-
------
-
-
-Built
-2011 (refitted 2022), Heesen, The Netherlands
-Length
-55m (180.4ft)
-Guests
-12 guests in 6 cabins
-Full specification
-AFTER YOU is a 55m (180.5ft) motor yacht delivered by Dutch yard Heesen in 2011. At the time of delivery, she was the largest and one of the most powerful Heesens ever launched. Built as a custom design project, AFTER YOU shows her true pedigree with unique features, one of a kind design and impressive performance.

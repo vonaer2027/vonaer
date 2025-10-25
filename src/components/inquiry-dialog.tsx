@@ -288,6 +288,16 @@ export function InquiryDialog({ open, onOpenChange, onSuccess, inquiryType, item
                 >
                   {t('flightSearchDialog.privacyPolicy')}
                 </a>
+                {' '}및{' '}
+                <a
+                  href="/terms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline hover:text-primary/80"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  위치기반서비스 이용약관
+                </a>
                 {t('flightSearchDialog.privacyConsentText2')}
               </label>
             </div>

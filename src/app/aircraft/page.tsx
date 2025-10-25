@@ -45,27 +45,6 @@ const aircraftCategories = [
     image: '/jet/Light Jet 1.webp'
   },
   {
-    id: 'mid-jet',
-    title: 'Midsize Jet',
-    subtitle: '전용기 - 미드 제트',
-    description: 'Ideal balance of comfort, range, and performance for medium-distance travel with enhanced cabin space.',
-    icon: Plane,
-    mostPopular: false,
-    specs: {
-      passengers: '6-10',
-      range: '2,000-3,500 nm',
-      speed: '450-550 mph',
-      airports: '3,500+'
-    },
-    features: [
-      'Spacious cabin design',
-      'Extended range capabilities',
-      'Enhanced comfort features',
-      'Reliable performance'
-    ],
-    image: '/jet/Mid Jet.jpg'
-  },
-  {
     id: 'heavy-jet',
     title: 'Heavy Jet',
     subtitle: '전용기 - 헤비 제트',
@@ -85,6 +64,27 @@ const aircraftCategories = [
       'Full-size lavatories'
     ],
     image: '/jet/Heavy Jet 1.jpg'
+  },
+  {
+    id: 'mid-jet',
+    title: 'Midsize Jet',
+    subtitle: '전용기 - 미드 제트',
+    description: 'Ideal balance of comfort, range, and performance for medium-distance travel with enhanced cabin space.',
+    icon: Plane,
+    mostPopular: false,
+    specs: {
+      passengers: '6-10',
+      range: '2,000-3,500 nm',
+      speed: '450-550 mph',
+      airports: '3,500+'
+    },
+    features: [
+      'Spacious cabin design',
+      'Extended range capabilities',
+      'Enhanced comfort features',
+      'Reliable performance'
+    ],
+    image: '/jet/Mid Jet.jpg'
   },
   {
     id: 'ultra-long-haul',
@@ -210,7 +210,7 @@ export default function AircraftPage() {
                   {/* Aircraft Image */}
                   <div className="relative h-48 bg-muted/30 border-b overflow-hidden">
                     {aircraft.mostPopular && (
-                      <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground font-semibold z-10">
+                      <Badge className="absolute top-4 right-4 bg-white text-black font-bold text-base px-4 py-2 shadow-lg shadow-black/30 z-10 border-2 border-black/10">
                         Most Popular
                       </Badge>
                     )}

@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "VONAER",
-    "subtitle": "新しいライフスタイルを提案するプラットフォーム、VONAERは都市航空モビリティサービスです。",
+    "subtitle": "Elevate Your FlyStyle",
     "bookFlight": "フライト予約"
   },
   "services": {
@@ -189,7 +189,7 @@
             "included": "false"
           },
           "3": {
-            "name": "エンプティレッグ割引",
+            "name": "Empty Leg割引",
             "included": "false",
             "value": ""
           }
@@ -218,7 +218,7 @@
             "included": "true"
           },
           "4": {
-            "name": "エンプティレッグ割引",
+            "name": "Empty Leg割引",
             "included": "true",
             "value": "2%"
           }
@@ -247,7 +247,7 @@
             "included": "true"
           },
           "4": {
-            "name": "エンプティレッグ割引",
+            "name": "Empty Leg割引",
             "included": "true",
             "value": "3%"
           }
@@ -276,7 +276,7 @@
             "included": "true"
           },
           "4": {
-            "name": "エンプティレッグ割引",
+            "name": "Empty Leg割引",
             "included": "true",
             "value": "5%"
           }
@@ -553,7 +553,7 @@
     "luxuryAircraft": "高級機",
     "departure": "出発",
     "arrival": "到着",
-    "emptyLeg": "エンプティレッグ",
+    "emptyLeg": "Empty Leg",
     "flightDate": "フライト日",
     "capacity": "定員",
     "people": "人",
@@ -565,7 +565,7 @@
   },
   "bookingRequests": {
     "title": "予約リクエスト",
-    "subtitle": "エンプティレッグフライトに関する顧客からのお問い合わせ",
+    "subtitle": "Empty Legフライトに関する顧客からのお問い合わせ",
     "loading": {
       "text": "予約リクエストを読み込んでいます...",
       "failed": "予約リクエストの読み込みに失敗しました"
@@ -625,7 +625,7 @@
       "home": "ホーム",
       "charter": "チャーター",
       "aircraft": "航空機",
-      "emptyLeg": "エンプティレッグ",
+      "emptyLeg": "Empty Leg",
       "supercar": "スーパーカー",
       "membership": "メンバーシップ専用",
       "pr": "広報",
@@ -994,7 +994,7 @@
   "client": {
     "loading": "読み込み中...",
     "title": "利用可能なフライト",
-    "subtitle": "次のエンプティレッグフライトを予約",
+    "subtitle": "次のEmpty Legフライトを予約",
     "sortBy": "並べ替え",
     "priceLow": "価格：安い順",
     "priceHigh": "価格：高い順",
@@ -1011,7 +1011,7 @@
     "aircraft": "航空機",
     "refresh": "更新",
     "availableFlights": "利用可能なフライト",
-    "flightsAvailable": "エンプティレッグフライトが利用可能です",
+    "flightsAvailable": "Empty Legフライトが利用可能です",
     "updateDate": "更新日：",
     "sortOptions": {
       "priceLow": "価格：安い順",
@@ -1024,7 +1024,7 @@
       "luxuryAircraft": "高級機",
       "departure": "出発",
       "tbd": "未定",
-      "emptyLeg": "エンプティレッグ",
+      "emptyLeg": "Empty Leg",
       "arrival": "到着",
       "flightDate": "フライト日",
       "capacity": "定員",
@@ -1064,8 +1064,8 @@
       "settings": "設定"
     },
     "flights": {
-      "title": "エンプティレッグフライト",
-      "description": "現在の価格が適用されたすべての利用可能なエンプティレッグフライト",
+      "title": "Empty Legフライト",
+      "description": "現在の価格が適用されたすべての利用可能なEmpty Legフライト",
       "addFlight": "フライトを追加",
       "addFirstFlight": "最初のフライトを追加",
       "noFlights": "利用可能なフライトがありません",
@@ -1074,7 +1074,7 @@
     "flightForm": {
       "createTitle": "新規フライトを追加",
       "editTitle": "フライトを編集",
-      "createDescription": "システムに新しいエンプティレッグフライトを追加します",
+      "createDescription": "システムに新しいEmpty Legフライトを追加します",
       "editDescription": "フライトの詳細と情報を編集します",
       "flightId": "フライトID",
       "aircraft": "航空機",
@@ -1237,7 +1237,7 @@
     "capacity": "定員",
     "totalCost": "総費用",
     "bookingRequest": "予約リクエスト",
-    "emptyLeg": "エンプティレッグ",
+    "emptyLeg": "Empty Leg",
     "priceAdjustment": "価格調整",
     "individualPriceAdjustment": "個別価格調整",
     "margin": "マージン",

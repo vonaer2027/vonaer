@@ -36,7 +36,7 @@ export function VonaerHeroNew() {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-primary-foreground mb-8 leading-tight tracking-wide">
               {t('hero.title')}
             </h1>
-            <p className="text-xl md:text-2xl text-primary-foreground/80 max-w-4xl mx-auto mb-12 leading-relaxed">
+            <p className="text-3xl md:text-5xl lg:text-6xl text-primary-foreground/80 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
               {t('hero.subtitle')}
             </p>
             

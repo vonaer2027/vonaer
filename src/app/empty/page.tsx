@@ -6,12 +6,10 @@ import { VonaerHeader } from '@/components/vonaer-header'
 import { VonaerMenuOverlay } from '@/components/vonaer-menu-overlay'
 import { ClientFlightCard } from '@/components/client-flight-card'
 import { BookingDialog } from '@/components/booking-dialog'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Badge } from '@/components/ui/badge'
-import { Plane, Filter, SortAsc, SortDesc, Calendar, DollarSign, RefreshCw } from 'lucide-react'
 import { Flight, MarginSetting, flightService, marginService } from '@/lib/supabase'
+import { VonaerFooter } from '@/components/vonaer-footer'
 import { motion } from 'framer-motion'
 import { Toaster } from '@/components/ui/sonner'
 import { toast } from 'sonner'
@@ -133,7 +131,6 @@ export default function ClientFlightsPage() {
 
         <div className="min-h-screen bg-background flex items-center justify-center pt-20">
           <div className="text-center space-y-4">
-            <RefreshCw className="h-8 w-8 animate-spin mx-auto text-primary" />
             <p className="text-muted-foreground">{t('client.loading')}</p>
           </div>
         </div>
@@ -158,28 +155,12 @@ export default function ClientFlightsPage() {
       <div className="min-h-screen bg-background pt-20">
         <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-foreground">{t('client.title')}</h1>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button 
-                onClick={loadData} 
-                disabled={refreshing}
-                variant="outline"
-                size="sm"
-                className="text-foreground hover:text-foreground"
-              >
-                <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-{t('client.refresh')}
-              </Button>
-            </div>
-          </div>
+          <h1 className="text-3xl font-bold text-foreground">Empty Leg</h1>
         </motion.div>
 
         {/* Stats and Controls */}
@@ -191,59 +172,29 @@ export default function ClientFlightsPage() {
         >
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="flex items-center gap-2">
-                    <Plane className="h-5 w-5" />
-                    {t('client.availableFlights')}
-                  </CardTitle>
-                  <CardDescription>
-                    {t('client.flightsAvailable', { count: filteredFlights.length })}
-                  </CardDescription>
-                </div>
-                <Badge variant="outline" className="text-sm">
-                  {t('client.updateDate')} {new Date().toLocaleDateString('ko-KR')}
-                </Badge>
-              </div>
+              <CardDescription>
+                {t('client.flightsAvailable', { count: filteredFlights.length })}
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <Filter className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm font-medium">{t('client.sortBy')}</span>
-                </div>
+                <span className="text-sm font-medium">{t('client.sortBy')}</span>
                 <Select value={sortBy} onValueChange={(value: SortOption) => setSortBy(value)}>
                   <SelectTrigger className="w-48">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="price-low">
-                      <div className="flex items-center gap-2">
-                        <DollarSign className="h-4 w-4" />
-                        <SortAsc className="h-4 w-4" />
-                        {t('client.sortOptions.priceLow')}
-                      </div>
+                      {t('client.sortOptions.priceLow')}
                     </SelectItem>
                     <SelectItem value="price-high">
-                      <div className="flex items-center gap-2">
-                        <DollarSign className="h-4 w-4" />
-                        <SortDesc className="h-4 w-4" />
-                        {t('client.sortOptions.priceHigh')}
-                      </div>
+                      {t('client.sortOptions.priceHigh')}
                     </SelectItem>
                     <SelectItem value="date-near">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
-                        <SortAsc className="h-4 w-4" />
-                        {t('client.sortOptions.dateNear')}
-                      </div>
+                      {t('client.sortOptions.dateNear')}
                     </SelectItem>
                     <SelectItem value="date-far">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
-                        <SortDesc className="h-4 w-4" />
-                        {t('client.sortOptions.dateFar')}
-                      </div>
+                      {t('client.sortOptions.dateFar')}
                     </SelectItem>
                   </SelectContent>
                 </Select>
@@ -261,7 +212,6 @@ export default function ClientFlightsPage() {
           {filteredFlights.length === 0 ? (
             <Card>
               <CardContent className="text-center py-12">
-                <Plane className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-muted-foreground mb-2">
                   {t('client.noFlights')}
                 </h3>
@@ -291,7 +241,9 @@ export default function ClientFlightsPage() {
         </motion.div>
         </div>
       </div>
-      
+
+      <VonaerFooter />
+
       {/* Booking Dialog */}
       <BookingDialog
         flight={selectedFlight}
@@ -299,7 +251,7 @@ export default function ClientFlightsPage() {
         onOpenChange={setBookingDialogOpen}
         onSuccess={handleBookingSuccess}
       />
-      
+
       <Toaster />
     </div>
   )

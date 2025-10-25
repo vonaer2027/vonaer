@@ -12,9 +12,9 @@ export function VonaerFooter() {
   const t = useTranslations()
 
   const socialLinks = [
-    { icon: Instagram, label: 'Instagram', href: '#' },
-    { icon: MessageCircle, label: 'KakaoTalk', href: '#' },
-    { icon: Youtube, label: 'Youtube', href: '#' }
+    { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/vonaer_official/' },
+    { icon: MessageCircle, label: 'KakaoTalk', href: 'http://pf.kakao.com/_uxdihG' },
+    { icon: Youtube, label: 'Youtube', href: 'https://www.youtube.com/@vonaer' }
   ]
 
   const currentYear = new Date().getFullYear()
@@ -33,10 +33,10 @@ export function VonaerFooter() {
           >
             <h4 className="font-semibold text-xs mb-2 text-foreground">{t('footer.sections.contact')}</h4>
             <div className="text-muted-foreground text-[13px] leading-tight space-y-1">
-              <p>{t('footer.contact.phone')} · service@vonaer.com</p>
-              <p>주식회사 모비에이션 · 서울특별시 강남구 학동로 523</p>
-              <p>사업등록번호: 216-81-49698 · 통신판매신고번호: 제2022-서울강남-00453호</p>
-              <p>통신판매업신고기관: 서울특별시 강남구청</p>
+              <p>{t('footer.contact.phone')} · {t('footer.contact.email')}</p>
+              <p>{t('footer.company.name')} · {t('footer.company.address')}</p>
+              <p>{t('footer.company.businessNumber')} · {t('footer.company.telecomSales')}</p>
+              <p>{t('footer.company.telecomAuthority')}</p>
             </div>
           </motion.div>
 
@@ -53,6 +53,8 @@ export function VonaerFooter() {
                 <a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-7 h-7 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
                   aria-label={social.label}
                 >
@@ -72,8 +74,17 @@ export function VonaerFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center"
+            className="text-center space-y-2"
           >
+            <div className="flex justify-center gap-4 text-xs">
+              <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+                개인정보 처리방침
+              </a>
+              <span className="text-muted-foreground">|</span>
+              <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+                위치기반서비스 이용약관
+              </a>
+            </div>
             <p className="text-muted-foreground text-xs">
               Copyright Moviation Inc. All Rights Reserved. {currentYear}
             </p>

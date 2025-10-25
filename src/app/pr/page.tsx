@@ -11,18 +11,20 @@ import { VonaerFooter } from '@/components/vonaer-footer'
 import { useState } from 'react'
 import {
   Calendar,
-  Newspaper
+  Newspaper,
+  Mail
 } from 'lucide-react'
+import newsletterData from '../../../vonaer_articles.json'
 
 // Newsroom Articles
 const newsroomArticles = [
   {
-    id: 7,
-    title: '본에어 프라이빗 제트 서비스 런칭',
-    date: '2024.09.02',
-    category: 'Service Launch',
-    image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1736213524.png',
-    url: 'https://news.mtn.co.kr/news-detail/2024090214162775392'
+    id: 1,
+    title: 'eVTOL 기반 새로운 항공 구현',
+    date: '2025.09.23',
+    category: 'Technology',
+    image: '/polina.jpg',
+    url: 'https://www.mt.co.kr/future/2025/09/23/2025092316461423515'
   },
   {
     id: 2,
@@ -39,12 +41,41 @@ const newsroomArticles = [
     category: 'Partnership',
     image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1745369545.jpg',
     url: 'https://www.edaily.co.kr/News/Read?newsId=02095926642138744&mediaCodeNo=257'
+  },
+  {
+    id: 4,
+    title: '본에어, 英 소라와 30인승 eVTOL 도입',
+    date: '2025.03.11',
+    category: 'Partnership',
+    image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1743040830.jpg',
+    url: 'https://www.hankyung.com/article/202503116849i'
+  },
+  {
+    id: 5,
+    title: '본에어 프라이빗 제트 서비스 런칭',
+    date: '2024.09.02',
+    category: 'Service Launch',
+    image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1736213524.png',
+    url: 'https://news.mtn.co.kr/news-detail/2024090214162775392'
+  },
+  {
+    id: 6,
+    title: '본에어 서비스 그랜드 오픈',
+    date: '2024.06.10',
+    category: 'Service Launch',
+    image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1736125077.png',
+    url: 'https://news.kbs.co.kr/news/mobile/view/view.do?ncd=7985353'
   }
 ]
 
 export default function PRPage() {
   const t = useTranslations()
   const [menuOpen, setMenuOpen] = useState(false)
+
+  // Filter newsletter articles from 2025
+  const newsletter2025 = newsletterData.articles.filter(article =>
+    article.date.startsWith('2025')
+  )
 
   const formatDate = (dateString: string) => {
     const [year, month, day] = dateString.split('.')
@@ -92,13 +123,11 @@ export default function PRPage() {
             className="mb-16"
           >
             <Card className="border shadow-lg bg-gradient-to-br from-primary/5 to-primary/10">
-              <CardContent className="p-12 text-center">
-                <h2 className="text-3xl font-bold text-foreground mb-6">
-                  본에어 뉴스레터를 구독하고
-                </h2>
-                <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  특별한 경험을 제공하는 본에어의 소식을 이메일로 받아보세요.
-                </p>
+              <CardContent className="p-8 md:p-12 text-center">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-8 max-w-5xl mx-auto px-2">
+                  <p>본에어 뉴스레터를 구독하고</p>
+                  <p>특별한 경험을 제공하는 본에어의 소식을 이메일로 받아보세요.</p>
+                </div>
                 <Button
                   className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold"
                   onClick={() => window.open('https://vonaer.stibee.com/subscribe/', '_blank')}
@@ -124,6 +153,59 @@ export default function PRPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {newsroomArticles.map((article, index) => (
+                <motion.div
+                  key={article.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -4 }}
+                  className="cursor-pointer"
+                  onClick={() => window.open(article.url, '_blank')}
+                >
+                  <Card className="border shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                    <CardContent className="p-0">
+                      {/* Image */}
+                      <div className="overflow-hidden">
+                        <img
+                          src={article.image}
+                          alt={article.title}
+                          className="w-full h-auto"
+                        />
+                      </div>
+
+                      {/* Content */}
+                      <div className="px-4 py-4">
+                        <h3 className="text-base font-bold text-foreground mb-2 line-clamp-2">
+                          {article.title}
+                        </h3>
+
+                        <div className="flex items-center gap-1 text-muted-foreground text-sm">
+                          <Calendar className="h-3 w-3" />
+                          {article.date}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Newsletter 2025 Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mb-16"
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <Mail className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold text-foreground">
+                Newsletter 2025
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {newsletter2025.map((article, index) => (
                 <motion.div
                   key={article.id}
                   initial={{ opacity: 0, y: 20 }}

@@ -20,7 +20,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
   // Charter sub-items (accordion items)
   const charterSubItems = useMemo(() => [
     { id: 'jet-helicopter', label: 'Jet & Helicopter', href: '/aircraft' },
-    { id: 'supercar', label: 'Super Car', href: '/supercar' },
+    { id: 'supercar', label: 'Chauffeured Car', href: '/supercar' },
     { id: 'super-yacht', label: 'Super Yacht', href: '/yacht' }
   ], [])
 
@@ -33,7 +33,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
   ], [])
 
   // Membership item shown separately at bottom
-  const membershipItem = { id: 'membership', label: 'Membership', href: '/membership' }
+  const membershipItem = { id: 'membership', label: 'Member\'s Lounge', href: '/membership' }
 
   return (
     <>

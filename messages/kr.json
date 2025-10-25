@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "VONAER",
-    "subtitle": "전세계를 하나로 잇는 아시아 최초의 럭셔리 에어 모빌리티 플랫폼입니다. 비즈니스 미팅이든 가족 여행이든 — 우리는 ‘당신의 시간을 되돌려 드리는’ 경험을 제공합니다",
+    "subtitle": "Elevate Your FlyStyle",
     "bookFlight": "항공편 예약"
   },
   "services": {
@@ -189,7 +189,7 @@
             "included": "false"
           },
           "3": {
-            "name": "엠티 레그 할인",
+            "name": "Empty Leg 할인",
             "included": "false",
             "value": ""
           }
@@ -218,7 +218,7 @@
             "included": "true"
           },
           "4": {
-            "name": "엠티 레그 할인",
+            "name": "Empty Leg 할인",
             "included": "true",
             "value": "2%"
           }
@@ -247,7 +247,7 @@
             "included": "true"
           },
           "4": {
-            "name": "엠티 레그 할인",
+            "name": "Empty Leg 할인",
             "included": "true",
             "value": "3%"
           }
@@ -276,7 +276,7 @@
             "included": "true"
           },
           "4": {
-            "name": "엠티 레그 할인",
+            "name": "Empty Leg 할인",
             "included": "true",
             "value": "5%"
           }
@@ -554,7 +554,7 @@
     "luxuryAircraft": "고급 항공기",
     "departure": "출발",
     "arrival": "도착",
-    "emptyLeg": "엠티 레그",
+    "emptyLeg": "Empty Leg",
     "flightDate": "항공편 날짜",
     "capacity": "정원",
     "people": " 명",
@@ -567,7 +567,7 @@
   },
   "bookingRequests": {
     "title": "예약 요청",
-    "subtitle": "엠티 레그 항공편에 대한 고객 문의",
+    "subtitle": "Empty Leg 항공편에 대한 고객 문의",
     "loading": {
       "text": "예약 요청 로드 중...",
       "failed": "예약 요청 로드 실패"
@@ -627,7 +627,7 @@
       "home": "홈",
       "charter": "전세",
       "aircraft": "항공기",
-      "emptyLeg": "엠프티 레그",
+      "emptyLeg": "Empty Leg",
       "supercar": "슈퍼카",
       "membership": "멤버십 전용",
       "pr": "PR",
@@ -996,7 +996,7 @@
   "client": {
     "loading": "로딩 중...",
     "title": "이용 가능한 항공편",
-    "subtitle": "다음 엠티 레그 항공편을 예약하세요",
+    "subtitle": "다음 Empty Leg 항공편을 예약하세요",
     "sortBy": "정렬 기준",
     "priceLow": "가격: 낮은 순",
     "priceHigh": "가격: 높은 순",
@@ -1013,7 +1013,7 @@
     "aircraft": "항공기",
     "refresh": "새로고침",
     "availableFlights": "이용 가능한 항공편",
-    "flightsAvailable": "이용 가능한 엠티 레그 항공편",
+    "flightsAvailable": "이용 가능한 Empty Leg 항공편",
     "updateDate": "업데이트:",
     "sortOptions": {
       "priceLow": "가격: 낮은 순",
@@ -1026,7 +1026,7 @@
       "luxuryAircraft": "고급 항공기",
       "departure": "출발",
       "tbd": "미정",
-      "emptyLeg": "엠티 레그",
+      "emptyLeg": "Empty Leg",
       "arrival": "도착",
       "flightDate": "항공편 날짜",
       "capacity": "정원",
@@ -1066,8 +1066,8 @@
       "settings": "설정"
     },
     "flights": {
-      "title": "엠티 레그 항공편",
-      "description": "현재 가격이 적용된 모든 이용 가능한 엠티 레그 항공편",
+      "title": "Empty Leg 항공편",
+      "description": "현재 가격이 적용된 모든 이용 가능한 Empty Leg 항공편",
       "addFlight": "항공편 추가",
       "addFirstFlight": "첫 항공편 추가",
       "noFlights": "이용 가능한 항공편이 없습니다",
@@ -1076,7 +1076,7 @@
     "flightForm": {
       "createTitle": "새 항공편 추가",
       "editTitle": "항공편 수정",
-      "createDescription": "시스템에 새로운 엠티 레그 항공편을 추가하세요",
+      "createDescription": "시스템에 새로운 Empty Leg 항공편을 추가하세요",
       "editDescription": "항공편 세부 정보 및 정보 수정",
       "flightId": "항공편 ID",
       "aircraft": "항공기",
@@ -1239,7 +1239,7 @@
     "capacity": "수용 인원",
     "totalCost": "총 비용",
     "bookingRequest": "예약 요청",
-    "emptyLeg": "엠티 레그",
+    "emptyLeg": "Empty Leg",
     "priceAdjustment": "가격 조정",
     "individualPriceAdjustment": "개별 가격 조정",
     "margin": "마진",
