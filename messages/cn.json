@@ -124,6 +124,31 @@
     "searchRequest": "航班搜索请求"
   },
   "about": {
+    "title": "公司简介",
+    "intro": {
+      "paragraph1": "VONAER是基于人工智能(AI)的奢华旅行平台，重新定义私人交通的体验。",
+      "paragraph2": "通过涵盖专机、直升机、超级游艇的定制化交通服务，让客户无论身处何处都能享受最高效且尊贵的旅程。",
+      "paragraph3": "VONAER作为代表亚洲的高端包机解决方案品牌，以最高的品质和具有竞争力的价格为基础，提供与众不同的旅行价值。",
+      "paragraph4": "在不久的将来，将引入碳中和eVTOL(电动垂直起降飞行器)运营，开创城市间交通的新范式。",
+      "paragraph5": "以创新和可持续性为基础，创造环保奢华旅行的新标准。"
+    },
+    "tagline": "用VONAER提升您的飞行风格",
+    "evtol": {
+      "title": "呈现未来",
+      "paragraph1": "VONAER正在开创奢华交通的新时代。",
+      "paragraph2": "随着eVTOL的商业化在全球范围内逐渐成为现实，我们正在设计向基于环保电池的eVTOL航空自然过渡的未来。",
+      "paragraph3": "从城市间短途飞行到市内机场接驳，eVTOL是满足运营效率、环境责任和尊贵体验的下一代交通工具。",
+      "paragraph4": "世界各国已经在快速推进eVTOL商业化的认证程序和基础设施建设。",
+      "paragraph5": "美国联邦航空管理局(FAA)通过\"动力升降框架\"明确了主要OEM的认证路径，亚洲各国也正在全面推进针对空域、安全、基础设施标准化的示范阶段。VONAER正在配合这一全球趋势和国内政策方向，准备在认证完成后立即投入实际运营的高端eVTOL服务。"
+    },
+    "commitment": {
+      "title": "我们的承诺",
+      "paragraph1": "VONAER正在与世界领先的eVTOL制造商(OEM)密切合作，共同建立运营准备、服务设计以及最高水平的安全标准。",
+      "paragraph2": "从礼宾级行前服务到机上服务，再到与地面交通的完美连接，每一个瞬间都融入了唯有VONAER才能提供的价值。",
+      "quote": "轻松。精致。负责任。",
+      "paragraph3": "我们追求的不仅仅是简单的交通，",
+      "paragraph4": "通过安静、高效且碳中和的城市航空交通实现可持续奢华旅行。我们将作为亚洲领先的环保eVTOL服务提供商，共同引领城市航空交通的未来。"
+    },
     "coreValues": {
       "value1": {
         "title": "时间效率",
@@ -150,6 +175,22 @@
       "title": "下载VONAER应用",
       "subtitle": "触手可及，体验未来航空旅行",
       "button": "下载应用"
+    }
+  },
+  "evtol": {
+    "title": "呈现未来",
+    "paragraph1": "VONAER正在开创奢华交通的新时代。",
+    "paragraph2": "随着eVTOL的商业化在全球范围内逐渐成为现实，我们正在设计向基于环保电池的eVTOL航空自然过渡的未来。",
+    "paragraph3": "从城市间短途飞行到市内机场接驳，eVTOL是满足运营效率、环境责任和尊贵体验的下一代交通工具。",
+    "paragraph4": "世界各国已经在快速推进eVTOL商业化的认证程序和基础设施建设。",
+    "paragraph5": "美国联邦航空管理局(FAA)通过\"动力升降框架\"明确了主要OEM的认证路径，亚洲各国也正在全面推进针对空域、安全、基础设施标准化的示范阶段。VONAER正在配合这一全球趋势和国内政策方向，准备在认证完成后立即投入实际运营的高端eVTOL服务。",
+    "commitment": {
+      "title": "我们的承诺",
+      "paragraph1": "VONAER正在与世界领先的eVTOL制造商(OEM)密切合作，共同建立运营准备、服务设计以及最高水平的安全标准。",
+      "paragraph2": "从礼宾级行前服务到机上服务，再到与地面交通的完美连接，每一个瞬间都融入了唯有VONAER才能提供的价值。",
+      "quote": "轻松。精致。负责任。",
+      "paragraph3": "我们追求的不仅仅是简单的交通，",
+      "paragraph4": "通过安静、高效且碳中和的城市航空交通实现可持续奢华旅行。我们将作为亚洲领先的环保eVTOL服务提供商，共同引领城市航空交通的未来。"
     }
   },
   "membership": {
@@ -479,6 +520,8 @@
     "phonePlaceholder": "",
     "email": "电子邮件地址（可选）",
     "emailPlaceholder": "your.email@example.com",
+    "inquiryDetail": "咨询详情",
+    "inquiryDetailPlaceholder": "请提供关于您咨询的任何其他详细信息...",
     "consent": "隐私与同意",
     "contactConsentText": "我同意VONAER就航班预订事宜与我联系。",
     "privacyConsentText": "使用本服务即表示我已阅读并理解",
@@ -1168,8 +1211,8 @@
     }
   },
   "contact": {
-    "title": "联系我们",
-    "subtitle": "联系VONAER或访问我们的位置",
+    "title": "VONAER位置及服务信息",
+    "subtitle": "",
     "email": "电子邮件",
     "kakao": "KakaoTalk频道",
     "instagram": "Instagram",

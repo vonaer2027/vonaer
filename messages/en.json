@@ -124,6 +124,14 @@
     "searchRequest": "Flight Search Request"
   },
   "about": {
+    "intro": {
+      "paragraph1": "VONAER is an AI-powered Luxury Travel Platform redefining the experience of private mobility.",
+      "paragraph2": "Through customized transportation services encompassing private jets, helicopters, and superyachts, we ensure customers can enjoy the most efficient and elegant journey wherever they are.",
+      "paragraph3": "VONAER, as Asia's leading premium charter solution brand, provides differentiated travel value based on the highest quality and competitive pricing.",
+      "paragraph4": "In the near future, we will introduce carbon-neutral eVTOL (electric Vertical Take-Off and Landing) operations, presenting a new paradigm for inter-city mobility.",
+      "paragraph5": "Based on innovation and sustainability, we are creating new standards for environmentally conscious luxury travel."
+    },
+    "tagline": "Elevate Your FlyStyle with VONAER",
     "coreValues": {
       "value1": {
         "title": "Time Efficiency",
@@ -150,6 +158,22 @@
       "title": "Download VONAER App",
       "subtitle": "Experience the future of air travel at your fingertips",
       "button": "Download App"
+    }
+  },
+  "evtol": {
+    "title": "Present the Future",
+    "paragraph1": "VONAER is preparing the next chapter of luxury mobility. As global eVTOL programs near commercial readiness, we are architecting a seamless transition from today's private jets and helicopters to quiet, battery-electric eVTOL travel—designed for city-to-city hops and urban airport access with dramatically lower operational footprint.",
+    "paragraph2": "Across the world, certification and infrastructure are coming into focus: the FAA's powered-lift framework now clarifies the path to approval for leading U.S. developers, accelerating final certification steps.",
+    "paragraph3": "In Asia, now advancing to its next phase of urban verification as authorities refine airspace, safety, and infrastructure standards.",
+    "paragraph4": "",
+    "paragraph5": "VONAER is aligning our roadmap to this national initiative so that, as certified aircraft and corridors open, we can integrate eVTOL into premium, real-world missions from day one.",
+    "commitment": {
+      "title": "Our Commitment",
+      "paragraph1": "VONAER is actively collaborating with leading OEMs to ensure operational readiness, premium service design, and safety protocols that meet or exceed business-aviation standards.",
+      "paragraph2": "From concierge-grade pre-trip care to air-to-ground continuity, our goal is to offer quiet, efficient, and carbon-neutral Urban Air Mobility that feels unmistakably VONAER; effortless, refined, and responsible.",
+      "quote": "Effortless. Refined. Responsible.",
+      "paragraph3": "",
+      "paragraph4": "As certification milestones and vertiport networks mature, VONAER intends to be among the very first to introduce eco-friendly eVTOL service in Korea and to help shape the future of Urban Air Mobility across Asia."
     }
   },
   "membership": {
@@ -951,6 +975,33 @@
       "contactExperts": "Contact Our Experts"
     }
   },
+  "about": {
+    "title": "About Us",
+    "intro": {
+      "paragraph1": "VONAER is an AI-powered Luxury Travel Platform redefining the experience of private mobility.",
+      "paragraph2": "Through customized travel services encompassing private jets, helicopters, and superyachts, we enable our clients to enjoy the most efficient and refined journeys anywhere in the world.",
+      "paragraph3": "As Asia's leading premium charter solutions brand, VONAER delivers differentiated travel value based on superior quality and competitive pricing.",
+      "paragraph4": "In the near future, we will introduce carbon-neutral eVTOL (electric Vertical Take-Off and Landing) operations, presenting a new paradigm for intercity travel.",
+      "paragraph5": "Based on innovation and sustainability, we are creating new standards for environmentally conscious luxury travel."
+    },
+    "tagline": "Elevate Your FlyStyle with VONAER",
+    "evtol": {
+      "title": "Present the Future",
+      "paragraph1": "VONAER is preparing the next chapter of luxury mobility. As global eVTOL programs near commercial readiness, we are architecting a seamless transition from today's private jets and helicopters to quiet, battery-electric eVTOL travel—designed for city-to-city hops and urban airport access with dramatically lower operational footprint.",
+      "paragraph2": "From short city-to-city flights to urban airport access, eVTOL represents the next generation of transportation that fulfills operational efficiency, environmental responsibility, and refined experiences.",
+      "paragraph3": "Across the world, certification and infrastructure are coming into focus.",
+      "paragraph4": "The FAA's powered-lift framework now clarifies the path to approval for leading U.S. developers, accelerating final certification steps. In Asia, now advancing to its next phase of urban verification as authorities refine airspace, safety, and infrastructure standards.",
+      "paragraph5": "VONAER is aligning our roadmap to this national initiative so that, as certified aircraft and corridors open, we can integrate eVTOL into premium, real-world missions from day one."
+    },
+    "commitment": {
+      "title": "Our Commitment",
+      "paragraph1": "VONAER is actively collaborating with leading OEMs to ensure operational readiness, premium service design, and safety protocols that meet or exceed business-aviation standards.",
+      "paragraph2": "From concierge-grade pre-trip care to air-to-ground continuity, every moment embodies VONAER's unique value.",
+      "quote": "Effortless. Refined. Responsible.",
+      "paragraph3": "Our goal is to offer quiet, efficient, and carbon-neutral Urban Air Mobility that feels unmistakably VONAER; effortless, refined, and responsible.",
+      "paragraph4": "As certification milestones and vertiport networks mature, VONAER intends to be among the very first to introduce eco-friendly eVTOL service in Korea and to help shape the future of Urban Air Mobility across Asia."
+    }
+  },
   "pr": {
     "title": "PR",
     "subtitle": "Latest news, press releases, and media resources from VONAER",
@@ -1170,8 +1221,8 @@
     }
   },
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "Get in touch with VONAER or visit our locations",
+    "title": "VONAER Locations & Service Information",
+    "subtitle": "",
     "email": "Email",
     "kakao": "KakaoTalk Channel",
     "instagram": "Instagram",

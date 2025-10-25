@@ -124,6 +124,14 @@
     "searchRequest": "항공편 검색 요청"
   },
   "about": {
+    "intro": {
+      "paragraph1": "VONAER는 인공지능(AI) 기반의 Luxury Travel Platform으로, 프라이빗 모빌리티의 경험을 새롭게 정의합니다.",
+      "paragraph2": "전용기, 헬리콥터, 슈퍼요트를 아우르는 맞춤형 이동 서비스를 통해, 고객이 어디서나 가장 효율적이고 품격 있는 여정을 누릴 수 있도록 합니다.",
+      "paragraph3": "VONAER는 아시아를 대표하는 프리미엄 차터 솔루션 브랜드로서, 최상의 품질과 경쟁력 있는 가격을 바탕으로 차별화된 여행의 가치를 제공합니다.",
+      "paragraph4": "가까운 미래에 탄소중립 eVTOL(전기 수직이착륙기) 운항을 도입하여, 도시 간 이동의 새로운 패러다임을 제시할 것입니다.",
+      "paragraph5": "혁신과 지속가능성을 기반으로, 환경을 생각하는 럭셔리 트래블의 새로운 기준을 만들어 갑니다."
+    },
+    "tagline": "Elevate Your FlyStyle with VONAER",
     "coreValues": {
       "value1": {
         "title": "시간 효율성",
@@ -150,6 +158,22 @@
       "title": "VONAER 앱 다운로드",
       "subtitle": "손끝에서 미래의 항공 여행을 경험하세요",
       "button": "앱 다운로드"
+    }
+  },
+  "evtol": {
+    "title": "Present the Future",
+    "paragraph1": "VONAER는 럭셔리 모빌리티의 새로운 시대를 열고 있습니다.",
+    "paragraph2": "전 세계에서 eVTOL의 상용화가 가시화되는 지금, 저희는 친환경 배터리 기반 eVTOL 항공으로 자연스럽게 전환되는 미래를 설계합니다.",
+    "paragraph3": "도시 간 짧은 비행부터 도심 공항으로의 접근까지, eVTOL은 운영 효율성과 환경 책임, 그리고 품격 있는 경험을 모두 충족시키는 차세대 이동 수단입니다.",
+    "paragraph4": "세계 각국에서는 이미 eVTOL 상용화를 위한 인증 절차와 인프라 구축이 빠르게 진행 중입니다.",
+    "paragraph5": "미국의 Federal Aviation Administration(FAA)은 \"Powered-Lift Framework\"를 통해 주요 OEM들의 인증 경로를 명확히 하였으며, 아시아 각국에서도 공역·안전·인프라의 표준화를 위한 실증 단계가 본격화되고 있습니다. VONAER는 이러한 글로벌 흐름과 국내 정책 방향에 맞추어, 인증이 완료되는 즉시 실제 운항에 들어갈 프리미엄 eVTOL 서비스를 준비하고 있습니다.",
+    "commitment": {
+      "title": "Our Commitment",
+      "paragraph1": "VONAER는 세계 유수의 eVTOL 제조사(OEM)들과 긴밀히 협력하여 운항 준비, 서비스 설계, 그리고 최고 수준의 안전 기준을 함께 구축하고 있습니다.",
+      "paragraph2": "Concierge-grade Pre-Trip Care부터 비행기 기내 서비스, 지상 이동과의 완벽한 연결까지, 모든 순간에 오직 VONAER만의 가치가 녹아 있습니다.",
+      "quote": "Effortless. Refined. Responsible.",
+      "paragraph3": "저희가 추구하는 것은 단순한 이동이 아닌,",
+      "paragraph4": "조용하고 효율적이며 탄소중립적인 Urban Air Mobility를 통해 Sustainable Luxury Travel을 실현합니다. 아시아에서 선두적인 친환경 eVTOL 서비스 제공업체로 자리매김하며, 도심 항공 모빌리티의 미래를 함께 이끌어갈 것입니다."
     }
   },
   "membership": {
@@ -479,6 +503,8 @@
     "phonePlaceholder": "",
     "email": "이메일 주소",
     "emailPlaceholder": "your.email@example.com",
+    "inquiryDetail": "문의 세부사항",
+    "inquiryDetailPlaceholder": "문의하실 추가 세부사항을 입력해주세요...",
     "consent": "개인정보 보호 및 동의",
     "contactConsentText": "항공편 예약과 관련하여 VONAER로부터 연락받는 것에 동의합니다.",
     "privacyConsentText": "서비스를 이용함으로써, 본인은 ",
@@ -536,6 +562,7 @@
     "validation": {
       "nameRequired": "이름을 입력하세요",
       "phoneRequired": "전화번호를 입력하세요",
+      "emailRequired": "이메일 주소를 입력하세요",
       "fromRequired": "출발 도시를 선택하세요",
       "toRequired": "목적지 도시를 선택하세요",
       "dateRequired": "출발 날짜를 선택하세요",
@@ -953,6 +980,33 @@
       "contactExperts": "전문가에게 문의"
     }
   },
+  "about": {
+    "title": "회사 소개",
+    "intro": {
+      "paragraph1": "VONAER는 인공지능(AI) 기반의 Luxury Travel Platform으로, 프라이빗 모빌리티의 경험을 새롭게 정의합니다.",
+      "paragraph2": "전용기, 헬리콥터, 슈퍼요트를 아우르는 맞춤형 이동 서비스를 통해, 고객이 어디서나 가장 효율적이고 품격 있는 여정을 누릴 수 있도록 합니다.",
+      "paragraph3": "VONAER는 아시아를 대표하는 프리미엄 차터 솔루션 브랜드로서, 최상의 품질과 경쟁력 있는 가격을 바탕으로 차별화된 여행의 가치를 제공합니다.",
+      "paragraph4": "가까운 미래에 탄소중립 eVTOL(전기 수직이착륙기) 운항을 도입하여, 도시 간 이동의 새로운 패러다임을 제시할 것입니다.",
+      "paragraph5": "혁신과 지속가능성을 기반으로, 환경을 생각하는 럭셔리 트래블의 새로운 기준을 만들어 갑니다."
+    },
+    "tagline": "Elevate Your FlyStyle with VONAER",
+    "evtol": {
+      "title": "Present the Future",
+      "paragraph1": "VONAER는 럭셔리 모빌리티의 새로운 시대를 열고 있습니다. 전 세계에서 eVTOL의 상용화가 가시화되는 지금, 저희는 친환경 배터리 기반 eVTOL 항공으로 자연스럽게 전환되는 미래를 설계합니다.",
+      "paragraph2": "도시 간 짧은 비행부터 도심 공항으로의 접근까지, eVTOL은 운영 효율성과 환경 책임, 그리고 품격 있는 경험을 모두 충족시키는 차세대 이동 수단입니다.",
+      "paragraph3": "세계 각국에서는 이미 eVTOL 상용화를 위한 인증 절차와 인프라 구축이 빠르게 진행 중입니다.",
+      "paragraph4": "미국의 Federal Aviation Administration(FAA)은 \"Powered-Lift Framework\"를 통해 주요 OEM들의 인증 경로를 명확히 하였으며, 아시아 각국에서도 공역·안전·인프라의 표준화를 위한 실증 단계가 본격화되고 있습니다.",
+      "paragraph5": "VONAER는 이러한 글로벌 흐름과 국내 정책 방향에 맞추어, 인증이 완료되는 즉시 실제 운항에 들어갈 프리미엄 eVTOL 서비스를 준비하고 있습니다."
+    },
+    "commitment": {
+      "title": "Our Commitment",
+      "paragraph1": "VONAER는 세계 유수의 eVTOL 제조사(OEM)들과 긴밀히 협력하여 운항 준비, 서비스 설계, 그리고 최고 수준의 안전 기준을 함께 구축하고 있습니다.",
+      "paragraph2": "Concierge-grade Pre-Trip Care부터 비행기 기내 서비스, 지상 이동과의 완벽한 연결까지, 모든 순간에 오직 VONAER만의 가치가 녹아 있습니다.",
+      "quote": "Effortless. Refined. Responsible.",
+      "paragraph3": "조용하고 효율적이며 탄소중립적인 Urban Air Mobility를 통해 Sustainable Luxury Travel을 실현합니다.",
+      "paragraph4": "아시아에서 선두적인 친환경 eVTOL 서비스 제공업체로 자리매김하며, 도심 항공 모빌리티의 미래를 함께 이끌어갈 것입니다."
+    }
+  },
   "pr": {
     "title": "PR",
     "subtitle": "VONAER의 최신 뉴스, 보도 자료 및 미디어 자료",
@@ -1172,8 +1226,8 @@
     }
   },
   "contact": {
-    "title": "문의하기",
-    "subtitle": "VONAER에 문의하시거나 저희 위치를 방문하세요",
+    "title": "본에어 위치 및 서비스 안내",
+    "subtitle": "",
     "email": "이메일",
     "kakao": "카카오톡 채널",
     "instagram": "인스타그램",
