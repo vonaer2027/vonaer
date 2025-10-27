@@ -32,6 +32,49 @@ class UnifiedJetBayCrawlerWithUpload {
         this.supabase = null;
     }
 
+    // Detect Chrome/Chromium executable path based on environment
+    getChromePath() {
+        const fs = require('fs');
+
+        // GitHub Actions / Linux CI environments
+        const linuxPaths = [
+            '/usr/bin/chromium-browser',
+            '/usr/bin/chromium',
+            '/usr/bin/google-chrome',
+            '/snap/bin/chromium'
+        ];
+
+        // macOS paths
+        const macPaths = [
+            '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+            '/Applications/Chromium.app/Contents/MacOS/Chromium'
+        ];
+
+        // Windows paths
+        const windowsPaths = [
+            'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+            'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+        ];
+
+        const allPaths = [...linuxPaths, ...macPaths, ...windowsPaths];
+
+        // Find first existing path
+        for (const path of allPaths) {
+            try {
+                if (fs.existsSync(path)) {
+                    console.log(`✅ Found Chrome at: ${path}`);
+                    return path;
+                }
+            } catch (e) {
+                // Continue to next path
+            }
+        }
+
+        // If none found, return undefined to use Puppeteer's bundled Chromium
+        console.log('⚠️  No Chrome/Chromium found, using Puppeteer bundled Chromium');
+        return undefined;
+    }
+
     // Validate Supabase configuration
     validateSupabaseConfig() {
         const missing = [];
@@ -67,20 +110,30 @@ class UnifiedJetBayCrawlerWithUpload {
         console.log('🔧 Initializing Chrome browser...');
         
         try {
+            // Detect Chrome path for the current environment
+            const chromePath = this.getChromePath();
+
             // Launch Chrome with comprehensive settings
-            this.browser = await puppeteer.launch({
+            const launchOptions = {
                 headless: config.headless,
-                executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
                 args: [
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
                     '--disable-dev-shm-usage',
                     '--disable-web-security',
                     '--ignore-certificate-errors',
-                    '--ignore-ssl-errors'
+                    '--ignore-ssl-errors',
+                    '--disable-gpu'
                 ],
                 defaultViewport: { width: 1920, height: 1080 }
-            });
+            };
+
+            // Only set executablePath if we found Chrome/Chromium
+            if (chromePath) {
+                launchOptions.executablePath = chromePath;
+            }
+
+            this.browser = await puppeteer.launch(launchOptions);
 
             this.page = await this.browser.newPage();
             this.page.setDefaultTimeout(30000);

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 import {
   Instagram,
   Youtube,
@@ -77,13 +78,13 @@ export function VonaerFooter() {
             className="text-center space-y-2"
           >
             <div className="flex justify-center gap-4 text-xs">
-              <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
                 개인정보 처리방침
-              </a>
+              </Link>
               <span className="text-muted-foreground">|</span>
-              <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
                 위치기반서비스 이용약관
-              </a>
+              </Link>
             </div>
             <p className="text-muted-foreground text-xs">
               Copyright Moviation Inc. All Rights Reserved. {currentYear}

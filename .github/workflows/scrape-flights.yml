@@ -1,0 +1,185 @@
+name: Scrape Empty Leg Flights
+
+on:
+  # Run every 6 hours
+  schedule:
+    - cron: '0 */6 * * *'
+
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Enable debug mode'
+        required: false
+        default: 'false'
+
+# Cancel any in-progress runs when a new one starts
+concurrency:
+  group: flight-scraper
+  cancel-in-progress: true
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          echo "✅ Dependencies installed"
+
+      - name: Install Chrome dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            ca-certificates \
+            fonts-liberation \
+            libappindicator3-1 \
+            libasound2 \
+            libatk-bridge2.0-0 \
+            libatk1.0-0 \
+            libc6 \
+            libcairo2 \
+            libcups2 \
+            libdbus-1-3 \
+            libexpat1 \
+            libfontconfig1 \
+            libgbm1 \
+            libgcc1 \
+            libglib2.0-0 \
+            libgtk-3-0 \
+            libnspr4 \
+            libnss3 \
+            libpango-1.0-0 \
+            libpangocairo-1.0-0 \
+            libstdc++6 \
+            libx11-6 \
+            libx11-xcb1 \
+            libxcb1 \
+            libxcomposite1 \
+            libxcursor1 \
+            libxdamage1 \
+            libxext6 \
+            libxfixes3 \
+            libxi6 \
+            libxrandr2 \
+            libxrender1 \
+            libxss1 \
+            libxtst6 \
+            lsb-release \
+            wget \
+            xdg-utils
+          echo "✅ Chrome dependencies installed"
+
+      - name: Setup Chrome/Chromium
+        run: |
+          # Install Chromium
+          sudo apt-get install -y chromium-browser
+
+          # Verify installation
+          which chromium-browser
+          chromium-browser --version
+
+          echo "✅ Chromium installed successfully"
+
+      - name: Configure environment
+        run: |
+          echo "HEADLESS=true" >> $GITHUB_ENV
+          echo "SAVE_TO_FILE=true" >> $GITHUB_ENV
+          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> $GITHUB_ENV
+          echo "SUPABASE_SERVICE_ROLE_KEY=${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" >> $GITHUB_ENV
+          echo "DATABASE_TABLE_NAME=flights" >> $GITHUB_ENV
+
+          # Debug mode
+          if [ "${{ github.event.inputs.debug }}" == "true" ]; then
+            echo "DEBUG=true" >> $GITHUB_ENV
+            echo "🐛 Debug mode enabled"
+          fi
+
+          echo "✅ Environment configured"
+
+      - name: Run scraper (with retry)
+        id: scraper
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          retry_wait_seconds: 30
+          warning_on_retry: true
+          command: |
+            echo "🚀 Starting flight scraper..."
+            echo "📅 Run time: $(date)"
+            echo "🌍 Region: East Asia → South Korea flights"
+            echo ""
+
+            # Run the unified crawler
+            node unified-crawler-with-upload.js
+
+            EXIT_CODE=$?
+
+            if [ $EXIT_CODE -eq 0 ]; then
+              echo ""
+              echo "✅ Scraper completed successfully"
+            else
+              echo ""
+              echo "❌ Scraper failed with exit code $EXIT_CODE"
+              exit $EXIT_CODE
+            fi
+
+      - name: Upload scraped data artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flight-data-${{ github.run_number }}
+          path: |
+            jetbay_korea_flights_*.json
+          retention-days: 7
+
+      - name: Generate summary
+        if: always()
+        run: |
+          echo "## 📊 Flight Scraper Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Run ID**: ${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Run Time**: $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ${{ steps.scraper.outcome }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Region**: East Asia → South Korea" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check if JSON file exists
+          if ls jetbay_korea_flights_*.json 1> /dev/null 2>&1; then
+            LATEST_FILE=$(ls -t jetbay_korea_flights_*.json | head -1)
+            FLIGHT_COUNT=$(cat "$LATEST_FILE" | grep -o '"id"' | wc -l)
+            echo "- **Flights Scraped**: $FLIGHT_COUNT" >> $GITHUB_STEP_SUMMARY
+            echo "- **Data File**: \`$LATEST_FILE\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- **Flights Scraped**: ⚠️ No data file found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ steps.scraper.outcome }}" == "success" ]; then
+            echo "✅ **Scraping completed successfully!**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Scraping failed. Check logs for details.**" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Flight scraper failed after ${{ steps.scraper.outputs.total_attempts }} attempts"
+          echo "::error::Check the workflow logs for detailed error messages"
+          echo "::error::Run ID: ${{ github.run_number }}"
+
+          # You can add webhook notifications here (Slack, Discord, etc.)
+          # curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} -d '{"text":"Flight scraper failed"}'
