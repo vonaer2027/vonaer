@@ -1,7 +1,2 @@
-1. in the main page header, make the vonaer logo slightly smaller
-2. The footer needs to be in different languages not just Korean (+82 1600 9064 · service@vonaer.com 주식회사 모비에이션 · 서울특별시 강남구 학동로 523 사업등록번호: 216-81-49698 · 통신판매신고번호: 제2022-서울강남-00453호 통신판매업신고기관: 서울특별시 강남구청)
-3. Jet & Helicopter 섹션에서 Heavy Jet을 가운데로 옮겨주세요. Most Popular text size needs to be a bit bigger
-4. in the sidebar navigation overlay, change the Membership 이름을 -> Member's Lounge. 
-5. /membership page the background needs to be black and also Von Membership Only -> VON Members Only all needs to be in one sentence, not two separate mobile and placed
-6. Super Car menu needs to be changed to Chauffeured Car
-
+For every single page, except for the sidebar menus and the title page which must be consitently english. make sure there is always the translation for korean, english, japanese, chinese. Dont translate empty leg into any other language. use as is. 
+all of the pages and components.

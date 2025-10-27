@@ -681,24 +681,28 @@ class UnifiedJetBayCrawlerWithUpload {
             
             console.log(`📊 Initial extraction: ${flights.length} flight records involving South Korea`);
             
-            // Remove duplicates based on route and date
+            // Remove duplicates based on route, date, price, AND aircraft
+            // This allows multiple flights on same route if they have different aircraft or times
             console.log('🔍 Checking for duplicates...');
             const uniqueFlights = [];
             const seen = new Set();
-            
+
             flights.forEach(flight => {
-                const key = `${flight.extractedData.route.summary}_${flight.extractedData.date}_${flight.extractedData.price}`;
+                // Include aircraft in the key so flights on same route but different aircraft are kept
+                const key = `${flight.extractedData.route.summary}_${flight.extractedData.date}_${flight.extractedData.price}_${flight.extractedData.aircraft}`;
                 if (!seen.has(key)) {
                     seen.add(key);
                     uniqueFlights.push(flight);
+                } else {
+                    console.log(`   Skipping duplicate: ${flight.extractedData.route.summary} (${flight.extractedData.aircraft})`);
                 }
             });
-            
+
             const duplicatesRemoved = flights.length - uniqueFlights.length;
             if (duplicatesRemoved > 0) {
-                console.log(`🗑️ Removed ${duplicatesRemoved} duplicate flights`);
+                console.log(`🗑️ Removed ${duplicatesRemoved} exact duplicate flights`);
             }
-            
+
             this.flightData = uniqueFlights;
             console.log(`✅ Final result: ${uniqueFlights.length} unique South Korea flights`);
             

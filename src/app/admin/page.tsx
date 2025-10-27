@@ -211,7 +211,7 @@ export default function AdminDashboard() {
         >
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
-              <h1 className="text-2xl lg:text-3xl font-bold text-foreground">{t('admin.title')}</h1>
+              <h1 className="text-2xl lg:text-3xl font-bold text-foreground">Admin Dashboard</h1>
             </div>
             <Button
               onClick={handleLogout}
@@ -290,23 +290,23 @@ export default function AdminDashboard() {
           <Tabs defaultValue="flights" className="space-y-6">
             <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 h-auto">
               <TabsTrigger value="flights" className="text-xs lg:text-sm p-2 lg:p-3">
-                <span className="hidden sm:inline">{t('admin.tabs.flights')} ({flights.length})</span>
+                <span className="hidden sm:inline">Flights ({flights.length})</span>
                 <span className="sm:hidden">{flights.length}</span>
               </TabsTrigger>
               <TabsTrigger value="bookings" className="text-xs lg:text-sm p-2 lg:p-3">
-                <span className="hidden sm:inline">{t('admin.tabs.bookings')}</span>
+                <span className="hidden sm:inline">Bookings</span>
                 <span className="sm:hidden">Bookings</span>
               </TabsTrigger>
               <TabsTrigger value="mms" className="text-xs lg:text-sm p-2 lg:p-3">
-                <span className="hidden sm:inline">{t('admin.tabs.mms')}</span>
+                <span className="hidden sm:inline">MMS Messaging</span>
                 <span className="sm:hidden">MMS</span>
               </TabsTrigger>
               <TabsTrigger value="users" className="text-xs lg:text-sm p-2 lg:p-3">
-                <span className="hidden sm:inline">{t('admin.tabs.users')}</span>
+                <span className="hidden sm:inline">Users</span>
                 <span className="sm:hidden">Users</span>
               </TabsTrigger>
               <TabsTrigger value="settings" className="text-xs lg:text-sm p-2 lg:p-3">
-                <span className="hidden sm:inline">{t('admin.tabs.settings')}</span>
+                <span className="hidden sm:inline">Settings</span>
                 <span className="sm:hidden">Settings</span>
               </TabsTrigger>
             </TabsList>

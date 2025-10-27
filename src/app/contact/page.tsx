@@ -16,18 +16,24 @@ export default function ContactPage() {
   const locations = [
     {
       id: 1,
-      name: '강남 VON 라운지',
-      address: '서울 강남구 학동로 523'
+      name: '서울 본에어 본사',
+      nameEn: 'VONAER HQ',
+      address: '서울 강남구 학동로 523',
+      image: '/location/vonaer-hq.png'
     },
     {
       id: 2,
       name: '잠실헬기장',
-      address: '서울특별시 송파구 한가람로65, 잠실헬기장'
+      nameEn: 'Jamsil Heliport',
+      address: '서울특별시 송파구 한가람로65, 잠실헬기장',
+      image: '/location/jamsil.png'
     },
     {
       id: 3,
       name: '인천공항 VON포트',
-      address: '인천시 중구 운서동 2844-8'
+      nameEn: 'Incheon Airport VON Port',
+      address: '인천시 중구 운서동 2844-8',
+      image: '/location/incheon.jpg'
     }
   ]
 
@@ -58,9 +64,11 @@ export default function ContactPage() {
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
               {t('title')}
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
-              {t('subtitle')}
-            </p>
+            {t('subtitle') && (
+              <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
+                {t('subtitle')}
+              </p>
+            )}
           </motion.div>
 
           {/* Single Card with All Information */}
@@ -77,18 +85,30 @@ export default function ContactPage() {
                   <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
                     {t('locations')}
                   </h2>
-                  <div className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {locations.map((location) => (
                       <div
                         key={location.id}
-                        className="p-4 rounded-lg bg-background/50 hover:bg-background/70 transition-colors"
+                        className="rounded-lg bg-background/50 hover:bg-background/70 transition-all duration-300 overflow-hidden hover:shadow-lg"
                       >
-                        <h3 className="text-base md:text-lg font-bold text-foreground mb-1">
-                          {location.name}
-                        </h3>
-                        <p className="text-sm md:text-base text-muted-foreground">
-                          {location.address}
-                        </p>
+                        {/* Location Image */}
+                        <div className="w-full h-48 overflow-hidden bg-muted">
+                          <img
+                            src={location.image}
+                            alt={location.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+
+                        {/* Location Info */}
+                        <div className="p-4">
+                          <h3 className="text-base md:text-lg font-bold text-foreground mb-1">
+                            {location.name}
+                          </h3>
+                          <p className="text-sm md:text-base text-muted-foreground">
+                            {location.address}
+                          </p>
+                        </div>
                       </div>
                     ))}
                   </div>
