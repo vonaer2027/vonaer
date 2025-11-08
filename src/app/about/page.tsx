@@ -28,26 +28,42 @@ export default function AboutPage() {
       {/* Main Content */}
       <main className="pt-20">
         <div className="container mx-auto px-4 py-16 max-w-5xl">
-          {/* Header */}
+          {/* Tagline at Top */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              About Us
+            <h1 className="text-5xl md:text-7xl font-bold italic mb-16" style={{ color: '#71717A' }}>
+              Elevate Your FlyStyle
             </h1>
           </motion.div>
 
-          {/* About VONAER Section */}
+          {/* Hero Image Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-16"
           >
-            <div className="prose prose-lg max-w-none text-foreground">
+            <div className="relative h-96 md:h-[500px] rounded-lg overflow-hidden mb-12">
+              <img
+                src="/jet/Heavy Jet 1.jpg"
+                alt="VONAER Interior"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+
+          {/* About VONAER Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mb-16"
+          >
+            <div className="prose prose-lg max-w-none" style={{ color: '#71717A' }}>
               <p className="text-lg leading-relaxed mb-4">
                 {t('intro.paragraph1')}
               </p>
@@ -63,12 +79,6 @@ export default function AboutPage() {
               <p className="text-lg leading-relaxed mb-4">
                 {t('intro.paragraph5')}
               </p>
-
-              <div className="text-center my-12">
-                <p className="text-2xl font-bold italic text-primary">
-                  {t('tagline')}
-                </p>
-              </div>
             </div>
           </motion.div>
         </div>

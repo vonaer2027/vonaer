@@ -184,7 +184,7 @@ export default function AircraftPage() {
                   {/* Aircraft Image */}
                   <div className="relative h-48 bg-muted/30 border-b overflow-hidden">
                     {aircraft.mostPopular && (
-                      <Badge className="absolute top-4 right-4 bg-white text-black font-bold text-base px-4 py-2 shadow-lg shadow-black/30 z-10 border-2 border-black/10">
+                      <Badge className="absolute top-2 right-2 bg-white text-black font-semibold text-xs px-2 py-0.5 shadow-md shadow-black/20 z-10 border border-black/10">
                         Most Popular
                       </Badge>
                     )}

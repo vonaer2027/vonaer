@@ -27,9 +27,9 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
   // Main menu items (Charter removed, replaced with accordion)
   const menuItems = useMemo(() => [
     { id: 'home', label: 'HOME', href: '/' },
-    { id: 'about', label: 'ABOUT US', href: '/about' },
     { id: 'empty-leg', label: 'EMPTY LEG', href: '/empty' },
     { id: 'pr', label: 'PR', href: '/pr' },
+    { id: 'about', label: 'ABOUT US', href: '/about' },
     { id: 'contact', label: 'CONTACT', href: '/contact' }
   ], [])
 
@@ -93,25 +93,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
                 asChild
               >
                 <Link href="/" onClick={onClose}>
-                  <span>Home</span>
-                </Link>
-              </Button>
-            </motion.div>
-
-            {/* About Us */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.15 }}
-              className="border-b border-primary/20"
-            >
-              <Button
-                variant="ghost"
-                className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
-                asChild
-              >
-                <Link href="/about" onClick={onClose}>
-                  <span>About Us</span>
+                  <span>HOME</span>
                 </Link>
               </Button>
             </motion.div>
@@ -120,7 +102,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.15 }}
               className="border-b border-primary/20"
             >
               <Button
@@ -165,13 +147,13 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
               </AnimatePresence>
             </motion.div>
 
-            {/* Remaining Menu Items (Empty Leg, PR, Contact) */}
-            {menuItems.slice(2).map((item, index) => (
+            {/* Remaining Menu Items (Empty Leg, PR, About Us, Contact) */}
+            {menuItems.slice(1).map((item, index) => (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.25 + index * 0.05 }}
+                transition={{ delay: 0.2 + index * 0.05 }}
                 className="border-b border-primary/20"
               >
                 <Button
