@@ -54,7 +54,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className="text-center"
             >
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white tracking-wider">
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-wider" style={{ color: '#71717A' }}>
                 ABOUT US
               </h1>
             </motion.div>
