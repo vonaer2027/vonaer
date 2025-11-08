@@ -69,7 +69,7 @@ const newsroomArticles = [
 ]
 
 export default function PRPage() {
-  const t = useTranslations()
+  const t = useTranslations('pr')
   const [menuOpen, setMenuOpen] = useState(false)
 
   // Filter newsletter articles from 2025
@@ -103,17 +103,7 @@ export default function PRPage() {
       {/* Main Content */}
       <main className="pt-20">
         <div className="container mx-auto px-4 py-16">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              {t('pr.title')}
-            </h1>
-          </motion.div>
+          {/* Header removed per user feedback - no standalone PR title */}
 
           {/* Newsletter Subscription Section */}
           <motion.div
@@ -125,14 +115,14 @@ export default function PRPage() {
             <Card className="border shadow-lg bg-gradient-to-br from-primary/5 to-primary/10">
               <CardContent className="p-8 md:p-12 text-center">
                 <div className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-8 max-w-5xl mx-auto px-2">
-                  <p>본에어 뉴스레터를 구독하고</p>
-                  <p>특별한 경험을 제공하는 본에어의 소식을 이메일로 받아보세요.</p>
+                  <p>{t('newsletter.title')}</p>
+                  <p>{t('newsletter.subtitle')}</p>
                 </div>
                 <Button
                   className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold"
                   onClick={() => window.open('https://vonaer.stibee.com/subscribe/', '_blank')}
                 >
-                  뉴스레터 구독하기
+                  {t('newsletter.subscribe')}
                 </Button>
               </CardContent>
             </Card>

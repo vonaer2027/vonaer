@@ -1008,6 +1008,11 @@
       "description": "언론 문의, 인터뷰 요청 또는 추가 정보가 필요하시면 저희 미디어 관계팀에 문의하십시오.",
       "contactTeam": "미디어 팀에 문의",
       "downloadKit": "미디어 키트 다운로드"
+    },
+    "newsletter": {
+      "title": "본에어 뉴스레터를 구독하고",
+      "subtitle": "특별한 경험을 제공하는 본에어의 소식을 이메일로 받아보세요.",
+      "subscribe": "뉴스레터 구독하기"
     }
   },
   "client": {
@@ -1284,6 +1289,54 @@
       "oct": "10월",
       "nov": "11월",
       "dec": "12월"
+    }
+  },
+  "yacht": {
+    "title": "Super Yacht",
+    "subtitle": "세계 최고의 럭셔리 요트로 바다 위의 특별한 경험을 선사합니다",
+    "yachts": {
+      "carpeDiem": {
+        "name": "CARPE DIEM",
+        "builder": "Trinity Yachts, 미국",
+        "year": "2011년 (2024년 리피팅)",
+        "length": "58.2m (190.9ft)",
+        "guests": "6개 캐빈에 12명 수용",
+        "description": "58.2m 길이의 CARPE DIEM은 미국 Trinity Yachts의 대표적인 풀 알루미늄 슈퍼요트로, 장거리 항해와 정숙한 운항을 겸비한 모델입니다. 넓은 10.2m 빔을 기반으로 6개 캐빈에 최대 12명까지 탑승할 수 있으며, 선체 전체에 미국식 럭셔리와 기능적 디자인이 조화된 공간을 제공합니다. 클래식한 화이트 라인과 밸런스 잡힌 프로파일이 Trinity Yachts의 장인정신을 잘 보여줍니다."
+      },
+      "afterYou": {
+        "name": "AFTER YOU",
+        "builder": "Heesen, 네덜란드",
+        "year": "2011년 (2022년 리피팅)",
+        "length": "55m (180.4ft)",
+        "guests": "6개 캐빈에 12명 수용",
+        "description": "55m급 AFTER YOU는 Heesen Yachts가 보유한 알루미늄 세미디스플레이스먼트 라인업 중에서도 가장 정교한 작품으로 평가받습니다. 리피팅을 통해 최신 항법 시스템과 소음 저감 기술이 적용되었으며, 6개 캐빈에 최대 12명을 수용합니다. 고속 순항 성능과 유려한 실루엣이 조화를 이루며, Heesen의 정밀 공학 역량을 집약한 요트입니다."
+      },
+      "energy": {
+        "name": "ENERGY",
+        "builder": "Amels, 네덜란드",
+        "year": "2022년",
+        "length": "77.8m (255.2ft)",
+        "guests": "7개 캐빈에 14명 수용",
+        "description": "77.8m의 ENERGY는 Amels의 풀 커스텀 플래그십으로, Espen Øino가 외관을, François Zuretti가 인테리어를 담당했습니다. 강철 선체와 알루미늄 상부 구조물로 완성된 Lloyd's 인증급 요트로, 7개 캐빈에서 최대 14명이 탑승할 수 있습니다. 공간과 자연광을 극대화한 디자인은 Amels가 추구하는 '바다와의 연결' 철학을 가장 잘 드러냅니다."
+      },
+      "axioma": {
+        "name": "AXIOMA",
+        "builder": "Dunya Yachts, 터키",
+        "year": "2013년 (2025년 리피팅 예정)",
+        "length": "72m (236.2ft)",
+        "guests": "6개 캐빈에 12명 수용",
+        "description": "72m급 AXIOMA는 Dunya Yachts가 건조한 터키 최초의 슈퍼요트 플래그십으로, 1,620GT의 넓은 공간과 6개 캐빈 구성을 갖추고 있습니다. Alberto Pinto 디자인의 인테리어는 개방감 있는 더블 데크 구조와 수영장, 웰니스 존 등으로 유명합니다. ABS 및 MCA 기준을 충족하며, 지중해 차터 시장에서 가장 인기 있는 슈퍼요트 중 하나로 꼽힙니다."
+      }
+    },
+    "specs": {
+      "length": "길이",
+      "guests": "승객",
+      "builder": "건조사",
+      "year": "건조연도"
+    },
+    "cta": {
+      "requestQuote": "견적 요청",
+      "learnMore": "더 알아보기"
     }
   }
 }
