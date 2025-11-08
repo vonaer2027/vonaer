@@ -33,7 +33,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-90" />
 
           <Image
-            src="/about/vonaer-lounge.jpg"
+            src="/about/vonaer-lounge.png"
             alt="VONAER Lounge"
             fill
             className="object-cover opacity-50"
