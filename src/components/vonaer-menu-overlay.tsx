@@ -19,22 +19,22 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
   // Charter sub-items (accordion items)
   const charterSubItems = useMemo(() => [
     { id: 'evtol', label: 'E-VTOL', href: '/evtol' },
-    { id: 'jet-helicopter', label: 'Jet & Helicopter', href: '/aircraft' },
-    { id: 'supercar', label: 'Chauffeured Car', href: '/supercar' },
-    { id: 'super-yacht', label: 'Super Yacht', href: '/yacht' }
+    { id: 'jet-helicopter', label: 'JET & HELICOPTER', href: '/aircraft' },
+    { id: 'supercar', label: 'CHAUFFEURED CAR', href: '/supercar' },
+    { id: 'super-yacht', label: 'SUPER YACHT', href: '/yacht' }
   ], [])
 
   // Main menu items (Charter removed, replaced with accordion)
   const menuItems = useMemo(() => [
-    { id: 'home', label: 'Home', href: '/' },
-    { id: 'about', label: 'About Us', href: '/about' },
-    { id: 'empty-leg', label: 'Empty Leg', href: '/empty' },
+    { id: 'home', label: 'HOME', href: '/' },
+    { id: 'about', label: 'ABOUT US', href: '/about' },
+    { id: 'empty-leg', label: 'EMPTY LEG', href: '/empty' },
     { id: 'pr', label: 'PR', href: '/pr' },
-    { id: 'contact', label: 'Contact', href: '/contact' }
+    { id: 'contact', label: 'CONTACT', href: '/contact' }
   ], [])
 
   // Membership item shown separately at bottom
-  const membershipItem = { id: 'membership', label: 'Member\'s Lounge', href: '/membership' }
+  const membershipItem = { id: 'membership', label: 'MEMBER\'S LOUNGE', href: '/membership' }
 
   return (
     <>
@@ -128,7 +128,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
                 className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left relative"
                 onClick={() => setCharterExpanded(!charterExpanded)}
               >
-                <span>Charter</span>
+                <span>CHARTER</span>
                 <span className="absolute right-6">
                   {charterExpanded ? (
                     <ChevronUp className="h-4 w-4" />
