@@ -124,7 +124,7 @@ export default function YachtPage() {
 
                     {/* Description */}
                     <div className="mb-6">
-                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-4">
+                      <p className="text-sm text-muted-foreground leading-relaxed">
                         {t(`yachts.${yacht.id}.description`)}
                       </p>
                     </div>
