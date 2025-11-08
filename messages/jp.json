@@ -907,7 +907,7 @@
     }
   },
   "aircraft": {
-    "title": "航空機フリート",
+    "title": "Aircraft",
     "subtitle": "お客様の特定の旅行ニーズに合わせて、当社の包括的な航空機フリートからお選びください",
     "categories": {
       "lightJet": {

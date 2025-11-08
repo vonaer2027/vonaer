@@ -895,8 +895,8 @@
     }
   },
   "aircraft": {
-    "title": "항공기 צי",
-    "subtitle": "특정 여행 요구에 맞는 포괄적인 항공기 צי에서 선택하세요",
+    "title": "Aircraft",
+    "subtitle": "특정 여행 요구에 맞는 포괄적인 항공기에서 선택하세요",
     "categories": {
       "lightJet": {
         "title": "경량 제트기",
