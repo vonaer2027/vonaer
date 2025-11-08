@@ -18,10 +18,10 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
 
   // Charter sub-items (accordion items)
   const charterSubItems = useMemo(() => [
-    { id: 'evtol', label: 'E-VTOL', href: '/evtol' },
     { id: 'jet-helicopter', label: 'JET & HELICOPTER', href: '/aircraft' },
     { id: 'supercar', label: 'CHAUFFEURED CAR', href: '/supercar' },
-    { id: 'super-yacht', label: 'SUPER YACHT', href: '/yacht' }
+    { id: 'super-yacht', label: 'SUPER YACHT', href: '/yacht' },
+    { id: 'evtol', label: 'e VTOL', href: '/evtol' }
   ], [])
 
   // Main menu items (Charter removed, replaced with accordion)
