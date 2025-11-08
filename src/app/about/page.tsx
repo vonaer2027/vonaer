@@ -6,6 +6,7 @@ import { VonaerHeader } from '@/components/vonaer-header'
 import { VonaerMenuOverlay } from '@/components/vonaer-menu-overlay'
 import { VonaerFooter } from '@/components/vonaer-footer'
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function AboutPage() {
   const t = useTranslations('about')
@@ -25,35 +26,55 @@ export default function AboutPage() {
         onClose={() => setMenuOpen(false)}
       />
 
+      {/* Hero Section - Similar to Main Page */}
+      <section className="relative min-h-screen flex items-center bg-black">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-90" />
+
+          <Image
+            src="/location/vonaer-hq.png"
+            alt="VONAER"
+            fill
+            className="object-cover opacity-50"
+            priority
+            quality={90}
+          />
+
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 z-10" />
+        </div>
+
+        {/* Center Text */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-20">
+          <div className="flex items-center justify-center min-h-screen">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              className="text-center"
+            >
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white tracking-wider">
+                ABOUT US
+              </h1>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Main Content */}
-      <main className="pt-20">
+      <main>
         <div className="container mx-auto px-4 py-16 max-w-5xl">
-          {/* Tagline at Top */}
+          {/* Tagline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h1 className="text-5xl md:text-7xl font-bold italic mb-16" style={{ color: '#71717A' }}>
+            <h2 className="text-5xl md:text-7xl font-bold italic mb-16" style={{ color: '#71717A' }}>
               Elevate Your FlyStyle
-            </h1>
-          </motion.div>
-
-          {/* Hero Image Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-16"
-          >
-            <div className="relative h-96 md:h-[500px] rounded-lg overflow-hidden mb-12">
-              <img
-                src="/jet/Heavy Jet 1.jpg"
-                alt="VONAER Interior"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            </h2>
           </motion.div>
 
           {/* About VONAER Section */}
