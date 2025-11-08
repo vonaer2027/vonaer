@@ -855,28 +855,30 @@
     }
   },
   "supercar": {
-    "title": "超级跑车",
-    "subtitle": "体验我们高级超级跑车车队带来的终极豪华地面交通",
-    "comingSoon": {
-      "title": "即将推出",
-      "description": "我们的豪华超级跑车服务目前正在开发中。体验与我们航空服务卓越品质相匹配的高级地面交通。",
-      "features": {
-        "luxuryFleet": {
-          "title": "豪华车队",
-          "description": "来自顶级制造商的高级超级跑车"
-        },
-        "professionalService": {
-          "title": "专业服务",
-          "description": "专业司机和礼宾服务"
-        },
-        "flexibleBooking": {
-          "title": "灵活预订",
-          "description": "按需和预定服务"
+    "title": "Chauffeured Car",
+    "subtitle": "享受豪华车辆提供的顶级地面交通体验",
+    "featuresLabel": "主要特点",
+    "cta": "预约咨询",
+    "vehicles": {
+      "maybach": {
+        "name": "奔驰 S580 迈巴赫",
+        "subtitle": "超豪华轿车",
+        "features": {
+          "0": "无与伦比的精致",
+          "1": "行政后座",
+          "2": "极致舒适",
+          "3": "尊贵豪华"
         }
       },
-      "cta": {
-        "getNotified": "获取通知",
-        "contactSales": "联系销售"
+      "sprinter": {
+        "name": "奔驰斯宾特 VIP 豪华轿车",
+        "subtitle": "定制 VIP 豪华轿车",
+        "features": {
+          "0": "定制豪华设施",
+          "1": "卓越空间",
+          "2": "高度定制化",
+          "3": "VIP 舒适"
+        }
       }
     }
   },
@@ -1030,6 +1032,11 @@
       "description": "有关新闻查询、采访请求或其他信息，请联系我们的媒体关系团队。",
       "contactTeam": "联系媒体团队",
       "downloadKit": "下载媒体资料包"
+    },
+    "newsletter": {
+      "title": "订阅VONAER新闻通讯",
+      "subtitle": "接收VONAER提供的独家体验和特别优惠。",
+      "subscribe": "订阅新闻通讯"
     }
   },
   "client": {
@@ -1306,6 +1313,53 @@
       "oct": "十月",
       "nov": "十一月",
       "dec": "十二月"
+    }
+  },
+  "yacht": {
+    "yachts": {
+      "carpeDiem": {
+        "name": "CARPE DIEM",
+        "builder": "Trinity Yachts，美国",
+        "year": "2011年（2024年翻新）",
+        "length": "58.2米（190.9英尺）",
+        "guests": "6个舱室可容纳12位客人",
+        "description": "全长58.2米（190.9英尺）的CARPE DIEM代表了美国造船厂Trinity Yachts的工艺水平。铝合金制造的船体实现了坚固性和轻量化的双重目标，在宽敞的10.2米（33.5英尺）横梁上完成的内饰提供卓越的空间利用性和奢华感。6个舱室可容纳12位客人，特点是融合经典美式奢华与现代感的甲板布局。\n\n58.2米长的CARPE DIEM是美国Trinity Yachts的代表性全铝制超级游艇，兼具远程巡航和静音航行。基于10.2米的宽阔横梁，6个舱室最多可容纳12位客人，船体整体提供美式奢华与功能性设计相协调的空间。经典的白色线条和平衡的轮廓展示了Trinity Yachts的工艺水平。"
+      },
+      "afterYou": {
+        "name": "AFTER YOU",
+        "builder": "Heesen，荷兰",
+        "year": "2011年（2022年翻新）",
+        "length": "55米（180.4英尺）",
+        "guests": "6个舱室可容纳12位客人",
+        "description": "全长55米（180.4英尺）的AFTER YOU是荷兰著名造船厂Heesen的代表作，结合高速巡航性能与精致定制设计的全铝游艇。通过翻新，配备了最新规格的发动机和导航系统，6个舱室采用欧洲极简主义与舒适并存的结构。突显Heesen追求的「强劲结构与流畅线条」美学的作品。\n\n55米级的AFTER YOU被认为是Heesen Yachts铝制半排水型阵容中最精致的作品之一。通过翻新引入了最新的导航系统和降噪技术，6个舱室最多可容纳12位客人。高速巡航性能与流畅的轮廓相协调，集中体现了Heesen的精密工程能力。"
+      },
+      "energy": {
+        "name": "ENERGY",
+        "builder": "Amels，荷兰",
+        "year": "2022年",
+        "length": "77.8米（255.2英尺）",
+        "guests": "7个舱室可容纳14位客人",
+        "description": "全长77.8米（255.2英尺）的ENERGY是荷兰Amels推出的全定制超级游艇，结合符合最新Lloyd's标准的强大结构与精致设计的型号。外观设计由Espen Øino负责，内饰由François Zuretti完成，各个空间设计旨在最大化自然光与海洋的连接感。不追随潮流，实现Amels独特设计理念的现代超级游艇精髓。\n\n77.8米的ENERGY是Amels的全定制旗舰，外观由Espen Øino设计，内饰由François Zuretti负责。这艘Lloyd's认证级游艇采用钢制船体和铝制上层建筑，7个舱室最多可容纳14位客人。最大化空间和自然光的设计最好地体现了Amels追求的「与海洋连接」的理念。"
+      },
+      "axioma": {
+        "name": "AXIOMA",
+        "builder": "Dunya Yachts，土耳其",
+        "year": "2013年（预计2025年翻新）",
+        "length": "72米（236.2英尺）",
+        "guests": "6个舱室可容纳12位客人",
+        "description": "全长72米（236.2英尺）的AXIOMA是土耳其造船厂Dunya Yachts建造的旗舰型号，拥有1,620GT级的宽敞容积。Alberto Pinto设计的内饰最大化了开放感和舒适性，主沙龙和双层甲板泳池被评为AXIOMA的标志性空间。满足ABS和MCA标准，在全球租赁市场也具有很高的人气和品牌知名度的超级游艇。\n\n72米级的AXIOMA是Dunya Yachts建造的土耳其首艘超级游艇旗舰，拥有1,620GT的宽敞空间和6个舱室配置。Alberto Pinto设计的内饰以开放式双层甲板结构、游泳池和健康区等而闻名。符合ABS和MCA标准，被认为是地中海租赁市场最受欢迎的超级游艇之一。"
+      }
+    },
+    "cta": {
+      "requestQuote": "索取报价"
+    },
+    "title": "SUPER YACHT",
+    "subtitle": "享受顶级超级游艇的终极海上体验",
+    "specs": {
+      "year": "建造年份",
+      "length": "长度",
+      "guests": "客人",
+      "builder": "建造商"
     }
   }
 }

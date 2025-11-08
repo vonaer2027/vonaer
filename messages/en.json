@@ -830,28 +830,30 @@
     }
   },
   "supercar": {
-    "title": "Super Car",
-    "subtitle": "Experience the ultimate in luxury ground transportation with our premium supercar fleet",
-    "comingSoon": {
-      "title": "Coming Soon",
-      "description": "Our luxury supercar service is currently in development. Experience premium ground transportation that matches the excellence of our aviation services.",
-      "features": {
-        "luxuryFleet": {
-          "title": "Luxury Fleet",
-          "description": "Premium supercars from top manufacturers"
-        },
-        "professionalService": {
-          "title": "Professional Service",
-          "description": "Expert drivers and concierge service"
-        },
-        "flexibleBooking": {
-          "title": "Flexible Booking",
-          "description": "On-demand and scheduled services"
+    "title": "Chauffeured Car",
+    "subtitle": "Experience premium ground transportation with luxury vehicles",
+    "featuresLabel": "Key Features",
+    "cta": "Request Quote",
+    "vehicles": {
+      "maybach": {
+        "name": "Mercedes S580 Maybach",
+        "subtitle": "Ultra Luxury Sedan",
+        "features": {
+          "0": "Unmatched Sophistication",
+          "1": "Executive Rear Seating",
+          "2": "Ultimate Comfort",
+          "3": "Prestige Luxury"
         }
       },
-      "cta": {
-        "getNotified": "Get Notified",
-        "contactSales": "Contact Sales"
+      "sprinter": {
+        "name": "Mercedes Sprinter VIP Limousine",
+        "subtitle": "Customized VIP Limousine",
+        "features": {
+          "0": "Customized Luxury Amenities",
+          "1": "Exceptional Space",
+          "2": "High Customization",
+          "3": "VIP Comfort"
+        }
       }
     }
   },
@@ -1298,7 +1300,7 @@
         "year": "2011 (2024 Refit)",
         "length": "58.2m (190.9ft)",
         "guests": "12 guests in 6 cabins",
-        "description": "The 58.2m CARPE DIEM represents Trinity Yachts' signature full aluminum superyacht, combining long-range cruising with quiet operation. Built on a spacious 10.2m beam with 6 cabins accommodating up to 12 guests, the vessel showcases American luxury harmonized with functional design throughout. Classic white lines and balanced profile demonstrate Trinity Yachts' craftsmanship."
+        "description": "The 58.2m (190.9ft) CARPE DIEM represents the craftsmanship of American shipyard Trinity Yachts. The aluminum alloy hull achieves both strength and weight reduction, while the interior completed on a spacious 10.2m (33.5ft) beam provides exceptional space utilization and luxury. Accommodating 12 guests in 6 cabins, it features a deck layout harmonizing classic American luxury with modern sensibility.\n\nThe 58.2m CARPE DIEM represents Trinity Yachts' signature full aluminum superyacht, combining long-range cruising with quiet operation. Built on a spacious 10.2m beam with 6 cabins accommodating up to 12 guests, the vessel showcases American luxury harmonized with functional design throughout. Classic white lines and balanced profile demonstrate Trinity Yachts' craftsmanship."
       },
       "afterYou": {
         "name": "AFTER YOU",
@@ -1306,7 +1308,7 @@
         "year": "2011 (2022 Refit)",
         "length": "55m (180.4ft)",
         "guests": "12 guests in 6 cabins",
-        "description": "The 55m AFTER YOU is regarded as one of the most refined works in Heesen Yachts' aluminum semi-displacement lineup. Recent refit introduced latest navigation systems and noise reduction technology, with 6 cabins accommodating up to 12 guests. High-speed cruising performance and elegant silhouette showcase Heesen's precision engineering capabilities."
+        "description": "The 55m (180.4ft) AFTER YOU is a masterpiece from Dutch prestigious shipyard Heesen, combining high-speed cruising performance with sophisticated custom design in a full aluminum yacht. Through refitting, it has been upgraded with latest specification engines and navigation systems, with 6 cabins structured in a composition where European minimalism and comfort coexist. A work that highlights Heesen's aesthetic of 'robust structure and elegant lines'.\n\nThe 55m AFTER YOU is regarded as one of the most refined works in Heesen Yachts' aluminum semi-displacement lineup. Recent refit introduced latest navigation systems and noise reduction technology, with 6 cabins accommodating up to 12 guests. High-speed cruising performance and elegant silhouette showcase Heesen's precision engineering capabilities."
       },
       "energy": {
         "name": "ENERGY",
@@ -1314,7 +1316,7 @@
         "year": "2022",
         "length": "77.8m (255.2ft)",
         "guests": "14 guests in 7 cabins",
-        "description": "The 77.8m ENERGY is Amels' full custom flagship, with exterior by Espen Øino and interior by François Zuretti. This Lloyd's certified yacht features steel hull and aluminum superstructure, with 7 cabins accommodating up to 14 guests. The design maximizing space and natural light best represents Amels' philosophy of 'connection with the sea'."
+        "description": "The 77.8m (255.2ft) ENERGY is a full custom superyacht presented by Dutch Amels, a model combining robust structure meeting latest Lloyd's standards with refined design. Completed with exterior design by Espen Øino and interior by François Zuretti, each space is designed to maximize natural light and connection with the sea. The essence of modern superyachts implementing Amels' unique design philosophy without following trends.\n\nThe 77.8m ENERGY is Amels' full custom flagship, with exterior by Espen Øino and interior by François Zuretti. This Lloyd's certified yacht features steel hull and aluminum superstructure, with 7 cabins accommodating up to 14 guests. The design maximizing space and natural light best represents Amels' philosophy of 'connection with the sea'."
       },
       "axioma": {
         "name": "AXIOMA",
@@ -1322,7 +1324,7 @@
         "year": "2013 (2025 Refit Scheduled)",
         "length": "72m (236.2ft)",
         "guests": "12 guests in 6 cabins",
-        "description": "The 72m AXIOMA is Turkey's first superyacht flagship built by Dunya Yachts, featuring 1,620GT volume with 6 cabin configuration. Alberto Pinto's interior design is renowned for its spacious double-deck structure with pool and wellness areas. Meeting ABS and MCA standards, it's one of the most popular superyachts in the Mediterranean charter market."
+        "description": "The 72m (236.2ft) AXIOMA is a flagship model built by Turkish shipyard Dunya Yachts, boasting spacious volume of 1,620GT class. The interior designed by Alberto Pinto maximizes openness and comfort, with the main salon and double deck pool evaluated as AXIOMA's iconic spaces. Meeting both ABS and MCA standards, it is a superyacht with high popularity and brand recognition in the global charter market.\n\nThe 72m AXIOMA is Turkey's first superyacht flagship built by Dunya Yachts, featuring 1,620GT volume with 6 cabin configuration. Alberto Pinto's interior design is renowned for its spacious double-deck structure with pool and wellness areas. Meeting ABS and MCA standards, it's one of the most popular superyachts in the Mediterranean charter market."
       }
     },
     "specs": {

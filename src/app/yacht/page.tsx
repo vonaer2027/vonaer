@@ -123,10 +123,12 @@ export default function YachtPage() {
                     </div>
 
                     {/* Description */}
-                    <div className="mb-6">
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {t(`yachts.${yacht.id}.description`)}
-                      </p>
+                    <div className="mb-6 space-y-4">
+                      {t(`yachts.${yacht.id}.description`).split('\n\n').map((paragraph, idx) => (
+                        <p key={idx} className="text-sm text-muted-foreground leading-relaxed">
+                          {paragraph}
+                        </p>
+                      ))}
                     </div>
 
                     {/* CTA Button */}

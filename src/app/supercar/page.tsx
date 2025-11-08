@@ -11,37 +11,22 @@ import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 
-const vehicles = [
+const vehicleKeys = [
   {
-    id: 1,
-    name: '벤츠 S580 마이바흐',
-    subtitle: '울트라 럭셔리 세단',
-    features: [
-      '비할 데 없는 세련됨',
-      '임원 뒷좌석',
-      '궁극의 편안함',
-      '프레스티지 럭셔리'
-    ],
+    id: 'maybach',
     image: '/car/Benz.png',
     gradient: 'from-primary/5 to-primary/10'
   },
   {
-    id: 2,
-    name: '벤츠 스프린터 VIP 리무진',
-    subtitle: '맞춤형 VIP 리무진',
-    features: [
-      '맞춤형 럭셔리 편의시설',
-      '뛰어난 공간',
-      '높은 맞춤화',
-      'VIP 편안함'
-    ],
+    id: 'sprinter',
     image: '/car/Sprinter.jpg',
     gradient: 'from-primary/5 to-primary/10'
   }
 ]
 
 export default function SuperCarPage() {
-  const t = useTranslations()
+  const t = useTranslations('supercar')
+  const tCommon = useTranslations('flightSearchDialog')
   const [menuOpen, setMenuOpen] = useState(false)
   const [inquiryDialogOpen, setInquiryDialogOpen] = useState(false)
   const [selectedCar, setSelectedCar] = useState('')
@@ -53,7 +38,7 @@ export default function SuperCarPage() {
 
   const handleInquirySuccess = () => {
     setInquiryDialogOpen(false)
-    toast.success(t('flightSearchDialog.success.submitted'))
+    toast.success(tCommon('success.submitted'))
   }
 
   return (
@@ -81,16 +66,16 @@ export default function SuperCarPage() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              Chauffeured Car
+              {t('title')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              프리미엄 럭셔리 차량으로 최고의 지상 교통을 경험하세요
+              {t('subtitle')}
             </p>
           </motion.div>
 
           {/* Vehicles Grid */}
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {vehicles.map((vehicle, index) => (
+            {vehicleKeys.map((vehicle, index) => (
               <motion.div
                 key={vehicle.id}
                 initial={{ opacity: 0, y: 40 }}
@@ -103,7 +88,7 @@ export default function SuperCarPage() {
                   <div className="relative h-64 bg-muted/30 overflow-hidden">
                     <img
                       src={vehicle.image}
-                      alt={vehicle.name}
+                      alt={t(`vehicles.${vehicle.id}.name`)}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -111,29 +96,29 @@ export default function SuperCarPage() {
                   <CardContent className="p-8">
                     {/* Vehicle Name */}
                     <h3 className="text-2xl font-bold text-foreground mb-2">
-                      {vehicle.name}
+                      {t(`vehicles.${vehicle.id}.name`)}
                     </h3>
                     <p className="text-lg text-muted-foreground mb-6">
-                      {vehicle.subtitle}
+                      {t(`vehicles.${vehicle.id}.subtitle`)}
                     </p>
 
                     {/* Features */}
                     <div className="space-y-3 mb-6">
-                      <p className="text-sm font-semibold text-foreground mb-3">차량별 주요 특징</p>
-                      {vehicle.features.map((feature, idx) => (
+                      <p className="text-sm font-semibold text-foreground mb-3">{t('featuresLabel')}</p>
+                      {[0, 1, 2, 3].map((idx) => (
                         <div key={idx} className="flex items-center gap-2">
                           <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                          <p className="text-sm text-muted-foreground">{feature}</p>
+                          <p className="text-sm text-muted-foreground">{t(`vehicles.${vehicle.id}.features.${idx}`)}</p>
                         </div>
                       ))}
                     </div>
 
                     {/* CTA Button */}
                     <Button
-                      onClick={() => handleRequestQuote(vehicle.name)}
+                      onClick={() => handleRequestQuote(t(`vehicles.${vehicle.id}.name`))}
                       className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-6 text-lg font-semibold"
                     >
-                      예약 문의
+                      {t('cta')}
                     </Button>
                   </CardContent>
                 </Card>

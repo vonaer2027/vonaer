@@ -128,7 +128,7 @@ export function InquiryDialog({ open, onOpenChange, onSuccess, inquiryType, item
         }]
       }
 
-      const webhookUrl = 'https://chat.googleapis.com/v1/spaces/AAAAxySK94A/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=LCgXwO5qU-Qi0gRjxD94MzEj1dLN-rl_HbXxN0ZUmHo'
+      const webhookUrl = 'https://chat.googleapis.com/v1/spaces/AAQA4rwvLhg/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=XSsHMsMPf167hnnuvDJ0afpKAUu0s-s36NpffX9Niig'
 
       const response = await fetch(webhookUrl, {
         method: 'POST',

@@ -54,8 +54,8 @@ export default function AboutPage() {
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className="text-center"
             >
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-wider" style={{ color: '#71717A' }}>
-                ABOUT US
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold italic tracking-wider" style={{ color: '#71717A' }}>
+                Elevate Your FlyStyle
               </h1>
             </motion.div>
           </div>
@@ -65,18 +65,6 @@ export default function AboutPage() {
       {/* Main Content */}
       <main>
         <div className="container mx-auto px-4 py-16 max-w-5xl">
-          {/* Tagline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-5xl md:text-7xl font-bold italic mb-16" style={{ color: '#71717A' }}>
-              Elevate Your FlyStyle
-            </h2>
-          </motion.div>
-
           {/* About VONAER Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -84,20 +72,20 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mb-16"
           >
-            <div className="prose prose-lg max-w-none" style={{ color: '#71717A' }}>
-              <p className="text-lg leading-relaxed mb-4 break-keep">
+            <div className="prose prose-lg max-w-none" style={{ color: '#71717A', wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+              <p className="text-lg leading-relaxed mb-4">
                 {t('intro.paragraph1')}
               </p>
-              <p className="text-lg leading-relaxed mb-4 break-keep">
+              <p className="text-lg leading-relaxed mb-4">
                 {t('intro.paragraph2')}
               </p>
-              <p className="text-lg leading-relaxed mb-4 break-keep">
+              <p className="text-lg leading-relaxed mb-4">
                 {t('intro.paragraph3')}
               </p>
-              <p className="text-lg leading-relaxed mb-4 break-keep">
+              <p className="text-lg leading-relaxed mb-4">
                 {t('intro.paragraph4')}
               </p>
-              <p className="text-lg leading-relaxed mb-4 break-keep">
+              <p className="text-lg leading-relaxed mb-4">
                 {t('intro.paragraph5')}
               </p>
             </div>

@@ -83,7 +83,7 @@ export function VonaerFooter() {
               </Link>
               <span className="text-muted-foreground">|</span>
               <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
-                위치기반 서비스 이용약관
+                위치기반서비스 이용약관
               </Link>
             </div>
             <p className="text-muted-foreground text-xs">

@@ -417,7 +417,7 @@ export const bookingRequestService = {
   },
 
   async sendGoogleChatNotification(bookingRequest: BookingRequest, flightId: string) {
-    const webhookUrl = process.env.NEXT_PUBLIC_GOOGLE_CHAT_WEBHOOK_URL || 
+    const webhookUrl = process.env.NEXT_PUBLIC_GOOGLE_CHAT_WEBHOOK_URL ||
       'https://chat.googleapis.com/v1/spaces/AAQAdrRiLik/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=ellKxXXHRShH47vz1AzoBls8uis2A4wwTqI79klWpzc'
     
     // Get flight details for the notification
@@ -475,7 +475,7 @@ export const bookingRequestService = {
   },
 
   async testGoogleChatWebhook() {
-    const webhookUrl = process.env.NEXT_PUBLIC_GOOGLE_CHAT_WEBHOOK_URL || 
+    const webhookUrl = process.env.NEXT_PUBLIC_GOOGLE_CHAT_WEBHOOK_URL ||
       'https://chat.googleapis.com/v1/spaces/AAQAdrRiLik/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=ellKxXXHRShH47vz1AzoBls8uis2A4wwTqI79klWpzc'
     
     const testMessage = {
