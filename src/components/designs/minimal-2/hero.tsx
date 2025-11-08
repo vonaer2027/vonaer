@@ -1,28 +1,57 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export function Minimal2Hero() {
   const t = useTranslations();
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    '/hero/hero-slide-1.jpg',
+    '/hero/hero-slide-2.jpg',
+    '/hero/hero-slide-3.jpg',
+    '/hero/hero-slide-4.jpg',
+    '/hero/hero-slide-5.jpg'
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
   return (
     <section className="relative min-h-screen flex items-center bg-black">
-      {/* Video background */}
+      {/* Image slideshow background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-90" />
 
-        {/* Video element - placeholder for now */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-        </video>
+        {/* Image slideshow */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.5 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={slides[currentSlide]}
+              alt={`Hero slide ${currentSlide + 1}`}
+              fill
+              className="object-cover"
+              priority={currentSlide === 0}
+              quality={90}
+            />
+          </motion.div>
+        </AnimatePresence>
 
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 z-10" />
