@@ -118,7 +118,7 @@ export default function EvtolPage() {
             </div>
           </motion.div>
 
-          {/* E-VTOL Section - Bottom */}
+          {/* e VTOL Section - Bottom */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -126,10 +126,10 @@ export default function EvtolPage() {
             className="text-center mt-16 pt-8 border-t border-border"
           >
             <h3 className="text-2xl md:text-3xl font-bold text-foreground tracking-wider">
-              E-VTOL
+              e VTOL
             </h3>
             <p className="text-sm text-muted-foreground mt-2">
-              Electric Vertical Take-Off and Landing
+              electric Vertical Take-Off and Landing
             </p>
           </motion.div>
         </div>
