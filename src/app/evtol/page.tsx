@@ -34,7 +34,7 @@ export default function EvtolPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
               {t('title')}
@@ -46,7 +46,7 @@ export default function EvtolPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-16 rounded-2xl overflow-hidden shadow-2xl max-w-xl mx-auto"
+            className="mb-12 rounded-2xl overflow-hidden shadow-2xl max-w-xl mx-auto"
           >
             <Image
               src="/evtol/eVTOL_v1.png"
@@ -63,22 +63,22 @@ export default function EvtolPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-16"
+            className="mb-12"
           >
-            <div className="prose prose-lg max-w-none text-foreground">
-              <p className="text-lg leading-relaxed mb-4">
+            <div className="prose prose-lg max-w-none text-foreground space-y-6">
+              <p className="text-lg leading-relaxed">
                 {t('paragraph1')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed">
                 {t('paragraph2')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed">
                 {t('paragraph3')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed">
                 {t('paragraph4')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed">
                 {t('paragraph5')}
               </p>
             </div>
@@ -89,33 +89,48 @@ export default function EvtolPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-16"
+            className="mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
               {t('commitment.title')}
             </h2>
 
-            <div className="prose prose-lg max-w-none text-foreground">
-              <p className="text-lg leading-relaxed mb-4">
+            <div className="prose prose-lg max-w-none text-foreground space-y-6">
+              <p className="text-lg leading-relaxed">
                 {t('commitment.paragraph1')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed">
                 {t('commitment.paragraph2')}
               </p>
 
-              <div className="text-center my-12 p-8 bg-primary/5 rounded-lg border-l-4 border-primary">
+              <div className="text-center my-8 p-8 bg-primary/5 rounded-lg border-l-4 border-primary">
                 <p className="text-2xl font-bold text-primary mb-2">
                   &ldquo;{t('commitment.quote')}&rdquo;
                 </p>
               </div>
 
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed">
                 {t('commitment.paragraph3')}
               </p>
               <p className="text-lg leading-relaxed">
                 {t('commitment.paragraph4')}
               </p>
             </div>
+          </motion.div>
+
+          {/* E-VTOL Section - Bottom */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-center mt-16 pt-8 border-t border-border"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground tracking-wider">
+              E-VTOL
+            </h3>
+            <p className="text-sm text-muted-foreground mt-2">
+              Electric Vertical Take-Off and Landing
+            </p>
           </motion.div>
         </div>
       </main>
