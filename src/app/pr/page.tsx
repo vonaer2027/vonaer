@@ -23,7 +23,7 @@ const newsroomArticles = [
     title: 'eVTOL 기반 새로운 항공 구현',
     date: '2025.09.23',
     category: 'Technology',
-    image: '/polina.jpg',
+    image: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=1200&h=675&fit=crop',
     url: 'https://www.mt.co.kr/future/2025/09/23/2025092316461423515'
   },
   {
@@ -31,7 +31,7 @@ const newsroomArticles = [
     title: '러시아 우회 없이 유럽 간다 – 직선 항로 프라이빗 운항 개시',
     date: '2025.05.13',
     category: 'Service Launch',
-    image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1747125100.png',
+    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&h=675&fit=crop',
     url: 'https://www.yna.co.kr/view/AKR20250513076900003?input=1195m'
   },
   {
@@ -39,7 +39,7 @@ const newsroomArticles = [
     title: '본에어–더블미, 프라이빗 제트에 XR 콘텐츠 도입',
     date: '2025.04.22',
     category: 'Partnership',
-    image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1745369545.jpg',
+    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&h=675&fit=crop',
     url: 'https://www.edaily.co.kr/News/Read?newsId=02095926642138744&mediaCodeNo=257'
   },
   {
@@ -47,7 +47,7 @@ const newsroomArticles = [
     title: '본에어, 英 소라와 30인승 eVTOL 도입',
     date: '2025.03.11',
     category: 'Partnership',
-    image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1743040830.jpg',
+    image: 'https://images.unsplash.com/photo-1474302770737-173ee21bab63?w=1200&h=675&fit=crop',
     url: 'https://www.hankyung.com/article/202503116849i'
   },
   {
@@ -55,7 +55,7 @@ const newsroomArticles = [
     title: '본에어 프라이빗 제트 서비스 런칭',
     date: '2024.09.02',
     category: 'Service Launch',
-    image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1736213524.png',
+    image: 'https://images.unsplash.com/photo-1542282088-fe8426682b8f?w=1200&h=675&fit=crop',
     url: 'https://news.mtn.co.kr/news-detail/2024090214162775392'
   },
   {
@@ -63,7 +63,7 @@ const newsroomArticles = [
     title: '본에어 서비스 그랜드 오픈',
     date: '2024.06.10',
     category: 'Service Launch',
-    image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1736125077.png',
+    image: 'https://images.unsplash.com/photo-1473090928189-364b2c4e1e9d?w=1200&h=675&fit=crop',
     url: 'https://news.kbs.co.kr/news/mobile/view/view.do?ncd=7985353'
   }
 ]

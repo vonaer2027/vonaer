@@ -387,7 +387,8 @@ async function sendFlightSearchRequestToGoogleChat({
   flightData: FlightSearchData
   customerData: BookingFormData
 }) {
-  const webhookUrl = 'https://chat.googleapis.com/v1/spaces/AAQA4rwvLhg/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=XSsHMsMPf167hnnuvDJ0afpKAUu0s-s36NpffX9Niig'
+  // Unified charter request chat webhook (same as inquiry-dialog.tsx)
+  const webhookUrl = 'https://chat.googleapis.com/v1/spaces/AAAAxySK94A/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=LCgXwO5qU-Qi0gRjxD94MzEj1dLN-rl_HbXxN0ZUmHo'
   
   const formatDate = (date?: Date) => {
     if (!date) return '미정'
