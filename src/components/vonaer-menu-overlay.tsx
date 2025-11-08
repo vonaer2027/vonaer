@@ -21,7 +21,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
     { id: 'jet-helicopter', label: 'JET & HELICOPTER', href: '/aircraft' },
     { id: 'supercar', label: 'CHAUFFEURED CAR', href: '/supercar' },
     { id: 'super-yacht', label: 'SUPER YACHT', href: '/yacht' },
-    { id: 'evtol', label: 'e VTOL', href: '/evtol' }
+    { id: 'evtol', label: 'eVTOL', href: '/evtol' }
   ], [])
 
   // Main menu items (Charter removed, replaced with accordion)
