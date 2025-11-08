@@ -64,19 +64,19 @@ export default function AboutPage() {
             className="mb-16"
           >
             <div className="prose prose-lg max-w-none" style={{ color: '#71717A' }}>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed mb-4 break-keep">
                 {t('intro.paragraph1')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed mb-4 break-keep">
                 {t('intro.paragraph2')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed mb-4 break-keep">
                 {t('intro.paragraph3')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed mb-4 break-keep">
                 {t('intro.paragraph4')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed mb-4 break-keep">
                 {t('intro.paragraph5')}
               </p>
             </div>
