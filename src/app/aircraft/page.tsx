@@ -9,6 +9,7 @@ import { VonaerHeader } from '@/components/vonaer-header'
 import { VonaerMenuOverlay } from '@/components/vonaer-menu-overlay'
 import { VonaerFooter } from '@/components/vonaer-footer'
 import { InquiryDialog } from '@/components/inquiry-dialog'
+import { FloorPlanModal } from '@/components/floor-plan-modal'
 import { Toaster } from 'sonner'
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
@@ -19,13 +20,22 @@ import {
   MapPin,
   Clock,
   ArrowRight,
-  Zap
+  Zap,
+  LayoutGrid
 } from 'lucide-react'
+
+interface FloorPlan {
+  name: string
+  image: string
+}
 
 export default function AircraftPage() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [inquiryDialogOpen, setInquiryDialogOpen] = useState(false)
   const [selectedAircraft, setSelectedAircraft] = useState<string>('')
+  const [floorPlanModalOpen, setFloorPlanModalOpen] = useState(false)
+  const [selectedFloorPlans, setSelectedFloorPlans] = useState<FloorPlan[]>([])
+  const [selectedAircraftTitle, setSelectedAircraftTitle] = useState<string>('')
   const t = useTranslations('aircraft')
 
   // Define aircraft categories with translation keys
@@ -44,23 +54,10 @@ export default function AircraftPage() {
         airports: '5,000+'
       },
       featuresKey: 'categories.lightJet.features',
-      image: '/jet/Light Jet 1.webp'
-    },
-    {
-      id: 'heavy-jet',
-      titleKey: 'categories.heavyJet.title',
-      subtitleKey: 'categories.heavyJet.subtitle',
-      descriptionKey: 'categories.heavyJet.description',
-      icon: Plane,
-      mostPopular: true,
-      specs: {
-        passengers: '8-16',
-        range: '3,500-7,000 nm',
-        speed: '500-600 mph',
-        airports: '3,000+'
-      },
-      featuresKey: 'categories.heavyJet.features',
-      image: '/jet/Heavy Jet 1.jpg'
+      image: '/jet/Light Jet 1.webp',
+      floorPlans: [
+        { name: 'Pilatus PC-24', image: '/jet/floorplan/pilatus pc 24.png' }
+      ]
     },
     {
       id: 'mid-jet',
@@ -76,7 +73,30 @@ export default function AircraftPage() {
         airports: '3,500+'
       },
       featuresKey: 'categories.midJet.features',
-      image: '/jet/Mid Jet.jpg'
+      image: '/jet/Mid Jet.jpg',
+      floorPlans: [
+        { name: 'Gulfstream 200', image: '/jet/floorplan/gulfstream200.png' }
+      ]
+    },
+    {
+      id: 'heavy-jet',
+      titleKey: 'categories.heavyJet.title',
+      subtitleKey: 'categories.heavyJet.subtitle',
+      descriptionKey: 'categories.heavyJet.description',
+      icon: Plane,
+      mostPopular: true,
+      specs: {
+        passengers: '8-16',
+        range: '3,500-7,000 nm',
+        speed: '500-600 mph',
+        airports: '3,000+'
+      },
+      featuresKey: 'categories.heavyJet.features',
+      image: '/jet/Heavy Jet 1.jpg',
+      floorPlans: [
+        { name: 'Global 5000', image: '/jet/floorplan/Global5000.png' },
+        { name: 'Gulfstream 450', image: '/jet/floorplan/gulfstream450.png' }
+      ]
     },
     {
       id: 'ultra-long-haul',
@@ -92,7 +112,11 @@ export default function AircraftPage() {
         airports: '2,500+'
       },
       featuresKey: 'categories.ultraLongHaul.features',
-      image: '/jet/Ultra Long.jpg'
+      image: '/jet/Ultra Long.jpg',
+      floorPlans: [
+        { name: 'Gulfstream 550', image: '/jet/floorplan/gulfstream550.png' },
+        { name: 'Gulfstream 700', image: '/jet/floorplan/gulfstream700.png' }
+      ]
     },
     {
       id: 'vip-airline',
@@ -108,7 +132,10 @@ export default function AircraftPage() {
         airports: 'Major hubs'
       },
       featuresKey: 'categories.vipAirline.features',
-      image: '/jet/boeing777x-hero-960x600.jpeg'
+      image: '/jet/boeing777x-hero-960x600.jpeg',
+      floorPlans: [
+        { name: 'BBJ', image: '/jet/floorplan/bbj.png' }
+      ]
     },
     {
       id: 'helicopter',
@@ -124,7 +151,10 @@ export default function AircraftPage() {
         airports: 'Helipads'
       },
       featuresKey: 'categories.helicopter.features',
-      image: '/jet/helicopter.png'
+      image: '/jet/helicopter.png',
+      floorPlans: [
+        { name: 'H155', image: '/jet/floorplan/h155.png' }
+      ]
     }
   ]
 
@@ -136,6 +166,12 @@ export default function AircraftPage() {
   const handleInquirySuccess = () => {
     setInquiryDialogOpen(false)
     setSelectedAircraft('')
+  }
+
+  const handleViewFloorPlans = (floorPlans: FloorPlan[], aircraftTitle: string) => {
+    setSelectedFloorPlans(floorPlans)
+    setSelectedAircraftTitle(aircraftTitle)
+    setFloorPlanModalOpen(true)
   }
 
   return (
@@ -201,13 +237,10 @@ export default function AircraftPage() {
                     <CardTitle className="text-xl font-bold text-foreground">
                       {t(aircraft.titleKey)}
                     </CardTitle>
-                    <p className="text-sm text-muted-foreground mt-2">
-                      {t(aircraft.subtitleKey)}
-                    </p>
                   </CardHeader>
 
                   <CardContent className="space-y-6 flex-1 flex flex-col">
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                       {t(aircraft.descriptionKey)}
                     </p>
 
@@ -248,7 +281,7 @@ export default function AircraftPage() {
                     </div>
 
                     {/* Features */}
-                    <div className="space-y-2 flex-1">
+                    <div className="space-y-2 flex-1" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                       {[0, 1, 2, 3].map((featureIndex) => (
                         <div key={featureIndex} className="flex items-center gap-3">
                           <div className="flex-shrink-0 w-4 h-4 rounded-full border border-border bg-muted/50 flex items-center justify-center">
@@ -259,14 +292,25 @@ export default function AircraftPage() {
                       ))}
                     </div>
 
-                    {/* CTA Button */}
-                    <Button
-                      onClick={() => handleRequestQuote(t(aircraft.titleKey))}
-                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 group mt-auto"
-                    >
-                      {t('cta.requestQuote')}
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Button>
+                    {/* Action Buttons */}
+                    <div className="space-y-3 mt-auto">
+                      {aircraft.floorPlans && aircraft.floorPlans.length > 0 && (
+                        <Button
+                          onClick={() => handleViewFloorPlans(aircraft.floorPlans, t(aircraft.titleKey))}
+                          variant="outline"
+                          className="w-full group"
+                        >
+                          View Cabin Layout
+                        </Button>
+                      )}
+                      <Button
+                        onClick={() => handleRequestQuote(t(aircraft.titleKey))}
+                        className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 group"
+                      >
+                        {t('cta.requestQuote')}
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -285,6 +329,14 @@ export default function AircraftPage() {
         onSuccess={handleInquirySuccess}
         inquiryType="aircraft"
         itemName={selectedAircraft}
+      />
+
+      {/* Floor Plan Modal */}
+      <FloorPlanModal
+        isOpen={floorPlanModalOpen}
+        onClose={() => setFloorPlanModalOpen(false)}
+        floorPlans={selectedFloorPlans}
+        aircraftTitle={selectedAircraftTitle}
       />
 
       <Toaster />
