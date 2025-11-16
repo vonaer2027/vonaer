@@ -89,11 +89,11 @@ export default function SuperCarPage() {
                     <img
                       src={vehicle.image}
                       alt={t(`vehicles.${vehicle.id}.name`)}
-                      className="w-full h-full object-cover"
+                      className={`w-full h-full ${vehicle.id === 'maybach' ? 'object-contain' : 'object-cover'}`}
                     />
                   </div>
 
-                  <CardContent className="p-8">
+                  <CardContent className="p-8" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                     {/* Vehicle Name */}
                     <h3 className="text-2xl font-bold text-foreground mb-2">
                       {t(`vehicles.${vehicle.id}.name`)}

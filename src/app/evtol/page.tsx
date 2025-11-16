@@ -46,14 +46,14 @@ export default function EvtolPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-12 rounded-2xl overflow-hidden shadow-2xl max-w-xl mx-auto"
+            className="mb-12 rounded-2xl overflow-hidden shadow-2xl max-w-4xl mx-auto"
           >
             <Image
-              src="/evtol/eVTOL_v1.png"
+              src="/evtol/vonaer_evtol.png"
               alt="VONAER eVTOL Aircraft"
-              width={600}
-              height={338}
-              className="w-full h-auto object-contain"
+              width={1200}
+              height={400}
+              className="w-full h-auto object-contain bg-white"
               priority
             />
           </motion.div>
@@ -65,7 +65,7 @@ export default function EvtolPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-12"
           >
-            <div className="prose prose-lg max-w-none text-foreground space-y-6">
+            <div className="prose prose-lg max-w-none text-foreground space-y-6" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
               <p className="text-lg leading-relaxed">
                 {t('paragraph1')}
               </p>
@@ -95,7 +95,7 @@ export default function EvtolPage() {
               {t('commitment.title')}
             </h2>
 
-            <div className="prose prose-lg max-w-none text-foreground space-y-6">
+            <div className="prose prose-lg max-w-none text-foreground space-y-6" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
               <p className="text-lg leading-relaxed">
                 {t('commitment.paragraph1')}
               </p>
@@ -118,18 +118,15 @@ export default function EvtolPage() {
             </div>
           </motion.div>
 
-          {/* eVTOL Section - Bottom */}
+          {/* Bottom Tagline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-center mt-16 pt-8 border-t border-border"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground tracking-wider">
-              eVTOL
-            </h3>
-            <p className="text-sm text-muted-foreground mt-2">
-              electric Vertical Take-Off and Landing
+            <p className="text-xl md:text-2xl font-semibold text-foreground" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+              {t('bottomTagline')}
             </p>
           </motion.div>
         </div>

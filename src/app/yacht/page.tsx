@@ -123,7 +123,7 @@ export default function YachtPage() {
                     </div>
 
                     {/* Description */}
-                    <div className="mb-6 space-y-4">
+                    <div className="mb-6 space-y-4" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                       {t(`yachts.${yacht.id}.description`).split('\n\n').map((paragraph, idx) => (
                         <p key={idx} className="text-sm text-muted-foreground leading-relaxed">
                           {paragraph}

@@ -61,7 +61,7 @@ export function FlightBookingForm() {
           className="max-w-6xl mx-auto"
         >
           {/* Header */}
-          <div className="mb-12 text-center">
+          <div className="mb-12 text-center" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">{t('booking.title')}</h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
               {t('booking.subtitle')}

@@ -948,7 +948,8 @@ class UnifiedJetBayCrawlerWithUpload {
             is_active: true,
             scraped_timestamp: extractedData.timestamp,
             last_seen_at: new Date().toISOString(),
-            image_urls: imageUrls
+            image_urls: imageUrls,
+            source: 'jetbay'
         };
     }
 
@@ -1189,9 +1190,14 @@ class UnifiedJetBayCrawlerWithUpload {
             
             // Save to file (optional)
             const filename = await this.saveToFile();
-            
+
             // Upload to Supabase
-            const uploadResults = await this.uploadToSupabase();
+            let uploadResults = { success: 0, errors: 0, archived: 0, updated: 0 };
+            if (process.env.SKIP_UPLOAD !== 'true') {
+                uploadResults = await this.uploadToSupabase();
+            } else {
+                console.log('⏭️  Skipping Supabase upload (running from combined scraper)');
+            }
             
             await this.cleanup();
             

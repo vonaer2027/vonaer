@@ -23,7 +23,7 @@ const newsroomArticles = [
     title: 'eVTOL 기반 새로운 항공 구현',
     date: '2025.09.23',
     category: 'Technology',
-    image: '/polina.jpg',
+    image: '/newsroom/evtol.jpg',
     url: 'https://www.mt.co.kr/future/2025/09/23/2025092316461423515'
   },
   {
@@ -63,7 +63,7 @@ const newsroomArticles = [
     title: '본에어 서비스 그랜드 오픈',
     date: '2024.06.10',
     category: 'Service Launch',
-    image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1736125077.png',
+    image: '/newsroom/grand-open.png',
     url: 'https://news.kbs.co.kr/news/mobile/view/view.do?ncd=7985353'
   }
 ]
@@ -113,7 +113,7 @@ export default function PRPage() {
             className="mb-16"
           >
             <Card className="border shadow-lg bg-gradient-to-br from-primary/5 to-primary/10">
-              <CardContent className="p-8 md:p-12 text-center">
+              <CardContent className="p-8 md:p-12 text-center" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                 <div className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-8 max-w-5xl mx-auto px-2">
                   <p>{t('newsletter.title')}</p>
                   <p>{t('newsletter.subtitle')}</p>
@@ -155,16 +155,16 @@ export default function PRPage() {
                   <Card className="border shadow-lg hover:shadow-xl transition-all duration-300 h-full">
                     <CardContent className="p-0">
                       {/* Image */}
-                      <div className="overflow-hidden">
+                      <div className="overflow-hidden h-48">
                         <img
                           src={article.image}
                           alt={article.title}
-                          className="w-full h-auto"
+                          className="w-full h-full object-cover"
                         />
                       </div>
 
                       {/* Content */}
-                      <div className="px-4 py-4">
+                      <div className="px-4 py-4" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                         <h3 className="text-base font-bold text-foreground mb-2 line-clamp-2">
                           {article.title}
                         </h3>
@@ -208,16 +208,16 @@ export default function PRPage() {
                   <Card className="border shadow-lg hover:shadow-xl transition-all duration-300 h-full">
                     <CardContent className="p-0">
                       {/* Image */}
-                      <div className="overflow-hidden">
+                      <div className="overflow-hidden h-48">
                         <img
                           src={article.image}
                           alt={article.title}
-                          className="w-full h-auto"
+                          className="w-full h-full object-cover"
                         />
                       </div>
 
                       {/* Content */}
-                      <div className="px-4 py-4">
+                      <div className="px-4 py-4" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                         <h3 className="text-base font-bold text-foreground mb-2 line-clamp-2">
                           {article.title}
                         </h3>

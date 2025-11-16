@@ -34,6 +34,7 @@ export function PrivateImmigrationService() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
+          style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             {t('title')}

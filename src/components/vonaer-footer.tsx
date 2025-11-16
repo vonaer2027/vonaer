@@ -31,6 +31,7 @@ export function VonaerFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}
           >
             <h4 className="font-semibold text-xs mb-2 text-foreground">{t('footer.sections.contact')}</h4>
             <div className="text-muted-foreground text-[13px] leading-tight space-y-1">
@@ -47,6 +48,7 @@ export function VonaerFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
+            style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}
           >
             <h4 className="font-semibold text-xs mb-2 text-foreground">{t('footer.contact.sns')}</h4>
             <div className="flex gap-2">
@@ -76,6 +78,7 @@ export function VonaerFooter() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             className="text-center space-y-2"
+            style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}
           >
             <div className="flex justify-center gap-4 text-xs">
               <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">

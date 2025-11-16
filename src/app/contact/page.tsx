@@ -82,9 +82,6 @@ export default function ContactPage() {
               <CardContent className="p-8 md:p-12">
                 {/* Locations Section */}
                 <div className="mb-12">
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
-                    {t('locations')}
-                  </h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {locations.map((location) => (
                       <div

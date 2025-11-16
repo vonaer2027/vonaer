@@ -68,10 +68,22 @@ export default function ClientFlightsPage() {
 
   useEffect(() => {
     const sorted = [...flights]
-    
+
+    // Helper function to check if flight departs from Seoul
+    const isSeoulDeparture = (flight: Flight) => {
+      const fromCity = flight.from_city?.toLowerCase() || ''
+      return fromCity.includes('seoul') || fromCity.includes('서울') || fromCity.includes('gimpo') || fromCity.includes('incheon')
+    }
+
     switch (sortBy) {
       case 'price-low':
         sorted.sort((a, b) => {
+          // Prioritize Seoul departures first
+          const aSeoul = isSeoulDeparture(a)
+          const bSeoul = isSeoulDeparture(b)
+          if (aSeoul && !bSeoul) return -1
+          if (!aSeoul && bSeoul) return 1
+
           const priceA = calculateFinalPrice(a)
           const priceB = calculateFinalPrice(b)
           return priceA - priceB
@@ -79,6 +91,12 @@ export default function ClientFlightsPage() {
         break
       case 'price-high':
         sorted.sort((a, b) => {
+          // Prioritize Seoul departures first
+          const aSeoul = isSeoulDeparture(a)
+          const bSeoul = isSeoulDeparture(b)
+          if (aSeoul && !bSeoul) return -1
+          if (!aSeoul && bSeoul) return 1
+
           const priceA = calculateFinalPrice(a)
           const priceB = calculateFinalPrice(b)
           return priceB - priceA
@@ -86,6 +104,12 @@ export default function ClientFlightsPage() {
         break
       case 'date-near':
         sorted.sort((a, b) => {
+          // Prioritize Seoul departures first
+          const aSeoul = isSeoulDeparture(a)
+          const bSeoul = isSeoulDeparture(b)
+          if (aSeoul && !bSeoul) return -1
+          if (!aSeoul && bSeoul) return 1
+
           const dateA = new Date(a.flight_date || '').getTime()
           const dateB = new Date(b.flight_date || '').getTime()
           return dateA - dateB
@@ -93,13 +117,19 @@ export default function ClientFlightsPage() {
         break
       case 'date-far':
         sorted.sort((a, b) => {
+          // Prioritize Seoul departures first
+          const aSeoul = isSeoulDeparture(a)
+          const bSeoul = isSeoulDeparture(b)
+          if (aSeoul && !bSeoul) return -1
+          if (!aSeoul && bSeoul) return 1
+
           const dateA = new Date(a.flight_date || '').getTime()
           const dateB = new Date(b.flight_date || '').getTime()
           return dateB - dateA
         })
         break
     }
-    
+
     setFilteredFlights(sorted)
   }, [flights, sortBy, marginSetting, calculateFinalPrice])
 

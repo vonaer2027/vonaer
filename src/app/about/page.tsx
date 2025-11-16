@@ -54,8 +54,8 @@ export default function AboutPage() {
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className="text-center"
             >
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold italic tracking-wider" style={{ color: '#71717A' }}>
-                Elevate Your FlyStyle
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide" style={{ color: '#71717A' }}>
+                Elevate Your Flystyle
               </h1>
             </motion.div>
           </div>
