@@ -31,12 +31,26 @@ export default function ClientFlightsPage() {
   const loadData = useCallback(async () => {
     try {
       setRefreshing(true)
-      
+
+      console.log('[Empty Leg] Fetching flights from Supabase...')
+
       const [flightsData, marginData] = await Promise.all([
         flightService.getAll(),
         marginService.getCurrent().catch(() => null)
       ])
-      
+
+      console.log('[Empty Leg] Raw flights data:', {
+        total: flightsData.length,
+        flights: flightsData.map(f => ({
+          id: f.flight_id,
+          route: `${f.from_city} → ${f.to_city}`,
+          date: f.flight_date,
+          price: f.price,
+          source: f.source,
+          is_active: f.is_active
+        }))
+      })
+
       // Filter out flights without essential data for client view
       const validFlights = flightsData.filter(flight =>
         (flight.price_numeric || flight.price) && // Allow both numeric prices and "Enquire for Price"
@@ -44,11 +58,29 @@ export default function ClientFlightsPage() {
         flight.from_city &&
         flight.to_city
       )
-      
+
+      console.log('[Empty Leg] Valid flights after filtering:', {
+        valid: validFlights.length,
+        filtered_out: flightsData.length - validFlights.length
+      })
+
+      if (validFlights.length === 0 && flightsData.length > 0) {
+        console.warn('[Empty Leg] All flights were filtered out. Check data quality:', {
+          missing_price: flightsData.filter(f => !f.price_numeric && !f.price).length,
+          missing_date: flightsData.filter(f => !f.flight_date).length,
+          missing_from: flightsData.filter(f => !f.from_city).length,
+          missing_to: flightsData.filter(f => !f.to_city).length
+        })
+      }
+
       setFlights(validFlights)
       setMarginSetting(marginData)
+
+      if (marginData) {
+        console.log('[Empty Leg] Margin setting:', marginData.margin_percentage + '%')
+      }
     } catch (error) {
-      console.error('Error loading data:', error)
+      console.error('[Empty Leg] Error loading data:', error)
       toast.error(t('client.loading'))
     } finally {
       setLoading(false)
@@ -194,7 +226,7 @@ export default function ClientFlightsPage() {
         </motion.div>
 
         {/* Stats and Controls */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -202,9 +234,18 @@ export default function ClientFlightsPage() {
         >
           <Card>
             <CardHeader>
-              <CardDescription>
-                {t('client.flightsAvailable', { count: filteredFlights.length })}
-              </CardDescription>
+              <div className="flex items-center justify-between">
+                <CardDescription>
+                  {t('client.flightsAvailable', { count: filteredFlights.length })}
+                </CardDescription>
+                <button
+                  onClick={loadData}
+                  disabled={refreshing}
+                  className="text-sm text-primary hover:underline disabled:opacity-50"
+                >
+                  {refreshing ? 'Refreshing...' : t('client.refresh')}
+                </button>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-4">

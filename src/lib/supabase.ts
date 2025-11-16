@@ -29,6 +29,7 @@ export interface Flight {
   raw_text?: string
   price?: string
   price_numeric?: number
+  price_type?: string // 'fixed' | 'enquire'
   currency?: string
   flight_date?: string
   date_timestamp?: number
@@ -42,8 +43,12 @@ export interface Flight {
   to_formatted?: string
   route_summary?: string
   involves_korea?: boolean
+  is_active?: boolean
   scraped_timestamp?: string
+  last_seen_at?: string
+  archived_at?: string
   image_urls?: string[]
+  source?: string // 'flyxo' | 'jetbay'
   created_at?: string
   updated_at?: string
   custom_price?: number // For admin price adjustments
