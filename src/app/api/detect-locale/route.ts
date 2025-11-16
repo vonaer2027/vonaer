@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     let ip = forwardedFor?.split(',')[0]?.trim()
       || realIp
       || cfConnectingIp
-      || request.ip
+      || (request as any).ip // Next.js runtime property, not in types
       || 'unknown';
 
     // For development/localhost, default to Korean

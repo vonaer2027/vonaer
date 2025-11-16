@@ -250,9 +250,19 @@ class CombinedCrawler {
             const transformedFlights = this.combinedFlights.map(flight => this.transformForSupabase(flight));
             const newFlightIds = transformedFlights.map(f => f.flight_id);
 
-            // Determine which flights to archive (active in DB but not in current scrape)
+            // Determine which flights to archive
+            // Only archive flights that are:
+            // 1. Not in current scrape AND
+            // 2. Have past flight dates (no longer valid)
+            const today = new Date().toISOString().split('T')[0];
             const activeFlightIds = activeFlights?.map(f => f.flight_id) || [];
-            const flightsToArchive = activeFlightIds.filter(id => !newFlightIds.includes(id));
+            const flightsToArchive = (activeFlights || [])
+                .filter(flight => {
+                    const notInCurrentScrape = !newFlightIds.includes(flight.flight_id);
+                    const isPastDate = flight.flight_date && flight.flight_date < today;
+                    return notInCurrentScrape && isPastDate;
+                })
+                .map(f => f.flight_id);
 
             // Determine which flights are new vs existing
             const existingFlightIds = activeFlightIds.filter(id => newFlightIds.includes(id));

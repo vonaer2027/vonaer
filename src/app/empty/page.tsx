@@ -233,21 +233,7 @@ export default function ClientFlightsPage() {
           className="mb-8"
         >
           <Card>
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <CardDescription>
-                  {t('client.flightsAvailable', { count: filteredFlights.length })}
-                </CardDescription>
-                <button
-                  onClick={loadData}
-                  disabled={refreshing}
-                  className="text-sm text-primary hover:underline disabled:opacity-50"
-                >
-                  {refreshing ? 'Refreshing...' : t('client.refresh')}
-                </button>
-              </div>
-            </CardHeader>
-            <CardContent>
+            <CardContent className="pt-6">
               <div className="flex items-center gap-4">
                 <span className="text-sm font-medium">{t('client.sortBy')}</span>
                 <Select value={sortBy} onValueChange={(value: SortOption) => setSortBy(value)}>
