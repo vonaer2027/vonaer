@@ -74,7 +74,9 @@ export function MMSMessaging() {
 항공기: {{aircraft}} (최대 {{seats}}명 탑승)
 요금: 단 {{price}} (기체 전체 요금)
 안내: Empty Leg 특성상 선착순 마감됩니다.
-문의: 1600-9064`
+문의: 1600-9064
+
+수신거부: 080-877-6077`
     },
     {
       id: 'multiple-routes',
@@ -89,7 +91,9 @@ export function MMSMessaging() {
 요금: 단 {{price}} (기체 전체 요금)
 
 안내: Empty Leg 특성상 선착순 마감됩니다.
-문의: 1600-9064`
+문의: 1600-9064
+
+수신거부: 080-877-6077`
     },
     {
       id: 'round-trip-package',
@@ -112,7 +116,9 @@ export function MMSMessaging() {
 안내: 개별 예약 가능하며, 왕복으로 연결 시 {{destination}} 여정 전용 패키지로도 이용하실 수 있습니다.
 
 주의: Empty Leg 특성상 선착순 마감
-문의: 1600-9064`
+문의: 1600-9064
+
+수신거부: 080-877-6077`
     }
   ]
 

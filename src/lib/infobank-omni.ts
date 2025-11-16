@@ -22,16 +22,20 @@ export async function sendMMS(message: MMSMessage) {
   try {
     const baseURL = process.env.BIZGO_BASE_URL || 'https://mars.ibapi.kr/api/comm';
     const apiKey = process.env.BIZGO_API_KEY || '';
-    
+
     if (!apiKey) {
       throw new Error('BIZGO_API_KEY is required');
     }
+
+    // Always append unsubscribe footer for Empty Leg messages
+    const unsubscribeFooter = '\n\n수신거부: 080-877-6077';
+    const messageText = message.text + unsubscribeFooter;
 
     const requestBody = {
       messageFlow: [{
         mms: {
           from: message.from,
-          text: message.text,
+          text: messageText,
           title: message.title || '',
           fileKey: message.fileKey || [],
           ttl: "86400"
@@ -79,16 +83,20 @@ export async function sendSMS(message: SMSMessage) {
   try {
     const baseURL = process.env.BIZGO_BASE_URL || 'https://mars.ibapi.kr/api/comm';
     const apiKey = process.env.BIZGO_API_KEY || '';
-    
+
     if (!apiKey) {
       throw new Error('BIZGO_API_KEY is required');
     }
+
+    // Always append unsubscribe footer for Empty Leg messages
+    const unsubscribeFooter = '\n\n수신거부: 080-877-6077';
+    const messageText = message.text + unsubscribeFooter;
 
     const requestBody = {
       messageFlow: [{
         sms: {
           from: message.from,
-          text: message.text,
+          text: messageText,
           ttl: "86400"
         }
       }],

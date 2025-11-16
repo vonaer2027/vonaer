@@ -21,7 +21,7 @@ const config = {
     supabaseKey: process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY,
     tableName: process.env.DATABASE_TABLE_NAME || 'flights',
     saveToFile: process.env.SAVE_TO_FILE !== 'false', // Default true, set to 'false' to skip file saving
-    headless: process.env.HEADLESS === 'true' // Default false for debugging
+    headless: process.env.HEADLESS !== 'false' // Default true (headless), set to 'false' for debugging
 };
 
 class UnifiedJetBayCrawlerWithUpload {
@@ -115,7 +115,7 @@ class UnifiedJetBayCrawlerWithUpload {
 
             // Launch Chrome with comprehensive settings
             const launchOptions = {
-                headless: config.headless,
+                headless: config.headless ? 'new' : false, // Use new headless mode for better compatibility
                 args: [
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
@@ -123,7 +123,9 @@ class UnifiedJetBayCrawlerWithUpload {
                     '--disable-web-security',
                     '--ignore-certificate-errors',
                     '--ignore-ssl-errors',
-                    '--disable-gpu'
+                    '--disable-gpu',
+                    '--disable-blink-features=AutomationControlled', // Avoid detection
+                    '--window-size=1920,1080'
                 ],
                 defaultViewport: { width: 1920, height: 1080 }
             };
@@ -243,7 +245,7 @@ class UnifiedJetBayCrawlerWithUpload {
             
             // Wait for content to load after clicking
             console.log('⏳ Waiting for flight data to load...');
-            await new Promise(resolve => setTimeout(resolve, 5000));
+            await new Promise(resolve => setTimeout(resolve, 8000)); // Increased wait time
             
         } catch (error) {
             console.error('❌ Failed to click East Asia tab:', error.message);
@@ -252,14 +254,21 @@ class UnifiedJetBayCrawlerWithUpload {
     }
 
     async clickViewMoreButtons() {
-        console.log('🔍 Checking for "View More" button to load all flights...');
-        
+        console.log('🔍 Loading all flights (button click or scroll)...');
+
         let attempts = 0;
-        const maxAttempts = 10;
+        const maxAttempts = 15;
         let viewMoreClicked = false;
-        
+
         while (attempts < maxAttempts) {
             try {
+                // Count current flights before attempting to load more
+                const currentFlightCount = await this.page.evaluate(() => {
+                    const flightCards = document.querySelectorAll('[class*="grid-cols"]');
+                    return flightCards.length;
+                });
+
+                // First, try to find and click "View More" button
                 // Multiple selectors to find the "View More" button
                 const selectors = [
                     // Specific selector for the exact button structure you provided
@@ -337,28 +346,45 @@ class UnifiedJetBayCrawlerWithUpload {
                     }
                     
                     viewMoreClicked = true;
-                    
-                    // Wait for new content to load
-                    await new Promise(resolve => setTimeout(resolve, 3000));
+
+                    // Wait for new content to load - increased wait time for headless mode
+                    await new Promise(resolve => setTimeout(resolve, 5000)); // Increased from 3000ms
+
+                    console.log(`✅ Clicked "View More" button (attempt ${attempts + 1})`);
                 } else {
-                    // No more "View More" buttons found
-                    console.log('ℹ️  No "View More" button found, all flights may be loaded');
-                    break;
+                    // No "View More" button found - try scrolling to trigger lazy loading
+                    console.log('ℹ️  No "View More" button found, trying scroll to trigger lazy loading...');
+
+                    // Scroll to bottom of page
+                    await this.page.evaluate(() => {
+                        window.scrollTo(0, document.body.scrollHeight);
+                    });
+
+                    // Wait for potential lazy loading
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+
+                    // Check if more flights loaded
+                    const newFlightCount = await this.page.evaluate(() => {
+                        const flightCards = document.querySelectorAll('[class*="grid-cols"]');
+                        return flightCards.length;
+                    });
+
+                    if (newFlightCount === currentFlightCount) {
+                        console.log('✅ No new flights loaded after scroll - all flights loaded');
+                        break;
+                    } else {
+                        console.log(`📈 Loaded ${newFlightCount - currentFlightCount} more flights after scroll`);
+                    }
                 }
             } catch (error) {
-                console.log(`⚠️ No more "View More" buttons found or error occurred: ${error.message}`);
+                console.log(`⚠️ Error during flight loading: ${error.message}`);
                 break;
             }
-            
+
             attempts++;
         }
-        
-        if (viewMoreClicked) {
-            console.log('⏳ Waiting for all flights to fully load...');
-            await new Promise(resolve => setTimeout(resolve, 2000));
-        } else {
-            console.log('ℹ️  No "View More" buttons were clicked - proceeding with available flights');
-        }
+
+        console.log(`📊 Finished loading flights after ${attempts} attempts`);
     }
 
     async extractFlightData() {
@@ -734,15 +760,19 @@ class UnifiedJetBayCrawlerWithUpload {
             
             console.log(`📊 Initial extraction: ${flights.length} flight records involving South Korea`);
             
-            // Remove duplicates based on route, date, price, AND aircraft
-            // This allows multiple flights on same route if they have different aircraft or times
+            // Remove duplicates based on route (including direction), date, price, AND aircraft
+            // Direction matters: Seoul→Tokyo is different from Tokyo→Seoul
+            // Date matters: same route on different dates is unique
             console.log('🔍 Checking for duplicates...');
             const uniqueFlights = [];
             const seen = new Set();
 
             flights.forEach(flight => {
-                // Include aircraft in the key so flights on same route but different aircraft are kept
-                const key = `${flight.extractedData.route.summary}_${flight.extractedData.date}_${flight.extractedData.price}_${flight.extractedData.aircraft}`;
+                // Include from→to direction, date, price, and aircraft in the key
+                // This ensures Seoul→Tokyo on Nov 25 is different from:
+                // - Tokyo→Seoul on Nov 25 (different direction)
+                // - Seoul→Tokyo on Nov 26 (different date)
+                const key = `${flight.extractedData.route.from}→${flight.extractedData.route.to}_${flight.extractedData.date}_${flight.extractedData.price}_${flight.extractedData.aircraft}`;
                 if (!seen.has(key)) {
                     seen.add(key);
                     uniqueFlights.push(flight);

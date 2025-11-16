@@ -57,16 +57,16 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
         initial={{ x: -400 }}
         animate={{ x: isOpen ? 0 : -400 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed left-0 top-0 z-40 h-full w-80 bg-primary/95 backdrop-blur-xl border-r border-primary/20"
+        className="fixed left-0 top-0 z-40 h-full w-80 bg-primary/95 backdrop-blur-xl"
       >
         <div className="flex flex-col h-full">
           {/* Close Button */}
-          <div className="flex justify-between items-center p-6 border-b border-primary/20">
-            <span className="text-primary-foreground text-sm font-medium tracking-wider">MENU</span>
+          <div className="flex justify-between items-center p-6">
+            <span className="text-white text-sm font-medium tracking-wider">MENU</span>
             <Button
               variant="ghost"
               size="icon"
-              className="text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+              className="text-white hover:bg-white/10 hover:text-white"
               onClick={onClose}
             >
               <motion.div
@@ -85,11 +85,10 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
-              className="border-b border-primary/20"
             >
               <Button
                 variant="ghost"
-                className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
+                className="w-full justify-start py-4 px-6 text-white hover:bg-white/5 hover:text-white font-medium tracking-wider text-left"
                 asChild
               >
                 <Link href="/" onClick={onClose}>
@@ -103,11 +102,10 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.15 }}
-              className="border-b border-primary/20"
             >
               <Button
                 variant="ghost"
-                className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left relative"
+                className="w-full justify-start py-4 px-6 text-white hover:bg-white/5 hover:text-white font-medium tracking-wider text-left relative"
                 onClick={() => setCharterExpanded(!charterExpanded)}
               >
                 <span>CHARTER</span>
@@ -128,13 +126,13 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="overflow-hidden bg-primary-foreground/5"
+                    className="overflow-hidden bg-white/5"
                   >
                     {charterSubItems.map((subItem, subIndex) => (
                       <Button
                         key={subItem.id}
                         variant="ghost"
-                        className="w-full justify-start py-3 pl-12 pr-6 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground font-normal tracking-wide text-left text-sm"
+                        className="w-full justify-start py-3 pl-12 pr-6 text-white hover:bg-white/10 hover:text-white font-normal tracking-wide text-left text-sm"
                         asChild
                       >
                         <Link href={subItem.href} onClick={onClose}>
@@ -154,11 +152,10 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 + index * 0.05 }}
-                className="border-b border-primary/20"
               >
                 <Button
                   variant="ghost"
-                  className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary-foreground/5 hover:text-primary-foreground font-medium tracking-wider text-left"
+                  className="w-full justify-start py-4 px-6 text-white hover:bg-white/5 hover:text-white font-medium tracking-wider text-left"
                   asChild
                 >
                   <Link href={item.href} onClick={onClose}>
@@ -173,11 +170,11 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.35 }}
-              className="border-b border-primary/20 mt-4"
+              className="mt-4"
             >
               <Button
                 variant="ghost"
-                className="w-full justify-start py-4 px-6 text-primary-foreground hover:bg-primary/10 hover:text-primary-foreground font-medium tracking-wider text-left border-t-2 border-primary/40 bg-primary/5"
+                className="w-full justify-start py-4 px-6 text-white hover:bg-white/10 hover:text-white font-medium tracking-wider text-left"
                 asChild
               >
                 <Link href={membershipItem.href} onClick={onClose}>
@@ -193,8 +190,8 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
               transition={{ delay: 0.4 }}
               className="mt-6 px-6 md:hidden"
             >
-              <div className="border-t border-primary/20 pt-4">
-                <span className="text-primary-foreground text-xs font-medium tracking-wider mb-3 block">SETTINGS</span>
+              <div className="border-t border-white/10 pt-4">
+                <span className="text-white text-xs font-medium tracking-wider mb-3 block">SETTINGS</span>
                 <div className="flex items-center gap-3">
                   <LanguageDropdown />
                   <ThemeToggle />
