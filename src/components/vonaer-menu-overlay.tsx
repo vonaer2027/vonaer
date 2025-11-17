@@ -57,7 +57,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
         initial={{ x: -400 }}
         animate={{ x: isOpen ? 0 : -400 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed left-0 top-0 z-40 h-full w-80 bg-primary/95 backdrop-blur-xl"
+        className="fixed left-0 top-0 z-40 h-full w-80 bg-black/95 backdrop-blur-xl"
       >
         <div className="flex flex-col h-full">
           {/* Close Button */}

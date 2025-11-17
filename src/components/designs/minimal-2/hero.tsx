@@ -11,14 +11,33 @@ export function Minimal2Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
-    '/main/hero-slide-2.jpg',
-    '/main/hero-slide-3.jpg',
-    '/main/hero-slide-4.jpg',
-    '/main/hero-slide-5.jpg',
-    '/main/hero-slide-6.jpg',
-    '/main/hero-slide-7.jpg',
-    '/main/hero-slide-8.jpg',
-    '/main/hero-slide-9.jpg'
+    '/hero/1.webp',
+    '/hero/2.webp',
+    '/hero/3.webp',
+    '/hero/4-1.webp',
+    '/hero/4-2.webp',
+    '/hero/5.webp',
+    '/hero/5-1.webp',
+    '/hero/5-2.webp',
+    '/hero/5-3.webp',
+    '/hero/5-4.webp',
+    '/hero/5-5.webp',
+    '/hero/5-6.webp',
+    '/hero/5-7.webp',
+    '/hero/5-8.webp',
+    '/hero/5-9.webp',
+    '/hero/6.webp',
+    '/hero/7.webp',
+    '/hero/8.webp',
+    '/hero/9.webp',
+    '/hero/10.webp',
+    '/hero/11.webp',
+    '/hero/12.webp',
+    '/hero/13.webp',
+    '/hero/14.webp',
+    '/hero/15.webp',
+    '/hero/16.webp',
+    '/hero/17.webp'
   ];
 
   useEffect(() => {
@@ -30,34 +49,33 @@ export function Minimal2Hero() {
   }, [slides.length]);
 
   return (
-    <section className="relative min-h-screen flex items-center bg-black">
-      {/* Image slideshow background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-90" />
-
+    <section className="relative w-full h-screen overflow-hidden bg-black">
+      {/* Image slideshow background - Full coverage */}
+      <div className="absolute inset-0 w-full h-full z-0">
         {/* Image slideshow */}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.5 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            className="absolute inset-0"
+            transition={{ duration: 2.5, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full"
           >
             <Image
               src={slides[currentSlide]}
               alt={`Hero slide ${currentSlide + 1}`}
               fill
-              className="object-cover animate-wave"
+              className="object-cover"
               priority={currentSlide === 0}
               quality={90}
+              sizes="100vw"
             />
           </motion.div>
         </AnimatePresence>
 
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 z-10" />
+        {/* Dark overlay for text readability - Covers entire image */}
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/80 via-black/50 to-black/70 z-10" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-20">

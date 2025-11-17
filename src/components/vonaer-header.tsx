@@ -17,7 +17,7 @@ export function VonaerHeader({ menuOpen, onMenuToggle }: VonaerHeaderProps) {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, delay: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-xl border-b border-primary/20"
+      className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl border-b border-white/10"
     >
       <div className="px-4 md:px-6 lg:px-12 py-2">
         <div className="flex items-center justify-between relative">
