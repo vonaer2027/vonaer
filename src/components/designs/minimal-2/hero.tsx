@@ -43,7 +43,7 @@ export function Minimal2Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // Change slide every 5 seconds
+    }, 10000); // Change slide every 10 seconds
 
     return () => clearInterval(interval);
   }, [slides.length]);
@@ -78,7 +78,7 @@ export function Minimal2Hero() {
         <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/80 via-black/50 to-black/70 z-10" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 h-full flex items-center justify-center">
         <div className="flex flex-col items-center">
           {/* Center content */}
           <motion.div
