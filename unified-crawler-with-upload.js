@@ -173,9 +173,9 @@ class UnifiedJetBayCrawlerWithUpload {
             });
             
             console.log('✅ Website loaded successfully');
-            
+
             // Wait for page to fully load
-            await new Promise(resolve => setTimeout(resolve, 3000));
+            await new Promise(resolve => setTimeout(resolve, 5000)); // Increased for GitHub Actions
             
         } catch (error) {
             console.error('❌ Failed to load website:', error.message);
@@ -245,7 +245,7 @@ class UnifiedJetBayCrawlerWithUpload {
             
             // Wait for content to load after clicking
             console.log('⏳ Waiting for flight data to load...');
-            await new Promise(resolve => setTimeout(resolve, 8000)); // Increased wait time
+            await new Promise(resolve => setTimeout(resolve, 12000)); // Increased wait time for GitHub Actions
             
         } catch (error) {
             console.error('❌ Failed to click East Asia tab:', error.message);
@@ -348,7 +348,7 @@ class UnifiedJetBayCrawlerWithUpload {
                     viewMoreClicked = true;
 
                     // Wait for new content to load - increased wait time for headless mode
-                    await new Promise(resolve => setTimeout(resolve, 5000)); // Increased from 3000ms
+                    await new Promise(resolve => setTimeout(resolve, 8000)); // Increased for GitHub Actions reliability
 
                     console.log(`✅ Clicked "View More" button (attempt ${attempts + 1})`);
                 } else {

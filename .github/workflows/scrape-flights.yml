@@ -78,17 +78,17 @@ jobs:
           command: |
             echo "🚀 Starting flight scraper..."
             echo "📅 Run time: $(date)"
-            echo "🌍 Region: East Asia → South Korea flights"
+            echo "🌍 Sources: FlyXO + JetBay → South Korea flights"
             echo ""
 
-            # Run the unified crawler
-            node unified-crawler-with-upload.js
+            # Run the COMBINED crawler (scrapes both FlyXO + JetBay)
+            node combined-crawler.js
 
             EXIT_CODE=$?
 
             if [ $EXIT_CODE -eq 0 ]; then
               echo ""
-              echo "✅ Scraper completed successfully"
+              echo "✅ Combined scraper completed successfully"
             else
               echo ""
               echo "❌ Scraper failed with exit code $EXIT_CODE"
@@ -101,6 +101,8 @@ jobs:
         with:
           name: flight-data-${{ github.run_number }}
           path: |
+            combined_flights_*.json
+            flyxo_seoul_flights_*.json
             jetbay_korea_flights_*.json
           retention-days: 7
 
@@ -116,8 +118,8 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # Check if JSON file exists
-          if ls jetbay_korea_flights_*.json 1> /dev/null 2>&1; then
-            LATEST_FILE=$(ls -t jetbay_korea_flights_*.json | head -1)
+          if ls combined_flights_*.json 1> /dev/null 2>&1; then
+            LATEST_FILE=$(ls -t combined_flights_*.json | head -1)
             FLIGHT_COUNT=$(cat "$LATEST_FILE" | grep -o '"id"' | wc -l)
             echo "- **Flights Scraped**: $FLIGHT_COUNT" >> $GITHUB_STEP_SUMMARY
             echo "- **Data File**: \`$LATEST_FILE\`" >> $GITHUB_STEP_SUMMARY
