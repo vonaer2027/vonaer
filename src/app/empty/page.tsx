@@ -64,7 +64,35 @@ export default function ClientFlightsPage() {
         filtered_out: flightsData.length - validFlights.length
       })
 
-      if (validFlights.length === 0 && flightsData.length > 0) {
+      // Remove duplicates based on flight details
+      const uniqueFlights = validFlights.reduce((acc, flight) => {
+        // Create a unique key based on flight details
+        const key = `${flight.flight_date}_${flight.from_city}_${flight.to_city}_${flight.aircraft || 'unknown'}`
+
+        // If we haven't seen this flight before, add it
+        if (!acc.has(key)) {
+          acc.set(key, flight)
+        } else {
+          // If we have seen it, keep the one with more complete data
+          const existing = acc.get(key)!
+          if ((flight.image_urls?.length || 0) > (existing.image_urls?.length || 0) ||
+              (flight.custom_price !== null && existing.custom_price === null)) {
+            acc.set(key, flight)
+          }
+        }
+
+        return acc
+      }, new Map<string, Flight>())
+
+      const deduplicatedFlights = Array.from(uniqueFlights.values())
+
+      console.log('[Empty Leg] Deduplicated flights:', {
+        before: validFlights.length,
+        after: deduplicatedFlights.length,
+        removed: validFlights.length - deduplicatedFlights.length
+      })
+
+      if (deduplicatedFlights.length === 0 && flightsData.length > 0) {
         console.warn('[Empty Leg] All flights were filtered out. Check data quality:', {
           missing_price: flightsData.filter(f => !f.price_numeric && !f.price).length,
           missing_date: flightsData.filter(f => !f.flight_date).length,
@@ -73,7 +101,7 @@ export default function ClientFlightsPage() {
         })
       }
 
-      setFlights(validFlights)
+      setFlights(deduplicatedFlights)
       setMarginSetting(marginData)
 
       if (marginData) {

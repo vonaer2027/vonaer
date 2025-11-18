@@ -28,7 +28,7 @@ const newsroomArticles = [
   },
   {
     id: 2,
-    title: '러시아 우회 없이 유럽 간다 – 직선 항로 프라이빗 운항 개시',
+    title: "본에어, '러시아 영공 통과' 프라이빗 제트 서비스 도입",
     date: '2025.05.13',
     category: 'Service Launch',
     image: 'https://home-data-staging.s3.ap-northeast-2.amazonaws.com/home/newsroom/1747125100.png',

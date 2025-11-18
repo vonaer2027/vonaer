@@ -1205,8 +1205,8 @@
     "contactInfo": "Contact Information"
   },
   "immigration": {
-    "title": "Private Immigration Service",
-    "subtitle": "VONAER Jet provides up to 90% faster immigration procedures compared to regular flights.",
+    "title": "Private Terminal",
+    "subtitle": "VONAER provides up to 90% faster immigration procedures compared to commercial flights.",
     "regular": {
       "title": "Regular Flight Process",
       "duration": "Takes 2-3 hours",

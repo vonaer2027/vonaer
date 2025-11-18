@@ -72,20 +72,20 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mb-16"
           >
-            <div className="prose prose-lg max-w-none" style={{ color: '#71717A', wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
-              <p className="text-lg leading-relaxed mb-4">
+            <div className="prose prose-base max-w-none" style={{ color: '#71717A', wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+              <p className="text-base leading-relaxed mb-4">
                 {t('intro.paragraph1')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-base leading-relaxed mb-4">
                 {t('intro.paragraph2')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-base leading-relaxed mb-4">
                 {t('intro.paragraph3')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-base leading-relaxed mb-4">
                 {t('intro.paragraph4')}
               </p>
-              <p className="text-lg leading-relaxed mb-4">
+              <p className="text-base leading-relaxed mb-4">
                 {t('intro.paragraph5')}
               </p>
             </div>

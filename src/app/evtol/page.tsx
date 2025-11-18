@@ -46,7 +46,7 @@ export default function EvtolPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-12 rounded-2xl overflow-hidden shadow-2xl max-w-4xl mx-auto"
+            className="mb-12 max-w-4xl mx-auto"
           >
             <Image
               src="/evtol/vonaer_evtol.png"

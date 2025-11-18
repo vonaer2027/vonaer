@@ -64,11 +64,6 @@ export default function ContactPage() {
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
               {t('title')}
             </h1>
-            {t('subtitle') && (
-              <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
-                {t('subtitle')}
-              </p>
-            )}
           </motion.div>
 
           {/* Single Card with All Information */}
