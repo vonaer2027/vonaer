@@ -2,7 +2,9 @@
   "hero": {
     "title": "VONAER",
     "subtitle": "Elevate Your FlyStyle",
-    "bookFlight": "预订航班"
+    "bookFlight": "预订航班",
+    "tagline": "与您一起探索世界",
+    "bookFlightButton": "预订航班"
   },
   "services": {
     "title": "VONAER服务",
@@ -540,7 +542,8 @@
     "error": {
       "unknownError": "发生未知错误",
       "submitFailed": "预订请求失败"
-    }
+    },
+    "bookingRequestSuccess": "预订请求已成功提交！我们将很快与您联系。"
   },
   "flightSearchDialog": {
     "title": "航班搜索请求",
@@ -588,7 +591,8 @@
       "submitFailed": "航班搜索请求失败"
     },
     "success": {
-      "submitted": "航班搜索请求已成功提交！我们将在24小时内联系您。"
+      "submitted": "航班搜索请求已成功提交！我们将在24小时内联系您。",
+      "message": "航班搜索请求已成功提交！我们将在24小时内联系您。"
     }
   },
   "clientFlightCard": {
@@ -603,7 +607,8 @@
     "totalCost": "总航班费用",
     "bookRequest": "预订请求",
     "tbd": "待定",
-    "dateTBD": "日期待定"
+    "dateTBD": "日期待定",
+    "enquirePrice": "价格咨询"
   },
   "bookingRequests": {
     "title": "预订请求",
@@ -1352,7 +1357,8 @@
       }
     },
     "cta": {
-      "requestQuote": "索取报价"
+      "requestQuote": "索取报价",
+      "learnMore": "了解更多"
     },
     "title": "SUPER YACHT",
     "subtitle": "享受顶级超级游艇的终极海上体验",

@@ -70,62 +70,38 @@ export function InquiryDialog({ open, onOpenChange, onSuccess, inquiryType, item
 
     try {
       const inquiryTypeLabels = {
-        aircraft: 'Jet & Helicopter',
-        car: 'Super Car',
-        yacht: 'Super Yacht'
+        aircraft: '전용기/헬리콥터 문의',
+        car: '슈퍼카 문의',
+        yacht: '슈퍼 요트 문의'
+      }
+
+      const inquiryTypeInfo = {
+        aircraft: '항공기 정보',
+        car: '차량 정보',
+        yacht: '요트 정보'
       }
 
       // Format data for Google Chat webhook
       const message = {
-        text: `🔔 New Inquiry - ${inquiryTypeLabels[inquiryType]}`,
-        cards: [{
-          sections: [{
-            widgets: [
-              {
-                keyValue: {
-                  topLabel: "Inquiry Type",
-                  content: inquiryTypeLabels[inquiryType]
-                }
-              },
-              {
-                keyValue: {
-                  topLabel: "Item",
-                  content: itemName
-                }
-              },
-              {
-                keyValue: {
-                  topLabel: "Name",
-                  content: formData.customerName
-                }
-              },
-              {
-                keyValue: {
-                  topLabel: "Phone",
-                  content: `${formData.customerCountryCode} ${formData.customerPhone}`
-                }
-              },
-              {
-                keyValue: {
-                  topLabel: "Email",
-                  content: formData.customerEmail
-                }
-              },
-              {
-                keyValue: {
-                  topLabel: "Inquiry Detail",
-                  content: formData.inquiryDetail || 'No additional details'
-                }
-              },
-              {
-                keyValue: {
-                  topLabel: "Language",
-                  content: locale.toUpperCase()
-                }
-              }
-            ]
-          }]
-        }]
+        text: `🛫 ${inquiryTypeLabels[inquiryType]}\n\n` +
+              `고객 정보:\n` +
+              `• 이름: ${formData.customerName}\n` +
+              `• 이메일: ${formData.customerEmail || '미제공'}\n` +
+              `• 전화번호: ${formData.customerCountryCode} ${formData.customerPhone}\n\n` +
+              `${inquiryTypeInfo[inquiryType]}:\n` +
+              `• 항목: ${itemName}\n` +
+              `• 언어: ${locale.toUpperCase()}\n\n` +
+              `특별 요청사항:\n` +
+              `${formData.inquiryDetail || '추가 요청사항이 없습니다.'}\n\n` +
+              `📅 예약 시간: ${new Date().toLocaleString('ko-KR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+              })}`
       }
 
       const webhookUrl = 'https://chat.googleapis.com/v1/spaces/AAQA4rwvLhg/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=XSsHMsMPf167hnnuvDJ0afpKAUu0s-s36NpffX9Niig'

@@ -515,7 +515,8 @@
     "error": {
       "unknownError": "An unknown error occurred",
       "submitFailed": "Booking request failed"
-    }
+    },
+    "bookingRequestSuccess": "Booking request submitted successfully! We will contact you soon."
   },
   "flightSearchDialog": {
     "title": "Flight Search Request",
@@ -563,7 +564,8 @@
       "submitFailed": "Flight search request failed"
     },
     "success": {
-      "submitted": "Flight search request submitted successfully! We will contact you within 24 hours."
+      "submitted": "Flight search request submitted successfully! We will contact you within 24 hours.",
+      "message": "Flight search request submitted successfully! We will contact you within 24 hours."
     }
   },
   "clientFlightCard": {
@@ -578,7 +580,8 @@
     "totalCost": "Total Flight Cost",
     "bookRequest": "Book Request",
     "tbd": "TBD",
-    "dateTBD": "Date TBD"
+    "dateTBD": "Date TBD",
+    "enquirePrice": "Enquire Price"
   },
   "bookingRequests": {
     "title": "Booking Requests",

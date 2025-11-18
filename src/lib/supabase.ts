@@ -405,25 +405,39 @@ export const bookingRequestService = {
   },
 
   async create(bookingRequest: Omit<BookingRequest, 'id' | 'created_at' | 'updated_at' | 'flight'>) {
-    const response = await fetch('/api/booking-requests', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(bookingRequest),
-    })
-    
-    if (!response.ok) {
-      const error = await response.json()
-      throw new Error(error.error || 'Failed to create booking request')
+    try {
+      const response = await fetch('/api/booking-requests', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingRequest),
+      })
+
+      if (!response.ok) {
+        let errorMessage = 'Failed to create booking request'
+        try {
+          const error = await response.json()
+          errorMessage = error.error || errorMessage
+        } catch {
+          // Response is not JSON, use status text
+          errorMessage = `${errorMessage}: ${response.status} ${response.statusText}`
+        }
+        throw new Error(errorMessage)
+      }
+
+      return response.json()
+    } catch (error) {
+      if (error instanceof Error) {
+        throw error
+      }
+      throw new Error('Failed to create booking request: Network error')
     }
-    
-    return response.json()
   },
 
   async sendGoogleChatNotification(bookingRequest: BookingRequest, flightId: string) {
     const webhookUrl = process.env.NEXT_PUBLIC_GOOGLE_CHAT_WEBHOOK_URL ||
-      'https://chat.googleapis.com/v1/spaces/AAQAdrRiLik/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=ellKxXXHRShH47vz1AzoBls8uis2A4wwTqI79klWpzc'
+      'https://chat.googleapis.com/v1/spaces/AAQAAmm4UZc/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=82yAxYH8a-VjTb2ZQcBCrALF5NHLm173-aqrnH8HXSM'
     
     // Get flight details for the notification
     let flightDetails = null
@@ -447,21 +461,30 @@ export const bookingRequestService = {
     }
 
     const message = {
-      text: `🛩️ *새로운 VONAER 예약 요청*\n\n` +
-            `👤 *고객 정보:*\n` +
+      text: `🛫 Empty Leg 예약\n\n` +
+            `고객 정보:\n` +
             `• 이름: ${bookingRequest.customer_name}\n` +
-            `• 전화번호: ${bookingRequest.customer_phone}\n` +
-            `${bookingRequest.customer_email ? `• 이메일: ${bookingRequest.customer_email}\n` : ''}` +
-            `• 개인정보 동의: ${bookingRequest.consent_given ? '✅ 동의함' : '❌ 동의 안함'}\n\n` +
-            `✈️ *항공편 정보:*\n` +
-            `• 항공편 ID: ${flightId}\n` +
-            `${flightDetails ? `• 항공기: ${flightDetails.aircraft || '미정'}\n` : ''}` +
-            `${flightDetails ? `• 노선: ${flightDetails.from_city || '미정'} → ${flightDetails.to_city || '미정'}\n` : ''}` +
-            `${flightDetails && flightDetails.flight_date ? `• 날짜: ${new Date(flightDetails.flight_date).toLocaleDateString('ko-KR')}\n` : ''}` +
-            `${flightDetails && flightDetails.seats ? `• 수용 인원: ${flightDetails.seats}명\n` : ''}` +
+            `• 이메일: ${bookingRequest.customer_email || '미제공'}\n` +
+            `• 전화번호: ${bookingRequest.customer_phone}\n\n` +
+            `비행 정보:\n` +
+            (flightDetails ? `• 출발지: ${flightDetails.from_city || '미정'}\n` : '') +
+            (flightDetails ? `• 도착지: ${flightDetails.to_city || '미정'}\n` : '') +
+            (flightDetails?.flight_date ? `• 출발일: ${new Date(flightDetails.flight_date).toLocaleDateString('ko-KR')}\n` : '') +
+            (flightDetails?.aircraft ? `• 항공기 유형: ${flightDetails.aircraft}\n` : '') +
+            (flightDetails ? `• 항공편: ${flightDetails.from_city || '미정'} → ${flightDetails.to_city || '미정'}\n` : '') +
+            (flightDetails?.seats ? `• 수용 인원: ${flightDetails.seats}명\n` : '') +
             priceInfo +
-            `📅 *요청 시간:* ${new Date().toLocaleString('ko-KR')}\n\n` +
-            `⚡ *즉시 고객에게 연락하여 예약을 확정하세요!*`
+            `\n특별 요청사항:\n` +
+            `Empty Leg 예약 요청입니다. 즉시 고객에게 연락하여 확인해주세요.${bookingRequest.consent_given ? ' (개인정보 동의 완료)' : ' (개인정보 동의 필요)'}\n\n` +
+            `📅 예약 시간: ${new Date().toLocaleString('ko-KR', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+              hour12: false
+            })}`
     }
     
     const response = await fetch(webhookUrl, {
@@ -481,12 +504,30 @@ export const bookingRequestService = {
 
   async testGoogleChatWebhook() {
     const webhookUrl = process.env.NEXT_PUBLIC_GOOGLE_CHAT_WEBHOOK_URL ||
-      'https://chat.googleapis.com/v1/spaces/AAQAdrRiLik/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=ellKxXXHRShH47vz1AzoBls8uis2A4wwTqI79klWpzc'
+      'https://chat.googleapis.com/v1/spaces/AAQAAmm4UZc/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=82yAxYH8a-VjTb2ZQcBCrALF5NHLm173-aqrnH8HXSM'
     
     const testMessage = {
-      text: `🧪 *VONAER 웹훅 테스트*\n\n` +
-            `✅ Google Chat 알림이 정상적으로 작동합니다!\n` +
-            `📅 테스트 시간: ${new Date().toLocaleString('ko-KR')}`
+      text: `🛫 [TEST] 웹훅 테스트\n\n` +
+            `고객 정보:\n` +
+            `• 이름: 테스트 고객\n` +
+            `• 이메일: test@vonaer.com\n` +
+            `• 전화번호: 010-1234-5678\n\n` +
+            `비행 정보:\n` +
+            `• 출발지: 서울 (ICN)\n` +
+            `• 도착지: 도쿄 (NRT)\n` +
+            `• 출발일: ${new Date().toLocaleDateString('ko-KR')}\n` +
+            `• 항공기 유형: Light Jet\n\n` +
+            `특별 요청사항:\n` +
+            `웹훅 테스트입니다. Google Chat 알림이 정상적으로 작동합니다!\n\n` +
+            `📅 예약 시간: ${new Date().toLocaleString('ko-KR', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+              hour12: false
+            })}`
     }
     
     const response = await fetch(webhookUrl, {
@@ -521,26 +562,52 @@ export const bookingRequestService = {
   },
 
   async markAsCalled(id: number) {
-    const response = await fetch(`/api/booking-requests/${id}/mark-called`, {
-      method: 'PUT',
-    })
-    
-    if (!response.ok) {
-      const error = await response.json()
-      throw new Error(error.error || 'Failed to mark booking request as called')
+    try {
+      const response = await fetch(`/api/booking-requests/${id}/mark-called`, {
+        method: 'PUT',
+      })
+
+      if (!response.ok) {
+        let errorMessage = 'Failed to mark booking request as called'
+        try {
+          const error = await response.json()
+          errorMessage = error.error || errorMessage
+        } catch {
+          errorMessage = `${errorMessage}: ${response.status} ${response.statusText}`
+        }
+        throw new Error(errorMessage)
+      }
+
+      return response.json()
+    } catch (error) {
+      if (error instanceof Error) {
+        throw error
+      }
+      throw new Error('Failed to mark booking request as called: Network error')
     }
-    
-    return response.json()
   },
 
   async delete(id: number) {
-    const response = await fetch(`/api/booking-requests/${id}`, {
-      method: 'DELETE',
-    })
-    
-    if (!response.ok) {
-      const error = await response.json()
-      throw new Error(error.error || 'Failed to delete booking request')
+    try {
+      const response = await fetch(`/api/booking-requests/${id}`, {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) {
+        let errorMessage = 'Failed to delete booking request'
+        try {
+          const error = await response.json()
+          errorMessage = error.error || errorMessage
+        } catch {
+          errorMessage = `${errorMessage}: ${response.status} ${response.statusText}`
+        }
+        throw new Error(errorMessage)
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        throw error
+      }
+      throw new Error('Failed to delete booking request: Network error')
     }
   }
 }

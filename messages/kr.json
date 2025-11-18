@@ -2,7 +2,9 @@
   "hero": {
     "title": "VONAER",
     "subtitle": "Elevate Your FlyStyle",
-    "bookFlight": "항공편 예약"
+    "bookFlight": "항공편 예약",
+    "tagline": "세계를 함께 탐험하다",
+    "bookFlightButton": "항공편 예약"
   },
   "services": {
     "title": "VONAER 서비스",
@@ -517,7 +519,8 @@
     "error": {
       "unknownError": "알 수 없는 오류가 발생했습니다",
       "submitFailed": "예약 요청 실패"
-    }
+    },
+    "bookingRequestSuccess": "예약 요청이 성공적으로 제출되었습니다! 곧 연락드리겠습니다."
   },
   "flightSearchDialog": {
     "title": "항공편 검색 요청",
@@ -565,7 +568,8 @@
       "submitFailed": "항공편 검색 요청 실패"
     },
     "success": {
-      "submitted": "항공편 검색 요청이 성공적으로 제출되었습니다! 24시간 이내에 연락드리겠습니다."
+      "submitted": "항공편 검색 요청이 성공적으로 제출되었습니다! 24시간 이내에 연락드리겠습니다.",
+      "message": "항공편 검색 요청이 성공적으로 제출되었습니다! 24시간 이내에 연락드리겠습니다."
     }
   },
   "clientFlightCard": {

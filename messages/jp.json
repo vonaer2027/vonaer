@@ -2,7 +2,9 @@
   "hero": {
     "title": "VONAER",
     "subtitle": "Elevate Your FlyStyle",
-    "bookFlight": "フライト予約"
+    "bookFlight": "フライト予約",
+    "tagline": "世界をあなたと共に探検",
+    "bookFlightButton": "フライト予約"
   },
   "services": {
     "title": "VONAERサービス",
@@ -540,7 +542,8 @@
     "error": {
       "unknownError": "不明なエラーが発生しました",
       "submitFailed": "予約リクエストに失敗しました"
-    }
+    },
+    "bookingRequestSuccess": "予約リクエストが正常に送信されました！まもなくご連絡いたします。"
   },
   "flightSearchDialog": {
     "title": "フライト検索リクエスト",
@@ -588,7 +591,8 @@
       "submitFailed": "フライト検索リクエストが失敗しました"
     },
     "success": {
-      "submitted": "フライト検索リクエストが正常に送信されました！24時間以内にご連絡いたします。"
+      "submitted": "フライト検索リクエストが正常に送信されました！24時間以内にご連絡いたします。",
+      "message": "フライト検索リクエストが正常に送信されました！24時間以内にご連絡いたします。"
     }
   },
   "clientFlightCard": {
@@ -603,7 +607,8 @@
     "totalCost": "総フライト費用",
     "bookRequest": "予約リクエスト",
     "tbd": "未定",
-    "dateTBD": "日付未定"
+    "dateTBD": "日付未定",
+    "enquirePrice": "価格問い合わせ"
   },
   "bookingRequests": {
     "title": "予約リクエスト",
@@ -1352,7 +1357,8 @@
       }
     },
     "cta": {
-      "requestQuote": "見積もりを依頼"
+      "requestQuote": "見積もりを依頼",
+      "learnMore": "詳細を見る"
     },
     "title": "SUPER YACHT",
     "subtitle": "最高級のスーパーヨットで究極の海上体験を",

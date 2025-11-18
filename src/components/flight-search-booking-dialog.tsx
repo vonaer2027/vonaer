@@ -396,20 +396,29 @@ async function sendFlightSearchRequestToGoogleChat({
   }
 
   const message = {
-    text: `🛩️ *새로운 VONAER 항공편 검색 요청*\n\n` +
-          `👤 *고객 정보:*\n` +
+    text: `🛫 항공편 차터 예약\n\n` +
+          `고객 정보:\n` +
           `• 이름: ${customerData.customerName}\n` +
-          `• 전화번호: ${customerData.customerCountryCode} ${customerData.customerPhone}\n` +
-          `${customerData.customerEmail ? `• 이메일: ${customerData.customerEmail}\n` : ''}` +
-          `• 개인정보 동의: ${customerData.contactConsent && customerData.privacyConsent ? '✅ 동의함' : '❌ 동의 안함'}\n\n` +
-          `✈️ *항공편 정보:*\n` +
-          `• 여행 유형: ${flightData.tripType === 'one-way' ? '편도' : '왕복'}\n` +
-          `• 노선: ${flightData.fromLocation} → ${flightData.toLocation}\n` +
-          `• 출발 날짜: ${formatDate(flightData.departDate)}\n` +
-          `${flightData.tripType === 'round-trip' && flightData.returnDate ? `• 귀국 날짜: ${formatDate(flightData.returnDate)}\n` : ''}` +
-          `• 승객 수: ${flightData.passengers}명\n\n` +
-          `📅 *요청 시간:* ${new Date().toLocaleString('ko-KR')}\n\n` +
-          `⚡ *즉시 고객에게 연락하여 항공편을 찾아드리세요!*`
+          `• 이메일: ${customerData.customerEmail || '미제공'}\n` +
+          `• 전화번호: ${customerData.customerCountryCode} ${customerData.customerPhone}\n\n` +
+          `비행 정보:\n` +
+          `• 출발지: ${flightData.fromLocation}\n` +
+          `• 도착지: ${flightData.toLocation}\n` +
+          `• 출발일: ${formatDate(flightData.departDate)}\n` +
+          `${flightData.tripType === 'round-trip' && flightData.returnDate ? `• 귀국일: ${formatDate(flightData.returnDate)}\n` : ''}` +
+          `• 승객 수: ${flightData.passengers}명\n` +
+          `• 여행 유형: ${flightData.tripType === 'one-way' ? '편도' : '왕복'}\n\n` +
+          `특별 요청사항:\n` +
+          `항공편 차터 예약 요청입니다. 즉시 고객에게 연락하여 최적의 항공편을 찾아드리세요.${customerData.contactConsent && customerData.privacyConsent ? ' (개인정보 동의 완료)' : ' (개인정보 동의 필요)'}\n\n` +
+          `📅 예약 시간: ${new Date().toLocaleString('ko-KR', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+          })}`
   }
   
   const response = await fetch(webhookUrl, {
