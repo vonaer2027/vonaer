@@ -1013,8 +1013,8 @@
       "downloadKit": "Download Media Kit"
     },
     "newsletter": {
-      "title": "Subscribe to VONAER Newsletter",
-      "subtitle": "Get exclusive updates and special experiences from VONAER delivered to your inbox.",
+      "title": "Subscribe to VONAER Newsletter and receive the latest updates.",
+      "subtitle": "",
       "subscribe": "Subscribe to Newsletter"
     }
   },
@@ -1340,6 +1340,361 @@
     "cta": {
       "requestQuote": "Request Quote",
       "learnMore": "Learn More"
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "metadata": {
+        "announcement": "Announcement Date: July 24, 2023",
+        "effective": "Effective Date: July 24, 2023",
+        "revised": "Revision Date: August 19, 2024"
+      },
+      "section1": {
+        "title": "Article 1 (Purpose)",
+        "paragraphs": [
+          "Personal information refers to information about a living individual that can identify the individual through items such as name, date of birth, etc. contained in the information (including information that cannot identify a specific individual by itself but can be easily combined with other information to identify).",
+          "Moviation Co., Ltd. (hereinafter referred to as the \"Company\") attaches great importance to the protection of your personal information and complies with the personal information protection regulations under the Personal Information Protection Act. The Company informs you about how your personal information is being used and what measures are being taken to protect personal information through this Privacy Policy.",
+          "The Privacy Policy may be changed for changes in government laws or guidelines, or to provide better services. In this case, the Company notifies this by posting it on the website or through email, SNS messages, etc.",
+          "The Company discloses the Privacy Policy through the first screen of the service or a screen linked to the first screen so that members can easily view it at any time.",
+          "The Company establishes procedures necessary for revising the Privacy Policy for the continuous improvement of the Privacy Policy."
+        ]
+      },
+      "section2": {
+        "title": "Article 2 (Consent to Collection of Personal Information and Collection Methods)",
+        "intro": "Members are provided with procedures to choose \"Agree\" or \"Do not agree\" to the consent form or terms of use of the Company, and if they choose \"Agree,\" it is considered that they have consented to the collection of personal information. However, the Company may collect and use members' personal information without consent in any of the following cases.",
+        "conditions": [
+          "When it is clearly difficult to obtain ordinary consent for economic or technical reasons as personal information necessary to fulfill a contract for the provision of information and communication services",
+          "When it is necessary for fee settlement according to the provision of information and communication services",
+          "When there are special provisions in other laws",
+          "When it is clearly difficult to obtain ordinary consent for economic or technical reasons as personal information necessary to fulfill a contract",
+          "When it has a reasonable connection with the purpose of collection, does not disadvantage the information subject, and applies safety measures"
+        ],
+        "considerations": [
+          "Connection with the original purpose of collection",
+          "Predictability of additional use of personal information in light of collection circumstances or processing practices",
+          "Whether the interests of the information subject are infringed",
+          "Judgment is made considering all matters such as application of measures necessary to secure safety, such as pseudonymization or encryption"
+        ],
+        "collectionInfo": "When the Company collects personal information, it must inform members of this fact in advance and obtain consent, and personal information is collected through the following methods.",
+        "methods": [
+          "When members consent to the collection of personal information and directly enter information during service membership registration and service use process",
+          "When personal information is provided from affiliated services or organizations",
+          "Through the website, mobile application, email, fax, telephone, etc. during the consultation process through the customer center",
+          "Through events and activities conducted online and offline"
+        ]
+      },
+      "section3": {
+        "title": "Article 3 (Purpose of Collection and Use of Personal Information and Collection Items)",
+        "intro": "Members can freely access most content without a separate membership registration procedure. However, the Company collects members' information through member services and partners to provide customized services. To use the Company's membership service, you must enter the following required information, and there is no restriction on service use if you do not enter optional items.",
+        "autoCollectedInfo": "The following information may be automatically generated and collected during service use.",
+        "autoCollectedItems": "Device ID, service usage record, connection log, IP address, browser version, device information (OS information, version, model name, manufacturer information, etc.)",
+        "sensitiveInfo": "We do not collect sensitive personal information that may infringe on members' basic human rights.",
+        "sensitiveItems": "Race and ethnicity, ideology and beliefs, place of birth and registered domicile, political inclination and criminal record, medical information, etc.",
+        "retention": "Users' personal information is used restrictively only during the period from the time of using the service to the period of providing the service. When a user requests membership withdrawal, or when the account withdrawal is processed after 1 year has exceeded based on the last login time, when consent to the collection and use of provided personal information is withdrawn, when the purpose of collection and use is achieved or when the retention and use period expires, personal information is destroyed without delay in the following manner.",
+        "destructionMethods": [
+          "Personal information printed on paper: Shredding or incineration",
+          "Personal information stored in electronic file format: Deletion using technical methods that cannot reuse records"
+        ],
+        "accessRights": "If you request to view transaction information held with your consent, the Company will take measures to enable you to check the details without delay.",
+        "security": "All personal information collected by the Company for service provision is stored for the retention period of the Privacy Policy using secure encrypted communication from the collection stage."
+      },
+      "section4": {
+        "title": "Article 4 (Installation, Operation, and Refusal of Automatic Personal Information Collection Devices)",
+        "intro": "Cookies are small amounts of information sent to members' browsers (Chrome, Firefox, Microsoft Edge, other mobile browsers). The Company uses 'cookies' to store and retrieve information about members from time to time. Cookies identify members' computers or mobile devices but do not personally identify members.",
+        "cookieUsage": [
+          "Store advertising identifiers and device IDs in cookies to provide differentiated information for each device",
+          "Analyze members' access frequency or time spent to identify users' tastes and interests and use them for marketing",
+          "Analyze members' habits and use them as a measure for service reorganization"
+        ]
+      },
+      "section5": {
+        "title": "Article 5 (Consent to Provision of Personal Information to Third Parties)",
+        "intro": "The Company uses members' personal information within the scope notified in Article 3 and does not use or provide it beyond that scope to others or other companies or organizations. However, as follows, for service provision, the Company notifies members of the recipient of personal information, purpose of provision, items of provision, use and retention period at the reservation stage and provides it to third parties after obtaining consent.",
+        "exceptions": "Notwithstanding the preceding paragraph, exceptions are made in the following cases.",
+        "exceptionCases": [
+          "When there are special provisions in laws or it is unavoidable to comply with legal obligations",
+          "When the information subject or their legal representative cannot express their intention or cannot obtain prior consent due to unknown address, etc., and it is clearly recognized as necessary for urgent life, body, or property benefits of the information subject or third party",
+          "When it is necessary for fee settlement according to the provision of information and communication services",
+          "When it has a reasonable connection with the purpose of collection, does not disadvantage the information subject, and applies safety measures"
+        ],
+        "considerations": [
+          "Connection with the original purpose of collection",
+          "Predictability of additional use and provision of personal information in light of collection circumstances or processing practices",
+          "Whether the interests of the information subject are infringed",
+          "Judgment considering all matters such as application of measures necessary to secure safety, such as pseudonymization or encryption"
+        ]
+      },
+      "section6": {
+        "title": "Article 6 (Viewing and Correction of Personal Information)",
+        "paragraphs": [
+          "Users can view or correct their registered personal information at any time. If you wish to view and correct personal information, you can directly view or correct it through the service, or if you contact the person in charge of personal information protection and the person in charge by mail, telephone, or e-mail, we will take action without delay.",
+          "If the user requests correction of errors in personal information, the personal information will not be used or provided until the correction is completed.",
+          "If incorrect personal information has already been provided to a third party, the correction processing results will be notified to the third party without delay to ensure correction."
+        ]
+      },
+      "section7": {
+        "title": "Article 7 (Withdrawal of Consent)",
+        "paragraphs": [
+          "Members can withdraw their consent to the collection, use, and provision of personal information agreed upon through membership registration, etc. at any time. Consent withdrawal can be processed through 'membership withdrawal' through the service or by contacting the person in charge of personal information protection by mail, customer center, telephone, etc., and we will take necessary measures such as deletion of personal information. If consent is withdrawn and measures such as destruction of personal information are taken, we will notify users of the fact without delay.",
+          "The Company takes necessary measures to make withdrawal of consent to the collection of personal information (membership withdrawal) easier than the method of collecting personal information."
+        ]
+      },
+      "section8": {
+        "title": "Article 8 (Safety Measures to Secure Personal Information Protection)",
+        "technical": {
+          "title": "Technical Measures",
+          "intro": "The Company is taking the following technical measures to secure safety so that personal information is not lost, stolen, leaked, altered, or damaged when processing users' personal information.",
+          "measures": [
+            "Users' personal information is protected by passwords, and files and transmission data are encrypted or file lock function is used to protect important data through separate security functions.",
+            "The Company adopts security devices that can safely transmit personal information on the network using encryption algorithms.",
+            "The Company is taking all measures for security by using intrusion prevention systems and vulnerability analysis systems for each server to prepare for hacking and other external intrusions."
+          ]
+        },
+        "administrative": {
+          "title": "Administrative Measures",
+          "intro": "The Company limits access to your personal information to the minimum number of people. Those corresponding to the minimum number are as follows.",
+          "personnel": [
+            "Those who perform marketing work directly targeting users",
+            "Those who perform work processing customer complaints and usage inquiries",
+            "Person in charge of personal information protection and person in charge performing personal information management work",
+            "Others for whom processing of personal information is unavoidable for work"
+          ],
+          "policies": [
+            "Through the security pledge of all employees at the time of joining the company, information leakage by people is prevented in advance, and internal procedures are established to audit the implementation of the Privacy Policy and compliance of employees.",
+            "The work handover of personal information-related processors is conducted thoroughly in a state where security is maintained, and responsibility for personal information accidents after joining and leaving the company is clarified.",
+            "Through the internal personal information protection organization, the implementation of the Privacy Policy and compliance of the person in charge are checked, and efforts are made to correct immediately if problems are found.",
+            "The Company is not responsible for things that happen due to users' personal mistakes or basic internet risks. Each member must manage and take responsibility for their login system appropriately to protect their own personal information.",
+            "In other cases, if loss, leakage, alteration, or damage of personal information is caused by mistakes of internal managers or accidents in technical management, the Company will immediately inform you of the facts and take appropriate measures and compensation."
+          ]
+        },
+        "physical": {
+          "title": "Physical Measures",
+          "content": "The Company in principle prohibits the export of auxiliary storage media containing personal information and requires prior approval for the export and import of the media."
+        }
+      },
+      "section9": {
+        "title": "Article 9 (Link Service)",
+        "content": "The Company may provide users with links to other companies' websites or materials. In this case, the Company has no control over external sites and materials, so it cannot be responsible for or guarantee the usefulness of services or materials provided from them. If you select a link included by the Company and move to another service's page, the Privacy Policy of that service is irrelevant to the Company, so please review the policy of the newly visited service."
+      },
+      "section10": {
+        "title": "Article 10 (Consignment of Personal Information Processing)",
+        "intro": [
+          "When consigning the processing of personal information, the consignment organization and the fact are notified to users in advance through the website. However, when consigning work to promote products or services or recommend sales, users are individually notified through email addresses, etc., and if the Company cannot inform you of the content and trustee of the consigned work by mail, email, etc. without fault, the relevant matters are posted on the service for 30 days or more.",
+          "When consigning the processing of personal information, through consignment contracts, etc., compliance with instructions related to service providers' personal information protection, confidentiality of personal information, prohibition of provision to third parties and assumption of liability in case of accidents, consignment period, return or destruction of personal information after the end of processing, etc. are clearly stipulated and the contract contents are stored in writing or electronically."
+        ]
+      },
+      "section11": {
+        "title": "Article 11 (Rights and Obligations of Users)",
+        "paragraphs": [
+          "Please enter your personal information in the latest and accurate state to prevent accidents. Accidents and responsibilities arising from inaccurate information entered by users are the responsibility of the users themselves, and membership qualifications may be forfeited if false information such as theft of others' information is entered.",
+          "Users have the right to be protected for personal information and also have the obligation to protect themselves and not infringe on others' information. Please be careful not to leak your personal information including passwords and be careful not to damage others' personal information including posts. If you fail to fulfill such responsibilities and damage others' information and dignity, you may be punished under the Act on Promotion of Information and Communications Network Utilization and Information Protection, Personal Information Protection Act, etc."
+        ]
+      },
+      "section12": {
+        "title": "Article 12 (Opinion Collection and Complaint Handling)",
+        "intro": [
+          "The Company values users' opinions and has the right to receive sincere answers at any time from questions.",
+          "The Company operates a customer center for smooth communication with users, and the contact information is as follows."
+        ],
+        "contact": {
+          "title": "Customer Center",
+          "email": "service@vonaer.com",
+          "phone": "1600-9064"
+        },
+        "additionalInfo": [
+          "If you need consultation on other personal information, you can inquire by the Company's above email, and if you need to report or consult with a national institution, you can contact the following contacts for help.",
+          "Personal Information Infringement Report Center (http://privacy.kisa.or.kr / 118 without area code)",
+          "Supreme Prosecutors' Office Cyber Investigation Division (http://spo.go.kr / 1301 without area code)",
+          "National Police Agency Cyber Investigation Bureau (http://police.go.kr / 182 without area code)"
+        ]
+      },
+      "section13": {
+        "title": "Article 13 (Personal Information Protection Officer)",
+        "intro": "The Company is doing its best to enable users to use good information safely. If an accident occurs contrary to the notified matters in protecting personal information, the person in charge of personal information protection takes all responsibility. However, despite taking technical complementary measures, there is no responsibility for damage to information due to unexpected accidents caused by basic network risks such as hacking, and various disputes caused by posts written by visitors. We guide the person in charge and person in charge of processing your personal information and respond quickly and sincerely to related inquiries.",
+        "officer": {
+          "name": "Park Sung-ho",
+          "title": "CTO",
+          "department": "Development Team",
+          "email": "ti@moviationair.com",
+          "phone": "02-6012-9500"
+        }
+      },
+      "section14": {
+        "title": "Article 14 (Revision and Notice of Privacy Policy)",
+        "content": "When the Privacy Policy is changed, the Company notifies without delay using the notice on the first screen of the service or a separate window, and takes measures so that users can easily recognize the changed matters at any time."
+      }
+    },
+    "terms": {
+      "title": "Location-Based Service Terms of Use",
+      "metadata": {
+        "announcement": "Announcement Date: July 3, 2024",
+        "effective": "Effective Date: July 3, 2024"
+      },
+      "section1": {
+        "title": "Article 1 (Purpose)",
+        "content": "These Terms aim to stipulate the rights, obligations, and responsibilities of the Company and members in the use of services (hereinafter referred to as \"Services\") provided by Moviation Co., Ltd. (hereinafter referred to as \"Company\") by members (refers to individual location information subjects who have agreed to the VonAir Service Terms, hereinafter referred to as \"members\")."
+      },
+      "section2": {
+        "title": "Article 2 (Effect and Change of Terms of Use)",
+        "paragraphs": [
+          "These Terms become effective when a customer or individual location information subject who has applied for the Service agrees to these Terms and registers as a user of the Service according to the prescribed procedures determined by the Company.",
+          "The Company posts or notifies these Terms by other methods so that members can easily know the contents of these Terms on the initial screen of the Service.",
+          "The Company may change these Terms if it deems necessary, and when the Company revises the Terms, it notifies the existing Terms, revised Terms, and the application date and reason for revision together with the current Terms from 7 days before the application date to a considerable period after the application date. However, if the revised content is unfavorable to members, it posts it on the website or sends a notice of revision of the Terms to members in electronic form (email, SMS, etc.) from 30 days before the application date to a considerable period after the application date.",
+          "If the Company notifies or notifies members according to the preceding paragraph and clearly notifies that if there is no expression of refusal from the notice or notification/announcement date until 7 days after the effective date of the revised Terms, it will be considered as approval, and if there is no expression of refusal despite this, it is considered as approval of the changed Terms. If members do not agree to the revised Terms, members can terminate the Terms of Use."
+        ]
+      },
+      "section3": {
+        "title": "Article 3 (Rules Outside the Terms)",
+        "content": "For matters not stipulated in these Terms, the Act on the Protection and Use of Location Information (hereinafter referred to as the \"Location Information Act\"), Telecommunications Business Act, Act on Promotion of Information and Communications Network Utilization and Information Protection (hereinafter referred to as the \"Information and Communications Network Act\"), Personal Information Protection Act, and other related laws or the Company's service operation policies and rules (hereinafter referred to as \"detailed guidelines\") apply, and matters concerning personal information processing standards and protection measures are disclosed through the Privacy Policy."
+      },
+      "section4": {
+        "title": "Article 4 (Service Content, etc.)",
+        "intro": "The location-based services provided by the Company and the retention purpose and period of personal location information are as follows.",
+        "serviceName": "VonAir Location-Based Service",
+        "serviceContent": "Address search using location information",
+        "retentionPeriod": "Immediately destroyed upon achievement of purpose of use"
+      },
+      "section5": {
+        "title": "Article 5 (Service Registration)",
+        "rejectionCases": "The Company may not approve the user's registration application in the following cases.",
+        "cases": [
+          "When applying falsely, such as using a name that is not real or using another person's name",
+          "When applying by omitting or incorrectly entering member registration items",
+          "When other requirements for application for use determined by the Company are not met"
+        ],
+        "memberResponsibility": [
+          "Members must maintain up-to-date information by directly registering and modifying through the \"Edit My Information\" item when adding or changing registration items.",
+          "All information entered in the membership registration application is considered actual data, and members bear disadvantages arising from not entering or modifying actual information."
+        ]
+      },
+      "section6": {
+        "title": "Article 6 (Service Termination)",
+        "content": "If a member wishes to terminate service use, the member can apply for service termination through the procedures determined by the Company, and the Company processes it promptly according to what the law stipulates."
+      },
+      "section7": {
+        "title": "Article 7 (Service Content)",
+        "content": "Service use is in principle 24 hours a day, year-round. However, the Service may be temporarily suspended for reasons of the Company's work or technology, and the Service may also be temporarily suspended during periods determined by the Company for operational purposes. In this case, the Company notifies this in advance or afterward."
+      },
+      "section8": {
+        "title": "Article 8 (Service Usage Fees)",
+        "paragraphs": [
+          "The Company may charge paid service usage fees by the method determined by the electronic payment company contracted with the Company or by adding them to the bill determined by the Company.",
+          "Cancellation and refund of payments made through paid service use follow the Company's payment Terms of Use and related laws.",
+          "Refund requests or requests for payer's personal information due to members' personal information theft and payment fraud may be rejected except as provided by law.",
+          "Data communication charges incurred when using wireless services are separate and follow the policy of each subscribed mobile carrier.",
+          "Charges incurred when registering posts by MMS, etc. follow the policy of each mobile carrier subscribed to by the member"
+        ]
+      },
+      "section9": {
+        "title": "Article 9 (Restriction and Suspension of Service Use)",
+        "intro": "The Company may restrict or suspend members' service use in any of the following cases.",
+        "cases": [
+          "When a member intentionally or with gross negligence interferes with the operation of the Company's service",
+          "When it is unavoidable due to inspection, repair, or construction of service equipment",
+          "When a basic telecommunications service operator stipulated in the Telecommunications Business Act has suspended telecommunications services",
+          "When there is a hindrance to service use due to a national emergency, service equipment failure, or congestion of service use",
+          "When the Company recognizes that it is inappropriate to continue providing services for other significant reasons"
+        ],
+        "notification": "When the Company restricts or suspends service use according to the provisions of the preceding paragraph, it must inform members of the reason and restriction period.",
+        "accuracy": "The Service is based on location information and some errors may occur."
+      },
+      "section10": {
+        "title": "Article 10 (Use or Provision of Personal Location Information)",
+        "paragraphs": [
+          "When the Company intends to provide services using personal location information, it must specify this in the Terms in advance and obtain the consent of the individual location information subject.",
+          "When the Company provides personal location information to a third party, it notifies the individual location information subject in advance of the recipient and purpose of provision and obtains consent. However, the following cases are exceptions."
+        ],
+        "exception": "When there is a request from an investigative agency according to procedures and methods stipulated by law for investigation purposes or based on legal provisions"
+      },
+      "section11": {
+        "title": "Article 11 (Retention Purpose and Period of Personal Location Information)",
+        "paragraphs": [
+          "The Company retains and uses the minimum personal location information necessary to provide location information and location-based services, and the retention purpose of personal location information follows VON Private requests.",
+          "The Company destroys without delay the location information use and provision confirmation data and the personal location information that must be recorded and preserved under the Location Information Act when using members' personal location information upon member withdrawal and service termination. However, it is preserved for the period when preservation is necessary according to related laws."
+        ]
+      },
+      "section12": {
+        "title": "Article 12 (Retention of Location Information Collection, Use, and Provision Confirmation Data)",
+        "paragraphs": [
+          "The Company automatically records location information collection, use, and provision confirmation data in the location information system for fee settlement and complaint handling with other businesses or customers based on Article 16, Paragraph 2 of the Location Information Act, and the data is preserved for at least 6 months.",
+          "According to Article 24, Paragraph 4 of the Location Information Act, when an individual location information subject withdraws all or part of the consent to collection, use, and provision, the Company immediately destroys the collected personal location information and collection, use, and provision confirmation data (in case of withdrawing part of the consent, limited to the personal location information and location information use and provision confirmation data of the part being withdrawn). However, when it is necessary to preserve according to the provisions of related laws, it is preserved according to what is stipulated in the relevant laws."
+        ]
+      },
+      "section13": {
+        "title": "Article 13 (Rights of Individual Location Information Subjects)",
+        "rights": [
+          "Members can withdraw all or part of their consent to the provision of location-based services using personal location information and provision of personal location information to third parties to the Company at any time.",
+          "Members can request a temporary suspension of the collection, use, or provision of personal location information to the Company at any time, and the Company cannot refuse this and has technical means for this.",
+          "Members can request to view or notify the data listed in each of the following items to the Company, and if there are errors in the data, they can request correction. In this case, the Company cannot refuse the member's request without justifiable reasons."
+        ],
+        "reviewableData": [
+          "Confirmation data of collection, use, and provision of location information about oneself",
+          "Reasons and contents for which one's personal location information was provided to third parties according to the Location Information Act or other legal provisions"
+        ],
+        "exerciseRights": "Members can request through the Company's prescribed procedures to exercise the rights in paragraphs 1 to 3."
+      },
+      "section14": {
+        "title": "Article 14 (Designation of Location Information Management Officer)",
+        "paragraphs": [
+          "The Company designates and operates a person in a position who can take actual responsibility to appropriately manage and protect location information and smoothly handle complaints of individual location information subjects as the location information management officer.",
+          "The location information management officer is the head of the department providing location-based services, and specific matters follow Article 18 of these Terms."
+        ]
+      },
+      "section15": {
+        "title": "Article 15 (Compensation for Damages)",
+        "paragraphs": [
+          "If damage occurs to members due to the Company's acts violating the provisions of Articles 15 to 26 of the Location Information Act, members can claim compensation for damages from the Company. In this case, the Company cannot be exempted from liability if it cannot prove that there was no intention or negligence.",
+          "If damage occurs to the Company due to members violating the provisions of these Terms, the Company can claim compensation for damages from members. In this case, members cannot be exempted from liability if they cannot prove that there was no intention or negligence."
+        ]
+      },
+      "section16": {
+        "title": "Article 16 (Exemption)",
+        "intro": "The Company does not bear responsibility for damages that occur to members if the Service cannot be provided in any of the following cases.",
+        "cases": [
+          "When there is a state of force majeure such as natural disasters or equivalent",
+          "When there is intentional service interference by a third party who has entered into a service partnership agreement with the Company to provide services",
+          "When there is a hindrance to service use due to the member's attributable reasons",
+          "When engaging in acts prohibited by the Service Terms or acts contrary to laws, public order and morals",
+          "Cases caused by reasons other than the Company's intention or negligence excluding items 1 to 3"
+        ],
+        "disclaimer": "The Company does not guarantee the reliability, accuracy, etc. of information, materials, and facts posted in the Service and the Service, and does not bear responsibility for members' damages arising from this."
+      },
+      "section17": {
+        "title": "Article 17 (Application of Regulations)",
+        "paragraphs": [
+          "These Terms are stipulated and performed according to the laws of the Republic of Korea.",
+          "For matters not stipulated in these Terms, related laws and commercial customs apply."
+        ]
+      },
+      "section18": {
+        "title": "Article 18 (Dispute Mediation and Others)",
+        "paragraphs": [
+          "The Company can apply for adjudication to the Korea Communications Commission according to the provisions of Article 28 of the Location Information Act if consultation between parties regarding disputes related to location information is not reached or consultation cannot be made.",
+          "The Company or customers can apply for mediation to the Personal Information Dispute Mediation Committee according to the provisions of Article 43 of the Personal Information Protection Act if consultation between parties regarding disputes related to location information is not reached or consultation cannot be made."
+        ]
+      },
+      "section19": {
+        "title": "Article 19 (Business Information and Location Information Management Officer)",
+        "companyInfo": {
+          "name": "Moviation Co., Ltd.",
+          "address": "Room 205, 2nd Floor, Korea Downtown Airport, 22 Teheran-ro 87-gil, Gangnam-gu, Seoul",
+          "phone": "02-6012-9500",
+          "manager": "Park Sung-ho",
+          "email": "ti@moviationair.com"
+        }
+      },
+      "appendix": {
+        "title": "Supplementary Provisions",
+        "article1": {
+          "title": "Article 1 (Effect of Terms)",
+          "content": "These Terms are implemented from July 3, 2024, and also apply to those who joined as service members before these Terms were implemented. Also, the revised Terms apply in principle to contracts concluded before the application date."
+        },
+        "article2": {
+          "title": "Article 2 (Revision of Terms)",
+          "content": "The Company complies with related laws such as the Act on the Regulation of Terms and Conditions, Framework Act on Electronic Transactions, Digital Signature Act, Act on Promotion of Information and Communications Network Utilization and Information Protection, Framework Act on Consumers, Act on Consumer Protection in Electronic Commerce, and Personal Information Protection Act of the Republic of Korea. Therefore, member Terms may be changed due to revision of related laws of the Republic of Korea and changes in government guidelines. When revising the Terms, the revision date, reason for revision, revision content, etc. are posted on the Service."
+        }
+      }
     }
   }
 }
