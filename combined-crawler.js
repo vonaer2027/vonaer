@@ -107,6 +107,77 @@ class CombinedCrawler {
         }
     }
 
+    /**
+     * Validates a flight has required data and is not invalid
+     * @param {Object} flight - Flight object to validate
+     * @returns {Object} { isValid: boolean, reason: string }
+     */
+    validateFlight(flight) {
+        const data = flight.extractedData;
+
+        // Check for Unknown country (invalid location data)
+        if (data.from?.country === 'Unknown' || data.to?.country === 'Unknown') {
+            return {
+                isValid: false,
+                reason: `Unknown location (${data.from?.country === 'Unknown' ? data.from.city : data.to.city})`
+            };
+        }
+
+        // Check for missing critical location data
+        if (!data.from?.city || !data.to?.city) {
+            return {
+                isValid: false,
+                reason: 'Missing city information'
+            };
+        }
+
+        if (!data.from?.country || !data.to?.country) {
+            return {
+                isValid: false,
+                reason: 'Missing country information'
+            };
+        }
+
+        // Check for missing or invalid date
+        if (!data.date || !data.dateTimestamp) {
+            return {
+                isValid: false,
+                reason: 'Missing or invalid date'
+            };
+        }
+
+        // Check for invalid date (too far in past)
+        const flightDate = new Date(data.dateTimestamp);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (flightDate < today) {
+            return {
+                isValid: false,
+                reason: 'Past flight date'
+            };
+        }
+
+        // Check for missing price
+        if (!data.price) {
+            return {
+                isValid: false,
+                reason: 'Missing price'
+            };
+        }
+
+        // Check for missing route summary
+        if (!data.route?.summary) {
+            return {
+                isValid: false,
+                reason: 'Missing route summary'
+            };
+        }
+
+        // All validations passed
+        return { isValid: true, reason: null };
+    }
+
     async combineAndDeduplicate() {
         console.log('🔄 Combining flights and checking for duplicates...');
 
@@ -115,17 +186,49 @@ class CombinedCrawler {
             ...this.jetbayFlights.map(f => ({ ...f, source: 'jetbay' }))
         ];
 
-        console.log(`📊 Total flights before deduplication: ${allFlights.length}`);
+        console.log(`📊 Total flights before validation: ${allFlights.length}`);
         console.log(`   FlyXO: ${this.flyxoFlights.length}`);
         console.log(`   JetBay: ${this.jetbayFlights.length}`);
 
-        // Deduplicate based on route, date, and price
-        // Same flight from different brokers should be identified
+        // Step 1: Validate flights and filter out invalid ones
+        console.log('\n🔍 Validating flights...');
+        const validFlights = [];
+        const invalidFlights = [];
+
+        for (const flight of allFlights) {
+            const validation = this.validateFlight(flight);
+
+            if (validation.isValid) {
+                validFlights.push(flight);
+            } else {
+                invalidFlights.push({ flight, reason: validation.reason });
+                console.log(`   ❌ Filtered out [${flight.source}]: ${flight.extractedData.route?.summary || 'Unknown route'} - ${validation.reason}`);
+            }
+        }
+
+        console.log(`\n📊 Validation Results:`);
+        console.log(`   Valid flights: ${validFlights.length}`);
+        console.log(`   Invalid flights filtered: ${invalidFlights.length}`);
+
+        if (invalidFlights.length > 0) {
+            const reasonBreakdown = invalidFlights.reduce((acc, item) => {
+                acc[item.reason] = (acc[item.reason] || 0) + 1;
+                return acc;
+            }, {});
+
+            console.log(`   Reasons for filtering:`);
+            for (const [reason, count] of Object.entries(reasonBreakdown)) {
+                console.log(`      ${reason}: ${count} flights`);
+            }
+        }
+
+        // Step 2: Deduplicate based on route, date, and price
+        console.log('\n🔄 Deduplicating valid flights...');
         const uniqueFlights = [];
         const seen = new Map();
         const duplicates = [];
 
-        for (const flight of allFlights) {
+        for (const flight of validFlights) {
             const route = flight.extractedData.route;
             const date = flight.extractedData.date;
             const price = flight.extractedData.price;
@@ -163,7 +266,7 @@ class CombinedCrawler {
 
         console.log(`\n📊 Deduplication Results:`);
         console.log(`   Unique flights: ${uniqueFlights.length}`);
-        console.log(`   Duplicates removed: ${allFlights.length - uniqueFlights.length}`);
+        console.log(`   Duplicates removed: ${validFlights.length - uniqueFlights.length}`);
         console.log(`   Final breakdown:`);
 
         const sourceBreakdown = uniqueFlights.reduce((acc, f) => {
@@ -184,8 +287,11 @@ class CombinedCrawler {
         // Parse price to numeric
         let priceNumeric = null;
         if (extractedData.priceType === 'fixed') {
-            const priceMatch = extractedData.price.match(/\d+/);
-            priceNumeric = priceMatch ? parseInt(priceMatch[0]) : null;
+            const priceMatch = extractedData.price.match(/[\d,]+/);
+            if (priceMatch) {
+                // Remove commas and parse
+                priceNumeric = parseInt(priceMatch[0].replace(/,/g, ''));
+            }
         }
 
         // Convert date timestamp to proper date
@@ -193,8 +299,20 @@ class CombinedCrawler {
             ? new Date(extractedData.dateTimestamp).toISOString().split('T')[0]
             : null;
 
-        // Extract image URLs
-        const imageUrls = flight.images?.map(img => img.src) || [];
+        // Extract and validate image URLs
+        const imageUrls = flight.images
+            ?.map(img => img.src)
+            ?.filter(src => src && src.trim().length > 0 && src.startsWith('http'))
+            || [];
+
+        // Use default image if no valid images available
+        const DEFAULT_IMAGE = 'https://xsctqzbwa1mbabgs.public.blob.vercel-storage.com/1.webp';
+        const finalImageUrls = imageUrls.length > 0 ? imageUrls : [DEFAULT_IMAGE];
+
+        // Log image handling for debugging
+        if (imageUrls.length === 0) {
+            console.log(`   📸 Using default image for flight ${flight.id} (${extractedData.route?.summary})`);
+        }
 
         return {
             flight_id: flight.id,
@@ -205,8 +323,8 @@ class CombinedCrawler {
             currency: 'USD',
             flight_date: flightDate,
             date_timestamp: extractedData.dateTimestamp,
-            aircraft: extractedData.aircraft,
-            seats: extractedData.seats,
+            aircraft: extractedData.aircraft || 'Private Jet',
+            seats: extractedData.seats, // null is acceptable (FlyXO doesn't provide seat info)
             from_city: extractedData.from?.city,
             from_country: extractedData.from?.country,
             from_formatted: extractedData.from?.formatted,
@@ -218,7 +336,7 @@ class CombinedCrawler {
             is_active: true,
             scraped_timestamp: extractedData.timestamp,
             last_seen_at: new Date().toISOString(),
-            image_urls: imageUrls,
+            image_urls: finalImageUrls,
             source: flight.source
         };
     }
@@ -341,6 +459,13 @@ class CombinedCrawler {
         console.log('💾 Saving combined data to JSON file...');
 
         try {
+            // Calculate statistics
+            const withSeats = this.combinedFlights.filter(f => f.extractedData.seats !== null).length;
+            const withoutSeats = this.combinedFlights.filter(f => f.extractedData.seats === null).length;
+            const withDefaultImage = this.combinedFlights.filter(f =>
+                !f.images || f.images.length === 0
+            ).length;
+
             const jsonData = JSON.stringify({
                 metadata: {
                     scrapedAt: new Date().toISOString(),
@@ -349,6 +474,16 @@ class CombinedCrawler {
                     breakdown: {
                         flyxo: this.combinedFlights.filter(f => f.source === 'flyxo').length,
                         jetbay: this.combinedFlights.filter(f => f.source === 'jetbay').length
+                    },
+                    dataQuality: {
+                        withSeats: withSeats,
+                        withoutSeats: withoutSeats,
+                        withDefaultImage: withDefaultImage,
+                        notes: [
+                            'FlyXO source does not provide seat information (null is expected)',
+                            'FlyXO source does not provide images (default image is used)',
+                            'All flights are validated for location data, dates, and prices'
+                        ]
                     }
                 },
                 flights: this.combinedFlights

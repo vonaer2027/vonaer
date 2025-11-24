@@ -398,6 +398,10 @@ class FlyXOCrawler {
         // Extract image URLs
         const imageUrls = flight.images?.map(img => img.src) || [];
 
+        // Use default image if no images available
+        const DEFAULT_IMAGE = 'https://xsctqzbwa1mbabgs.public.blob.vercel-storage.com/1.webp';
+        const finalImageUrls = imageUrls.length > 0 ? imageUrls : [DEFAULT_IMAGE];
+
         return {
             flight_id: flight.id,
             raw_text: flight.rawText,
@@ -420,7 +424,7 @@ class FlyXOCrawler {
             is_active: true,
             scraped_timestamp: extractedData.timestamp,
             last_seen_at: new Date().toISOString(),
-            image_urls: imageUrls,
+            image_urls: finalImageUrls,
             source: 'flyxo'
         };
     }
