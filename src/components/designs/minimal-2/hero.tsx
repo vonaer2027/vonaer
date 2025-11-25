@@ -1,80 +1,30 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowDown, ChevronDown } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
 
 export function Minimal2Hero() {
   const t = useTranslations();
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const slides = [
-    '/hero/1.webp',
-    '/hero/2.webp',
-    '/hero/3.webp',
-    '/hero/4-1.webp',
-    '/hero/4-2.webp',
-    '/hero/5.webp',
-    '/hero/5-1.webp',
-    '/hero/5-2.webp',
-    '/hero/5-3.webp',
-    '/hero/5-4.webp',
-    '/hero/5-5.webp',
-    '/hero/5-6.webp',
-    '/hero/5-7.webp',
-    '/hero/5-8.webp',
-    '/hero/5-9.webp',
-    '/hero/6.webp',
-    '/hero/7.webp',
-    '/hero/8.webp',
-    '/hero/9.webp',
-    '/hero/10.webp',
-    '/hero/11.webp',
-    '/hero/12.webp',
-    '/hero/13.webp',
-    '/hero/14.webp',
-    '/hero/15.webp',
-    '/hero/16.webp',
-    '/hero/17.webp'
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000); // Change slide every 6 seconds
-
-    return () => clearInterval(interval);
-  }, [slides.length]);
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-black">
-      {/* Image slideshow background - Full coverage */}
+      {/* Video background - Full coverage */}
       <div className="absolute inset-0 w-full h-full z-0">
-        {/* Image slideshow */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={slides[currentSlide]}
-              alt={`Hero slide ${currentSlide + 1}`}
-              fill
-              className="object-cover"
-              priority={currentSlide === 0}
-              quality={90}
-              sizes="100vw"
-            />
-          </motion.div>
-        </AnimatePresence>
+        {/* Background video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/hero/intro.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-        {/* Dark overlay for text readability - Covers entire image */}
+        {/* Dark overlay for text readability - Covers entire video */}
         <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/80 via-black/50 to-black/70 z-10" />
       </div>
 
