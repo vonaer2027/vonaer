@@ -449,6 +449,10 @@
       "telecomSales": "通信销售申报号：第2022-首尔江南-00453号",
       "telecomAuthority": "通信销售业申报机关：首尔特别市江南区厅",
       "copyright": "版权所有 Moviation Inc. 保留所有权利. 2025"
+    },
+    "legal": {
+      "privacyPolicy": "隐私政策",
+      "termsOfService": "基于位置的服务使用条款"
     }
   },
   "userManagement": {
@@ -1232,7 +1236,21 @@
     "social": "社交媒体",
     "phone": "电话",
     "locations": "VONAER位置",
-    "contactInfo": "联系方式"
+    "contactInfo": "联系方式",
+    "locationsList": {
+      "hq": {
+        "name": "首尔VONAER总部",
+        "address": "首尔江南区鹤洞路523号"
+      },
+      "jamsil": {
+        "name": "蚕室直升机场",
+        "address": "首尔市松坡区韩佳蓝路65号，蚕室直升机场"
+      },
+      "incheon": {
+        "name": "仁川机场VON港口",
+        "address": "仁川市中区云西洞2844-8号"
+      }
+    }
   },
   "immigration": {
     "title": "私人出入境服务",
@@ -1373,9 +1391,9 @@
     "privacy": {
       "title": "隐私政策",
       "metadata": {
-        "announcement": "公告日期：2023年7月24日",
-        "effective": "生效日期：2023年7月24日",
-        "revised": "修订日期：2024年8月19日"
+        "announcement": "公告日期：2025年11月26日",
+        "effective": "生效日期：2025年11月26日",
+        "revised": "修订日期：2025年11月26日"
       },
       "section1": {
         "title": "第1条（目的）",
@@ -1527,7 +1545,7 @@
         "contact": {
           "title": "客户中心",
           "email": "service@vonaer.com",
-          "phone": "1600-9064"
+          "phone": "02-6012-9500"
         },
         "additionalInfo": [
           "如果您需要其他个人信息咨询，可以通过本公司上述电子邮件查询，如果需要向国家机构报告或咨询，可以联系以下联系方式寻求帮助。",
@@ -1540,10 +1558,10 @@
         "title": "第13条（个人信息保护负责人）",
         "intro": "本公司尽最大努力使用户能够安全地使用良好信息。如果在保护个人信息方面发生与通知事项相反的事故，个人信息保护负责人承担全部责任。但是，尽管采取了技术补充措施，对于因黑客攻击等基本网络风险引起的意外事故造成的信息损坏以及访客撰写的帖子引起的各种纠纷不承担责任。我们指导处理您个人信息的负责人和负责人，并对相关咨询迅速诚恳地回应。",
         "officer": {
-          "name": "朴成浩",
-          "title": "CTO",
-          "department": "开发团队",
-          "email": "ti@moviationair.com",
+          "name": "申旻",
+          "title": "信息管理负责人",
+          "department": "经营团队",
+          "email": "service@vonaer.com",
           "phone": "02-6012-9500"
         }
       },
@@ -1555,8 +1573,8 @@
     "terms": {
       "title": "基于位置的服务使用条款",
       "metadata": {
-        "announcement": "公告日期：2024年7月3日",
-        "effective": "生效日期：2024年7月3日"
+        "announcement": "公告日期：2025年11月26日",
+        "effective": "生效日期：2025年11月26日"
       },
       "section1": {
         "title": "第1条（目的）",
@@ -1705,10 +1723,10 @@
         "title": "第19条（企业信息和位置信息管理负责人）",
         "companyInfo": {
           "name": "Moviation株式会社",
-          "address": "首尔江南区德黑兰路87街22号韩国市中心机场2楼205室",
+          "address": "首尔市江南区鹤洞路523号1楼102室",
           "phone": "02-6012-9500",
-          "manager": "朴成浩",
-          "email": "ti@moviationair.com"
+          "manager": "申旻",
+          "email": "service@vonaer.com"
         }
       },
       "appendix": {

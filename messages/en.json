@@ -422,6 +422,10 @@
       "telecomSales": "E-commerce Registration Number: 2022-Seoul Gangnam-00453",
       "telecomAuthority": "E-commerce Registration Authority: Gangnam-gu Office, Seoul",
       "copyright": "Copyright Moviation Inc. All Rights Reserved. 2025"
+    },
+    "legal": {
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Location-Based Service Terms"
     }
   },
   "userManagement": {
@@ -1205,7 +1209,21 @@
     "social": "Social Media",
     "phone": "Phone",
     "locations": "VONAER Locations",
-    "contactInfo": "Contact Information"
+    "contactInfo": "Contact Information",
+    "locationsList": {
+      "hq": {
+        "name": "VONAER HQ Seoul",
+        "address": "523 Hakdong-ro, Gangnam-gu, Seoul"
+      },
+      "jamsil": {
+        "name": "Jamsil Heliport",
+        "address": "65 Hangaram-ro, Songpa-gu, Seoul, Jamsil Heliport"
+      },
+      "incheon": {
+        "name": "Incheon Airport VON Port",
+        "address": "2844-8 Unseo-dong, Jung-gu, Incheon"
+      }
+    }
   },
   "immigration": {
     "title": "Private Terminal",
@@ -1346,9 +1364,9 @@
     "privacy": {
       "title": "Privacy Policy",
       "metadata": {
-        "announcement": "Announcement Date: July 24, 2023",
-        "effective": "Effective Date: July 24, 2023",
-        "revised": "Revision Date: August 19, 2024"
+        "announcement": "Announcement Date: November 26, 2025",
+        "effective": "Effective Date: November 26, 2025",
+        "revised": "Revision Date: November 26, 2025"
       },
       "section1": {
         "title": "Article 1 (Purpose)",
@@ -1500,7 +1518,7 @@
         "contact": {
           "title": "Customer Center",
           "email": "service@vonaer.com",
-          "phone": "1600-9064"
+          "phone": "02-6012-9500"
         },
         "additionalInfo": [
           "If you need consultation on other personal information, you can inquire by the Company's above email, and if you need to report or consult with a national institution, you can contact the following contacts for help.",
@@ -1513,10 +1531,10 @@
         "title": "Article 13 (Personal Information Protection Officer)",
         "intro": "The Company is doing its best to enable users to use good information safely. If an accident occurs contrary to the notified matters in protecting personal information, the person in charge of personal information protection takes all responsibility. However, despite taking technical complementary measures, there is no responsibility for damage to information due to unexpected accidents caused by basic network risks such as hacking, and various disputes caused by posts written by visitors. We guide the person in charge and person in charge of processing your personal information and respond quickly and sincerely to related inquiries.",
         "officer": {
-          "name": "Park Sung-ho",
-          "title": "CTO",
-          "department": "Development Team",
-          "email": "ti@moviationair.com",
+          "name": "Shin Min",
+          "title": "Information Manager",
+          "department": "Management Team",
+          "email": "service@vonaer.com",
           "phone": "02-6012-9500"
         }
       },
@@ -1528,8 +1546,8 @@
     "terms": {
       "title": "Location-Based Service Terms of Use",
       "metadata": {
-        "announcement": "Announcement Date: July 3, 2024",
-        "effective": "Effective Date: July 3, 2024"
+        "announcement": "Announcement Date: November 26, 2025",
+        "effective": "Effective Date: November 26, 2025"
       },
       "section1": {
         "title": "Article 1 (Purpose)",
@@ -1678,10 +1696,10 @@
         "title": "Article 19 (Business Information and Location Information Management Officer)",
         "companyInfo": {
           "name": "Moviation Co., Ltd.",
-          "address": "Room 205, 2nd Floor, Korea Downtown Airport, 22 Teheran-ro 87-gil, Gangnam-gu, Seoul",
+          "address": "523 Hakdong-ro, 1F Room 102, Gangnam-gu, Seoul",
           "phone": "02-6012-9500",
-          "manager": "Park Sung-ho",
-          "email": "ti@moviationair.com"
+          "manager": "Shin Min",
+          "email": "service@vonaer.com"
         }
       },
       "appendix": {

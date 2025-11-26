@@ -422,6 +422,10 @@
       "telecomSales": "통신판매신고번호 : 제2022-서울강남-00453호",
       "telecomAuthority": "통신판매업신고기관 : 서울특별시 강남구청",
       "copyright": "Copyright Moviation Inc. All Rights Reserved. 2025"
+    },
+    "legal": {
+      "privacyPolicy": "개인정보 처리방침",
+      "termsOfService": "위치기반서비스 이용약관"
     }
   },
   "userManagement": {
@@ -1209,7 +1213,21 @@
     "social": "소셜 미디어",
     "phone": "전화",
     "locations": "VONAER 위치",
-    "contactInfo": "연락처"
+    "contactInfo": "연락처",
+    "locationsList": {
+      "hq": {
+        "name": "서울 본에어 본사",
+        "address": "서울 강남구 학동로 523"
+      },
+      "jamsil": {
+        "name": "잠실헬기장",
+        "address": "서울특별시 송파구 한가람로65, 잠실헬기장"
+      },
+      "incheon": {
+        "name": "인천공항 VON포트",
+        "address": "인천시 중구 운서동 2844-8"
+      }
+    }
   },
   "immigration": {
     "title": "프라이빗 출입국 서비스",
@@ -1350,9 +1368,9 @@
     "privacy": {
       "title": "개인정보 처리방침",
       "metadata": {
-        "announcement": "공지일자: 2023년 7월 24일",
-        "effective": "시행일자: 2023년 7월 24일",
-        "revised": "개정일자: 2024년 8월 19일"
+        "announcement": "공지일자: 2025년 11월 26일",
+        "effective": "시행일자: 2025년 11월 26일",
+        "revised": "개정일자: 2025년 11월 26일"
       },
       "section1": {
         "title": "제1조 (목적)",
@@ -1504,7 +1522,7 @@
         "contact": {
           "title": "고객센터",
           "email": "service@vonaer.com",
-          "phone": "1600-9064"
+          "phone": "02-6012-9500"
         },
         "additionalInfo": [
           "기타 개인정보에 관한 상담이 필요한 경우 회사의 위 전자우편으로 문의할 수 있으며, 국가기관에 신고나 상담이 필요한 경우 아래의 연락처에 문의하여 도움을 받으실 수 있습니다.",
@@ -1517,10 +1535,10 @@
         "title": "제13조 (개인정보 보호책임자)",
         "intro": "회사는 사용자께서 좋은 정보를 안전하게 이용할 수 있도록 최선을 다하고 있습니다. 개인정보를 보호하는데 있어 고지한 사항들에 반하는 사고가 발생할 시 개인정보보호책임자가 모든 책임을 집니다. 그러나 기술적인 보완조치를 했음에도 불구하고, 해킹 등 기본적인 네트워크상의 위험성에 의해 발생하는 예기치 못한 사고로 인한 정보의 훼손 및 방문자가 작성한 게시물에 의한 각종 분쟁에 관해서는 책임이 없습니다. 귀하의 개인정보를 처리하는 책임자 및 담당자를 안내하며 관련 문의사항에 신속하고 성실하게 답변해드리고 있습니다.",
         "officer": {
-          "name": "박성호",
-          "title": "CTO",
-          "department": "개발팀",
-          "email": "ti@moviationair.com",
+          "name": "신민",
+          "title": "정보관리책임자",
+          "department": "경영팀",
+          "email": "service@vonaer.com",
           "phone": "02-6012-9500"
         }
       },
@@ -1532,8 +1550,8 @@
     "terms": {
       "title": "위치기반서비스 이용약관",
       "metadata": {
-        "announcement": "공지일자: 2024년 7월 3일",
-        "effective": "시행일자: 2024년 7월 3일"
+        "announcement": "공지일자: 2025년 11월 26일",
+        "effective": "시행일자: 2025년 11월 26일"
       },
       "section1": {
         "title": "제1조 (목적)",
@@ -1682,10 +1700,10 @@
         "title": "제19조 (사업자 정보 및 위치정보관리책임자)",
         "companyInfo": {
           "name": "주식회사 모비에이션",
-          "address": "서울 강남구 테헤란로 87길 22 한국도심공항 2층 205호",
+          "address": "서울시 강남구 학동로 523 1층 102호",
           "phone": "02-6012-9500",
-          "manager": "박성호",
-          "email": "ti@moviationair.com"
+          "manager": "신민",
+          "email": "service@vonaer.com"
         }
       },
       "appendix": {

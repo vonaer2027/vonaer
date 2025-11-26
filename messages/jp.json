@@ -449,6 +449,10 @@
       "telecomSales": "通信販売業申告番号：第2022-ソウル江南-00453号",
       "telecomAuthority": "通信販売業申告機関：ソウル特別市江南区庁",
       "copyright": "Copyright Moviation Inc. All Rights Reserved. 2025"
+    },
+    "legal": {
+      "privacyPolicy": "プライバシーポリシー",
+      "termsOfService": "位置情報サービス利用規約"
     }
   },
   "userManagement": {
@@ -1232,7 +1236,21 @@
     "social": "ソーシャルメディア",
     "phone": "電話",
     "locations": "VONAER所在地",
-    "contactInfo": "連絡先"
+    "contactInfo": "連絡先",
+    "locationsList": {
+      "hq": {
+        "name": "ソウルVONAER本社",
+        "address": "ソウル江南区鶴洞路523"
+      },
+      "jamsil": {
+        "name": "蚕室ヘリポート",
+        "address": "ソウル市松坡区ハンガラム路65、蚕室ヘリポート"
+      },
+      "incheon": {
+        "name": "仁川空港VONポート",
+        "address": "仁川市中区雲西洞2844-8"
+      }
+    }
   },
   "immigration": {
     "title": "プライベート出入国サービス",
@@ -1373,9 +1391,9 @@
     "privacy": {
       "title": "プライバシーポリシー",
       "metadata": {
-        "announcement": "公告日：2023年7月24日",
-        "effective": "施行日：2023年7月24日",
-        "revised": "改定日：2024年8月19日"
+        "announcement": "公告日：2025年11月26日",
+        "effective": "施行日：2025年11月26日",
+        "revised": "改定日：2025年11月26日"
       },
       "section1": {
         "title": "第1条（目的）",
@@ -1527,7 +1545,7 @@
         "contact": {
           "title": "カスタマーセンター",
           "email": "service@vonaer.com",
-          "phone": "1600-9064"
+          "phone": "02-6012-9500"
         },
         "additionalInfo": [
           "その他個人情報に関する相談が必要な場合、当社の上記電子メールで問い合わせることができ、国家機関に申告や相談が必要な場合、以下の連絡先に問い合わせて支援を受けることができます。",
@@ -1540,10 +1558,10 @@
         "title": "第13条（個人情報保護責任者）",
         "intro": "当社は、ユーザーの皆様が良い情報を安全に利用できるよう最善を尽くしています。個人情報を保護することにおいて告知した事項に反する事故が発生した場合、個人情報保護責任者がすべての責任を負います。しかし、技術的な補完措置を施したにもかかわらず、ハッキング等基本的なネットワーク上の危険性により発生する予期せぬ事故による情報の毀損及び訪問者が作成した投稿による各種紛争に関しては責任がありません。お客様の個人情報を処理する責任者及び担当者を案内し、関連問い合わせ事項に迅速かつ誠実に回答しています。",
         "officer": {
-          "name": "朴成浩",
-          "title": "CTO",
-          "department": "開発チーム",
-          "email": "ti@moviationair.com",
+          "name": "シン・ミン",
+          "title": "情報管理責任者",
+          "department": "経営チーム",
+          "email": "service@vonaer.com",
           "phone": "02-6012-9500"
         }
       },
@@ -1555,8 +1573,8 @@
     "terms": {
       "title": "位置情報サービス利用規約",
       "metadata": {
-        "announcement": "公告日：2024年7月3日",
-        "effective": "施行日：2024年7月3日"
+        "announcement": "公告日：2025年11月26日",
+        "effective": "施行日：2025年11月26日"
       },
       "section1": {
         "title": "第1条（目的）",
@@ -1705,10 +1723,10 @@
         "title": "第19条（事業者情報及び位置情報管理責任者）",
         "companyInfo": {
           "name": "株式会社Moviation",
-          "address": "ソウル江南区テヘラン路87キル22韓国都心空港2階205号",
+          "address": "ソウル市江南区鶴洞路523 1階102号",
           "phone": "02-6012-9500",
-          "manager": "朴成浩",
-          "email": "ti@moviationair.com"
+          "manager": "シン・ミン",
+          "email": "service@vonaer.com"
         }
       },
       "appendix": {
