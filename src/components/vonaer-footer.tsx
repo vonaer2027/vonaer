@@ -33,12 +33,29 @@ export function VonaerFooter() {
             viewport={{ once: true }}
             style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}
           >
-            <h4 className="font-semibold text-xs mb-2 text-foreground">{t('footer.sections.contact')}</h4>
-            <div className="text-muted-foreground text-[13px] leading-tight space-y-1">
-              <p>{t('footer.contact.phone')} · {t('footer.contact.email')}</p>
-              <p>{t('footer.company.name')} · {t('footer.company.address')}</p>
-              <p>{t('footer.company.businessNumber')} · {t('footer.company.telecomSales')}</p>
-              <p>{t('footer.company.telecomAuthority')}</p>
+            <h4 className="font-semibold text-xs mb-3 text-foreground">{t('footer.sections.contact')}</h4>
+            <div className="text-muted-foreground text-[12px] leading-relaxed space-y-2">
+              {/* Contact */}
+              <div className="flex flex-col sm:flex-row sm:gap-4">
+                <span>{t('footer.contact.phone')}</span>
+                <span className="hidden sm:inline text-muted-foreground/50">|</span>
+                <span>{t('footer.contact.email')}</span>
+              </div>
+              {/* Company */}
+              <div className="flex flex-col sm:flex-row sm:gap-4">
+                <span>{t('footer.company.name')}</span>
+                <span className="hidden sm:inline text-muted-foreground/50">|</span>
+                <span>{t('footer.company.address')}</span>
+              </div>
+              {/* Registration */}
+              <div className="flex flex-col sm:flex-row sm:gap-4 text-[11px] text-muted-foreground/70">
+                <span>{t('footer.company.businessNumber')}</span>
+                <span className="hidden sm:inline text-muted-foreground/50">|</span>
+                <span>{t('footer.company.telecomSales')}</span>
+              </div>
+              <div className="text-[11px] text-muted-foreground/70">
+                <span>{t('footer.company.telecomAuthority')}</span>
+              </div>
             </div>
           </motion.div>
 
@@ -82,11 +99,11 @@ export function VonaerFooter() {
           >
             <div className="flex justify-center gap-4 text-xs">
               <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
-                개인정보 처리방침
+                {t('footer.legal.privacyPolicy')}
               </Link>
               <span className="text-muted-foreground">|</span>
               <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
-                위치기반서비스 이용약관
+                {t('footer.legal.termsOfService')}
               </Link>
             </div>
             <p className="text-muted-foreground text-xs">
