@@ -409,6 +409,8 @@
     "contact": {
       "phone": "+82 1600 9064",
       "email": "business@vonaer.com",
+      "phoneLabel": "Tel",
+      "emailLabel": "Email",
       "businessHours": "Business Hours",
       "businessDays": "Business days | 09:00 ~ 18:00",
       "holidays": "Holidays",
@@ -417,6 +419,8 @@
     "company": {
       "name": "Moviation Inc.",
       "address": "523 Hakdong-ro, Gangnam-gu, Seoul",
+      "companyLabel": "Company",
+      "addressLabel": "Address",
       "businessNumber": "Business Registration Number: 216-81-49698",
       "representative": "Representative: Shin Min",
       "telecomSales": "E-commerce Registration Number: 2022-Seoul Gangnam-00453",

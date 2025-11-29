@@ -34,27 +34,26 @@ export function VonaerFooter() {
             style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}
           >
             <h4 className="font-semibold text-xs mb-3 text-foreground">{t('footer.sections.contact')}</h4>
-            <div className="text-muted-foreground text-[12px] leading-relaxed space-y-2">
+            <div className="text-muted-foreground text-[12px] leading-relaxed space-y-1.5">
               {/* Contact */}
-              <div className="flex flex-col sm:flex-row sm:gap-4">
-                <span>{t('footer.contact.phone')}</span>
-                <span className="hidden sm:inline text-muted-foreground/50">|</span>
-                <span>{t('footer.contact.email')}</span>
+              <div className="flex flex-col sm:flex-row sm:gap-6">
+                <span><span className="text-foreground/70">{t('footer.contact.phoneLabel')}</span> {t('footer.contact.phone')}</span>
+                <span><span className="text-foreground/70">{t('footer.contact.emailLabel')}</span> {t('footer.contact.email')}</span>
               </div>
               {/* Company */}
-              <div className="flex flex-col sm:flex-row sm:gap-4">
-                <span>{t('footer.company.name')}</span>
-                <span className="hidden sm:inline text-muted-foreground/50">|</span>
-                <span>{t('footer.company.address')}</span>
+              <div className="flex flex-col sm:flex-row sm:gap-6">
+                <span><span className="text-foreground/70">{t('footer.company.companyLabel')}</span> {t('footer.company.name')}</span>
+                <span><span className="text-foreground/70">{t('footer.company.addressLabel')}</span> {t('footer.company.address')}</span>
               </div>
               {/* Registration */}
-              <div className="flex flex-col sm:flex-row sm:gap-4 text-[11px] text-muted-foreground/70">
-                <span>{t('footer.company.businessNumber')}</span>
-                <span className="hidden sm:inline text-muted-foreground/50">|</span>
-                <span>{t('footer.company.telecomSales')}</span>
-              </div>
-              <div className="text-[11px] text-muted-foreground/70">
-                <span>{t('footer.company.telecomAuthority')}</span>
+              <div className="text-[11px] text-muted-foreground/70 space-y-0.5 pt-1">
+                <div className="flex flex-col sm:flex-row sm:gap-6">
+                  <span>{t('footer.company.businessNumber')}</span>
+                  <span>{t('footer.company.telecomSales')}</span>
+                </div>
+                <div>
+                  <span>{t('footer.company.telecomAuthority')}</span>
+                </div>
               </div>
             </div>
           </motion.div>

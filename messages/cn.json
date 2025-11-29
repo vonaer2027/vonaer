@@ -436,6 +436,8 @@
     "contact": {
       "phone": "+82 1600 9064",
       "email": "business@vonaer.com",
+      "phoneLabel": "电话",
+      "emailLabel": "邮箱",
       "businessHours": "营业时间",
       "businessDays": "工作日 | 09:00 ~ 18:00",
       "holidays": "节假日",
@@ -444,6 +446,8 @@
     "company": {
       "name": "Moviation有限公司",
       "address": "首尔特别市江南区鹤洞路523号1楼102号（清潭洞，Luna大楼）",
+      "companyLabel": "公司",
+      "addressLabel": "地址",
       "businessNumber": "企业注册号：216-81-49698",
       "representative": "代表：申敏",
       "telecomSales": "通信销售申报号：第2022-首尔江南-00453号",

@@ -409,6 +409,8 @@
     "contact": {
       "phone": "+82 1600 9064",
       "email": "business@vonaer.com",
+      "phoneLabel": "전화",
+      "emailLabel": "이메일",
       "businessHours": "영업시간",
       "businessDays": "영업일 | 09:00 ~ 18:00",
       "holidays": "공휴일",
@@ -417,6 +419,8 @@
     "company": {
       "name": "주식회사 모비에이션",
       "address": "서울특별시 강남구 학동로 523, 1층 102호(청담동, 루나빌딩)",
+      "companyLabel": "회사",
+      "addressLabel": "주소",
       "businessNumber": "사업등록번호 : 216-81-49698",
       "representative": "대표 : 신민",
       "telecomSales": "통신판매신고번호 : 제2022-서울강남-00453호",

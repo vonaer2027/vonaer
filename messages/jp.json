@@ -436,6 +436,8 @@
     "contact": {
       "phone": "+82 1600 9064",
       "email": "business@vonaer.com",
+      "phoneLabel": "電話",
+      "emailLabel": "メール",
       "businessHours": "営業時間",
       "businessDays": "平日 | 09:00 ~ 18:00",
       "holidays": "休日",
@@ -444,6 +446,8 @@
     "company": {
       "name": "株式会社モビエーション",
       "address": "ソウル特別市江南区鶴洞路523、1階102号（清潭洞、ルナビル）",
+      "companyLabel": "会社",
+      "addressLabel": "住所",
       "businessNumber": "事業者登録番号：216-81-49698",
       "representative": "代表：シン・ミン",
       "telecomSales": "通信販売業申告番号：第2022-ソウル江南-00453号",
