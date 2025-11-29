@@ -421,10 +421,11 @@
       "address": "서울특별시 강남구 학동로 523, 1층 102호(청담동, 루나빌딩)",
       "companyLabel": "회사",
       "addressLabel": "주소",
-      "businessNumber": "사업등록번호 : 216-81-49698",
+      "businessNumberLabel": "사업등록번호",
+      "businessNumber": "216-81-49698",
       "representative": "대표 : 신민",
-      "telecomSales": "통신판매신고번호 : 제2022-서울강남-00453호",
-      "telecomAuthority": "통신판매업신고기관 : 서울특별시 강남구청",
+      "telecomSalesLabel": "통신판매신고번호",
+      "telecomSales": "제2022-서울강남-00453호",
       "copyright": "Copyright Moviation Inc. All Rights Reserved. 2025"
     },
     "legal": {

@@ -39,9 +39,8 @@ export function VonaerFooter() {
               <p><span className="text-foreground/80">{t('footer.contact.emailLabel')}</span> {t('footer.contact.email')}</p>
               <p><span className="text-foreground/80">{t('footer.company.companyLabel')}</span> {t('footer.company.name')}</p>
               <p><span className="text-foreground/80">{t('footer.company.addressLabel')}</span> {t('footer.company.address')}</p>
-              <p>{t('footer.company.businessNumber')}</p>
-              <p>{t('footer.company.telecomSales')}</p>
-              <p>{t('footer.company.telecomAuthority')}</p>
+              <p><span className="text-foreground/80">{t('footer.company.businessNumberLabel')}</span> {t('footer.company.businessNumber')}</p>
+              <p><span className="text-foreground/80">{t('footer.company.telecomSalesLabel')}</span> {t('footer.company.telecomSales')}</p>
             </div>
           </motion.div>
 

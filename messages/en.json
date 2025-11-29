@@ -421,10 +421,11 @@
       "address": "523 Hakdong-ro, Gangnam-gu, Seoul",
       "companyLabel": "Company",
       "addressLabel": "Address",
-      "businessNumber": "Business Registration Number: 216-81-49698",
+      "businessNumberLabel": "Business Reg. No.",
+      "businessNumber": "216-81-49698",
       "representative": "Representative: Shin Min",
-      "telecomSales": "E-commerce Registration Number: 2022-Seoul Gangnam-00453",
-      "telecomAuthority": "E-commerce Registration Authority: Gangnam-gu Office, Seoul",
+      "telecomSalesLabel": "E-commerce Reg. No.",
+      "telecomSales": "2022-Seoul Gangnam-00453",
       "copyright": "Copyright Moviation Inc. All Rights Reserved. 2025"
     },
     "legal": {

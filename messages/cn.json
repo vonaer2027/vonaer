@@ -448,10 +448,11 @@
       "address": "首尔特别市江南区鹤洞路523号1楼102号（清潭洞，Luna大楼）",
       "companyLabel": "公司",
       "addressLabel": "地址",
-      "businessNumber": "企业注册号：216-81-49698",
+      "businessNumberLabel": "企业注册号",
+      "businessNumber": "216-81-49698",
       "representative": "代表：申敏",
-      "telecomSales": "通信销售申报号：第2022-首尔江南-00453号",
-      "telecomAuthority": "通信销售业申报机关：首尔特别市江南区厅",
+      "telecomSalesLabel": "通信销售申报号",
+      "telecomSales": "第2022-首尔江南-00453号",
       "copyright": "版权所有 Moviation Inc. 保留所有权利. 2025"
     },
     "legal": {
