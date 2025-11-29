@@ -1560,7 +1560,7 @@
       },
       "section1": {
         "title": "Article 1 (Purpose)",
-        "content": "These Terms aim to stipulate the rights, obligations, and responsibilities of the Company and members in the use of services (hereinafter referred to as \"Services\") provided by Moviation Co., Ltd. (hereinafter referred to as \"Company\") by members (refers to individual location information subjects who have agreed to the VonAir Service Terms, hereinafter referred to as \"members\")."
+        "content": "These Terms aim to stipulate the rights, obligations, and responsibilities of the Company and members in the use of services (hereinafter referred to as \"Services\") provided by Moviation Co., Ltd. (hereinafter referred to as \"Company\") by members (refers to individual location information subjects who have agreed to the VONAER Service Terms, hereinafter referred to as \"members\")."
       },
       "section2": {
         "title": "Article 2 (Effect and Change of Terms of Use)",
@@ -1578,7 +1578,7 @@
       "section4": {
         "title": "Article 4 (Service Content, etc.)",
         "intro": "The location-based services provided by the Company and the retention purpose and period of personal location information are as follows.",
-        "serviceName": "VonAir Location-Based Service",
+        "serviceName": "VONAER Location-Based Service",
         "serviceContent": "Address search using location information",
         "retentionPeriod": "Immediately destroyed upon achievement of purpose of use"
       },
