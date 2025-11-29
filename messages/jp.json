@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "VONAER",
-    "subtitle": "Elevate Your FlyStyle",
+    "subtitle": "Elevate Your Flystyle",
     "bookFlight": "フライト予約",
     "tagline": "世界をあなたと共に探検",
     "bookFlightButton": "フライト予約"
@@ -90,7 +90,7 @@
         },
         "step3": {
           "title": "予約する",
-          "description": "お好みの場所と日付を選択し、予約リクエストを送信してください。"
+          "description": "お好みの場所と日付を選択し、予約お問い合わせを送信してください。"
         },
         "step4": {
           "title": "予約承認と確認",
@@ -122,14 +122,14 @@
     },
     "passengers": "乗客",
     "passengersPlural": "乗客",
-    "search": "フライト検索",
-    "searchRequest": "フライト検索リクエスト"
+    "search": "見積依頼",
+    "searchRequest": "プライベートジェットお問い合わせ"
   },
   "about": {
     "title": "会社概要",
     "intro": {
       "paragraph1": "VONAERは人工知能(AI)ベースのラグジュアリートラベルプラットフォームとして、プライベートモビリティの体験を新たに定義します。",
-      "paragraph2": "専用機、ヘリコプター、スーパーヨットを網羅するオーダーメイドの移動サービスを通じて、お客様がどこにいても最も効率的で品格ある旅を楽しめるようにします。",
+      "paragraph2": "専用機、ヘリコプター、Super Yachtを網羅するオーダーメイドの移動サービスを通じて、お客様がどこにいても最も効率的で品格ある旅を楽しめるようにします。",
       "paragraph3": "VONAERはアジアを代表するプレミアムチャーターソリューションブランドとして、最高の品質と競争力のある価格を基に、差別化された旅の価値を提供します。",
       "paragraph4": "近い将来、カーボンニュートラルeVTOL(電動垂直離着陸機)の運航を導入し、都市間移動の新しいパラダイムを提示します。",
       "paragraph5": "イノベーションと持続可能性を基盤に、環境を考慮したラグジュアリートラベルの新基準を作り上げます。"
@@ -516,7 +516,7 @@
     }
   },
   "bookingDialog": {
-    "title": "予約リクエスト",
+    "title": "予約お問い合わせ",
     "subtitle": "詳細をご記入ください。24時間以内にご連絡いたします。",
     "seats": "席",
     "dateTBD": "日付未定",
@@ -533,9 +533,11 @@
     "contactConsentText": "フライト予約に関してVONAERからの連絡を受けることに同意します。",
     "privacyConsentText": "サービスを利用することにより、私は",
     "privacyPolicy": "プライバシーポリシー",
+    "andText": "および",
+    "locationTerms": "位置情報サービス利用規約",
     "privacyConsentText2": "を読み、理解し、それに同意します。",
     "cancel": "キャンセル",
-    "submit": "リクエストを送信",
+    "submit": "お問い合わせ",
     "submitting": "送信中...",
     "validation": {
       "nameRequired": "名前を入力してください",
@@ -545,14 +547,14 @@
     },
     "error": {
       "unknownError": "不明なエラーが発生しました",
-      "submitFailed": "予約リクエストに失敗しました"
+      "submitFailed": "予約お問い合わせに失敗しました"
     },
-    "bookingRequestSuccess": "予約リクエストが正常に送信されました！まもなくご連絡いたします。"
+    "bookingRequestSuccess": "予約お問い合わせが正常に送信されました！まもなくご連絡いたします。"
   },
   "flightSearchDialog": {
-    "title": "フライト検索リクエスト",
-    "carTitle": "スーパーカーのお問い合わせ",
-    "yachtTitle": "スーパーヨットのお問い合わせ",
+    "title": "プライベートジェットお問い合わせ",
+    "carTitle": "Chauffeured Carのお問い合わせ",
+    "yachtTitle": "Super Yachtのお問い合わせ",
     "subtitle": "詳細情報とフライトのご要望をお教えください。24時間以内にご連絡いたします。",
     "flightInfo": "フライト情報",
     "tripType": "旅行タイプ",
@@ -576,9 +578,11 @@
     "contactConsentText": "フライト予約に関してVONAERからのご連絡に同意いたします。",
     "privacyConsentText": "このサービスをご利用いただくことで、",
     "privacyPolicy": "プライバシーポリシー",
+    "andText": "および",
+    "locationTerms": "位置情報サービス利用規約",
     "privacyConsentText2": "をお読みいただき、ご理解の上、同意いたします。",
     "cancel": "キャンセル",
-    "submit": "リクエスト送信",
+    "submit": "お問い合わせ",
     "submitting": "送信中...",
     "validation": {
       "nameRequired": "お名前を入力してください",
@@ -592,11 +596,11 @@
     },
     "error": {
       "unknownError": "不明なエラーが発生しました",
-      "submitFailed": "フライト検索リクエストが失敗しました"
+      "submitFailed": "プライベートジェットお問い合わせが失敗しました"
     },
     "success": {
-      "submitted": "フライト検索リクエストが正常に送信されました！24時間以内にご連絡いたします。",
-      "message": "フライト検索リクエストが正常に送信されました！24時間以内にご連絡いたします。"
+      "submitted": "プライベートジェットお問い合わせが正常に送信されました！24時間以内にご連絡いたします。",
+      "message": "プライベートジェットお問い合わせが正常に送信されました！24時間以内にご連絡いたします。"
     }
   },
   "clientFlightCard": {
@@ -609,17 +613,17 @@
     "people": "人",
     "price": "価格",
     "totalCost": "総フライト費用",
-    "bookRequest": "予約リクエスト",
+    "bookRequest": "予約お問い合わせ",
     "tbd": "未定",
     "dateTBD": "日付未定",
     "enquirePrice": "価格問い合わせ"
   },
   "bookingRequests": {
-    "title": "予約リクエスト",
+    "title": "予約お問い合わせ",
     "subtitle": "Empty Legフライトに関する顧客からのお問い合わせ",
     "loading": {
-      "text": "予約リクエストを読み込んでいます...",
-      "failed": "予約リクエストの読み込みに失敗しました"
+      "text": "予約お問い合わせを読み込んでいます...",
+      "failed": "予約お問い合わせの読み込みに失敗しました"
     },
     "refresh": "更新",
     "stats": {
@@ -628,7 +632,7 @@
       "completedCalls": "対応済みの連絡"
     },
     "pendingCalls": "未対応の連絡",
-    "pendingCallsDescription": "連絡が必要な新規予約リクエスト",
+    "pendingCallsDescription": "連絡が必要な新規予約お問い合わせ",
     "completedCalls": "対応済みの連絡",
     "completedCallsDescription": "連絡済みの顧客",
     "customer": "顧客",
@@ -640,11 +644,11 @@
     "callCompleted": "連絡完了",
     "viewDetails": "詳細を表示",
     "delete": "削除",
-    "noRequests": "まだ予約リクエストはありません",
-    "noRequestsDescription": "顧客の予約リクエストはここに表示されます",
+    "noRequests": "まだ予約お問い合わせはありません",
+    "noRequestsDescription": "顧客の予約お問い合わせはここに表示されます",
     "details": {
       "title": "予約詳細",
-      "subtitle": "からの予約リクエスト",
+      "subtitle": "からの予約お問い合わせ",
       "customer": "顧客",
       "phone": "電話番号",
       "email": "メール",
@@ -660,13 +664,13 @@
     },
     "success": {
       "markedAsCalled": "正常に連絡済みとしてマークされました",
-      "deleted": "予約リクエストが削除されました"
+      "deleted": "予約お問い合わせが削除されました"
     },
     "error": {
       "statusUpdateFailed": "ステータスの更新に失敗しました",
-      "deleteFailed": "予約リクエストの削除に失敗しました"
+      "deleteFailed": "予約お問い合わせの削除に失敗しました"
     },
-    "confirmDelete": "この予約リクエストを本当に削除しますか？"
+    "confirmDelete": "この予約お問い合わせを本当に削除しますか？"
   },
   "sidebar": {
     "tagline": "都市航空モビリティ",
@@ -677,11 +681,11 @@
       "charter": "チャーター",
       "aircraft": "航空機",
       "emptyLeg": "Empty Leg",
-      "supercar": "スーパーカー",
+      "supercar": "Chauffeured Car",
       "membership": "メンバーシップ専用",
       "pr": "広報",
       "contact": "お問い合わせ",
-      "yacht": "ヨット"
+      "yacht": "Super Yacht"
     }
   },
   "jets": {
@@ -751,7 +755,7 @@
       "airports": "空港"
     },
     "cta": {
-      "requestQuote": "見積もりを依頼"
+      "requestQuote": "お問い合わせ"
     },
     "safety": {
       "title": "安全性と認証",
@@ -893,11 +897,11 @@
     }
   },
   "superyacht": {
-    "title": "スーパーヨット",
-    "subtitle": "究極の海上体験のための豪華ヨットチャーター",
+    "title": "Super Yacht",
+    "subtitle": "究極の海上体験のためのSuper Yachtチャーター",
     "comingSoon": {
       "title": "近日公開",
-      "description": "当社の豪華ヨットチャーターサービスは現在開発中です。VONAERの今後のヨットフリートで、最高の海上ラグジュアリーを体験してください。",
+      "description": "当社のSuper Yachtチャーターサービスは現在開発中です。VONAERの今後のSuper Yacht Fleetで、最高の海上ラグジュアリーを体験してください。",
       "features": {
         "luxuryFleet": {
           "title": "高級フリート",
@@ -996,7 +1000,7 @@
       "airports": "空港"
     },
     "cta": {
-      "requestQuote": "見積もりを依頼"
+      "requestQuote": "お問い合わせ"
     },
     "help": {
       "title": "お選びになる際にお困りですか？",
@@ -1089,7 +1093,7 @@
       "people": "人",
       "price": "価格",
       "totalCost": "総フライト費用",
-      "bookRequest": "予約リクエスト"
+      "bookRequest": "予約お問い合わせ"
     }
   },
   "admin": {
@@ -1100,7 +1104,7 @@
     "dashboard": "ダッシュボード",
     "users": "ユーザー",
     "settings": "設定",
-    "bookingRequests": "予約リクエスト",
+    "bookingRequests": "予約お問い合わせ",
     "totalFlights": "総フライト数",
     "averagePrice": "平均価格",
     "currentMargin": "現在のマージン",
@@ -1308,7 +1312,7 @@
     "flightDate": "フライト日",
     "capacity": "定員",
     "totalCost": "総費用",
-    "bookingRequest": "予約リクエスト",
+    "bookingRequest": "予約お問い合わせ",
     "emptyLeg": "Empty Leg",
     "priceAdjustment": "価格調整",
     "individualPriceAdjustment": "個別価格調整",
@@ -1347,7 +1351,7 @@
         "year": "2011年（2024年改装）",
         "length": "58.2m (190.9ft)",
         "guests": "6つのキャビンに12名収容",
-        "description": "全長58.2m（190.9ft）のCARPE DIEMは、アメリカ造船所Trinity Yachtsの職人技を代表する作品です。アルミニウム合金で製作された船体は堅牢性と軽量化を両立し、10.2m（33.5ft）の広いビーム上に完成したインテリアは卓越した空間活用性と高級感を提供します。6つのキャビンで12名のゲストを収容し、クラシックなアメリカンラグジュアリーと現代的な感覚が調和したデッキレイアウトが特徴です。\n\n全長58.2mのCARPE DIEMは、Trinity Yachtsを代表するフルアルミニウム製スーパーヨットで、長距離クルージングと静粛な航行を両立したモデルです。10.2mの広いビームをベースに、6つのキャビンで最大12名まで乗船可能。船体全体にアメリカンラグジュアリーと機能的なデザインが調和した空間を提供します。クラシックなホワイトラインとバランスの取れたプロファイルがTrinity Yachtsの職人技を示しています。"
+        "description": "全長58.2m（190.9ft）のCARPE DIEMは、アメリカ造船所Trinity Yachtsの職人技を代表する作品です。アルミニウム合金で製作された船体は堅牢性と軽量化を両立し、10.2m（33.5ft）の広いビーム上に完成したインテリアは卓越した空間活用性と高級感を提供します。6つのキャビンで12名のゲストを収容し、クラシックなアメリカンラグジュアリーと現代的な感覚が調和したデッキレイアウトが特徴です。\n\n全長58.2mのCARPE DIEMは、Trinity Yachtsを代表するフルアルミニウム製Super Yachtで、長距離クルージングと静粛な航行を両立したモデルです。10.2mの広いビームをベースに、6つのキャビンで最大12名まで乗船可能。船体全体にアメリカンラグジュアリーと機能的なデザインが調和した空間を提供します。クラシックなホワイトラインとバランスの取れたプロファイルがTrinity Yachtsの職人技を示しています。"
       },
       "afterYou": {
         "name": "AFTER YOU",
@@ -1363,7 +1367,7 @@
         "year": "2022年",
         "length": "77.8m (255.2ft)",
         "guests": "7つのキャビンに14名収容",
-        "description": "全長77.8m（255.2ft）のENERGYは、オランダAmelsが提供するフルカスタムスーパーヨットで、最新のLloyd's基準に準拠する強力な構造と洗練されたデザインが結合したモデルです。Espen Øinoが外観デザイン、François Zurettiがインテリアを担当し、各空間は自然光と海とのつながりを最大化するように設計されています。トレンドに従わず、Amels独自のデザイン哲学を実現した現代スーパーヨットの真髄です。\n\n全長77.8mのENERGYは、Amelsのフルカスタムフラッグシップで、外観デザインをEspen Øino、インテリアをFrançois Zurettiが担当しました。スチール船体とアルミニウム上部構造で完成したLloyd's認証級ヨットで、7つのキャビンで最大14名が乗船可能です。空間と自然光を最大化したデザインは、Amelsが追求する「海とのつながり」という哲学を最もよく表しています。"
+        "description": "全長77.8m（255.2ft）のENERGYは、オランダAmelsが提供するフルカスタムSuper Yachtで、最新のLloyd's基準に準拠する強力な構造と洗練されたデザインが結合したモデルです。Espen Øinoが外観デザイン、François Zurettiがインテリアを担当し、各空間は自然光と海とのつながりを最大化するように設計されています。トレンドに従わず、Amels独自のデザイン哲学を実現した現代Super Yachtの真髄です。\n\n全長77.8mのENERGYは、Amelsのフルカスタムフラッグシップで、外観デザインをEspen Øino、インテリアをFrançois Zurettiが担当しました。スチール船体とアルミニウム上部構造で完成したLloyd's認証級ヨットで、7つのキャビンで最大14名が乗船可能です。空間と自然光を最大化したデザインは、Amelsが追求する「海とのつながり」という哲学を最もよく表しています。"
       },
       "axioma": {
         "name": "AXIOMA",
@@ -1371,15 +1375,15 @@
         "year": "2013年（2025年改装予定）",
         "length": "72m (236.2ft)",
         "guests": "6つのキャビンに12名収容",
-        "description": "全長72m（236.2ft）のAXIOMAは、トルコ造船所Dunya Yachtsが建造したフラッグシップモデルで、1,620GT級の広い容積を誇ります。Alberto Pintoがデザインしたインテリアは開放感と快適さを最大化し、メインサロンとダブルデッキプールはAXIOMAの象徴的な空間として評価されています。ABSおよびMCA基準をすべて満たし、世界のチャーター市場でも高い人気とブランド認知度を持つスーパーヨットです。\n\n全長72mのAXIOMAは、Dunya Yachtsが建造したトルコ初のスーパーヨットフラッグシップで、1,620GTの広い容積と6つのキャビン構成を備えています。Alberto Pintoデザインのインテリアは、開放感のあるダブルデッキ構造とプール、ウェルネスゾーンなどで有名です。ABSおよびMCA基準を満たし、地中海チャーター市場で最も人気のあるスーパーヨットの一つとして数えられています。"
+        "description": "全長72m（236.2ft）のAXIOMAは、トルコ造船所Dunya Yachtsが建造したフラッグシップモデルで、1,620GT級の広い容積を誇ります。Alberto Pintoがデザインしたインテリアは開放感と快適さを最大化し、メインサロンとダブルデッキプールはAXIOMAの象徴的な空間として評価されています。ABSおよびMCA基準をすべて満たし、世界のチャーター市場でも高い人気とブランド認知度を持つSuper Yachtです。\n\n全長72mのAXIOMAは、Dunya Yachtsが建造したトルコ初のSuper Yachtフラッグシップで、1,620GTの広い容積と6つのキャビン構成を備えています。Alberto Pintoデザインのインテリアは、開放感のあるダブルデッキ構造とプール、ウェルネスゾーンなどで有名です。ABSおよびMCA基準を満たし、地中海チャーター市場で最も人気のあるSuper Yachtの一つとして数えられています。"
       }
     },
     "cta": {
-      "requestQuote": "見積もりを依頼",
+      "requestQuote": "お問い合わせ",
       "learnMore": "詳細を見る"
     },
     "title": "SUPER YACHT",
-    "subtitle": "最高級のスーパーヨットで究極の海上体験を",
+    "subtitle": "最高級のSuper Yachtで究極の海上体験を",
     "specs": {
       "year": "建造年",
       "length": "全長",

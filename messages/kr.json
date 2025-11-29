@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "VONAER",
-    "subtitle": "Elevate Your FlyStyle",
+    "subtitle": "Elevate Your Flystyle",
     "bookFlight": "항공편 예약",
     "tagline": "세계를 함께 탐험하다",
     "bookFlightButton": "항공편 예약"
@@ -90,7 +90,7 @@
         },
         "step3": {
           "title": "예약하기",
-          "description": "원하는 장소와 날짜를 선택하고 예약 요청을 제출하세요."
+          "description": "원하는 장소와 날짜를 선택하고 예약 문의를 제출하세요."
         },
         "step4": {
           "title": "예약 승인 및 확인",
@@ -101,7 +101,7 @@
           "description": "예정된 시간에 헬리패드에 도착하여 간단한 탑승 절차를 완료하고 안전 요원의 지시에 따라 헬리콥터에 탑승하세요."
         },
         "step6": {
-          "title": "하기",
+          "title": "도착",
           "description": "착륙 후 VON 렌터카 또는 VON 리무진으로 라스트 마일 이동을 통해 최종 목적지까지 편안하게 여행을 계속하세요."
         }
       }
@@ -122,19 +122,19 @@
     },
     "passengers": "승객",
     "passengersPlural": "승객",
-    "search": "항공편 검색",
-    "searchRequest": "항공편 검색 요청"
+    "search": "견적 요청",
+    "searchRequest": "전용기 견적 요청"
   },
   "about": {
     "title": "회사 소개",
     "intro": {
       "paragraph1": "본에어는 아시아를 대표하는 프리미엄 차터 브랜드로서, 프라이빗 모빌리티의 새로운 기준을 제안합니다.",
-      "paragraph2": "전용기, 헬리콥터, 슈퍼요트를 아우르는 통합 이동 서비스를 통해 고객은 이동의 제약 없이 가장 효율적이고 품격 있는 여정을 완성할 수 있습니다.",
+      "paragraph2": "전용기, 헬리콥터, Super Yacht를 아우르는 통합 이동 서비스를 통해 고객은 이동의 제약 없이 가장 효율적이고 품격 있는 여정을 완성할 수 있습니다.",
       "paragraph3": "AI 기반의 럭셔리 트래블 플랫폼으로, 데이터와 기술을 결합해 이동의 본질을 새롭게 설계하고 지속가능한 항공 생태계를 만들어갑니다.",
       "paragraph4": "본에어는 탄소중립 eVTOL을 비롯한 미래 항공 기술을 통해 하늘과 도시, 그리고 사람을 연결하는 새로운 이동의 시대를 열어갑니다.",
       "paragraph5": ""
     },
-    "tagline": "Elevate Your FlyStyle with VONAER",
+    "tagline": "Elevate Your Flystyle with VONAER",
     "evtol": {
       "title": "Present the Future",
       "paragraph1": "VONAER는 럭셔리 모빌리티의 새로운 시대를 열고 있습니다. 전 세계에서 eVTOL의 상용화가 가시화되는 지금, 저희는 친환경 배터리 기반 eVTOL 항공으로 자연스럽게 전환되는 미래를 설계합니다.",
@@ -489,7 +489,7 @@
     }
   },
   "bookingDialog": {
-    "title": "예약 요청",
+    "title": "예약 문의",
     "subtitle": "세부 정보를 제공해주시면 24시간 이내에 연락드리겠습니다.",
     "seats": " 좌석",
     "dateTBD": "날짜 미정",
@@ -506,9 +506,11 @@
     "contactConsentText": "항공편 예약과 관련하여 VONAER로부터 연락받는 것에 동의합니다.",
     "privacyConsentText": "서비스를 이용함으로써, 본인은 ",
     "privacyPolicy": "개인정보 처리방침",
+    "andText": " 및 ",
+    "locationTerms": "위치기반서비스 이용약관",
     "privacyConsentText2": "을 읽고 이해했으며 이에 동의합니다.",
     "cancel": "취소",
-    "submit": "요청 제출",
+    "submit": "문의하기",
     "submitting": "제출 중...",
     "validation": {
       "nameRequired": "이름을 입력하세요",
@@ -522,14 +524,14 @@
     },
     "error": {
       "unknownError": "알 수 없는 오류가 발생했습니다",
-      "submitFailed": "예약 요청 실패"
+      "submitFailed": "예약 문의 실패"
     },
-    "bookingRequestSuccess": "예약 요청이 성공적으로 제출되었습니다! 곧 연락드리겠습니다."
+    "bookingRequestSuccess": "예약 문의가 성공적으로 제출되었습니다! 곧 연락드리겠습니다."
   },
   "flightSearchDialog": {
-    "title": "항공편 검색 요청",
-    "carTitle": "슈퍼카 검색 요청",
-    "yachtTitle": "슈퍼 요트 검색 요청",
+    "title": "전용기 견적 요청",
+    "carTitle": "Chauffeured Car 문의하기",
+    "yachtTitle": "Super Yacht 문의하기",
     "subtitle": "세부 정보와 항공편 요구사항을 제공해주시면 24시간 이내에 연락드리겠습니다.",
     "flightInfo": "항공편 정보",
     "tripType": "여행 유형",
@@ -553,9 +555,11 @@
     "contactConsentText": "항공편 예약과 관련하여 VONAER로부터 연락받는 것에 동의합니다.",
     "privacyConsentText": "서비스를 이용함으로써, 본인은 ",
     "privacyPolicy": "개인정보 처리방침",
+    "andText": " 및 ",
+    "locationTerms": "위치기반서비스 이용약관",
     "privacyConsentText2": "을 읽고 이해했으며 이에 동의합니다.",
     "cancel": "취소",
-    "submit": "요청 제출",
+    "submit": "견적 요청하기",
     "submitting": "제출 중...",
     "validation": {
       "nameRequired": "이름을 입력하세요",
@@ -569,11 +573,11 @@
     },
     "error": {
       "unknownError": "알 수 없는 오류가 발생했습니다",
-      "submitFailed": "항공편 검색 요청 실패"
+      "submitFailed": "전용기 문의 실패"
     },
     "success": {
-      "submitted": "항공편 검색 요청이 성공적으로 제출되었습니다! 24시간 이내에 연락드리겠습니다.",
-      "message": "항공편 검색 요청이 성공적으로 제출되었습니다! 24시간 이내에 연락드리겠습니다."
+      "submitted": "전용기 문의가 성공적으로 제출되었습니다! 24시간 이내에 연락드리겠습니다.",
+      "message": "전용기 문의가 성공적으로 제출되었습니다! 24시간 이내에 연락드리겠습니다."
     }
   },
   "clientFlightCard": {
@@ -586,17 +590,17 @@
     "people": " 명",
     "price": "가격",
     "totalCost": "총 항공 비용",
-    "bookRequest": "예약 요청",
+    "bookRequest": "예약 문의",
     "tbd": "미정",
     "dateTBD": "날짜 미정",
     "enquirePrice": "가격 문의"
   },
   "bookingRequests": {
-    "title": "예약 요청",
+    "title": "예약 문의",
     "subtitle": "Empty Leg 항공편에 대한 고객 문의",
     "loading": {
-      "text": "예약 요청 로드 중...",
-      "failed": "예약 요청 로드 실패"
+      "text": "예약 문의 로드 중...",
+      "failed": "예약 문의 로드 실패"
     },
     "refresh": "새로고침",
     "stats": {
@@ -605,7 +609,7 @@
       "completedCalls": "완료된 통화"
     },
     "pendingCalls": "대기 중인 통화",
-    "pendingCallsDescription": "연락이 필요한 새로운 예약 요청",
+    "pendingCallsDescription": "연락이 필요한 새로운 예약 문의",
     "completedCalls": "완료된 통화",
     "completedCallsDescription": "연락이 완료된 고객",
     "customer": "고객",
@@ -617,11 +621,11 @@
     "callCompleted": "통화 완료",
     "viewDetails": "세부 정보 보기",
     "delete": "삭제",
-    "noRequests": "아직 예약 요청이 없습니다",
-    "noRequestsDescription": "고객 예약 요청이 여기에 표시됩니다",
+    "noRequests": "아직 예약 문의가 없습니다",
+    "noRequestsDescription": "고객 예약 문의가 여기에 표시됩니다",
     "details": {
       "title": "예약 세부 정보",
-      "subtitle": "다음으로부터의 예약 요청",
+      "subtitle": "다음으로부터의 예약 문의",
       "customer": "고객",
       "phone": "전화번호",
       "email": "이메일",
@@ -637,13 +641,13 @@
     },
     "success": {
       "markedAsCalled": "성공적으로 통화 완료로 표시되었습니다",
-      "deleted": "예약 요청이 삭제되었습니다"
+      "deleted": "예약 문의가 삭제되었습니다"
     },
     "error": {
       "statusUpdateFailed": "상태 업데이트 실패",
-      "deleteFailed": "예약 요청 삭제 실패"
+      "deleteFailed": "예약 문의 삭제 실패"
     },
-    "confirmDelete": "이 예약 요청을 정말로 삭제하시겠습니까?"
+    "confirmDelete": "이 예약 문의를 정말로 삭제하시겠습니까?"
   },
   "sidebar": {
     "tagline": "도시 항공 모빌리티",
@@ -654,16 +658,16 @@
       "charter": "전세",
       "aircraft": "항공기",
       "emptyLeg": "Empty Leg",
-      "supercar": "슈퍼카",
+      "supercar": "Chauffeured Car",
       "membership": "멤버십 전용",
       "pr": "PR",
       "contact": "문의하기",
-      "yacht": "요트"
+      "yacht": "Super Yacht"
     }
   },
   "jets": {
     "title": "개인 제트기",
-    "subtitle": "포괄적인 개인 제트기 צי로 럭셔리, 편안함, 효율성을 경험하세요",
+    "subtitle": "포괄적인 개인 제트기 함대로 럭셔리, 편안함, 효율성을 경험하세요",
     "categories": {
       "lightJet": {
         "title": "경량 제트기",
@@ -728,7 +732,7 @@
       "airports": "공항"
     },
     "cta": {
-      "requestQuote": "견적 요청"
+      "requestQuote": "문의하기"
     },
     "safety": {
       "title": "안전 및 인증",
@@ -749,7 +753,7 @@
         "frequency": "매일 여러 편 운항",
         "features": {
           "0": "고속 공항 이동",
-          "1": "프리미엄 헬리콥터 צי",
+          "1": "프리미엄 헬리콥터 함대",
           "2": "전문 조종사",
           "3": "날씨 모니터링"
         }
@@ -845,7 +849,7 @@
     "title": "Chauffeured Car",
     "subtitle": "프리미엄 럭셔리 차량으로 최고의 지상 교통을 경험하세요",
     "featuresLabel": "차량별 주요 특징",
-    "cta": "예약 문의",
+    "cta": "문의하기",
     "vehicles": {
       "maybach": {
         "name": "벤츠 S580 마이바흐",
@@ -870,14 +874,14 @@
     }
   },
   "superyacht": {
-    "title": "슈퍼 요트",
-    "subtitle": "최고의 해상 경험을 위한 럭셔리 요트 전세",
+    "title": "Super Yacht",
+    "subtitle": "최고의 해상 경험을 위한 Super Yacht 전세",
     "comingSoon": {
       "title": "출시 예정",
-      "description": "저희의 럭셔리 요트 전세 서비스는 현재 개발 중입니다. VONAER의 곧 출시될 요트 צי로 최고의 해상 럭셔리를 경험하세요.",
+      "description": "저희의 Super Yacht 전세 서비스는 현재 개발 중입니다. VONAER의 곧 출시될 Super Yacht Fleet으로 최고의 해상 럭셔리를 경험하세요.",
       "features": {
         "luxuryFleet": {
-          "title": "럭셔리 צי",
+          "title": "럭셔리 함대",
           "description": "세계적 수준의 편의시설을 갖춘 프리미엄 요트"
         },
         "coastalAccess": {
@@ -973,7 +977,7 @@
       "airports": "공항"
     },
     "cta": {
-      "requestQuote": "견적 요청"
+      "requestQuote": "문의하기"
     },
     "help": {
       "title": "선택에 도움이 필요하신가요?",
@@ -1066,7 +1070,7 @@
       "people": " 명",
       "price": "가격",
       "totalCost": "총 항공 비용",
-      "bookRequest": "예약 요청"
+      "bookRequest": "예약 문의"
     }
   },
   "admin": {
@@ -1077,7 +1081,7 @@
     "dashboard": "대시보드",
     "users": "사용자",
     "settings": "설정",
-    "bookingRequests": "예약 요청",
+    "bookingRequests": "예약 문의",
     "totalFlights": "총 항공편",
     "averagePrice": "평균 가격",
     "currentMargin": "현재 마진",
@@ -1285,7 +1289,7 @@
     "flightDate": "항공편 날짜",
     "capacity": "수용 인원",
     "totalCost": "총 비용",
-    "bookingRequest": "예약 요청",
+    "bookingRequest": "예약 문의",
     "emptyLeg": "Empty Leg",
     "priceAdjustment": "가격 조정",
     "individualPriceAdjustment": "개별 가격 조정",
@@ -1318,7 +1322,7 @@
   },
   "yacht": {
     "title": "Super Yacht",
-    "subtitle": "세계 최고의 럭셔리 요트로 바다 위의 특별한 경험을 선사합니다",
+    "subtitle": "세계 최고의 Super Yacht로 바다 위의 특별한 경험을 선사합니다",
     "yachts": {
       "carpeDiem": {
         "name": "CARPE DIEM",
@@ -1326,7 +1330,7 @@
         "year": "2011년 (2024년 리피팅)",
         "length": "58.2m (190.9ft)",
         "guests": "6개 캐빈에 12명 수용",
-        "description": "58.2m(190.9ft)의 CARPE DIEM은 미국 조선소 Trinity Yachts의 장인정신을 대표하는 작품입니다. 알루미늄 합금으로 제작된 선체는 견고함과 경량화를 모두 달성했으며, 10.2m(33.5ft)의 넓은 빔 위에 완성된 인테리어는 탁월한 공간 활용성과 고급스러움을 제공합니다. 총 6개의 캐빈에서 12명의 게스트를 수용하며, 클래식한 아메리칸 럭셔리와 현대적 감각이 조화된 데크 레이아웃이 특징입니다.\n\n58.2m 길이의 CARPE DIEM은 미국 Trinity Yachts의 대표적인 풀 알루미늄 슈퍼요트로, 장거리 항해와 정숙한 운항을 겸비한 모델입니다. 넓은 10.2m 빔을 기반으로 6개 캐빈에 최대 12명까지 탑승할 수 있으며, 선체 전체에 미국식 럭셔리와 기능적 디자인이 조화된 공간을 제공합니다. 클래식한 화이트 라인과 밸런스 잡힌 프로파일이 Trinity Yachts의 장인정신을 잘 보여줍니다."
+        "description": "58.2m(190.9ft)의 CARPE DIEM은 미국 조선소 Trinity Yachts의 장인정신을 대표하는 작품입니다. 알루미늄 합금으로 제작된 선체는 견고함과 경량화를 모두 달성했으며, 10.2m(33.5ft)의 넓은 빔 위에 완성된 인테리어는 탁월한 공간 활용성과 고급스러움을 제공합니다. 총 6개의 캐빈에서 12명의 게스트를 수용하며, 클래식한 아메리칸 럭셔리와 현대적 감각이 조화된 데크 레이아웃이 특징입니다.\n\n58.2m 길이의 CARPE DIEM은 미국 Trinity Yachts의 대표적인 풀 알루미늄 Super Yacht로, 장거리 항해와 정숙한 운항을 겸비한 모델입니다. 넓은 10.2m 빔을 기반으로 6개 캐빈에 최대 12명까지 탑승할 수 있으며, 선체 전체에 미국식 럭셔리와 기능적 디자인이 조화된 공간을 제공합니다. 클래식한 화이트 라인과 밸런스 잡힌 프로파일이 Trinity Yachts의 장인정신을 잘 보여줍니다."
       },
       "afterYou": {
         "name": "AFTER YOU",
@@ -1342,7 +1346,7 @@
         "year": "2022년",
         "length": "77.8m (255.2ft)",
         "guests": "7개 캐빈에 14명 수용",
-        "description": "77.8m(255.2ft)의 ENERGY는 네덜란드 Amels가 선보인 풀 커스텀 슈퍼요트로, 최신 Lloyd's 기준에 부합하는 강력한 구조와 정제된 디자인이 결합된 모델입니다. Espen Øino가 외관 디자인을, François Zuretti가 인테리어를 맡아 완성했으며, 각 공간은 자연광과 바다의 연결감을 극대화하도록 설계되었습니다. 트렌드를 따르지 않고 Amels만의 디자인 철학을 구현한 현대 슈퍼요트의 정수입니다.\n\n77.8m의 ENERGY는 Amels의 풀 커스텀 플래그십으로, Espen Øino가 외관을, François Zuretti가 인테리어를 담당했습니다. 강철 선체와 알루미늄 상부 구조물로 완성된 Lloyd's 인증급 요트로, 7개 캐빈에서 최대 14명이 탑승할 수 있습니다. 공간과 자연광을 극대화한 디자인은 Amels가 추구하는 바다와의 연결 철학을 가장 잘 드러냅니다."
+        "description": "77.8m(255.2ft)의 ENERGY는 네덜란드 Amels가 선보인 풀 커스텀 Super Yacht로, 최신 Lloyd's 기준에 부합하는 강력한 구조와 정제된 디자인이 결합된 모델입니다. Espen Øino가 외관 디자인을, François Zuretti가 인테리어를 맡아 완성했으며, 각 공간은 자연광과 바다의 연결감을 극대화하도록 설계되었습니다. 트렌드를 따르지 않고 Amels만의 디자인 철학을 구현한 현대 Super Yacht의 정수입니다.\n\n77.8m의 ENERGY는 Amels의 풀 커스텀 플래그십으로, Espen Øino가 외관을, François Zuretti가 인테리어를 담당했습니다. 강철 선체와 알루미늄 상부 구조물로 완성된 Lloyd's 인증급 요트로, 7개 캐빈에서 최대 14명이 탑승할 수 있습니다. 공간과 자연광을 극대화한 디자인은 Amels가 추구하는 바다와의 연결 철학을 가장 잘 드러냅니다."
       },
       "axioma": {
         "name": "AXIOMA",
@@ -1350,7 +1354,7 @@
         "year": "2013년 (2025년 리피팅 예정)",
         "length": "72m (236.2ft)",
         "guests": "6개 캐빈에 12명 수용",
-        "description": "72m(236.2ft)의 AXIOMA는 터키 조선소 Dunya Yachts가 건조한 플래그십 모델로, 1,620GT급의 넓은 볼륨을 자랑합니다. Alberto Pinto가 디자인한 인테리어는 개방감과 편안함을 극대화했으며, 메인 살롱과 더블 데크 풀은 AXIOMA의 상징적 공간으로 평가받습니다. ABS 및 MCA 기준을 모두 충족하며, 전 세계 차터 시장에서도 높은 인기와 브랜드 인지도를 갖춘 슈퍼요트입니다.\n\n72m급 AXIOMA는 Dunya Yachts가 건조한 터키 최초의 슈퍼요트 플래그십으로, 1,620GT의 넓은 공간과 6개 캐빈 구성을 갖추고 있습니다. Alberto Pinto 디자인의 인테리어는 개방감 있는 더블 데크 구조와 수영장, 웰니스 존 등으로 유명합니다. ABS 및 MCA 기준을 충족하며, 지중해 차터 시장에서 가장 인기 있는 슈퍼요트 중 하나로 꼽힙니다."
+        "description": "72m(236.2ft)의 AXIOMA는 터키 조선소 Dunya Yachts가 건조한 플래그십 모델로, 1,620GT급의 넓은 볼륨을 자랑합니다. Alberto Pinto가 디자인한 인테리어는 개방감과 편안함을 극대화했으며, 메인 살롱과 더블 데크 풀은 AXIOMA의 상징적 공간으로 평가받습니다. ABS 및 MCA 기준을 모두 충족하며, 전 세계 차터 시장에서도 높은 인기와 브랜드 인지도를 갖춘 Super Yacht입니다.\n\n72m급 AXIOMA는 Dunya Yachts가 건조한 터키 최초의 Super Yacht 플래그십으로, 1,620GT의 넓은 공간과 6개 캐빈 구성을 갖추고 있습니다. Alberto Pinto 디자인의 인테리어는 개방감 있는 더블 데크 구조와 수영장, 웰니스 존 등으로 유명합니다. ABS 및 MCA 기준을 충족하며, 지중해 차터 시장에서 가장 인기 있는 Super Yacht 중 하나로 꼽힙니다."
       }
     },
     "specs": {
@@ -1360,7 +1364,7 @@
       "year": "건조연도"
     },
     "cta": {
-      "requestQuote": "견적 요청",
+      "requestQuote": "문의하기",
       "learnMore": "더 알아보기"
     }
   },

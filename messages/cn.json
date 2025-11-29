@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "VONAER",
-    "subtitle": "Elevate Your FlyStyle",
+    "subtitle": "Elevate Your Flystyle",
     "bookFlight": "预订航班",
     "tagline": "与您一起探索世界",
     "bookFlightButton": "预订航班"
@@ -90,7 +90,7 @@
         },
         "step3": {
           "title": "预订",
-          "description": "选择您喜欢的地点和日期，并提交您的预订请求。"
+          "description": "选择您喜欢的地点和日期，并提交您的预约咨询。"
         },
         "step4": {
           "title": "预订批准和确认",
@@ -122,14 +122,14 @@
     },
     "passengers": "乘客",
     "passengersPlural": "乘客",
-    "search": "搜索航班",
-    "searchRequest": "航班搜索请求"
+    "search": "请求报价",
+    "searchRequest": "私人飞机咨询"
   },
   "about": {
     "title": "公司简介",
     "intro": {
       "paragraph1": "VONAER是基于人工智能(AI)的奢华旅行平台，重新定义私人交通的体验。",
-      "paragraph2": "通过涵盖专机、直升机、超级游艇的定制化交通服务，让客户无论身处何处都能享受最高效且尊贵的旅程。",
+      "paragraph2": "通过涵盖专机、直升机、Super Yacht的定制化交通服务，让客户无论身处何处都能享受最高效且尊贵的旅程。",
       "paragraph3": "VONAER作为代表亚洲的高端包机解决方案品牌，以最高的品质和具有竞争力的价格为基础，提供与众不同的旅行价值。",
       "paragraph4": "在不久的将来，将引入碳中和eVTOL(电动垂直起降飞行器)运营，开创城市间交通的新范式。",
       "paragraph5": "以创新和可持续性为基础，创造环保奢华旅行的新标准。"
@@ -516,7 +516,7 @@
     }
   },
   "bookingDialog": {
-    "title": "预订请求",
+    "title": "预订咨询",
     "subtitle": "请提供您的详细信息，我们将在24小时内与您联系。",
     "seats": "个座位",
     "dateTBD": "日期待定",
@@ -533,9 +533,11 @@
     "contactConsentText": "我同意VONAER就航班预订事宜与我联系。",
     "privacyConsentText": "使用本服务即表示我已阅读并理解",
     "privacyPolicy": "隐私政策",
+    "andText": "以及",
+    "locationTerms": "位置服务条款",
     "privacyConsentText2": "并同意其条款。",
     "cancel": "取消",
-    "submit": "提交请求",
+    "submit": "提交咨询",
     "submitting": "提交中...",
     "validation": {
       "nameRequired": "请输入您的姓名",
@@ -545,14 +547,14 @@
     },
     "error": {
       "unknownError": "发生未知错误",
-      "submitFailed": "预订请求失败"
+      "submitFailed": "预订咨询失败"
     },
-    "bookingRequestSuccess": "预订请求已成功提交！我们将很快与您联系。"
+    "bookingRequestSuccess": "预订咨询已成功提交！我们将很快与您联系。"
   },
   "flightSearchDialog": {
-    "title": "航班搜索请求",
-    "carTitle": "超级跑车咨询",
-    "yachtTitle": "超级游艇咨询",
+    "title": "私人飞机咨询",
+    "carTitle": "Chauffeured Car咨询",
+    "yachtTitle": "Super Yacht咨询",
     "subtitle": "请提供您的详细信息和航班要求。我们将在24小时内联系您。",
     "flightInfo": "航班信息",
     "tripType": "行程类型",
@@ -576,9 +578,11 @@
     "contactConsentText": "我同意VONAER就航班预订事宜与我联系。",
     "privacyConsentText": "通过使用本服务，我已阅读并理解",
     "privacyPolicy": "隐私政策",
+    "andText": "以及",
+    "locationTerms": "位置服务条款",
     "privacyConsentText2": "并同意其条款。",
     "cancel": "取消",
-    "submit": "提交请求",
+    "submit": "提交咨询",
     "submitting": "提交中...",
     "validation": {
       "nameRequired": "请输入您的姓名",
@@ -592,11 +596,11 @@
     },
     "error": {
       "unknownError": "发生未知错误",
-      "submitFailed": "航班搜索请求失败"
+      "submitFailed": "私人飞机咨询失败"
     },
     "success": {
-      "submitted": "航班搜索请求已成功提交！我们将在24小时内联系您。",
-      "message": "航班搜索请求已成功提交！我们将在24小时内联系您。"
+      "submitted": "私人飞机咨询已成功提交！我们将在24小时内联系您。",
+      "message": "私人飞机咨询已成功提交！我们将在24小时内联系您。"
     }
   },
   "clientFlightCard": {
@@ -609,17 +613,17 @@
     "people": "人",
     "price": "价格",
     "totalCost": "总航班费用",
-    "bookRequest": "预订请求",
+    "bookRequest": "预订咨询",
     "tbd": "待定",
     "dateTBD": "日期待定",
     "enquirePrice": "价格咨询"
   },
   "bookingRequests": {
-    "title": "预订请求",
+    "title": "预约咨询",
     "subtitle": "客户对空驶航班的查询",
     "loading": {
-      "text": "正在加载预订请求...",
-      "failed": "加载预订请求失败"
+      "text": "正在加载预约咨询...",
+      "failed": "加载预约咨询失败"
     },
     "refresh": "刷新",
     "stats": {
@@ -628,7 +632,7 @@
       "completedCalls": "已完成电话"
     },
     "pendingCalls": "待处理电话",
-    "pendingCallsDescription": "需要联系的新预订请求",
+    "pendingCallsDescription": "需要联系的新预约咨询",
     "completedCalls": "已完成电话",
     "completedCallsDescription": "已联系的客户",
     "customer": "客户",
@@ -640,11 +644,11 @@
     "callCompleted": "电话已完成",
     "viewDetails": "查看详情",
     "delete": "删除",
-    "noRequests": "尚无预订请求",
-    "noRequestsDescription": "客户的预订请求将显示在这里",
+    "noRequests": "尚无预约咨询",
+    "noRequestsDescription": "客户的预约咨询将显示在这里",
     "details": {
       "title": "预订详情",
-      "subtitle": "来自的预订请求",
+      "subtitle": "来自的预约咨询",
       "customer": "客户",
       "phone": "电话",
       "email": "电子邮件",
@@ -660,13 +664,13 @@
     },
     "success": {
       "markedAsCalled": "成功标记为已致电",
-      "deleted": "预订请求已删除"
+      "deleted": "预约咨询已删除"
     },
     "error": {
       "statusUpdateFailed": "更新状态失败",
-      "deleteFailed": "删除预订请求失败"
+      "deleteFailed": "删除预约咨询失败"
     },
-    "confirmDelete": "您确定要删除此预订请求吗？"
+    "confirmDelete": "您确定要删除此预约咨询吗？"
   },
   "sidebar": {
     "tagline": "城市空中交通",
@@ -677,11 +681,11 @@
       "charter": "包机",
       "aircraft": "飞机",
       "emptyLeg": "Empty Leg",
-      "supercar": "豪华车",
+      "supercar": "Chauffeured Car",
       "membership": "会员专用",
       "pr": "媒体",
       "contact": "联系我们",
-      "yacht": "游艇"
+      "yacht": "Super Yacht"
     }
   },
   "jets": {
@@ -751,7 +755,7 @@
       "airports": "机场"
     },
     "cta": {
-      "requestQuote": "请求报价"
+      "requestQuote": "咨询"
     },
     "safety": {
       "title": "安全与认证",
@@ -868,7 +872,7 @@
     "title": "Chauffeured Car",
     "subtitle": "享受豪华车辆提供的顶级地面交通体验",
     "featuresLabel": "主要特点",
-    "cta": "预约咨询",
+    "cta": "咨询",
     "vehicles": {
       "maybach": {
         "name": "奔驰 S580 迈巴赫",
@@ -893,11 +897,11 @@
     }
   },
   "superyacht": {
-    "title": "超级游艇",
-    "subtitle": "豪华游艇租赁，享受终极海上体验",
+    "title": "Super Yacht",
+    "subtitle": "Super Yacht租赁，享受终极海上体验",
     "comingSoon": {
       "title": "即将推出",
-      "description": "我们的豪华游艇租赁服务目前正在开发中。体验VONAER即将推出的游艇舰队带来的顶级海上奢华。",
+      "description": "我们的Super Yacht租赁服务目前正在开发中。体验VONAER即将推出的Super Yacht Fleet带来的顶级海上奢华。",
       "features": {
         "luxuryFleet": {
           "title": "豪华舰队",
@@ -996,7 +1000,7 @@
       "airports": "机场"
     },
     "cta": {
-      "requestQuote": "请求报价"
+      "requestQuote": "咨询"
     },
     "help": {
       "title": "需要帮助选择吗？",
@@ -1089,7 +1093,7 @@
       "people": "人",
       "price": "价格",
       "totalCost": "总航班费用",
-      "bookRequest": "预订请求"
+      "bookRequest": "预订咨询"
     }
   },
   "admin": {
@@ -1100,7 +1104,7 @@
     "dashboard": "仪表板",
     "users": "用户",
     "settings": "设置",
-    "bookingRequests": "预订请求",
+    "bookingRequests": "预约咨询",
     "totalFlights": "总航班数",
     "averagePrice": "平均价格",
     "currentMargin": "当前利润率",
@@ -1308,7 +1312,7 @@
     "flightDate": "航班日期",
     "capacity": "容量",
     "totalCost": "总成本",
-    "bookingRequest": "预订请求",
+    "bookingRequest": "预订咨询",
     "emptyLeg": "Empty Leg",
     "priceAdjustment": "价格调整",
     "individualPriceAdjustment": "单独价格调整",
@@ -1347,7 +1351,7 @@
         "year": "2011年（2024年翻新）",
         "length": "58.2米（190.9英尺）",
         "guests": "6个舱室可容纳12位客人",
-        "description": "全长58.2米（190.9英尺）的CARPE DIEM代表了美国造船厂Trinity Yachts的工艺水平。铝合金制造的船体实现了坚固性和轻量化的双重目标，在宽敞的10.2米（33.5英尺）横梁上完成的内饰提供卓越的空间利用性和奢华感。6个舱室可容纳12位客人，特点是融合经典美式奢华与现代感的甲板布局。\n\n58.2米长的CARPE DIEM是美国Trinity Yachts的代表性全铝制超级游艇，兼具远程巡航和静音航行。基于10.2米的宽阔横梁，6个舱室最多可容纳12位客人，船体整体提供美式奢华与功能性设计相协调的空间。经典的白色线条和平衡的轮廓展示了Trinity Yachts的工艺水平。"
+        "description": "全长58.2米（190.9英尺）的CARPE DIEM代表了美国造船厂Trinity Yachts的工艺水平。铝合金制造的船体实现了坚固性和轻量化的双重目标，在宽敞的10.2米（33.5英尺）横梁上完成的内饰提供卓越的空间利用性和奢华感。6个舱室可容纳12位客人，特点是融合经典美式奢华与现代感的甲板布局。\n\n58.2米长的CARPE DIEM是美国Trinity Yachts的代表性全铝制Super Yacht，兼具远程巡航和静音航行。基于10.2米的宽阔横梁，6个舱室最多可容纳12位客人，船体整体提供美式奢华与功能性设计相协调的空间。经典的白色线条和平衡的轮廓展示了Trinity Yachts的工艺水平。"
       },
       "afterYou": {
         "name": "AFTER YOU",
@@ -1363,7 +1367,7 @@
         "year": "2022年",
         "length": "77.8米（255.2英尺）",
         "guests": "7个舱室可容纳14位客人",
-        "description": "全长77.8米（255.2英尺）的ENERGY是荷兰Amels推出的全定制超级游艇，结合符合最新Lloyd's标准的强大结构与精致设计的型号。外观设计由Espen Øino负责，内饰由François Zuretti完成，各个空间设计旨在最大化自然光与海洋的连接感。不追随潮流，实现Amels独特设计理念的现代超级游艇精髓。\n\n77.8米的ENERGY是Amels的全定制旗舰，外观由Espen Øino设计，内饰由François Zuretti负责。这艘Lloyd's认证级游艇采用钢制船体和铝制上层建筑，7个舱室最多可容纳14位客人。最大化空间和自然光的设计最好地体现了Amels追求的「与海洋连接」的理念。"
+        "description": "全长77.8米（255.2英尺）的ENERGY是荷兰Amels推出的全定制Super Yacht，结合符合最新Lloyd's标准的强大结构与精致设计的型号。外观设计由Espen Øino负责，内饰由François Zuretti完成，各个空间设计旨在最大化自然光与海洋的连接感。不追随潮流，实现Amels独特设计理念的现代Super Yacht精髓。\n\n77.8米的ENERGY是Amels的全定制旗舰，外观由Espen Øino设计，内饰由François Zuretti负责。这艘Lloyd's认证级游艇采用钢制船体和铝制上层建筑，7个舱室最多可容纳14位客人。最大化空间和自然光的设计最好地体现了Amels追求的「与海洋连接」的理念。"
       },
       "axioma": {
         "name": "AXIOMA",
@@ -1371,15 +1375,15 @@
         "year": "2013年（预计2025年翻新）",
         "length": "72米（236.2英尺）",
         "guests": "6个舱室可容纳12位客人",
-        "description": "全长72米（236.2英尺）的AXIOMA是土耳其造船厂Dunya Yachts建造的旗舰型号，拥有1,620GT级的宽敞容积。Alberto Pinto设计的内饰最大化了开放感和舒适性，主沙龙和双层甲板泳池被评为AXIOMA的标志性空间。满足ABS和MCA标准，在全球租赁市场也具有很高的人气和品牌知名度的超级游艇。\n\n72米级的AXIOMA是Dunya Yachts建造的土耳其首艘超级游艇旗舰，拥有1,620GT的宽敞空间和6个舱室配置。Alberto Pinto设计的内饰以开放式双层甲板结构、游泳池和健康区等而闻名。符合ABS和MCA标准，被认为是地中海租赁市场最受欢迎的超级游艇之一。"
+        "description": "全长72米（236.2英尺）的AXIOMA是土耳其造船厂Dunya Yachts建造的旗舰型号，拥有1,620GT级的宽敞容积。Alberto Pinto设计的内饰最大化了开放感和舒适性，主沙龙和双层甲板泳池被评为AXIOMA的标志性空间。满足ABS和MCA标准，在全球租赁市场也具有很高的人气和品牌知名度的Super Yacht。\n\n72米级的AXIOMA是Dunya Yachts建造的土耳其首艘Super Yacht旗舰，拥有1,620GT的宽敞空间和6个舱室配置。Alberto Pinto设计的内饰以开放式双层甲板结构、游泳池和健康区等而闻名。符合ABS和MCA标准，被认为是地中海租赁市场最受欢迎的Super Yacht之一。"
       }
     },
     "cta": {
-      "requestQuote": "索取报价",
+      "requestQuote": "咨询",
       "learnMore": "了解更多"
     },
     "title": "SUPER YACHT",
-    "subtitle": "享受顶级超级游艇的终极海上体验",
+    "subtitle": "享受顶级Super Yacht的终极海上体验",
     "specs": {
       "year": "建造年份",
       "length": "长度",

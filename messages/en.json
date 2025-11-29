@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "VONAER",
-    "subtitle": "Elevate Your FlyStyle",
+    "subtitle": "Elevate Your Flystyle",
     "bookFlight": "Book Flight",
     "tagline": "Exploring The World With You",
     "bookFlightButton": "Book a Flight"
@@ -31,7 +31,7 @@
     },
     "vonTour": {
       "title": "VON Tour",
-      "subtitle": "Enjoy a breath taking sky view of Korea",
+      "subtitle": "Enjoy a breathtaking sky view of Korea",
       "description": "Experience Korea like never before with our scenic helicopter tours. Multiple tour packages available.",
       "features": {
         "feature1": "GwanAk Mountain Tour - Autumn Leaves & Spring Flower Tours",
@@ -122,8 +122,8 @@
     },
     "passengers": "passenger",
     "passengersPlural": "passengers",
-    "search": "Search Flights",
-    "searchRequest": "Flight Search Request"
+    "search": "Request Quote",
+    "searchRequest": "Private Jet Inquiry"
   },
   "about": {
     "title": "About Us",
@@ -134,7 +134,7 @@
       "paragraph4": "In the near future, we will introduce carbon-neutral eVTOL (electric Vertical Take-Off and Landing) operations, presenting a new paradigm for intercity travel.",
       "paragraph5": "Based on innovation and sustainability, we are creating new standards for environmentally conscious luxury travel."
     },
-    "tagline": "Elevate Your FlyStyle with VONAER",
+    "tagline": "Elevate Your Flystyle with VONAER",
     "evtol": {
       "title": "Present the Future",
       "paragraph1": "VONAER is preparing the next chapter of luxury mobility. As global eVTOL programs near commercial readiness, we are architecting a seamless transition from today's private jets and helicopters to quiet, battery-electric eVTOL travel—designed for city-to-city hops and urban airport access with dramatically lower operational footprint.",
@@ -489,7 +489,7 @@
     }
   },
   "bookingDialog": {
-    "title": "Booking Request",
+    "title": "Booking Inquiry",
     "subtitle": "Please provide your details and we will contact you within 24 hours.",
     "seats": " seats",
     "dateTBD": "Date TBD",
@@ -506,9 +506,11 @@
     "contactConsentText": "I agree to be contacted by VONAER regarding flight bookings.",
     "privacyConsentText": "By using the service, I have read and understood the",
     "privacyPolicy": "Privacy Policy",
+    "andText": " and ",
+    "locationTerms": "Location-Based Service Terms",
     "privacyConsentText2": " and agree to it.",
     "cancel": "Cancel",
-    "submit": "Submit Request",
+    "submit": "Inquire",
     "submitting": "Submitting...",
     "validation": {
       "nameRequired": "Please enter your name",
@@ -518,13 +520,13 @@
     },
     "error": {
       "unknownError": "An unknown error occurred",
-      "submitFailed": "Booking request failed"
+      "submitFailed": "Booking inquiry failed"
     },
-    "bookingRequestSuccess": "Booking request submitted successfully! We will contact you soon."
+    "bookingRequestSuccess": "Booking inquiry submitted successfully! We will contact you soon."
   },
   "flightSearchDialog": {
-    "title": "Flight Search Request",
-    "carTitle": "Super Car Inquiry",
+    "title": "Private Jet Inquiry",
+    "carTitle": "Chauffeured Car Inquiry",
     "yachtTitle": "Super Yacht Inquiry",
     "subtitle": "Please provide your details and flight requirements. We will contact you within 24 hours.",
     "flightInfo": "Flight Information",
@@ -549,9 +551,11 @@
     "contactConsentText": "I agree to be contacted by VONAER regarding flight bookings.",
     "privacyConsentText": "By using the service, I have read and understood the",
     "privacyPolicy": "Privacy Policy",
+    "andText": " and ",
+    "locationTerms": "Location-Based Service Terms",
     "privacyConsentText2": " and agree to it.",
     "cancel": "Cancel",
-    "submit": "Submit Request",
+    "submit": "Inquire",
     "submitting": "Submitting...",
     "validation": {
       "nameRequired": "Please enter your name",
@@ -565,11 +569,11 @@
     },
     "error": {
       "unknownError": "An unknown error occurred",
-      "submitFailed": "Flight search request failed"
+      "submitFailed": "Private jet inquiry failed"
     },
     "success": {
-      "submitted": "Flight search request submitted successfully! We will contact you within 24 hours.",
-      "message": "Flight search request submitted successfully! We will contact you within 24 hours."
+      "submitted": "Private jet inquiry submitted successfully! We will contact you within 24 hours.",
+      "message": "Private jet inquiry submitted successfully! We will contact you within 24 hours."
     }
   },
   "clientFlightCard": {
@@ -582,17 +586,17 @@
     "people": " people",
     "price": "Price",
     "totalCost": "Total Flight Cost",
-    "bookRequest": "Book Request",
+    "bookRequest": "Booking Inquiry",
     "tbd": "TBD",
     "dateTBD": "Date TBD",
     "enquirePrice": "Enquire Price"
   },
   "bookingRequests": {
-    "title": "Booking Requests",
+    "title": "Booking Inquiries",
     "subtitle": "Customer inquiries for Empty Leg flights",
     "loading": {
-      "text": "Loading booking requests...",
-      "failed": "Failed to load booking requests"
+      "text": "Loading booking inquiries...",
+      "failed": "Failed to load booking inquiries"
     },
     "refresh": "Refresh",
     "stats": {
@@ -601,7 +605,7 @@
       "completedCalls": "Completed Calls"
     },
     "pendingCalls": "Pending Calls",
-    "pendingCallsDescription": "New booking requests requiring contact",
+    "pendingCallsDescription": "New booking inquiries requiring contact",
     "completedCalls": "Completed Calls",
     "completedCallsDescription": "Customers who have been contacted",
     "customer": "Customer",
@@ -613,11 +617,11 @@
     "callCompleted": "Call Completed",
     "viewDetails": "View Details",
     "delete": "Delete",
-    "noRequests": "No booking requests yet",
-    "noRequestsDescription": "Customer booking requests will appear here",
+    "noRequests": "No booking inquiries yet",
+    "noRequestsDescription": "Customer booking inquiries will appear here",
     "details": {
       "title": "Booking Details",
-      "subtitle": "Booking request from",
+      "subtitle": "Booking inquiry from",
       "customer": "Customer",
       "phone": "Phone",
       "email": "Email",
@@ -633,13 +637,13 @@
     },
     "success": {
       "markedAsCalled": "Successfully marked as called",
-      "deleted": "Booking request deleted"
+      "deleted": "Booking inquiry deleted"
     },
     "error": {
       "statusUpdateFailed": "Failed to update status",
-      "deleteFailed": "Failed to delete booking request"
+      "deleteFailed": "Failed to delete booking inquiry"
     },
-    "confirmDelete": "Are you sure you want to delete this booking request?"
+    "confirmDelete": "Are you sure you want to delete this booking inquiry?"
   },
   "sidebar": {
     "tagline": "URBAN AIR MOBILITY",
@@ -650,7 +654,7 @@
       "charter": "CHARTER",
       "aircraft": "Aircraft",
       "emptyLeg": "Empty Leg",
-      "supercar": "Super Car",
+      "supercar": "Chauffeured Car",
       "membership": "Membership Only",
       "pr": "PR",
       "contact": "Contact Us",
@@ -724,7 +728,7 @@
       "airports": "Airports"
     },
     "cta": {
-      "requestQuote": "Request Quote"
+      "requestQuote": "Inquire"
     },
     "safety": {
       "title": "Safety & Certification",
@@ -811,7 +815,7 @@
         "route": "COEX → Lotte Tower → Seokchon Lake → BukHan Mountain → Dobong Mountain",
         "duration": "75 minutes",
         "highlights": {
-          "0": "Bukhan mountain National Park",
+          "0": "Bukhan Mountain National Park",
           "1": "Seoul Rocky Mountains Tour",
           "2": "Mountain Views"
         }
@@ -841,7 +845,7 @@
     "title": "Chauffeured Car",
     "subtitle": "Experience premium ground transportation with luxury vehicles",
     "featuresLabel": "Key Features",
-    "cta": "Request Quote",
+    "cta": "Inquire",
     "vehicles": {
       "maybach": {
         "name": "Mercedes S580 Maybach",
@@ -969,7 +973,7 @@
       "airports": "Airports"
     },
     "cta": {
-      "requestQuote": "Request Quote"
+      "requestQuote": "Inquire"
     },
     "help": {
       "title": "Need Help Choosing?",
@@ -1062,7 +1066,7 @@
       "people": " people",
       "price": "Price",
       "totalCost": "Total Flight Cost",
-      "bookRequest": "Book Request"
+      "bookRequest": "Booking Inquiry"
     }
   },
   "admin": {
@@ -1073,7 +1077,7 @@
     "dashboard": "Dashboard",
     "users": "Users",
     "settings": "Settings",
-    "bookingRequests": "Booking Requests",
+    "bookingRequests": "Booking Inquiries",
     "totalFlights": "Total Flights",
     "averagePrice": "Average Price",
     "currentMargin": "Current Margin",
@@ -1281,7 +1285,7 @@
     "flightDate": "Flight Date",
     "capacity": "Capacity",
     "totalCost": "Total Cost",
-    "bookingRequest": "Booking Request",
+    "bookingRequest": "Booking Inquiry",
     "emptyLeg": "Empty Leg",
     "priceAdjustment": "Price Adjustment",
     "individualPriceAdjustment": "Individual Price Adjustment",
@@ -1356,7 +1360,7 @@
       "year": "Year Built"
     },
     "cta": {
-      "requestQuote": "Request Quote",
+      "requestQuote": "Inquire",
       "learnMore": "Learn More"
     }
   },

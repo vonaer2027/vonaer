@@ -254,27 +254,29 @@ export function InquiryDialog({ open, onOpenChange, onSuccess, inquiryType, item
                 htmlFor="privacy"
                 className="text-sm leading-relaxed cursor-pointer"
               >
-                {t('flightSearchDialog.privacyConsentText')}{' '}
-                <a
-                  href="/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary underline hover:text-primary/80"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {t('flightSearchDialog.privacyPolicy')}
-                </a>
-                {' '}및{' '}
-                <a
-                  href="/terms"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary underline hover:text-primary/80"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  위치기반서비스 이용약관
-                </a>
-                {t('flightSearchDialog.privacyConsentText2')}
+                <span className="inline">
+                  {t('flightSearchDialog.privacyConsentText')}
+                  <a
+                    href="/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline hover:text-primary/80 inline"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {t('flightSearchDialog.privacyPolicy')}
+                  </a>
+                  {t('flightSearchDialog.andText')}
+                  <a
+                    href="/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline hover:text-primary/80 inline"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {t('flightSearchDialog.locationTerms')}
+                  </a>
+                  {t('flightSearchDialog.privacyConsentText2')}
+                </span>
               </label>
             </div>
           </div>

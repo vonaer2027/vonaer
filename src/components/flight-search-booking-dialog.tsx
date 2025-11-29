@@ -145,8 +145,8 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
+      <DialogContent className="max-w-lg">
+        <DialogHeader className="space-y-1">
           <DialogTitle className="flex items-center gap-2 text-lg font-semibold">
             <Plane className="h-5 w-5 text-primary" />
             {t('flightSearchDialog.title')}
@@ -157,72 +157,41 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
         </DialogHeader>
 
         {/* Flight Information Summary */}
-        <div className="bg-muted/30 rounded-lg p-4 space-y-3 border">
-          <h3 className="font-medium text-sm">
-            {t('flightSearchDialog.flightInfo')}
-          </h3>
-          
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <div>
-              <span className="text-muted-foreground">{t('flightSearchDialog.tripType')}:</span>
-              <div className="font-medium">
-                {flightData.tripType === 'one-way' 
-                  ? t('flightSearchDialog.oneWay') 
-                  : t('flightSearchDialog.roundTrip')
-                }
-              </div>
-            </div>
-            
-            <div>
-              <span className="text-muted-foreground">{t('flightSearchDialog.passengers')}:</span>
-              <div className="font-medium">
-                {flightData.passengers}
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex items-center justify-between py-2 border-b border-border/50">
+        <div className="bg-muted/30 rounded-lg p-3 space-y-2 border">
+          <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center gap-3">
               <div>
                 <div className="font-medium">{flightData.fromLocation}</div>
                 <div className="text-xs text-muted-foreground">{t('flightSearchDialog.from')}</div>
               </div>
-              <div className="text-muted-foreground">→</div>
-              <div className="text-right">
+              <span className="text-muted-foreground">→</span>
+              <div>
                 <div className="font-medium">{flightData.toLocation}</div>
                 <div className="text-xs text-muted-foreground">{t('flightSearchDialog.to')}</div>
               </div>
             </div>
-
-            <div className="flex items-center justify-between text-sm">
-              <div>
-                <span className="text-muted-foreground">{t('flightSearchDialog.departureDate')}:</span>
-                <div className="font-medium">
-                  {formatDate(flightData.departDate)}
-                </div>
-              </div>
-
-              {flightData.tripType === 'round-trip' && (
-                <div className="text-right">
-                  <span className="text-muted-foreground">{t('flightSearchDialog.returnDate')}:</span>
-                  <div className="font-medium">
-                    {formatDate(flightData.returnDate)}
-                  </div>
-                </div>
-              )}
+            <div className="text-right text-xs text-muted-foreground">
+              <div>{flightData.tripType === 'one-way' ? t('flightSearchDialog.oneWay') : t('flightSearchDialog.roundTrip')}</div>
+              <div>{flightData.passengers} {t('flightSearchDialog.passengers')}</div>
             </div>
+          </div>
+          <div className="flex gap-4 text-xs text-muted-foreground border-t pt-2">
+            <span>{t('flightSearchDialog.departureDate')}: <span className="font-medium text-foreground">{formatDate(flightData.departDate)}</span></span>
+            {flightData.tripType === 'round-trip' && (
+              <span>{t('flightSearchDialog.returnDate')}: <span className="font-medium text-foreground">{formatDate(flightData.returnDate)}</span></span>
+            )}
           </div>
         </div>
 
         {/* Booking Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Contact Information */}
-          <div className="space-y-3">
+          <div className="space-y-2">
             <h3 className="font-medium text-sm">
               {t('flightSearchDialog.contactInfo')}
             </h3>
-            
-            <div className="space-y-3">
+
+            <div className="space-y-2">
               <div className="space-y-1">
                 <Label htmlFor="customerName" className="text-xs font-medium">
                   {t('flightSearchDialog.name')} *
@@ -247,7 +216,7 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
                     value={formData.customerCountryCode}
                     onValueChange={(value) => setFormData(prev => ({ ...prev, customerCountryCode: value }))}
                   >
-                    <SelectTrigger className="h-9 w-32">
+                    <SelectTrigger className="h-9 w-28">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -258,25 +227,20 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
                       <SelectItem value="+86">🇨🇳 +86</SelectItem>
                       <SelectItem value="+33">🇫🇷 +33</SelectItem>
                       <SelectItem value="+49">🇩🇪 +49</SelectItem>
-                      <SelectItem value="+39">🇮🇹 +39</SelectItem>
-                      <SelectItem value="+34">🇪🇸 +34</SelectItem>
-                      <SelectItem value="+61">🇦🇺 +61</SelectItem>
                       <SelectItem value="+65">🇸🇬 +65</SelectItem>
                       <SelectItem value="+852">🇭🇰 +852</SelectItem>
                       <SelectItem value="+971">🇦🇪 +971</SelectItem>
                     </SelectContent>
                   </Select>
-                  <div className="flex-1">
-                    <Input
-                      id="customerPhone"
-                      type="tel"
-                      placeholder={t('flightSearchDialog.phonePlaceholder')}
-                      value={formData.customerPhone}
-                      onChange={(e) => setFormData(prev => ({ ...prev, customerPhone: e.target.value }))}
-                      className="h-9"
-                      required
-                    />
-                  </div>
+                  <Input
+                    id="customerPhone"
+                    type="tel"
+                    placeholder={t('flightSearchDialog.phonePlaceholder')}
+                    value={formData.customerPhone}
+                    onChange={(e) => setFormData(prev => ({ ...prev, customerPhone: e.target.value }))}
+                    className="h-9 flex-1"
+                    required
+                  />
                 </div>
               </div>
 
@@ -298,22 +262,22 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
           </div>
 
           {/* Consent Section */}
-          <div className="space-y-3 pt-2">
+          <div className="space-y-2 pt-2 border-t">
             <h3 className="font-medium text-sm">
               {t('flightSearchDialog.consent')}
             </h3>
-            
-            <div className="space-y-3">
+
+            <div className="space-y-2">
               <div className="flex items-start space-x-2">
                 <Checkbox
                   id="contactConsent"
                   checked={formData.contactConsent}
-                  onCheckedChange={(checked) => 
+                  onCheckedChange={(checked) =>
                     setFormData(prev => ({ ...prev, contactConsent: checked as boolean }))
                   }
                   className="mt-0.5"
                 />
-                <Label htmlFor="contactConsent" className="text-xs leading-relaxed">
+                <Label htmlFor="contactConsent" className="text-xs leading-relaxed cursor-pointer">
                   {t('flightSearchDialog.contactConsentText')}
                 </Label>
               </div>
@@ -322,40 +286,42 @@ export function FlightSearchBookingDialog({ flightData, open, onOpenChange, onSu
                 <Checkbox
                   id="privacyConsent"
                   checked={formData.privacyConsent}
-                  onCheckedChange={(checked) => 
+                  onCheckedChange={(checked) =>
                     setFormData(prev => ({ ...prev, privacyConsent: checked as boolean }))
                   }
                   className="mt-0.5"
                 />
                 <Label htmlFor="privacyConsent" className="text-xs leading-relaxed cursor-pointer">
-                  {t('flightSearchDialog.privacyConsentText')}
-                  <a
-                    href="/privacy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary underline hover:text-primary/80"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {t('flightSearchDialog.privacyPolicy')}
-                  </a>
-                  {' '}및{' '}
-                  <a
-                    href="/terms"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary underline hover:text-primary/80"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    위치기반서비스 이용약관
-                  </a>
-                  {t('flightSearchDialog.privacyConsentText2')}
+                  <span className="inline">
+                    {t('flightSearchDialog.privacyConsentText')}
+                    <a
+                      href="/privacy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:text-primary/80 inline"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {t('flightSearchDialog.privacyPolicy')}
+                    </a>
+                    {t('flightSearchDialog.andText')}
+                    <a
+                      href="/terms"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:text-primary/80 inline"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {t('flightSearchDialog.locationTerms')}
+                    </a>
+                    {t('flightSearchDialog.privacyConsentText2')}
+                  </span>
                 </Label>
               </div>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col-reverse sm:flex-row gap-2 pt-4">
+          <div className="flex gap-2 pt-3">
             <Button
               type="button"
               variant="outline"
