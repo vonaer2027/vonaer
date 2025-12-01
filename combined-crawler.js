@@ -18,6 +18,7 @@ const { exec } = require('child_process');
 const { promisify } = require('util');
 const fs = require('fs').promises;
 const { createClient } = require('@supabase/supabase-js');
+const { getUnknownCities, clearUnknownCitiesLog } = require('./city-database');
 
 const execAsync = promisify(exec);
 
@@ -27,6 +28,25 @@ const config = {
     supabaseKey: process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY,
     tableName: process.env.DATABASE_TABLE_NAME || 'flights'
 };
+
+// Default images pool for variety when no image is available (Supabase Storage)
+const DEFAULT_IMAGES = [
+    'https://qyipzxwadmmhitvuiade.supabase.co/storage/v1/object/public/flight-images/defaults/emptyleg-01.jpg',
+    'https://qyipzxwadmmhitvuiade.supabase.co/storage/v1/object/public/flight-images/defaults/emptyleg-02.jpg',
+    'https://qyipzxwadmmhitvuiade.supabase.co/storage/v1/object/public/flight-images/defaults/emptyleg-03.jpg',
+    'https://qyipzxwadmmhitvuiade.supabase.co/storage/v1/object/public/flight-images/defaults/emptyleg-04.jpg',
+    'https://qyipzxwadmmhitvuiade.supabase.co/storage/v1/object/public/flight-images/defaults/emptyleg-05.webp',
+    'https://qyipzxwadmmhitvuiade.supabase.co/storage/v1/object/public/flight-images/defaults/emptyleg-06.jpg',
+];
+
+/**
+ * Get a random default image from the pool
+ * @returns {string} Random image path
+ */
+function getRandomDefaultImage() {
+    const randomIndex = Math.floor(Math.random() * DEFAULT_IMAGES.length);
+    return DEFAULT_IMAGES[randomIndex];
+}
 
 class CombinedCrawler {
     constructor() {
@@ -110,17 +130,25 @@ class CombinedCrawler {
     /**
      * Validates a flight has required data and is not invalid
      * @param {Object} flight - Flight object to validate
-     * @returns {Object} { isValid: boolean, reason: string }
+     * @returns {Object} { isValid: boolean, reason: string, warning: string }
      */
     validateFlight(flight) {
         const data = flight.extractedData;
+        let warning = null;
 
-        // Check for Unknown country (invalid location data)
+        // Check for Unknown country (critical error - must reject)
+        // Note: "Unverified" is different from "Unknown" - Unverified cities are allowed through
         if (data.from?.country === 'Unknown' || data.to?.country === 'Unknown') {
             return {
                 isValid: false,
                 reason: `Unknown location (${data.from?.country === 'Unknown' ? data.from.city : data.to.city})`
             };
+        }
+
+        // Check for Unverified locations - allow through but warn
+        if (data.from?.country === 'Unverified' || data.to?.country === 'Unverified') {
+            const unverifiedCity = data.from?.country === 'Unverified' ? data.from.city : data.to.city;
+            warning = `Unverified location: ${unverifiedCity} - consider adding to city-database.js`;
         }
 
         // Check for missing critical location data
@@ -175,7 +203,7 @@ class CombinedCrawler {
         }
 
         // All validations passed
-        return { isValid: true, reason: null };
+        return { isValid: true, reason: null, warning };
     }
 
     async combineAndDeduplicate() {
@@ -194,12 +222,19 @@ class CombinedCrawler {
         console.log('\n🔍 Validating flights...');
         const validFlights = [];
         const invalidFlights = [];
+        const warnings = [];
 
         for (const flight of allFlights) {
             const validation = this.validateFlight(flight);
 
             if (validation.isValid) {
                 validFlights.push(flight);
+                if (validation.warning) {
+                    warnings.push({ flight, warning: validation.warning });
+                    console.log(`   ⚠️  Warning [${flight.source}]: ${flight.extractedData.route?.summary || 'Unknown route'} - ${validation.warning}`);
+                } else {
+                    console.log(`   ✅ Valid [${flight.source}]: ${flight.extractedData.route?.summary || 'Unknown route'}`);
+                }
             } else {
                 invalidFlights.push({ flight, reason: validation.reason });
                 console.log(`   ❌ Filtered out [${flight.source}]: ${flight.extractedData.route?.summary || 'Unknown route'} - ${validation.reason}`);
@@ -208,6 +243,7 @@ class CombinedCrawler {
 
         console.log(`\n📊 Validation Results:`);
         console.log(`   Valid flights: ${validFlights.length}`);
+        console.log(`   Flights with warnings: ${warnings.length}`);
         console.log(`   Invalid flights filtered: ${invalidFlights.length}`);
 
         if (invalidFlights.length > 0) {
@@ -305,13 +341,12 @@ class CombinedCrawler {
             ?.filter(src => src && src.trim().length > 0 && src.startsWith('http'))
             || [];
 
-        // Use default image if no valid images available
-        const DEFAULT_IMAGE = 'https://xsctqzbwa1mbabgs.public.blob.vercel-storage.com/1.webp';
-        const finalImageUrls = imageUrls.length > 0 ? imageUrls : [DEFAULT_IMAGE];
+        // Use random default image if no valid images available (provides variety)
+        const finalImageUrls = imageUrls.length > 0 ? imageUrls : [getRandomDefaultImage()];
 
         // Log image handling for debugging
         if (imageUrls.length === 0) {
-            console.log(`   📸 Using default image for flight ${flight.id} (${extractedData.route?.summary})`);
+            console.log(`   📸 Using random default image for flight ${flight.id} (${extractedData.route?.summary}): ${finalImageUrls[0]}`);
         }
 
         return {
@@ -500,6 +535,9 @@ class CombinedCrawler {
         try {
             await this.initialize();
 
+            // Clear any previous unknown cities log
+            clearUnknownCitiesLog();
+
             // Run both scrapers in parallel
             console.log('⏳ Starting parallel scraping...\n');
             const [flyxoCount, jetbayCount] = await Promise.all([
@@ -528,6 +566,14 @@ class CombinedCrawler {
             console.log(`   Total unique flights: ${this.combinedFlights.length}`);
             console.log(`   FlyXO: ${this.combinedFlights.filter(f => f.source === 'flyxo').length}`);
             console.log(`   JetBay: ${this.combinedFlights.filter(f => f.source === 'jetbay').length}`);
+
+            // Report any unknown cities that need to be added
+            const unknownCities = getUnknownCities();
+            if (unknownCities.length > 0) {
+                console.log(`\n⚠️  ACTION REQUIRED: Unknown cities encountered during this run:`);
+                console.log(`   Please add these cities to city-database.js to prevent future filtering:`);
+                unknownCities.forEach(city => console.log(`   - "${city}"`));
+            }
 
             if (this.combinedFlights.length > 0) {
                 console.log(`\n📋 Complete list of routes found:`);

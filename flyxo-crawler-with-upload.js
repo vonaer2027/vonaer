@@ -13,6 +13,7 @@ require('dotenv').config();
 const puppeteer = require('puppeteer');
 const { createClient } = require('@supabase/supabase-js');
 const fs = require('fs').promises;
+const { parseLocation, splitConcatenatedRoute, getUnknownCities } = require('./city-database');
 
 // Configuration
 const config = {
@@ -157,7 +158,8 @@ class FlyXOCrawler {
             console.log(`   Total elements: ${pageInfo.allElements}`);
             console.log(`   Body text sample:\n${pageInfo.bodyText}\n`);
 
-            const flights = await this.page.evaluate(() => {
+            // Extract RAW flight data from the page (no location processing yet)
+            const rawFlights = await this.page.evaluate(() => {
                 const extractedFlights = [];
 
                 // FlyXO displays flights as plain text, not in HTML cards
@@ -198,59 +200,11 @@ class FlyXOCrawler {
                         routeStr && routeStr.length > 2 &&
                         priceStr && priceStr.startsWith('$')) {
 
-                        // Check if route involves Seoul
+                        // Check if route involves Seoul (case-insensitive)
                         const involvesSeoul = /seoul|icn|gmp/i.test(routeStr);
 
                         if (involvesSeoul) {
                             debugInfo.seoulFlightsFound++;
-
-                            // Parse route - format is "SeoulCityName" (no spaces)
-                            let fromCity, toCity;
-
-                            if (routeStr.match(/^Seoul([A-Z])/)) {
-                                fromCity = 'Seoul';
-                                toCity = routeStr.replace(/^Seoul/, '');
-                            } else if (routeStr.match(/([A-Z][a-z]+)Seoul$/)) {
-                                const match = routeStr.match(/^(.+)Seoul$/);
-                                if (match) {
-                                    fromCity = match[1];
-                                    toCity = 'Seoul';
-                                }
-                            } else {
-                                // Fallback: split on capital letters
-                                const cities = routeStr.split(/(?=[A-Z])/);
-                                fromCity = cities[0];
-                                toCity = cities.slice(1).join('');
-                            }
-
-                            // Parse locations
-                            const parseLocation = (cityName) => {
-                                if (/seoul|icn|gmp/i.test(cityName)) {
-                                    return { city: 'Seoul', country: 'South Korea', formatted: 'Seoul, South Korea' };
-                                }
-                                // Common destinations
-                                const cityMap = {
-                                    'HIROSHIMA': { city: 'Hiroshima', country: 'Japan', formatted: 'Hiroshima, Japan' },
-                                    'Hiroshima': { city: 'Hiroshima', country: 'Japan', formatted: 'Hiroshima, Japan' },
-                                    'Taipei': { city: 'Taipei', country: 'Taiwan', formatted: 'Taipei, Taiwan' },
-                                    'Hong Kong': { city: 'Hong Kong', country: 'Hong Kong', formatted: 'Hong Kong' },
-                                    'HongKong': { city: 'Hong Kong', country: 'Hong Kong', formatted: 'Hong Kong' },
-                                    'Tokyo': { city: 'Tokyo', country: 'Japan', formatted: 'Tokyo, Japan' },
-                                    'Osaka': { city: 'Osaka', country: 'Japan', formatted: 'Osaka, Japan' },
-                                    'Singapore': { city: 'Singapore', country: 'Singapore', formatted: 'Singapore' },
-                                    'Shanghai': { city: 'Shanghai', country: 'China', formatted: 'Shanghai, China' },
-                                    'Beijing': { city: 'Beijing', country: 'China', formatted: 'Beijing, China' }
-                                };
-
-                                return cityMap[cityName] || {
-                                    city: cityName,
-                                    country: 'Unknown',
-                                    formatted: cityName
-                                };
-                            };
-
-                            const fromLocation = parseLocation(fromCity);
-                            const toLocation = parseLocation(toCity);
 
                             // Parse price
                             const priceMatch = priceStr.match(/\$\s*([\d,]+)/);
@@ -269,37 +223,32 @@ class FlyXOCrawler {
                                     const month = monthMap[dateParts[2].toUpperCase()];
                                     const year = new Date().getFullYear();
 
-                                    timestamp = new Date(year, month, day).getTime();
+                                    // Handle year rollover (if month is in the past, assume next year)
+                                    const now = new Date();
+                                    let targetYear = year;
+                                    if (month < now.getMonth() || (month === now.getMonth() && day < now.getDate())) {
+                                        targetYear = year + 1;
+                                    }
+
+                                    timestamp = new Date(targetYear, month, day).getTime();
                                 }
                             }
 
                             const fullDateStr = `${dayName}, ${dateStr}`;
 
-                            const flightData = {
-                                id: `flyxo_${Date.now()}_${flightIndex}`,
-                                rawText: `${dayName} ${dateStr} ${routeStr} ${typeStr} ${priceStr}`,
-                                extractedData: {
-                                    price: price ? `${price} USD` : priceStr,
-                                    priceType: price ? 'fixed' : 'enquire',
-                                    date: fullDateStr,
-                                    dateTimestamp: timestamp,
-                                    aircraft: 'Private Jet',
-                                    seats: null,
-                                    from: fromLocation,
-                                    to: toLocation,
-                                    route: {
-                                        from: fromLocation.formatted,
-                                        to: toLocation.formatted,
-                                        summary: `${fromLocation.formatted} → ${toLocation.formatted}`
-                                    },
-                                    involvesKorea: true,
-                                    timestamp: new Date().toISOString(),
-                                    source: 'flyxo'
-                                },
-                                images: []
-                            };
+                            // Return RAW data - location processing happens in Node.js
+                            extractedFlights.push({
+                                flightIndex,
+                                dayName,
+                                dateStr,
+                                routeStr,  // Raw route string like "VIENTIANESeoul" or "SeoulLos Angeles"
+                                typeStr,
+                                priceStr,
+                                price,
+                                timestamp,
+                                fullDateStr
+                            });
 
-                            extractedFlights.push(flightData);
                             flightIndex++;
                         }
 
@@ -316,25 +265,69 @@ class FlyXOCrawler {
             });
 
             // Handle the result
-            if (flights.error) {
-                console.log(`❌ ${flights.error}`);
+            if (rawFlights.error) {
+                console.log(`❌ ${rawFlights.error}`);
                 return [];
             }
 
             console.log(`🔍 Debug Info:`);
-            console.log(`   Total lines after cleanup: ${flights.debug.totalLines}`);
-            console.log(`   "All deals" found at line: ${flights.debug.dealsStartIndex}`);
-            console.log(`   Seoul flights found: ${flights.debug.seoulFlightsFound}`);
+            console.log(`   Total lines after cleanup: ${rawFlights.debug.totalLines}`);
+            console.log(`   "All deals" found at line: ${rawFlights.debug.dealsStartIndex}`);
+            console.log(`   Seoul flights found: ${rawFlights.debug.seoulFlightsFound}`);
 
-            const flightArray = flights.flights || [];
-            console.log(`📊 Initial extraction: ${flightArray.length} Seoul flight records`);
+            // Process locations in Node.js context using city database
+            console.log('🌍 Processing locations with city database...');
+            const processedFlights = rawFlights.flights.map(raw => {
+                // Use the robust route splitting from city-database
+                const { from: fromCity, to: toCity } = splitConcatenatedRoute(raw.routeStr);
+
+                // Parse locations using the comprehensive city database
+                const fromLocation = parseLocation(fromCity);
+                const toLocation = parseLocation(toCity || 'Unknown');
+
+                console.log(`   Route: "${raw.routeStr}" → ${fromLocation.formatted} → ${toLocation.formatted}`);
+
+                return {
+                    id: `flyxo_${Date.now()}_${raw.flightIndex}`,
+                    rawText: `${raw.dayName} ${raw.dateStr} ${raw.routeStr} ${raw.typeStr} ${raw.priceStr}`,
+                    extractedData: {
+                        price: raw.price ? `${raw.price} USD` : raw.priceStr,
+                        priceType: raw.price ? 'fixed' : 'enquire',
+                        date: raw.fullDateStr,
+                        dateTimestamp: raw.timestamp,
+                        aircraft: 'Private Jet',
+                        seats: null,
+                        from: fromLocation,
+                        to: toLocation,
+                        route: {
+                            from: fromLocation.formatted,
+                            to: toLocation.formatted,
+                            summary: `${fromLocation.formatted} → ${toLocation.formatted}`
+                        },
+                        involvesKorea: true,
+                        timestamp: new Date().toISOString(),
+                        source: 'flyxo'
+                    },
+                    images: []
+                };
+            });
+
+            console.log(`📊 Initial extraction: ${processedFlights.length} Seoul flight records`);
+
+            // Log any unknown cities encountered
+            const unknownCities = getUnknownCities();
+            if (unknownCities.length > 0) {
+                console.log(`\n⚠️  Unknown cities encountered (add to city-database.js):`);
+                unknownCities.forEach(city => console.log(`   - "${city}"`));
+                console.log('');
+            }
 
             // Remove duplicates
             console.log('🔍 Checking for duplicates...');
             const uniqueFlights = [];
             const seen = new Set();
 
-            flightArray.forEach(flight => {
+            processedFlights.forEach(flight => {
                 const key = `${flight.extractedData.route.from}→${flight.extractedData.route.to}_${flight.extractedData.date}_${flight.extractedData.price}_${flight.extractedData.aircraft}`;
                 if (!seen.has(key)) {
                     seen.add(key);
@@ -344,7 +337,7 @@ class FlyXOCrawler {
                 }
             });
 
-            const duplicatesRemoved = flightArray.length - uniqueFlights.length;
+            const duplicatesRemoved = processedFlights.length - uniqueFlights.length;
             if (duplicatesRemoved > 0) {
                 console.log(`🗑️ Removed ${duplicatesRemoved} exact duplicate flights`);
             }
