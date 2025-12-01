@@ -13,7 +13,7 @@ require('dotenv').config();
 const puppeteer = require('puppeteer');
 const { createClient } = require('@supabase/supabase-js');
 const fs = require('fs').promises;
-const { parseLocation, splitConcatenatedRoute, getUnknownCities } = require('./city-database');
+const { parseLocation, splitConcatenatedRoute, getUnknownCities, generateFlightId } = require('./city-database');
 
 // Configuration
 const config = {
@@ -230,7 +230,8 @@ class FlyXOCrawler {
                                         targetYear = year + 1;
                                     }
 
-                                    timestamp = new Date(targetYear, month, day).getTime();
+                                    // Use UTC to avoid timezone issues when converting to ISO string
+                                    timestamp = Date.UTC(targetYear, month, day);
                                 }
                             }
 
@@ -285,10 +286,14 @@ class FlyXOCrawler {
                 const fromLocation = parseLocation(fromCity);
                 const toLocation = parseLocation(toCity || 'Unknown');
 
-                console.log(`   Route: "${raw.routeStr}" → ${fromLocation.formatted} → ${toLocation.formatted}`);
+                // Generate deterministic flight ID based on route + date + price
+                const flightDate = raw.timestamp ? new Date(raw.timestamp).toISOString().split('T')[0] : raw.dateStr;
+                const flightId = generateFlightId('flyxo', fromLocation.city, toLocation.city, flightDate, raw.price);
+
+                console.log(`   Route: "${raw.routeStr}" → ${fromLocation.formatted} → ${toLocation.formatted} [ID: ${flightId}]`);
 
                 return {
-                    id: `flyxo_${Date.now()}_${raw.flightIndex}`,
+                    id: flightId,
                     rawText: `${raw.dayName} ${raw.dateStr} ${raw.routeStr} ${raw.typeStr} ${raw.priceStr}`,
                     extractedData: {
                         price: raw.price ? `${raw.price} USD` : raw.priceStr,

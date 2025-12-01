@@ -18,7 +18,7 @@ const { exec } = require('child_process');
 const { promisify } = require('util');
 const fs = require('fs').promises;
 const { createClient } = require('@supabase/supabase-js');
-const { getUnknownCities, clearUnknownCitiesLog } = require('./city-database');
+const { getUnknownCities, clearUnknownCitiesLog, generateFlightId } = require('./city-database');
 
 const execAsync = promisify(exec);
 
@@ -459,23 +459,22 @@ class CombinedCrawler {
                 console.log(`✅ Successfully updated ${existingFlightIds.length} flights`);
             }
 
-            // Insert new flights
-            if (newFlights.length > 0) {
-                console.log(`📤 Uploading ${newFlights.length} new flights...`);
-                const batchSize = 10;
-                for (let i = 0; i < newFlights.length; i += batchSize) {
-                    const batch = newFlights.slice(i, i + batchSize);
-                    console.log(`   Uploading batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(newFlights.length / batchSize)}...`);
+            // Upsert all flights (insert or update if exists)
+            // Using upsert ensures deterministic IDs prevent duplicates
+            console.log(`📤 Upserting ${transformedFlights.length} flights...`);
+            const batchSize = 10;
+            for (let i = 0; i < transformedFlights.length; i += batchSize) {
+                const batch = transformedFlights.slice(i, i + batchSize);
+                console.log(`   Upserting batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(transformedFlights.length / batchSize)}...`);
 
-                    const { error: insertError } = await this.supabase
-                        .from(config.tableName)
-                        .insert(batch);
+                const { error: upsertError } = await this.supabase
+                    .from(config.tableName)
+                    .upsert(batch, { onConflict: 'flight_id' });
 
-                    if (insertError) {
-                        console.error(`❌ Error inserting batch:`, insertError);
-                    } else {
-                        console.log(`   ✅ Successfully uploaded ${batch.length} flights`);
-                    }
+                if (upsertError) {
+                    console.error(`❌ Error upserting batch:`, upsertError);
+                } else {
+                    console.log(`   ✅ Successfully upserted ${batch.length} flights`);
                 }
             }
 

@@ -9,7 +9,32 @@
  * - Handles concatenated city names (e.g., "LosAngeles")
  * - Fuzzy matching for partial matches
  * - Logging for unknown cities (for future additions)
+ * - Deterministic flight ID generation for deduplication
  */
+
+const crypto = require('crypto');
+
+/**
+ * Generate a deterministic flight ID based on route and date
+ * This ensures the same flight always gets the same ID across runs
+ * @param {string} source - Source name (flyxo, jetbay)
+ * @param {string} fromCity - Departure city
+ * @param {string} toCity - Arrival city
+ * @param {string} dateStr - Flight date string (YYYY-MM-DD format preferred)
+ * @param {string} price - Price string
+ * @returns {string} Deterministic flight ID
+ */
+function generateFlightId(source, fromCity, toCity, dateStr, price) {
+    const normalizedFrom = (fromCity || '').toLowerCase().trim();
+    const normalizedTo = (toCity || '').toLowerCase().trim();
+    const normalizedDate = (dateStr || '').toLowerCase().trim();
+    const normalizedPrice = (price || '').replace(/[^0-9]/g, '');
+
+    const uniqueString = `${source}_${normalizedFrom}_${normalizedTo}_${normalizedDate}_${normalizedPrice}`;
+    const hash = crypto.createHash('md5').update(uniqueString).digest('hex').substring(0, 12);
+
+    return `${source}_${hash}`;
+}
 
 // Comprehensive city database organized by region
 const CITY_DATABASE = {
@@ -507,5 +532,6 @@ module.exports = {
     parseLocation,
     splitConcatenatedRoute,
     getUnknownCities,
-    clearUnknownCitiesLog
+    clearUnknownCitiesLog,
+    generateFlightId
 };
