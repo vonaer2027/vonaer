@@ -46,8 +46,8 @@ VONAER 플랫폼은 다음과 같은 요소로 구성되어 있습니다:
 
 | 구성 요소 | 설명 | 접속 주소 |
 |-----------|------|-----------|
-| 고객 웹사이트 | 일반 고객이 항공편을 검색하고 예약 요청하는 페이지 | https://v1.vonaer.com |
-| 관리자 대시보드 | 관리자가 항공편, 예약, MMS를 관리하는 페이지 | https://v1.vonaer.com/admin |
+| 고객 웹사이트 | 일반 고객이 항공편을 검색하고 예약 요청하는 페이지 | https://vonaer.com |
+| 관리자 대시보드 | 관리자가 항공편, 예약, MMS를 관리하는 페이지 | https://vonaer.com/admin |
 | 자동 수집 시스템 | 6시간마다 자동으로 Empty Leg 항공편을 수집하는 시스템 | GitHub Actions |
 
 ### 1.4 지원 언어
@@ -90,10 +90,10 @@ VONAER 플랫폼은 다음과 같은 요소로 구성되어 있습니다:
 작업을 시작하기 전에 웹사이트가 정상적으로 작동하는지 확인하세요:
 
 **확인 단계**:
-1. 브라우저를 열고 https://v1.vonaer.com 에 접속합니다
+1. 브라우저를 열고 https://vonaer.com 에 접속합니다
 2. 메인 페이지가 정상적으로 표시되는지 확인합니다
 3. 상단 메뉴가 작동하는지 확인합니다
-4. Empty Leg 페이지(https://v1.vonaer.com/empty)에 접속하여 항공편 목록이 표시되는지 확인합니다
+4. Empty Leg 페이지(https://vonaer.com/empty)에 접속하여 항공편 목록이 표시되는지 확인합니다
 
 문제가 있으면 시스템 관리자에게 문의하세요.
 
@@ -105,7 +105,7 @@ VONAER 플랫폼은 다음과 같은 요소로 구성되어 있습니다:
 
 ### 3.1 메인 페이지 둘러보기
 
-**접속 주소**: https://v1.vonaer.com
+**접속 주소**: https://vonaer.com
 
 메인 페이지에는 다음 요소가 있습니다:
 
@@ -219,7 +219,7 @@ VONAER 플랫폼은 다음과 같은 요소로 구성되어 있습니다:
 ### 3.5 Empty Leg 특가 항공편 이용
 
 **Empty Leg 페이지 접속**:
-- 주소: https://v1.vonaer.com/empty
+- 주소: https://vonaer.com/empty
 - 또는 메뉴에서 "Empty Leg" 클릭
 
 **항공편 목록 확인**:
@@ -252,7 +252,7 @@ VONAER 플랫폼은 다음과 같은 요소로 구성되어 있습니다:
 
 **로그인 페이지 접속**:
 
-1. 브라우저를 열고 https://v1.vonaer.com/admin/login 에 접속합니다
+1. 브라우저를 열고 https://vonaer.com/admin/login 에 접속합니다
 2. 로그인 페이지가 표시됩니다
 
 **로그인 과정**:
@@ -1082,7 +1082,7 @@ MMS 발송 기능은 Empty Leg 특가 항공편 정보를 고객에게 문자 �
 
 **웹사이트 호스팅**:
 - 제공업체: Vercel
-- 도메인: v1.vonaer.com
+- 도메인: vonaer.com
 
 **데이터베이스**:
 - 제공업체: Supabase
@@ -1101,14 +1101,14 @@ MMS 발송 기능은 Empty Leg 특가 항공편 정보를 고객에게 문자 �
 
 | 용도 | URL |
 |------|-----|
-| 고객 메인 페이지 | https://v1.vonaer.com |
-| Empty Leg 목록 | https://v1.vonaer.com/empty |
-| 관리자 로그인 | https://v1.vonaer.com/admin/login |
-| 관리자 대시보드 | https://v1.vonaer.com/admin |
-| 회사 소개 | https://v1.vonaer.com/about |
-| 연락처 | https://v1.vonaer.com/contact |
-| 개인정보처리방침 | https://v1.vonaer.com/privacy |
-| 이용약관 | https://v1.vonaer.com/terms |
+| 고객 메인 페이지 | https://vonaer.com |
+| Empty Leg 목록 | https://vonaer.com/empty |
+| 관리자 로그인 | https://vonaer.com/admin/login |
+| 관리자 대시보드 | https://vonaer.com/admin |
+| 회사 소개 | https://vonaer.com/about |
+| 연락처 | https://vonaer.com/contact |
+| 개인정보처리방침 | https://vonaer.com/privacy |
+| 이용약관 | https://vonaer.com/terms |
 
 ### 13.3 문의처
 
