@@ -3,24 +3,56 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ArrowDown, ChevronDown } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+// Hook to detect mobile viewport
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < breakpoint);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Listen for resize events
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [breakpoint]);
+
+  return isMobile;
+}
 
 export function Minimal2Hero() {
   const t = useTranslations();
+  const isMobile = useIsMobile();
+  const [videoKey, setVideoKey] = useState(0);
+
+  // Force video reload when switching between mobile/desktop
+  useEffect(() => {
+    setVideoKey(prev => prev + 1);
+  }, [isMobile]);
+
+  const videoSrc = isMobile ? '/hero/mobile_intro.mp4' : '/hero/intro.mp4';
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-black">
       {/* Video background - Full coverage */}
       <div className="absolute inset-0 w-full h-full z-0">
-        {/* Background video */}
+        {/* Background video - Responsive source */}
         <video
+          key={videoKey}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: 'center center' }}
         >
-          <source src="/hero/intro.mp4" type="video/mp4" />
+          <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
