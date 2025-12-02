@@ -1,0 +1,68 @@
+[
+  {
+    "id": "flyxo_c81da096ea5e",
+    "rawText": "Tuesday 02 DEC VIENTIANESeoul Empty leg $25,210",
+    "extractedData": {
+      "price": "25210 USD",
+      "priceType": "fixed",
+      "date": "Tuesday, 02 DEC",
+      "dateTimestamp": 1764633600000,
+      "aircraft": "Private Jet",
+      "seats": null,
+      "from": {
+        "city": "Vientiane",
+        "country": "Laos",
+        "code": "VTE",
+        "formatted": "Vientiane, Laos"
+      },
+      "to": {
+        "city": "Seoul",
+        "country": "South Korea",
+        "code": "ICN",
+        "formatted": "Seoul, South Korea"
+      },
+      "route": {
+        "from": "Vientiane, Laos",
+        "to": "Seoul, South Korea",
+        "summary": "Vientiane, Laos → Seoul, South Korea"
+      },
+      "involvesKorea": true,
+      "timestamp": "2025-12-01T15:06:43.696Z",
+      "source": "flyxo"
+    },
+    "images": []
+  },
+  {
+    "id": "flyxo_ce7df274d908",
+    "rawText": "Tuesday 02 DEC SeoulLos Angeles Empty leg $108,330",
+    "extractedData": {
+      "price": "108330 USD",
+      "priceType": "fixed",
+      "date": "Tuesday, 02 DEC",
+      "dateTimestamp": 1764633600000,
+      "aircraft": "Private Jet",
+      "seats": null,
+      "from": {
+        "city": "Seoul",
+        "country": "South Korea",
+        "code": "ICN",
+        "formatted": "Seoul, South Korea"
+      },
+      "to": {
+        "city": "Los Angeles",
+        "country": "United States",
+        "code": "LAX",
+        "formatted": "Los Angeles, United States"
+      },
+      "route": {
+        "from": "Seoul, South Korea",
+        "to": "Los Angeles, United States",
+        "summary": "Seoul, South Korea → Los Angeles, United States"
+      },
+      "involvesKorea": true,
+      "timestamp": "2025-12-01T15:06:43.696Z",
+      "source": "flyxo"
+    },
+    "images": []
+  }
+]

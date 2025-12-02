@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "url": "https://www.jet-bay.com/en-us/empty-leg",
+    "scrapedAt": "2025-12-01T15:06:59.792Z",
+    "totalFlights": 0,
+    "duplicatesRemoved": 0,
+    "region": "East Asia",
+    "currency": "USD",
+    "filter": "South Korea flights only (FROM or TO South Korea)",
+    "filterCriteria": [
+      "South Korea",
+      "Seoul",
+      "Busan",
+      "Korea"
+    ],
+    "version": "2.0",
+    "features": [
+      "Formatted from/to fields",
+      "Route summaries",
+      "City/country separation",
+      "Duplicate removal"
+    ]
+  },
+  "flights": []
+}

@@ -1,0 +1,2 @@
+For every single page, except for the sidebar menus and the title page which must be consitently english. make sure there is always the translation for korean, english, japanese, chinese. Dont translate empty leg into any other language. use as is. 
+all of the pages and components.

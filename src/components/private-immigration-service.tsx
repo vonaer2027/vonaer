@@ -61,9 +61,6 @@ export function PrivateImmigrationService() {
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                 {t('vonaer.title')}
               </h3>
-              <span className="self-start px-3 py-1 sm:px-4 sm:py-1.5 bg-primary/10 text-primary text-xs sm:text-sm font-semibold rounded-full">
-                {t('vonaer.duration')}
-              </span>
             </div>
 
             {/* VONAER Steps - Vertical on mobile, Horizontal on desktop */}
@@ -187,10 +184,6 @@ export function PrivateImmigrationService() {
               </div>
             </div>
 
-            {/* Subtitle */}
-            <p className="text-center text-muted-foreground mt-6 sm:mt-8 ml-3 sm:ml-4 text-xs sm:text-sm md:text-base">
-              {t('vonaer.simplicity')} • {t('vonaer.simplified')}
-            </p>
           </div>
 
           {/* Regular Airlines Section - Complex 8 Step Rectangle Process */}
@@ -203,9 +196,6 @@ export function PrivateImmigrationService() {
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-700">
                 {t('regular.title')}
               </h3>
-              <span className="self-start px-3 py-1 sm:px-4 sm:py-1.5 bg-gray-100 text-gray-600 text-xs sm:text-sm font-semibold rounded-full">
-                {t('regular.duration')}
-              </span>
             </div>
 
             {/* Regular Steps */}
@@ -293,10 +283,6 @@ export function PrivateImmigrationService() {
               </div>
             </div>
 
-            {/* Subtitle */}
-            <p className="text-center text-gray-500 mt-6 sm:mt-8 ml-3 sm:ml-4 text-xs sm:text-sm md:text-base">
-              {t('regular.complexity')}
-            </p>
           </div>
         </motion.div>
       </div>

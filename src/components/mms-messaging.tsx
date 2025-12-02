@@ -588,7 +588,7 @@ export function MMSMessaging() {
           text: customMessage,
           title: "[본에어 Empty Leg 특가 안내]"
         },
-        from: "1600-9064", // Your business phone number
+        from: "16009064", // Remove hyphen for consistency (approved in BizGO)
         flightId: selectedFlight.flight_id,
         templateId: selectedTemplate.id
       }

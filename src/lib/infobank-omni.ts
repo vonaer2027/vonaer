@@ -1,5 +1,5 @@
-// Direct BizGO API integration for MMS messaging (bypassing SDK due to auth format mismatch)
-import axios from 'axios';
+// BizGO MMS/SMS integration using Infobank OMNI SDK
+import { OMNI, OMNIOptionsBuilder, MMSRequestBodyBuilder, SMSRequestBodyBuilder } from '@infobank/infobank-omni-sdk-js';
 
 export interface MMSMessage {
   to: string;
@@ -16,27 +16,50 @@ export interface SMSMessage {
 }
 
 /**
- * Send MMS message using direct BizGO API
+ * Initialize OMNI SDK with BizGO API credentials
+ */
+function getOMNIClient() {
+  const baseURL = process.env.BIZGO_BASE_URL || 'https://mars.ibapi.kr/api/comm';
+  const apiKey = process.env.BIZGO_API_KEY || '';
+
+  if (!apiKey) {
+    throw new Error('BIZGO_API_KEY is required');
+  }
+
+  const options = new OMNIOptionsBuilder()
+    .setBaseURL(baseURL)
+    .setToken(apiKey)  // SDK now supports BizGO API key format
+    .build();
+
+  return new OMNI(options);
+}
+
+/**
+ * Send MMS message using OMNI SDK (via OMNI endpoint for better routing)
  */
 export async function sendMMS(message: MMSMessage) {
   try {
-    const baseURL = process.env.BIZGO_BASE_URL || 'https://mars.ibapi.kr/api/comm';
-    const apiKey = process.env.BIZGO_API_KEY || '';
+    const omni = getOMNIClient();
 
-    if (!apiKey) {
-      throw new Error('BIZGO_API_KEY is required');
-    }
+    // Only append unsubscribe footer if not already present
+    const unsubscribeFooter = '수신거부: 080-877-6077';
+    const messageText = message.text.includes(unsubscribeFooter)
+      ? message.text
+      : message.text + '\n\n' + unsubscribeFooter;
 
-    // Always append unsubscribe footer for Empty Leg messages
-    const unsubscribeFooter = '\n\n수신거부: 080-877-6077';
-    const messageText = message.text + unsubscribeFooter;
+    // Remove title from message text if it's already included
+    const defaultTitle = '[본에어 Empty Leg 특가 안내]';
+    const cleanedText = messageText.startsWith(defaultTitle)
+      ? messageText.substring(defaultTitle.length).trim()
+      : messageText;
 
-    const requestBody = {
+    // Build OMNI request (better routing than direct MMS endpoint)
+    const omniRequest = {
       messageFlow: [{
         mms: {
           from: message.from,
-          text: messageText,
-          title: message.title || '',
+          text: cleanedText,
+          title: message.title || defaultTitle,
           fileKey: message.fileKey || [],
           ttl: "86400"
         }
@@ -47,24 +70,18 @@ export async function sendMMS(message: MMSMessage) {
       ref: `mms_${Date.now()}`
     };
 
-    const response = await axios.post(`${baseURL}/v1/send/omni`, requestBody, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': apiKey, // BizGO uses direct API key
-        'Accept': 'application/json'
-      }
-    });
+    const response = await omni.send?.OMNI(omniRequest) as any;
 
-    if (response.data.common?.authCode === 'A000' && response.data.data?.code === 'A000') {
+    if (response?.common?.authCode === 'A000' && response?.data?.code === 'A000') {
       return {
         success: true,
-        data: response.data,
-        messageKey: response.data.data?.destinations?.[0]?.msgKey
+        data: response,
+        messageKey: response.data?.msgKey
       };
     } else {
       return {
         success: false,
-        error: response.data.data?.result || response.data.common?.authResult || 'Unknown API error'
+        error: response?.data?.result || response?.common?.authResult || 'Unknown API error'
       };
     }
   } catch (error: any) {
@@ -77,22 +94,20 @@ export async function sendMMS(message: MMSMessage) {
 }
 
 /**
- * Send SMS message using direct BizGO API
+ * Send SMS message using OMNI SDK (via OMNI endpoint for better routing)
  */
 export async function sendSMS(message: SMSMessage) {
   try {
-    const baseURL = process.env.BIZGO_BASE_URL || 'https://mars.ibapi.kr/api/comm';
-    const apiKey = process.env.BIZGO_API_KEY || '';
+    const omni = getOMNIClient();
 
-    if (!apiKey) {
-      throw new Error('BIZGO_API_KEY is required');
-    }
+    // Only append unsubscribe footer if not already present
+    const unsubscribeFooter = '수신거부: 080-877-6077';
+    const messageText = message.text.includes(unsubscribeFooter)
+      ? message.text
+      : message.text + '\n\n' + unsubscribeFooter;
 
-    // Always append unsubscribe footer for Empty Leg messages
-    const unsubscribeFooter = '\n\n수신거부: 080-877-6077';
-    const messageText = message.text + unsubscribeFooter;
-
-    const requestBody = {
+    // Build OMNI request (better routing than direct SMS endpoint)
+    const omniRequest = {
       messageFlow: [{
         sms: {
           from: message.from,
@@ -106,24 +121,18 @@ export async function sendSMS(message: SMSMessage) {
       ref: `sms_${Date.now()}`
     };
 
-    const response = await axios.post(`${baseURL}/v1/send/omni`, requestBody, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': apiKey,
-        'Accept': 'application/json'
-      }
-    });
+    const response = await omni.send?.OMNI(omniRequest) as any;
 
-    if (response.data.common?.authCode === 'A000' && response.data.data?.code === 'A000') {
+    if (response?.common?.authCode === 'A000' && response?.data?.code === 'A000') {
       return {
         success: true,
-        data: response.data,
-        messageKey: response.data.data?.destinations?.[0]?.msgKey
+        data: response,
+        messageKey: response.data?.msgKey
       };
     } else {
       return {
         success: false,
-        error: response.data.data?.result || response.data.common?.authResult || 'Unknown API error'
+        error: response?.data?.result || response?.common?.authResult || 'Unknown API error'
       };
     }
   } catch (error: any) {
@@ -167,32 +176,17 @@ export async function sendBulkMessages(messages: (MMSMessage | SMSMessage)[], ty
 }
 
 /**
- * Get message delivery report using direct BizGO API
+ * Get message delivery report using OMNI SDK
  */
 export async function getMessageReport(messageKey: string) {
   try {
-    const baseURL = process.env.BIZGO_BASE_URL || 'https://mars.ibapi.kr/api/comm';
-    const apiKey = process.env.BIZGO_API_KEY || '';
-    
-    if (!apiKey) {
-      throw new Error('BIZGO_API_KEY is required');
-    }
+    const omni = getOMNIClient();
 
-    const requestBody = {
-      msgKeys: [messageKey]
-    };
-
-    const response = await axios.post(`${baseURL}/v1/report/polling`, requestBody, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': apiKey,
-        'Accept': 'application/json'
-      }
-    });
+    const response = await omni.polling?.getReport();
 
     return {
       success: true,
-      data: response.data
+      data: response
     };
   } catch (error: any) {
     console.error('BizGO Report Error:', error.response?.data || error.message);

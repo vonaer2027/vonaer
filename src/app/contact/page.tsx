@@ -15,24 +15,15 @@ export default function ContactPage() {
 
   const locations = [
     {
-      id: 1,
-      name: '서울 본에어 본사',
-      nameEn: 'VONAER HQ',
-      address: '서울 강남구 학동로 523',
+      id: 'hq',
       image: '/location/vonaer-hq.png'
     },
     {
-      id: 2,
-      name: '잠실헬기장',
-      nameEn: 'Jamsil Heliport',
-      address: '서울특별시 송파구 한가람로65, 잠실헬기장',
+      id: 'jamsil',
       image: '/location/jamsil.png'
     },
     {
-      id: 3,
-      name: '인천공항 VON포트',
-      nameEn: 'Incheon Airport VON Port',
-      address: '인천시 중구 운서동 2844-8',
+      id: 'incheon',
       image: '/location/incheon.jpg'
     }
   ]
@@ -54,18 +45,6 @@ export default function ContactPage() {
       {/* Main Content */}
       <main className="pt-20 min-h-screen">
         <div className="container mx-auto px-4 py-16">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              {t('title')}
-            </h1>
-          </motion.div>
-
           {/* Single Card with All Information */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -87,7 +66,7 @@ export default function ContactPage() {
                         <div className="w-full h-48 overflow-hidden bg-muted">
                           <img
                             src={location.image}
-                            alt={location.name}
+                            alt={t(`locationsList.${location.id}.name`)}
                             className="w-full h-full object-cover"
                           />
                         </div>
@@ -95,10 +74,10 @@ export default function ContactPage() {
                         {/* Location Info */}
                         <div className="p-4">
                           <h3 className="text-base md:text-lg font-bold text-foreground mb-1">
-                            {location.name}
+                            {t(`locationsList.${location.id}.name`)}
                           </h3>
                           <p className="text-sm md:text-base text-muted-foreground">
-                            {location.address}
+                            {t(`locationsList.${location.id}.address`)}
                           </p>
                         </div>
                       </div>
@@ -111,10 +90,6 @@ export default function ContactPage() {
 
                 {/* Contact Information Section */}
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
-                    {t('contactInfo') || '연락처'}
-                  </h2>
-
                   <div className="space-y-6">
                     {/* Email */}
                     <div className="p-4 rounded-lg bg-background/50 hover:bg-background/70 transition-colors">

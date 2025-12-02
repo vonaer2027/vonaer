@@ -1,1 +1,0 @@
-Create a section in the main page for (with title 프라이빗 출입국 서비스 and subtitle VONAER Jet은 일반 항공 대비 최대 90% 빠른 출입국 절차를 제공합니다.) and then Create a explainer underneath based on this context to educate users. (공항도착 항공사 탑승수속 및 수하물 위탁 (좌석배정) 세관신고 병무/검역신고 출국장으로 이동 항공기 탑승 (항공권 준비) 탑승구로 이동 (면세품 구입 및 인수) 출국심사 (탑승권, 여권확인) 보안검색 (X-RAY휴대품검사) 일반 항공 이용 시 공항도착 수속 탑승 VONAER Jet 이용 시)

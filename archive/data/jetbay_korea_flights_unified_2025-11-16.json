@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "url": "https://www.jet-bay.com/en-us/empty-leg",
+    "scrapedAt": "2025-11-16T15:10:15.814Z",
+    "totalFlights": 1,
+    "duplicatesRemoved": 0,
+    "region": "East Asia",
+    "currency": "USD",
+    "filter": "South Korea flights only (FROM or TO South Korea)",
+    "filterCriteria": [
+      "South Korea",
+      "Seoul",
+      "Busan",
+      "Korea"
+    ],
+    "version": "2.0",
+    "features": [
+      "Formatted from/to fields",
+      "Route summaries",
+      "City/country separation",
+      "Duplicate removal"
+    ]
+  },
+  "flights": [
+    {
+      "id": "flight_1763305815811_18",
+      "rawText": "Model: Global 750014 seatsNov 25, 2025SeoulSouth Korea TokyoJapan Enquire for PriceBook",
+      "extractedData": {
+        "price": "Enquire for Price",
+        "priceType": "enquire",
+        "date": "Nov 25, 2025",
+        "dateTimestamp": 1764028800000,
+        "aircraft": "Global 7500",
+        "seats": 14,
+        "from": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "formatted": "Seoul, South Korea"
+        },
+        "to": {
+          "city": "Tokyo",
+          "country": "Japan",
+          "formatted": "Tokyo, Japan"
+        },
+        "route": {
+          "from": "Seoul, South Korea",
+          "to": "Tokyo, Japan",
+          "summary": "Seoul, South Korea → Tokyo, Japan"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-11-16T15:10:15.811Z",
+        "locations": [
+          "Seoul",
+          "South Korea",
+          "Tokyo",
+          "Japan"
+        ]
+      },
+      "images": [
+        {
+          "src": "https://www.jet-bay.com/_next/image?url=https%3A%2F%2Fasserts.avi-go.com%2Fplane_img%2F169954546795806157982307715695.jpg&w=1536&q=75",
+          "alt": "emptyLeg"
+        }
+      ]
+    }
+  ]
+}

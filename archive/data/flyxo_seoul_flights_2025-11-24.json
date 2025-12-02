@@ -1,0 +1,157 @@
+[
+  {
+    "id": "flyxo_1763962571867_0",
+    "rawText": "Wednesday 26 NOV SeoulShanghai Empty leg $10,080",
+    "extractedData": {
+      "price": "10080 USD",
+      "priceType": "fixed",
+      "date": "Wednesday, 26 NOV",
+      "dateTimestamp": 1764082800000,
+      "aircraft": "Private Jet",
+      "seats": null,
+      "from": {
+        "city": "Seoul",
+        "country": "South Korea",
+        "formatted": "Seoul, South Korea"
+      },
+      "to": {
+        "city": "Shanghai",
+        "country": "China",
+        "formatted": "Shanghai, China"
+      },
+      "route": {
+        "from": "Seoul, South Korea",
+        "to": "Shanghai, China",
+        "summary": "Seoul, South Korea → Shanghai, China"
+      },
+      "involvesKorea": true,
+      "timestamp": "2025-11-24T05:36:11.867Z",
+      "source": "flyxo"
+    },
+    "images": []
+  },
+  {
+    "id": "flyxo_1763962571867_1",
+    "rawText": "Friday 28 NOV SeoulTokyo Empty leg $12,250",
+    "extractedData": {
+      "price": "12250 USD",
+      "priceType": "fixed",
+      "date": "Friday, 28 NOV",
+      "dateTimestamp": 1764255600000,
+      "aircraft": "Private Jet",
+      "seats": null,
+      "from": {
+        "city": "Seoul",
+        "country": "South Korea",
+        "formatted": "Seoul, South Korea"
+      },
+      "to": {
+        "city": "Tokyo",
+        "country": "Japan",
+        "formatted": "Tokyo, Japan"
+      },
+      "route": {
+        "from": "Seoul, South Korea",
+        "to": "Tokyo, Japan",
+        "summary": "Seoul, South Korea → Tokyo, Japan"
+      },
+      "involvesKorea": true,
+      "timestamp": "2025-11-24T05:36:11.867Z",
+      "source": "flyxo"
+    },
+    "images": []
+  },
+  {
+    "id": "flyxo_1763962571867_2",
+    "rawText": "Tuesday 25 NOV TokyoSeoul Empty leg $15,170",
+    "extractedData": {
+      "price": "15170 USD",
+      "priceType": "fixed",
+      "date": "Tuesday, 25 NOV",
+      "dateTimestamp": 1763996400000,
+      "aircraft": "Private Jet",
+      "seats": null,
+      "from": {
+        "city": "Tokyo",
+        "country": "Japan",
+        "formatted": "Tokyo, Japan"
+      },
+      "to": {
+        "city": "Seoul",
+        "country": "South Korea",
+        "formatted": "Seoul, South Korea"
+      },
+      "route": {
+        "from": "Tokyo, Japan",
+        "to": "Seoul, South Korea",
+        "summary": "Tokyo, Japan → Seoul, South Korea"
+      },
+      "involvesKorea": true,
+      "timestamp": "2025-11-24T05:36:11.867Z",
+      "source": "flyxo"
+    },
+    "images": []
+  },
+  {
+    "id": "flyxo_1763962571867_3",
+    "rawText": "Thursday 27 NOV HanoiSeoul Empty leg $38,330",
+    "extractedData": {
+      "price": "38330 USD",
+      "priceType": "fixed",
+      "date": "Thursday, 27 NOV",
+      "dateTimestamp": 1764169200000,
+      "aircraft": "Private Jet",
+      "seats": null,
+      "from": {
+        "city": "Hanoi",
+        "country": "Unknown",
+        "formatted": "Hanoi"
+      },
+      "to": {
+        "city": "Seoul",
+        "country": "South Korea",
+        "formatted": "Seoul, South Korea"
+      },
+      "route": {
+        "from": "Hanoi",
+        "to": "Seoul, South Korea",
+        "summary": "Hanoi → Seoul, South Korea"
+      },
+      "involvesKorea": true,
+      "timestamp": "2025-11-24T05:36:11.867Z",
+      "source": "flyxo"
+    },
+    "images": []
+  },
+  {
+    "id": "flyxo_1763962571867_4",
+    "rawText": "Wednesday 26 NOV SingaporeSeoul Empty leg $61,670",
+    "extractedData": {
+      "price": "61670 USD",
+      "priceType": "fixed",
+      "date": "Wednesday, 26 NOV",
+      "dateTimestamp": 1764082800000,
+      "aircraft": "Private Jet",
+      "seats": null,
+      "from": {
+        "city": "Singapore",
+        "country": "Singapore",
+        "formatted": "Singapore"
+      },
+      "to": {
+        "city": "Seoul",
+        "country": "South Korea",
+        "formatted": "Seoul, South Korea"
+      },
+      "route": {
+        "from": "Singapore",
+        "to": "Seoul, South Korea",
+        "summary": "Singapore → Seoul, South Korea"
+      },
+      "involvesKorea": true,
+      "timestamp": "2025-11-24T05:36:11.867Z",
+      "source": "flyxo"
+    },
+    "images": []
+  }
+]
