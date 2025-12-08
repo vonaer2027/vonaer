@@ -95,11 +95,22 @@ export const flightService = {
       .from('flights')
       .select('*')
       .eq('is_active', true)
+      .eq('involves_korea', true) // Only show Korea-related flights
       .gte('flight_date', new Date().toISOString().split('T')[0])
       .order('flight_date', { ascending: true })
 
     if (error) throw error
-    return data as Flight[]
+
+    // Additional safeguard: filter for Korea in from/to countries
+    const koreaFiltered = (data || []).filter((flight: Flight) => {
+      const fromKorea = flight.from_country === 'South Korea' ||
+                        /korea|seoul|busan|incheon|gimpo|jeju/i.test(flight.from_city || '')
+      const toKorea = flight.to_country === 'South Korea' ||
+                      /korea|seoul|busan|incheon|gimpo|jeju/i.test(flight.to_city || '')
+      return fromKorea || toKorea
+    })
+
+    return koreaFiltered as Flight[]
   },
 
   async getById(id: number) {

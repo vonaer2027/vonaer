@@ -136,6 +136,23 @@ class CombinedCrawler {
         const data = flight.extractedData;
         let warning = null;
 
+        // CRITICAL: Check if flight involves Korea (South Korea)
+        // This is the primary filter - we only want Korea-related flights
+        if (!data.involvesKorea) {
+            // Double-check by looking at country names directly
+            const fromKorea = data.from?.country === 'South Korea' ||
+                              /korea|seoul|busan|incheon|gimpo|jeju/i.test(data.from?.city || '');
+            const toKorea = data.to?.country === 'South Korea' ||
+                            /korea|seoul|busan|incheon|gimpo|jeju/i.test(data.to?.city || '');
+
+            if (!fromKorea && !toKorea) {
+                return {
+                    isValid: false,
+                    reason: `Not Korea-related (${data.from?.country} → ${data.to?.country})`
+                };
+            }
+        }
+
         // Check for Unknown country (critical error - must reject)
         // Note: "Unverified" is different from "Unknown" - Unverified cities are allowed through
         if (data.from?.country === 'Unknown' || data.to?.country === 'Unknown') {
