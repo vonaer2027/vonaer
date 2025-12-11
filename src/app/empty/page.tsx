@@ -51,12 +51,24 @@ export default function ClientFlightsPage() {
         }))
       })
 
-      // Filter out flights without essential data for client view
+      // Helper to check if a flight involves Korea (Seoul, Busan, Jeju, Incheon, Gimpo)
+      const involvesKorea = (flight: Flight) => {
+        const koreaPattern = /korea|seoul|busan|jeju|incheon|gimpo|icn|gmp|pus|cju|서울|부산|제주|인천|김포/i
+        const fromCity = flight.from_city || ''
+        const toCity = flight.to_city || ''
+        const fromCountry = flight.from_country || ''
+        const toCountry = flight.to_country || ''
+        return koreaPattern.test(fromCity) || koreaPattern.test(toCity) ||
+               fromCountry === 'South Korea' || toCountry === 'South Korea'
+      }
+
+      // Filter out flights without essential data AND only keep Korea-related flights
       const validFlights = flightsData.filter(flight =>
         (flight.price_numeric || flight.price) && // Allow both numeric prices and "Enquire for Price"
         flight.flight_date &&
         flight.from_city &&
-        flight.to_city
+        flight.to_city &&
+        involvesKorea(flight) // CRITICAL: Only show Korea-related flights
       )
 
       console.log('[Empty Leg] Valid flights after filtering:', {
