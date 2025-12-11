@@ -136,21 +136,19 @@ class CombinedCrawler {
         const data = flight.extractedData;
         let warning = null;
 
-        // CRITICAL: Check if flight involves Korea (South Korea)
+        // CRITICAL: ALWAYS verify Korea involvement - don't trust sub-crawler flags
         // This is the primary filter - we only want Korea-related flights
-        if (!data.involvesKorea) {
-            // Double-check by looking at country names directly
-            const fromKorea = data.from?.country === 'South Korea' ||
-                              /korea|seoul|busan|incheon|gimpo|jeju/i.test(data.from?.city || '');
-            const toKorea = data.to?.country === 'South Korea' ||
-                            /korea|seoul|busan|incheon|gimpo|jeju/i.test(data.to?.city || '');
+        // Check by looking at country names and city names directly
+        const fromKorea = data.from?.country === 'South Korea' ||
+                          /^(korea|seoul|busan|incheon|gimpo|jeju|icn|gmp|pus|cju)$/i.test(data.from?.city || '');
+        const toKorea = data.to?.country === 'South Korea' ||
+                        /^(korea|seoul|busan|incheon|gimpo|jeju|icn|gmp|pus|cju)$/i.test(data.to?.city || '');
 
-            if (!fromKorea && !toKorea) {
-                return {
-                    isValid: false,
-                    reason: `Not Korea-related (${data.from?.country} → ${data.to?.country})`
-                };
-            }
+        if (!fromKorea && !toKorea) {
+            return {
+                isValid: false,
+                reason: `Not Korea-related (${data.from?.city || 'Unknown'}, ${data.from?.country || 'Unknown'} → ${data.to?.city || 'Unknown'}, ${data.to?.country || 'Unknown'})`
+            };
         }
 
         // Check for Unknown country (critical error - must reject)
