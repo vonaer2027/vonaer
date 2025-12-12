@@ -419,17 +419,11 @@ class CombinedCrawler {
             const newFlightIds = transformedFlights.map(f => f.flight_id);
 
             // Determine which flights to archive
-            // Only archive flights that are:
-            // 1. Not in current scrape AND
-            // 2. Have past flight dates (no longer valid)
-            const today = new Date().toISOString().split('T')[0];
+            // Archive ANY flight not in current scrape (sold or no longer available)
+            // This ensures we only show currently available empty legs
             const activeFlightIds = activeFlights?.map(f => f.flight_id) || [];
             const flightsToArchive = (activeFlights || [])
-                .filter(flight => {
-                    const notInCurrentScrape = !newFlightIds.includes(flight.flight_id);
-                    const isPastDate = flight.flight_date && flight.flight_date < today;
-                    return notInCurrentScrape && isPastDate;
-                })
+                .filter(flight => !newFlightIds.includes(flight.flight_id))
                 .map(f => f.flight_id);
 
             // Determine which flights are new vs existing
@@ -443,9 +437,9 @@ class CombinedCrawler {
             console.log(`   Existing flights to update: ${existingFlightIds.length}`);
             console.log(`   New flights to insert: ${newFlights.length}\n`);
 
-            // Archive old flights
+            // Archive flights no longer in scrape (sold or removed)
             if (flightsToArchive.length > 0) {
-                console.log(`📦 Archiving ${flightsToArchive.length} flights that are no longer available...`);
+                console.log(`📦 Archiving ${flightsToArchive.length} flights no longer available (likely sold)...`);
                 const { error: archiveError } = await this.supabase
                     .from(config.tableName)
                     .update({ is_active: false, archived_at: new Date().toISOString() })
