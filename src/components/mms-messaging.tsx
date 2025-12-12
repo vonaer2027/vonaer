@@ -12,8 +12,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Flight, User, flightService, userService } from '@/lib/supabase'
-import { MessageSquare, Send, Users, Plane, Calendar, MapPin, DollarSign, Eye, CheckCircle2 } from 'lucide-react'
+import { Flight, User, MarginSetting, flightService, userService, marginService } from '@/lib/supabase'
+import { MessageSquare, Send, Users, Plane, Calendar, MapPin, DollarSign, Eye, CheckCircle2, Copy } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
 
@@ -46,10 +46,13 @@ export function MMSMessaging() {
   const t = useTranslations()
   const [flights, setFlights] = useState<Flight[]>([])
   const [users, setUsers] = useState<User[]>([])
+  const [marginSetting, setMarginSetting] = useState<MarginSetting | null>(null)
   const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null)
+  const [selectedFlights, setSelectedFlights] = useState<Flight[]>([]) // Multi-flight selection
   const [selectedUsers, setSelectedUsers] = useState<number[]>([])
   const [selectedTemplate, setSelectedTemplate] = useState<MMSTemplate | null>(null)
   const [customMessage, setCustomMessage] = useState('')
+  const [generatedFlightText, setGeneratedFlightText] = useState('') // Generated text from selected flights
   const [flightDetails, setFlightDetails] = useState<FlightDetails>({
     departureTime: '',
     arrivalTime: '',
@@ -74,7 +77,7 @@ export function MMSMessaging() {
 항공기: {{aircraft}} (최대 {{seats}}명 탑승)
 요금: 단 {{price}} (기체 전체 요금)
 안내: Empty Leg 특성상 선착순 마감됩니다.
-문의: 1600-9064
+문의: 02-6012-9500
 
 수신거부: 080-877-6077`
     },
@@ -91,7 +94,7 @@ export function MMSMessaging() {
 요금: 단 {{price}} (기체 전체 요금)
 
 안내: Empty Leg 특성상 선착순 마감됩니다.
-문의: 1600-9064
+문의: 02-6012-9500
 
 수신거부: 080-877-6077`
     },
@@ -116,7 +119,7 @@ export function MMSMessaging() {
 안내: 개별 예약 가능하며, 왕복으로 연결 시 {{destination}} 여정 전용 패키지로도 이용하실 수 있습니다.
 
 주의: Empty Leg 특성상 선착순 마감
-문의: 1600-9064
+문의: 02-6012-9500
 
 수신거부: 080-877-6077`
     }
@@ -162,10 +165,13 @@ export function MMSMessaging() {
   const loadData = async () => {
     try {
       setLoading(true)
-      const [flightsData, usersData] = await Promise.all([
+      const [flightsData, usersData, marginData] = await Promise.all([
         flightService.getAll(),
-        userService.getAll()
+        userService.getAll(),
+        marginService.getCurrent().catch(() => null)
       ])
+
+      setMarginSetting(marginData)
 
       // Helper to check if a flight involves Korea (matches /empty page logic)
       const involvesKorea = (flight: Flight) => {
@@ -187,7 +193,25 @@ export function MMSMessaging() {
         flight.to_city &&                          // Must have arrival city
         involvesKorea(flight)                      // Must involve Korea
       )
-      setFlights(availableFlights)
+
+      // Remove duplicates based on flight details (same logic as admin page)
+      const uniqueFlights = availableFlights.reduce((acc, flight) => {
+        const key = `${flight.flight_date}_${flight.from_city}_${flight.to_city}_${flight.aircraft || 'unknown'}`
+        if (!acc.has(key)) {
+          acc.set(key, flight)
+        } else {
+          const existing = acc.get(key)!
+          // Prefer flights with more images or custom prices
+          if ((flight.image_urls?.length || 0) > (existing.image_urls?.length || 0) ||
+              (flight.custom_price !== null && existing.custom_price === null)) {
+            acc.set(key, flight)
+          }
+        }
+        return acc
+      }, new Map<string, Flight>())
+
+      const deduplicatedFlights = Array.from(uniqueFlights.values())
+      setFlights(deduplicatedFlights)
       
       // Filter for active users only
       const activeUsers = usersData.filter(user => user.is_active !== false)
@@ -349,53 +373,79 @@ export function MMSMessaging() {
   }
 
   const parseAircraftFromRawText = (flight: Flight): string => {
-    if (!flight.raw_text) return flight.aircraft || '비즈니스 제트'
-    
-    // Try to extract clean aircraft model from raw text
-    // "Model: Global 600014 seats" -> "Global 6000" (remove seat digits)
-    // "Challenger 60512 seats" -> "Challenger 605" (remove seat digits)
-    
-    const patterns = [
-      /Model:\s*([A-Za-z\s]+?)(\d+)(\d{2})\s*seats?/i,  // "Model: Global 600014 seats" -> "Global 6000" (remove last 2 digits)
-      /([A-Za-z\s]+?)(\d+)(\d{2})\s*seats?/i            // "Global 600014 seats" -> "Global 6000" (remove last 2 digits)
+    // Known valid aircraft models
+    const validAircraftPatterns = [
+      /Global\s*\d+/i,
+      /Challenger\s*\d+/i,
+      /Gulfstream\s*G?\d+/i,
+      /Embraer\s*\w+/i,
+      /Citation\s*\w+/i,
+      /Falcon\s*\d+/i,
+      /Hawker\s*\d+/i,
+      /Learjet\s*\d+/i,
+      /Phenom\s*\d+/i,
+      /Legacy\s*\d+/i,
+      /Lineage\s*\d+/i,
     ]
-    
-    for (const pattern of patterns) {
-      const match = flight.raw_text.match(pattern)
-      if (match) {
-        const aircraftBase = match[1].trim()
-        const modelNumber = match[2]
-        // match[3] contains the seat digits that we ignore
-        
-        // Clean up common aircraft models
-        if (aircraftBase.toLowerCase().includes('global')) {
-          return `Global ${modelNumber}` // Global 600014 -> Global 6000
-        }
-        if (aircraftBase.toLowerCase().includes('challenger')) {
-          return `Challenger ${modelNumber}` // Challenger 60512 -> Challenger 605
-        }
-        if (aircraftBase.toLowerCase().includes('gulfstream')) {
-          return `Gulfstream G${modelNumber}` // Gulfstream 65012 -> Gulfstream G650
-        }
-        
-        return `${aircraftBase} ${modelNumber}`
+
+    // Check flight.aircraft first
+    if (flight.aircraft) {
+      const aircraftLower = flight.aircraft.toLowerCase()
+      // Validate it's a real aircraft, not a date
+      const isValidAircraft = validAircraftPatterns.some(pattern => pattern.test(flight.aircraft!))
+      if (isValidAircraft) {
+        return flight.aircraft
+      }
+      // Check for common aircraft keywords
+      if (aircraftLower.includes('global') ||
+          aircraftLower.includes('challenger') ||
+          aircraftLower.includes('gulfstream') ||
+          aircraftLower.includes('embraer') ||
+          aircraftLower.includes('citation') ||
+          aircraftLower.includes('falcon') ||
+          aircraftLower.includes('hawker') ||
+          aircraftLower.includes('learjet')) {
+        return flight.aircraft
       }
     }
-    
-    // Fallback: try simpler patterns
-    const simplePatterns = [
-      /Model:\s*([A-Za-z\s]+\d+)/i,  // "Model: Global 6000"
-      /([A-Za-z\s]+\d+)/i            // "Global 6000"
-    ]
-    
-    for (const pattern of simplePatterns) {
-      const match = flight.raw_text.match(pattern)
-      if (match) {
-        return match[1].trim()
+
+    // Try to extract from raw_text
+    if (flight.raw_text) {
+      for (const pattern of validAircraftPatterns) {
+        const match = flight.raw_text.match(pattern)
+        if (match) {
+          return match[0]
+        }
       }
     }
-    
-    return flight.aircraft || '비즈니스 제트'
+
+    // Return empty string if no valid aircraft found
+    return ''
+  }
+
+  // Calculate adjusted price with margin (same logic as flight-card.tsx)
+  const calculateDisplayPrice = (flight: Flight): string => {
+    const roundUpToNearestHundred = (price: number) => Math.ceil(price / 100) * 100
+
+    // If custom price is set, use that
+    if (flight.custom_price !== null && flight.custom_price !== undefined) {
+      return `${flight.custom_price.toLocaleString()} USD`
+    }
+
+    // If no numeric price, return original price string or empty
+    if (!flight.price_numeric) {
+      return flight.price || ''
+    }
+
+    // Apply margin and round up to nearest hundred
+    if (marginSetting && marginSetting.margin_percentage > 0) {
+      const adjustedPrice = flight.price_numeric * (1 + (marginSetting.margin_percentage / 100))
+      const roundedPrice = roundUpToNearestHundred(adjustedPrice)
+      return `${roundedPrice.toLocaleString()} USD`
+    }
+
+    // Return formatted original price
+    return `${flight.price_numeric.toLocaleString()} USD`
   }
 
   const getAircraftDescription = (aircraft?: string): string => {
@@ -547,6 +597,89 @@ export function MMSMessaging() {
     return content
   }
 
+  // Generate text message from multiple selected flights
+  // Format: 출발/도착, 날짜, 가격, 기종, 탑승
+  const generateFlightListText = (flightsToFormat: Flight[]): string => {
+    if (flightsToFormat.length === 0) return ''
+
+    const header = '[본에어 Empty Leg 특가 안내]\n\n'
+
+    const flightLines = flightsToFormat.map((flight, index) => {
+      // Route: 출발/도착
+      const route = `${flight.from_city || 'TBD'} → ${flight.to_city || 'TBD'}`
+
+      // Date: 날짜
+      const flightDate = flight.flight_date
+        ? new Date(flight.flight_date).toLocaleDateString('ko-KR', {
+            month: 'numeric',
+            day: 'numeric',
+            weekday: 'short'
+          })
+        : '날짜 미정'
+
+      // Price: 가격 (with margin applied)
+      const price = calculateDisplayPrice(flight) || '문의'
+
+      // Aircraft: 기종
+      const aircraft = parseAircraftFromRawText(flight)
+
+      // Seats: 탑승 (leave blank if no valid seats)
+      const seats = parseSeatsFromRawText(flight)
+      const seatsText = seats ? `${seats}명` : ''
+
+      // Build the details line, omitting empty values
+      const detailsParts = [aircraft, seatsText].filter(Boolean)
+      const detailsLine = detailsParts.length > 0 ? `\n   ${detailsParts.join(' | ')}` : ''
+
+      return `${index + 1}. ${route}\n   ${flightDate} | ${price}${detailsLine}`
+    }).join('\n\n')
+
+    const footer = '\n\n---\n안내: Empty Leg 특성상 선착순 마감됩니다.\n문의: 02-6012-9500\n\n수신거부: 080-877-6077'
+
+    return header + flightLines + footer
+  }
+
+  // Handle multi-flight selection toggle
+  const handleFlightToggle = (flight: Flight) => {
+    setSelectedFlights(prev => {
+      const isSelected = prev.some(f => f.id === flight.id)
+      let newSelection: Flight[]
+      if (isSelected) {
+        newSelection = prev.filter(f => f.id !== flight.id)
+      } else {
+        newSelection = [...prev, flight]
+      }
+      // Generate text whenever selection changes
+      setGeneratedFlightText(generateFlightListText(newSelection))
+      return newSelection
+    })
+  }
+
+  // Select all flights
+  const handleSelectAllFlights = () => {
+    if (selectedFlights.length === flights.length) {
+      setSelectedFlights([])
+      setGeneratedFlightText('')
+    } else {
+      setSelectedFlights([...flights])
+      setGeneratedFlightText(generateFlightListText(flights))
+    }
+  }
+
+  // Copy generated text to clipboard
+  const handleCopyText = async () => {
+    if (!generatedFlightText) {
+      toast.error('복사할 텍스트가 없습니다.')
+      return
+    }
+    try {
+      await navigator.clipboard.writeText(generatedFlightText)
+      toast.success('텍스트가 클립보드에 복사되었습니다.')
+    } catch (error) {
+      toast.error('복사에 실패했습니다.')
+    }
+  }
+
   const handleUserToggle = (userId: number) => {
     setSelectedUsers(prev => 
       prev.includes(userId) 
@@ -560,6 +693,73 @@ export function MMSMessaging() {
       setSelectedUsers([])
     } else {
       setSelectedUsers(users.map(user => user.id))
+    }
+  }
+
+  // Send multi-flight text message
+  const handleSendMultiFlightMessage = async () => {
+    if (selectedUsers.length === 0) {
+      toast.error('수신자를 선택해주세요.')
+      return
+    }
+
+    if (!generatedFlightText.trim()) {
+      toast.error('메시지 내용이 없습니다.')
+      return
+    }
+
+    setSending(true)
+    try {
+      const selectedUserData = users.filter(user => selectedUsers.includes(user.id))
+
+      // Prepare recipients for OMNI SDK
+      const recipients = selectedUserData.map(user => ({
+        phone: user.phone_number.replace(/[^0-9]/g, ''),
+        name: user.name,
+        id: user.id
+      }))
+
+      const requestBody = {
+        recipients,
+        message: {
+          text: generatedFlightText,
+          title: "[본에어 Empty Leg 특가 안내]"
+        },
+        from: "16009064",
+        flightId: selectedFlights.map(f => f.flight_id).join(','),
+        templateId: 'multi-flight-list'
+      }
+
+      const response = await fetch('/api/send-mms-omni', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      })
+
+      if (!response.ok) {
+        throw new Error('MMS 발송에 실패했습니다.')
+      }
+
+      const result = await response.json()
+
+      if (result.success) {
+        toast.success(`${selectedUsers.length}명에게 MMS를 성공적으로 발송했습니다.`)
+
+        // Reset selections
+        setSelectedUsers([])
+        setSelectedFlights([])
+        setGeneratedFlightText('')
+      } else {
+        throw new Error(result.error || 'MMS 발송에 실패했습니다.')
+      }
+
+    } catch (error) {
+      console.error('Error sending MMS:', error)
+      toast.error(error instanceof Error ? error.message : 'MMS 발송에 실패했습니다.')
+    } finally {
+      setSending(false)
     }
   }
 
@@ -673,13 +873,185 @@ export function MMSMessaging() {
       </Card>
 
       <div className="space-y-6">
-          {/* Flight Selection */}
+          {/* Multi-Flight Text Generator */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Plane className="h-4 w-4" />
-                항공편 선택
+                다중 항공편 텍스트 생성
               </CardTitle>
+              <CardDescription>
+                여러 항공편을 선택하여 공유용 텍스트 메시지를 생성합니다.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {flights.length === 0 ? (
+                <div className="text-center py-8">
+                  <Plane className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                  <p className="text-muted-foreground">한국 노선 항공편이 없습니다.</p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {/* Select All */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="select-all-flights"
+                        checked={selectedFlights.length === flights.length && flights.length > 0}
+                        onCheckedChange={handleSelectAllFlights}
+                      />
+                      <Label htmlFor="select-all-flights">전체 선택 ({selectedFlights.length}/{flights.length})</Label>
+                    </div>
+                    {selectedFlights.length > 0 && (
+                      <Badge variant="default">{selectedFlights.length}개 선택됨</Badge>
+                    )}
+                  </div>
+
+                  {/* Flight List with Checkboxes */}
+                  <div className="border rounded-lg max-h-[300px] overflow-y-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="w-12">선택</TableHead>
+                          <TableHead>노선</TableHead>
+                          <TableHead>날짜</TableHead>
+                          <TableHead>가격</TableHead>
+                          <TableHead>기종</TableHead>
+                          <TableHead>탑승</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {flights.map((flight) => (
+                          <TableRow key={flight.id}>
+                            <TableCell>
+                              <Checkbox
+                                checked={selectedFlights.some(f => f.id === flight.id)}
+                                onCheckedChange={() => handleFlightToggle(flight)}
+                              />
+                            </TableCell>
+                            <TableCell className="font-medium">
+                              {flight.from_city} → {flight.to_city}
+                            </TableCell>
+                            <TableCell>
+                              {flight.flight_date
+                                ? new Date(flight.flight_date).toLocaleDateString('ko-KR', {
+                                    month: 'numeric',
+                                    day: 'numeric'
+                                  })
+                                : '-'
+                              }
+                            </TableCell>
+                            <TableCell>{calculateDisplayPrice(flight) || '-'}</TableCell>
+                            <TableCell className="text-sm">{parseAircraftFromRawText(flight) || '-'}</TableCell>
+                            <TableCell>{parseSeatsFromRawText(flight) ? `${parseSeatsFromRawText(flight)}명` : '-'}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+
+                  {/* Generated Text Preview */}
+                  {generatedFlightText && (
+                    <div className="space-y-4">
+                      <div className="space-y-3">
+                        <Label>생성된 텍스트 미리보기</Label>
+                        <div className="relative">
+                          <Textarea
+                            value={generatedFlightText}
+                            onChange={(e) => setGeneratedFlightText(e.target.value)}
+                            rows={10}
+                            className="font-mono text-sm"
+                          />
+                          <Button
+                            onClick={handleCopyText}
+                            size="sm"
+                            className="absolute top-2 right-2"
+                            variant="secondary"
+                          >
+                            <Copy className="h-4 w-4 mr-1" />
+                            복사
+                          </Button>
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          총 {generatedFlightText.length}자 | 텍스트를 직접 수정할 수 있습니다.
+                        </p>
+                      </div>
+
+                      {/* Recipients Selection for Multi-Flight Text */}
+                      <div className="border-t pt-4 space-y-3">
+                        <div className="flex items-center justify-between">
+                          <Label className="flex items-center gap-2">
+                            <Users className="h-4 w-4" />
+                            수신자 선택 ({selectedUsers.length}/{users.length})
+                          </Label>
+                          <div className="flex items-center space-x-2">
+                            <Checkbox
+                              id="select-all-users-multi"
+                              checked={selectedUsers.length === users.length && users.length > 0}
+                              onCheckedChange={handleSelectAllUsers}
+                            />
+                            <Label htmlFor="select-all-users-multi" className="text-sm">전체 선택</Label>
+                          </div>
+                        </div>
+
+                        <div className="border rounded-lg max-h-[200px] overflow-y-auto">
+                          <Table>
+                            <TableHeader>
+                              <TableRow>
+                                <TableHead className="w-12">선택</TableHead>
+                                <TableHead>이름</TableHead>
+                                <TableHead>이메일</TableHead>
+                                <TableHead>전화번호</TableHead>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                              {users.map((user) => (
+                                <TableRow key={user.id}>
+                                  <TableCell>
+                                    <Checkbox
+                                      checked={selectedUsers.includes(user.id)}
+                                      onCheckedChange={() => handleUserToggle(user.id)}
+                                    />
+                                  </TableCell>
+                                  <TableCell className="font-medium">{user.name}</TableCell>
+                                  <TableCell className="text-sm text-muted-foreground">{user.email || '-'}</TableCell>
+                                  <TableCell>{user.phone_number}</TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </div>
+
+                        {selectedUsers.length > 0 && (
+                          <div className="flex justify-end">
+                            <Button
+                              onClick={handleSendMultiFlightMessage}
+                              disabled={sending}
+                              className="flex items-center gap-2"
+                            >
+                              <Send className="h-4 w-4" />
+                              {sending ? '발송 중...' : `${selectedUsers.length}명에게 발송`}
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Single Flight Selection for MMS Template */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Plane className="h-4 w-4" />
+                MMS 템플릿용 항공편 선택
+              </CardTitle>
+              <CardDescription>
+                MMS 템플릿을 사용하여 상세 메시지를 작성합니다.
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               {flights.length === 0 ? (
@@ -691,8 +1063,8 @@ export function MMSMessaging() {
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label>항공편 선택</Label>
-                    <Select 
-                      value={selectedFlight?.id.toString() || ''} 
+                    <Select
+                      value={selectedFlight?.id.toString() || ''}
                       onValueChange={(value) => {
                         const flight = flights.find(f => f.id.toString() === value)
                         if (flight) handleFlightSelect(flight)
@@ -1092,6 +1464,7 @@ export function MMSMessaging() {
                         <TableRow>
                           <TableHead className="w-12">선택</TableHead>
                           <TableHead>이름</TableHead>
+                          <TableHead>이메일</TableHead>
                           <TableHead>전화번호</TableHead>
                           <TableHead>가입일</TableHead>
                         </TableRow>
@@ -1106,6 +1479,7 @@ export function MMSMessaging() {
                               />
                             </TableCell>
                             <TableCell className="font-medium">{user.name}</TableCell>
+                            <TableCell className="text-sm text-muted-foreground">{user.email || '-'}</TableCell>
                             <TableCell>{user.phone_number}</TableCell>
                             <TableCell>
                               {user.created_at ? new Date(user.created_at).toLocaleDateString('ko-KR') : '-'}

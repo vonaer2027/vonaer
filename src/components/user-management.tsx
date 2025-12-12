@@ -11,7 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { User, userService } from '@/lib/supabase'
-import { Plus, MoreHorizontal, Edit, Trash2, Phone, User as UserIcon } from 'lucide-react'
+import { Plus, MoreHorizontal, Edit, Trash2, Phone, User as UserIcon, Mail } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
 
@@ -246,6 +246,7 @@ export function UserManagement() {
                     <TableHeader>
                       <TableRow>
                         <TableHead className="min-w-[120px]">{t('userManagement.name')}</TableHead>
+                        <TableHead className="min-w-[180px]">이메일</TableHead>
                         <TableHead className="min-w-[140px]">{t('userManagement.phone')}</TableHead>
                         <TableHead className="min-w-[80px]">{t('userManagement.status')}</TableHead>
                         <TableHead className="min-w-[100px]">{t('userManagement.createdAt')}</TableHead>
@@ -259,6 +260,12 @@ export function UserManagement() {
                         <div className="flex items-center gap-2">
                           <UserIcon className="h-4 w-4 text-muted-foreground" />
                           {user.name}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Mail className="h-3 w-3" />
+                          {user.email || '-'}
                         </div>
                       </TableCell>
                       <TableCell>
