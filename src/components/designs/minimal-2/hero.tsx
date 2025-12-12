@@ -3,61 +3,58 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ArrowDown, ChevronDown } from 'lucide-react';
-import { useState, useEffect } from 'react';
-
-// Hook to detect mobile viewport
-function useIsMobile(breakpoint = 768) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < breakpoint);
-    };
-
-    // Initial check
-    checkMobile();
-
-    // Listen for resize events
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, [breakpoint]);
-
-  return isMobile;
-}
+import { useEffect, useRef } from 'react';
 
 export function Minimal2Hero() {
   const t = useTranslations();
-  const isMobile = useIsMobile();
-  const [videoKey, setVideoKey] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Force video reload when switching between mobile/desktop
+  // Play video after mount
   useEffect(() => {
-    setVideoKey(prev => prev + 1);
-  }, [isMobile]);
-
-  const videoSrc = isMobile ? '/hero/mobile_intro.mp4' : '/hero/intro.mp4';
+    if (videoRef.current) {
+      videoRef.current.play().catch((err) => {
+        console.error('Video autoplay failed:', err);
+      });
+    }
+  }, []);
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-black">
       {/* Video background - Full coverage */}
       <div className="absolute inset-0 w-full h-full z-0">
-        {/* Background video - Responsive source */}
+        {/* Fallback background image while video loads */}
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
+          style={{ backgroundImage: 'url(/hero/1.webp)' }}
+        />
+
+        {/* Desktop video */}
         <video
-          key={videoKey}
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
+          src="/hero/intro.mp4"
+          className="hidden md:block absolute inset-0 w-full h-full object-cover z-[1]"
           style={{ objectPosition: 'center center' }}
-        >
-          <source src={videoSrc} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        />
+
+        {/* Mobile video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          src="/hero/mobile_intro.mp4"
+          className="block md:hidden absolute inset-0 w-full h-full object-cover z-[1]"
+          style={{ objectPosition: 'center center' }}
+        />
 
         {/* Dark overlay for text readability - Covers entire video */}
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/80 via-black/50 to-black/70 z-10" />
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/60 via-black/30 to-black/40 z-10" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 h-full flex items-center justify-center">

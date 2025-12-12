@@ -12,8 +12,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Flight, User, MarginSetting, flightService, userService, marginService } from '@/lib/supabase'
-import { MessageSquare, Send, Users, Plane, Calendar, MapPin, DollarSign, Eye, CheckCircle2, Copy } from 'lucide-react'
+import { Flight, User, MarginSetting, TieredMarginSetting, flightService, userService, marginService, tieredMarginService } from '@/lib/supabase'
+import { MessageSquare, Send, Users, Plane, Calendar, MapPin, DollarSign, Eye, CheckCircle2, Copy, Search } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
 
@@ -47,6 +47,7 @@ export function MMSMessaging() {
   const [flights, setFlights] = useState<Flight[]>([])
   const [users, setUsers] = useState<User[]>([])
   const [marginSetting, setMarginSetting] = useState<MarginSetting | null>(null)
+  const [tieredMargins, setTieredMargins] = useState<TieredMarginSetting[]>([])
   const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null)
   const [selectedFlights, setSelectedFlights] = useState<Flight[]>([]) // Multi-flight selection
   const [selectedUsers, setSelectedUsers] = useState<number[]>([])
@@ -64,6 +65,7 @@ export function MMSMessaging() {
   const [sending, setSending] = useState(false)
   const [previewOpen, setPreviewOpen] = useState(false)
   const [messagePreview, setMessagePreview] = useState<MessagePreview | null>(null)
+  const [userSearchQuery, setUserSearchQuery] = useState('')
 
   // MMS Templates based on the provided examples
   const mmsTemplates: MMSTemplate[] = [
@@ -165,13 +167,15 @@ export function MMSMessaging() {
   const loadData = async () => {
     try {
       setLoading(true)
-      const [flightsData, usersData, marginData] = await Promise.all([
+      const [flightsData, usersData, marginData, tieredMarginsData] = await Promise.all([
         flightService.getAll(),
         userService.getAll(),
-        marginService.getCurrent().catch(() => null)
+        marginService.getCurrent().catch(() => null),
+        tieredMarginService.getAll().catch(() => [])
       ])
 
       setMarginSetting(marginData)
+      setTieredMargins(tieredMarginsData)
 
       // Helper to check if a flight involves Korea (matches /empty page logic)
       const involvesKorea = (flight: Flight) => {
@@ -427,7 +431,7 @@ export function MMSMessaging() {
   const calculateDisplayPrice = (flight: Flight): string => {
     const roundUpToNearestHundred = (price: number) => Math.ceil(price / 100) * 100
 
-    // If custom price is set, use that
+    // If custom price is set, use that (already includes any admin adjustments)
     if (flight.custom_price !== null && flight.custom_price !== undefined) {
       return `${flight.custom_price.toLocaleString()} USD`
     }
@@ -437,14 +441,21 @@ export function MMSMessaging() {
       return flight.price || ''
     }
 
-    // Apply margin and round up to nearest hundred
+    // Priority 1: Use tiered margins if available
+    if (tieredMargins && tieredMargins.length > 0) {
+      const { adjustedPrice } = tieredMarginService.calculateAdjustedPrice(flight.price_numeric, tieredMargins)
+      const roundedPrice = roundUpToNearestHundred(adjustedPrice)
+      return `${roundedPrice.toLocaleString()} USD`
+    }
+
+    // Priority 2: Fall back to simple margin percentage
     if (marginSetting && marginSetting.margin_percentage > 0) {
       const adjustedPrice = flight.price_numeric * (1 + (marginSetting.margin_percentage / 100))
       const roundedPrice = roundUpToNearestHundred(adjustedPrice)
       return `${roundedPrice.toLocaleString()} USD`
     }
 
-    // Return formatted original price
+    // No margin applied - return formatted original price
     return `${flight.price_numeric.toLocaleString()} USD`
   }
 
@@ -543,6 +554,9 @@ export function MMSMessaging() {
     const aircraftDescription = details.aircraftDescription || getAircraftDescription(parsedAircraft)
     const aircraftFeatures = details.aircraftFeatures || getAircraftFeatures(parsedAircraft)
 
+    // Calculate margin-adjusted price for this flight
+    const displayPrice = calculateDisplayPrice(flight)
+
     // Basic replacements for single flight templates
     const basicReplacements = {
       '{{date}}': formattedDate,
@@ -552,7 +566,7 @@ export function MMSMessaging() {
       '{{duration}}': duration,
       '{{aircraft}}': parsedAircraft,
       '{{seats}}': parsedSeats?.toString() || '9',
-      '{{price}}': flight.price || '$0',
+      '{{price}}': displayPrice || '문의',
       '{{aircraft_description}}': aircraftDescription,
       '{{aircraft_features}}': aircraftFeatures,
       '{{aircraft_optimization}}': getAircraftOptimization(flight.aircraft)
@@ -569,7 +583,7 @@ export function MMSMessaging() {
       '{{outbound_aircraft}}': parsedAircraft,
       '{{outbound_description}}': aircraftDescription,
       '{{outbound_features}}': aircraftFeatures,
-      '{{outbound_price}}': flight.price || '$0',
+      '{{outbound_price}}': displayPrice || '문의',
       
       // Return flight (using selected values or defaults)
       '{{return_date}}': getNextDay(flightDate),
@@ -688,11 +702,18 @@ export function MMSMessaging() {
     )
   }
 
+  // Filter users based on search query
+  const filteredUsers = users.filter(user =>
+    user.name.toLowerCase().includes(userSearchQuery.toLowerCase()) ||
+    (user.email && user.email.toLowerCase().includes(userSearchQuery.toLowerCase())) ||
+    user.phone_number.includes(userSearchQuery)
+  )
+
   const handleSelectAllUsers = () => {
-    if (selectedUsers.length === users.length) {
+    if (selectedUsers.length === filteredUsers.length) {
       setSelectedUsers([])
     } else {
-      setSelectedUsers(users.map(user => user.id))
+      setSelectedUsers(filteredUsers.map(user => user.id))
     }
   }
 
@@ -982,16 +1003,27 @@ export function MMSMessaging() {
                         <div className="flex items-center justify-between">
                           <Label className="flex items-center gap-2">
                             <Users className="h-4 w-4" />
-                            수신자 선택 ({selectedUsers.length}/{users.length})
+                            수신자 선택 ({selectedUsers.length}/{filteredUsers.length})
                           </Label>
                           <div className="flex items-center space-x-2">
                             <Checkbox
                               id="select-all-users-multi"
-                              checked={selectedUsers.length === users.length && users.length > 0}
+                              checked={selectedUsers.length === filteredUsers.length && filteredUsers.length > 0}
                               onCheckedChange={handleSelectAllUsers}
                             />
                             <Label htmlFor="select-all-users-multi" className="text-sm">전체 선택</Label>
                           </div>
+                        </div>
+
+                        {/* User Search */}
+                        <div className="relative">
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                          <Input
+                            placeholder="이름, 이메일, 전화번호로 검색..."
+                            value={userSearchQuery}
+                            onChange={(e) => setUserSearchQuery(e.target.value)}
+                            className="pl-9"
+                          />
                         </div>
 
                         <div className="border rounded-lg max-h-[200px] overflow-y-auto">
@@ -1005,19 +1037,27 @@ export function MMSMessaging() {
                               </TableRow>
                             </TableHeader>
                             <TableBody>
-                              {users.map((user) => (
-                                <TableRow key={user.id}>
-                                  <TableCell>
-                                    <Checkbox
-                                      checked={selectedUsers.includes(user.id)}
-                                      onCheckedChange={() => handleUserToggle(user.id)}
-                                    />
+                              {filteredUsers.length === 0 ? (
+                                <TableRow>
+                                  <TableCell colSpan={4} className="text-center text-muted-foreground py-4">
+                                    검색 결과가 없습니다.
                                   </TableCell>
-                                  <TableCell className="font-medium">{user.name}</TableCell>
-                                  <TableCell className="text-sm text-muted-foreground">{user.email || '-'}</TableCell>
-                                  <TableCell>{user.phone_number}</TableCell>
                                 </TableRow>
-                              ))}
+                              ) : (
+                                filteredUsers.map((user) => (
+                                  <TableRow key={user.id}>
+                                    <TableCell>
+                                      <Checkbox
+                                        checked={selectedUsers.includes(user.id)}
+                                        onCheckedChange={() => handleUserToggle(user.id)}
+                                      />
+                                    </TableCell>
+                                    <TableCell className="font-medium">{user.name}</TableCell>
+                                    <TableCell className="text-sm text-muted-foreground">{user.email || '-'}</TableCell>
+                                    <TableCell>{user.phone_number}</TableCell>
+                                  </TableRow>
+                                ))
+                              )}
                             </TableBody>
                           </Table>
                         </div>
@@ -1167,9 +1207,9 @@ export function MMSMessaging() {
                             <div className="flex items-center gap-2">
                               <DollarSign className="h-4 w-4 text-muted-foreground" />
                               <div>
-                                <div className="text-xs text-muted-foreground">가격</div>
+                                <div className="text-xs text-muted-foreground">가격 (마진 적용)</div>
                                 <div className="text-sm font-medium">
-                                  {selectedFlight.price || 'TBD'}
+                                  {calculateDisplayPrice(selectedFlight) || 'TBD'}
                                 </div>
                               </div>
                             </div>
@@ -1441,7 +1481,7 @@ export function MMSMessaging() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Users className="h-4 w-4" />
-                  수신자 선택 ({selectedUsers.length}/{users.length})
+                  수신자 선택 ({selectedUsers.length}/{filteredUsers.length})
                 </CardTitle>
                 <CardDescription>
                   메시지를 받을 고객을 선택하세요.
@@ -1449,16 +1489,29 @@ export function MMSMessaging() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id="select-all"
-                      checked={selectedUsers.length === users.length}
-                      onCheckedChange={handleSelectAllUsers}
-                    />
-                    <Label htmlFor="select-all">전체 선택</Label>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="select-all"
+                        checked={selectedUsers.length === filteredUsers.length && filteredUsers.length > 0}
+                        onCheckedChange={handleSelectAllUsers}
+                      />
+                      <Label htmlFor="select-all">전체 선택</Label>
+                    </div>
                   </div>
 
-                  <div className="border rounded-lg">
+                  {/* User Search */}
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      placeholder="이름, 이메일, 전화번호로 검색..."
+                      value={userSearchQuery}
+                      onChange={(e) => setUserSearchQuery(e.target.value)}
+                      className="pl-9"
+                    />
+                  </div>
+
+                  <div className="border rounded-lg max-h-[300px] overflow-y-auto">
                     <Table>
                       <TableHeader>
                         <TableRow>
@@ -1470,22 +1523,30 @@ export function MMSMessaging() {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {users.map((user) => (
-                          <TableRow key={user.id}>
-                            <TableCell>
-                              <Checkbox
-                                checked={selectedUsers.includes(user.id)}
-                                onCheckedChange={() => handleUserToggle(user.id)}
-                              />
-                            </TableCell>
-                            <TableCell className="font-medium">{user.name}</TableCell>
-                            <TableCell className="text-sm text-muted-foreground">{user.email || '-'}</TableCell>
-                            <TableCell>{user.phone_number}</TableCell>
-                            <TableCell>
-                              {user.created_at ? new Date(user.created_at).toLocaleDateString('ko-KR') : '-'}
+                        {filteredUsers.length === 0 ? (
+                          <TableRow>
+                            <TableCell colSpan={5} className="text-center text-muted-foreground py-4">
+                              검색 결과가 없습니다.
                             </TableCell>
                           </TableRow>
-                        ))}
+                        ) : (
+                          filteredUsers.map((user) => (
+                            <TableRow key={user.id}>
+                              <TableCell>
+                                <Checkbox
+                                  checked={selectedUsers.includes(user.id)}
+                                  onCheckedChange={() => handleUserToggle(user.id)}
+                                />
+                              </TableCell>
+                              <TableCell className="font-medium">{user.name}</TableCell>
+                              <TableCell className="text-sm text-muted-foreground">{user.email || '-'}</TableCell>
+                              <TableCell>{user.phone_number}</TableCell>
+                              <TableCell>
+                                {user.created_at ? new Date(user.created_at).toLocaleDateString('ko-KR') : '-'}
+                              </TableCell>
+                            </TableRow>
+                          ))
+                        )}
                       </TableBody>
                     </Table>
                   </div>

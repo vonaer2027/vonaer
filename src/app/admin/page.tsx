@@ -15,7 +15,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
-import { Flight, MarginSetting, flightService, marginService } from '@/lib/supabase'
+import { Flight, MarginSetting, TieredMarginSetting, flightService, marginService, tieredMarginService } from '@/lib/supabase'
 import { motion } from 'framer-motion'
 import { Toaster } from '@/components/ui/sonner'
 import { toast } from 'sonner'
@@ -25,6 +25,7 @@ export default function AdminDashboard() {
   const router = useRouter()
   const [flights, setFlights] = useState<Flight[]>([])
   const [marginSetting, setMarginSetting] = useState<MarginSetting | null>(null)
+  const [tieredMargins, setTieredMargins] = useState<TieredMarginSetting[]>([])
   const [loading, setLoading] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const [isFormOpen, setIsFormOpen] = useState(false)
@@ -81,9 +82,10 @@ export default function AdminDashboard() {
         return
       }
 
-      const [flightsData, marginData] = await Promise.all([
+      const [flightsData, marginData, tieredMarginsData] = await Promise.all([
         flightService.getAll(),
-        marginService.getCurrent().catch(() => null) // Handle case where no margin is set
+        marginService.getCurrent().catch(() => null), // Handle case where no margin is set
+        tieredMarginService.getAll().catch(() => [])
       ])
 
       // Helper to check if a flight involves Korea (Seoul, Busan, Jeju, Incheon, Gimpo)
@@ -125,6 +127,7 @@ export default function AdminDashboard() {
 
       setFlights(deduplicatedFlights)
       setMarginSetting(marginData)
+      setTieredMargins(tieredMarginsData)
     } catch (error) {
       console.error('Error loading data:', error)
       toast.error('Failed to load data')
@@ -385,9 +388,10 @@ export default function AdminDashboard() {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: index * 0.1 }}
                         >
-                          <FlightCard 
-                            flight={flight} 
+                          <FlightCard
+                            flight={flight}
                             marginSetting={marginSetting || undefined}
+                            tieredMargins={tieredMargins}
                             onPriceUpdate={handlePriceUpdate}
                             onEdit={handleEditFlight}
                             onDelete={() => loadData()}
@@ -413,10 +417,7 @@ export default function AdminDashboard() {
             </TabsContent>
 
             <TabsContent value="settings">
-              <MarginSettings 
-                currentMargin={marginSetting}
-                onMarginUpdate={handleMarginUpdate}
-              />
+              <MarginSettings />
             </TabsContent>
           </Tabs>
         </motion.div>

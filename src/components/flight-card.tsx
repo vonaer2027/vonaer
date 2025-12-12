@@ -6,9 +6,9 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Plane, Calendar, Users, MapPin, ArrowRight, Edit, MoreVertical, Trash2 } from "lucide-react"
+import { Plane, Calendar, Users, MapPin, ArrowRight, Edit, MoreVertical, Trash2, RotateCcw } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Flight, MarginSetting, flightService } from "@/lib/supabase"
+import { Flight, MarginSetting, TieredMarginSetting, flightService, tieredMarginService } from "@/lib/supabase"
 import { motion } from "framer-motion"
 import { toast } from "sonner"
 import Image from "next/image"
@@ -18,39 +18,63 @@ import { useLocale } from '@/components/locale-provider'
 interface FlightCardProps {
   flight: Flight
   marginSetting?: MarginSetting
+  tieredMargins?: TieredMarginSetting[]
   onPriceUpdate?: (flightId: number, newPrice: number) => void
   onEdit?: (flight: Flight) => void
   onDelete?: () => void
 }
 
-export function FlightCard({ flight, marginSetting, onPriceUpdate, onEdit, onDelete }: FlightCardProps) {
+export function FlightCard({ flight, marginSetting, tieredMargins, onPriceUpdate, onEdit, onDelete }: FlightCardProps) {
   const t = useTranslations()
   const { locale } = useLocale()
   const [customPrice, setCustomPrice] = useState<number | null>(flight.custom_price || null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [priceInput, setPriceInput] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
+
+  // Quick margin percentages from base price
+  const quickMargins = [5, 10, 15, 25]
   const roundUpToNearestHundred = (price: number) => {
     return Math.ceil(price / 100) * 100
   }
 
+  // Get the display price (custom override or tiered margin)
   const calculateAdjustedPrice = () => {
     if (!flight.price_numeric) return flight.price
 
-    // If custom price is set (either from props or state), use that
+    // Only use custom price if manually set by admin
     const effectiveCustomPrice = customPrice !== null ? customPrice : flight.custom_price
     if (effectiveCustomPrice !== null && effectiveCustomPrice !== undefined) {
       return `$${effectiveCustomPrice.toLocaleString()}`
     }
 
-    // Apply margin and round up to nearest hundred
-    if (marginSetting && marginSetting.margin_percentage > 0) {
-      const adjustedPrice = flight.price_numeric * (1 + (marginSetting.margin_percentage / 100))
+    // Otherwise use tiered margins (default system behavior)
+    if (tieredMargins && tieredMargins.length > 0) {
+      const { adjustedPrice } = tieredMarginService.calculateAdjustedPrice(flight.price_numeric, tieredMargins)
       const roundedPrice = roundUpToNearestHundred(adjustedPrice)
       return `$${roundedPrice.toLocaleString()}`
     }
 
-    return flight.price || 'Price TBD'
+    // Fallback to base price
+    return `$${flight.price_numeric.toLocaleString()}`
+  }
+
+  // Calculate price with a specific margin percentage from BASE price
+  const calculatePriceWithMargin = (marginPercent: number): number => {
+    if (!flight.price_numeric) return 0
+    const adjustedPrice = flight.price_numeric * (1 + marginPercent / 100)
+    return roundUpToNearestHundred(adjustedPrice)
+  }
+
+  // Get current margin percentage if custom price is set
+  const getCurrentMarginPercent = (): number | null => {
+    const effectiveCustomPrice = customPrice !== null ? customPrice : flight.custom_price
+    if (effectiveCustomPrice === null || effectiveCustomPrice === undefined || !flight.price_numeric) {
+      return null
+    }
+    const marginPercent = ((effectiveCustomPrice - flight.price_numeric) / flight.price_numeric) * 100
+    return Math.round(marginPercent)
   }
 
   const getOriginalPrice = () => {
@@ -81,32 +105,68 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate, onEdit, onDel
       toast.error(t('admin.flightCard.validation.invalidPrice'))
       return
     }
-    
+
+    await saveCustomPrice(newPrice)
+    setDialogOpen(false)
+  }
+
+  // Apply quick margin from base price
+  const handleQuickMargin = async (marginPercent: number) => {
+    if (!flight.price_numeric) {
+      toast.error('No base price available')
+      return
+    }
+
+    const newPrice = calculatePriceWithMargin(marginPercent)
+    await saveCustomPrice(newPrice)
+  }
+
+  // Reset to use tiered margins (remove custom price)
+  const handleResetToTieredMargin = async () => {
+    setIsSaving(true)
+    try {
+      // Set custom_price to null in database
+      await flightService.updateCustomPrice(flight.id, null)
+      setCustomPrice(null)
+      toast.success('가격이 기본 마진으로 초기화되었습니다')
+
+      if (onPriceUpdate) {
+        onPriceUpdate(flight.id, 0) // Signal refresh
+      }
+    } catch (error) {
+      console.error('Error resetting price:', error)
+      toast.error('가격 초기화 실패')
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  // Save custom price to database
+  const saveCustomPrice = async (newPrice: number) => {
+    setIsSaving(true)
     try {
       console.log('Updating price for flight ID:', flight.id, 'New price:', newPrice)
-      
-      // Update price in Supabase
+
       const result = await flightService.updateCustomPrice(flight.id, newPrice)
       console.log('Price update result:', result)
-      
+
       setCustomPrice(newPrice)
-      setDialogOpen(false)
       toast.success(t('admin.flightCard.success.priceUpdated'))
-      
+
       if (onPriceUpdate) {
         onPriceUpdate(flight.id, newPrice)
       }
     } catch (error) {
       console.error('Error updating price:', error)
-      console.error('Error details:', JSON.stringify(error, null, 2))
-      
-      // More specific error message
+
       let errorMessage = t('admin.flightCard.error.updateFailed')
       if (error && typeof error === 'object' && 'message' in error) {
         errorMessage = `${t('admin.flightCard.error.updateFailed')}: ${error.message}`
       }
-      
+
       toast.error(errorMessage)
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -310,76 +370,115 @@ export function FlightCard({ flight, marginSetting, onPriceUpdate, onEdit, onDel
           </div>
 
           {/* Pricing */}
-          <div className="border-t pt-4">
+          <div className="border-t pt-4 space-y-3">
+            {/* Price Display */}
             <div className="flex items-center justify-between">
               <div className="flex-1">
-                <div className="text-xs text-muted-foreground">{t('admin.flightCard.price')}</div>
-                {(marginSetting && marginSetting.margin_percentage > 0) || customPrice !== null || flight.custom_price ? (
-                  <div className="space-y-1">
-                    {getOriginalPrice() && (
-                      <div className="text-xs line-through text-muted-foreground">
-                        {getOriginalPrice()}
-                      </div>
-                    )}
-                    <div className="text-lg font-bold text-primary">
-                      {calculateAdjustedPrice()}
-                    </div>
-                    {(customPrice !== null || flight.custom_price) ? (
-                      <div className="text-xs text-blue-600">
-                        {t('admin.flightCard.customPrice')}
-                      </div>
-                    ) : marginSetting && (
-                      <div className="text-xs text-green-600">
-                        +{marginSetting.margin_percentage}% {t('admin.flightCard.margin')}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className="text-lg font-bold text-primary">
-                    {flight.price || t('admin.flightCard.priceTBD')}
-                  </div>
-                )}
+                <div className="text-xs text-muted-foreground">기준가</div>
+                <div className="text-sm text-muted-foreground">
+                  {getOriginalPrice() || t('admin.flightCard.priceTBD')}
+                </div>
               </div>
-              
-              <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button size="sm" variant="outline" onClick={handlePriceAdjustment} className="ml-2">
-                    <Edit className="h-3 w-3 mr-1" />
-                    {t('admin.flightCard.adjustPrice')}
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>{t('admin.flightCard.adjustPrice')}</DialogTitle>
-                    <DialogDescription>
-                      {flight.aircraft} - {flight.from_city} → {flight.to_city}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="grid gap-4 py-4">
-                    <div className="grid gap-2">
-                      <label htmlFor="price" className="text-sm font-medium">
-                        {t('admin.flightCard.newPrice')}
-                      </label>
-                      <Input
-                        id="price"
-                        type="number"
-                        value={priceInput}
-                        onChange={(e) => setPriceInput(e.target.value)}
-                        placeholder={t('admin.flightCard.pricePlaceholder')}
-                      />
-                    </div>
+              <div className="text-right">
+                <div className="text-xs text-muted-foreground">판매가</div>
+                <div className="text-lg font-bold text-primary">
+                  {calculateAdjustedPrice()}
+                </div>
+                {(customPrice !== null || flight.custom_price) ? (
+                  <div className="text-xs text-blue-600">
+                    수동 설정 (+{getCurrentMarginPercent()}%)
                   </div>
-                  <div className="flex justify-end gap-2">
-                    <Button variant="outline" onClick={() => setDialogOpen(false)}>
-                      {t('admin.flightCard.cancel')}
-                    </Button>
-                    <Button onClick={handleSavePriceAdjustment}>
-                      {t('admin.flightCard.save')}
-                    </Button>
+                ) : tieredMargins && tieredMargins.length > 0 ? (
+                  <div className="text-xs text-green-600">
+                    기본 마진 적용
                   </div>
-                </DialogContent>
-              </Dialog>
+                ) : null}
+              </div>
             </div>
+
+            {/* Quick Margin Buttons */}
+            {flight.price_numeric && (
+              <div className="space-y-2">
+                <div className="text-xs text-muted-foreground">빠른 마진 설정 (기준가 기준)</div>
+                <div className="flex flex-wrap gap-1">
+                  {quickMargins.map((margin) => (
+                    <Button
+                      key={margin}
+                      size="sm"
+                      variant={getCurrentMarginPercent() === margin ? "default" : "outline"}
+                      onClick={() => handleQuickMargin(margin)}
+                      disabled={isSaving}
+                      className="text-xs h-7 px-2"
+                    >
+                      +{margin}%
+                    </Button>
+                  ))}
+                  <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                    <DialogTrigger asChild>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={handlePriceAdjustment}
+                        disabled={isSaving}
+                        className="text-xs h-7 px-2"
+                      >
+                        <Edit className="h-3 w-3 mr-1" />
+                        직접입력
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>가격 직접 설정</DialogTitle>
+                        <DialogDescription>
+                          {flight.aircraft} - {flight.from_city} → {flight.to_city}
+                          <br />
+                          <span className="text-xs">기준가: {getOriginalPrice()}</span>
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="grid gap-4 py-4">
+                        <div className="grid gap-2">
+                          <label htmlFor="price" className="text-sm font-medium">
+                            판매가 (USD)
+                          </label>
+                          <Input
+                            id="price"
+                            type="number"
+                            value={priceInput}
+                            onChange={(e) => setPriceInput(e.target.value)}
+                            placeholder="예: 15000"
+                          />
+                          {priceInput && flight.price_numeric && (
+                            <div className="text-xs text-muted-foreground">
+                              마진: +{Math.round(((parseInt(priceInput) - flight.price_numeric) / flight.price_numeric) * 100)}%
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex justify-end gap-2">
+                        <Button variant="outline" onClick={() => setDialogOpen(false)}>
+                          취소
+                        </Button>
+                        <Button onClick={handleSavePriceAdjustment} disabled={isSaving}>
+                          저장
+                        </Button>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                  {(customPrice !== null || flight.custom_price) && (
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={handleResetToTieredMargin}
+                      disabled={isSaving}
+                      className="text-xs h-7 px-2 text-orange-600 hover:text-orange-700"
+                    >
+                      <RotateCcw className="h-3 w-3 mr-1" />
+                      초기화
+                    </Button>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
 

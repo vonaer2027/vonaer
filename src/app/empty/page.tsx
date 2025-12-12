@@ -8,7 +8,7 @@ import { ClientFlightCard } from '@/components/client-flight-card'
 import { BookingDialog } from '@/components/booking-dialog'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Flight, MarginSetting, flightService, marginService } from '@/lib/supabase'
+import { Flight, MarginSetting, TieredMarginSetting, flightService, marginService, tieredMarginService } from '@/lib/supabase'
 import { VonaerFooter } from '@/components/vonaer-footer'
 import { motion } from 'framer-motion'
 import { Toaster } from '@/components/ui/sonner'
@@ -21,6 +21,7 @@ export default function ClientFlightsPage() {
   const [flights, setFlights] = useState<Flight[]>([])
   const [filteredFlights, setFilteredFlights] = useState<Flight[]>([])
   const [marginSetting, setMarginSetting] = useState<MarginSetting | null>(null)
+  const [tieredMargins, setTieredMargins] = useState<TieredMarginSetting[]>([])
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
   const [sortBy, setSortBy] = useState<SortOption>('date-near')
@@ -34,9 +35,10 @@ export default function ClientFlightsPage() {
 
       console.log('[Empty Leg] Fetching flights from Supabase...')
 
-      const [flightsData, marginData] = await Promise.all([
+      const [flightsData, marginData, tieredMarginsData] = await Promise.all([
         flightService.getAll(),
-        marginService.getCurrent().catch(() => null)
+        marginService.getCurrent().catch(() => null),
+        tieredMarginService.getAll().catch(() => [])
       ])
 
       console.log('[Empty Leg] Raw flights data:', {
@@ -115,9 +117,12 @@ export default function ClientFlightsPage() {
 
       setFlights(deduplicatedFlights)
       setMarginSetting(marginData)
+      setTieredMargins(tieredMarginsData)
 
-      if (marginData) {
-        console.log('[Empty Leg] Margin setting:', marginData.margin_percentage + '%')
+      if (tieredMarginsData && tieredMarginsData.length > 0) {
+        console.log('[Empty Leg] Tiered margins loaded:', tieredMarginsData.length, 'tiers')
+      } else if (marginData) {
+        console.log('[Empty Leg] Legacy margin setting:', marginData.margin_percentage + '%')
       }
     } catch (error) {
       console.error('[Empty Leg] Error loading data:', error)
@@ -134,9 +139,26 @@ export default function ClientFlightsPage() {
 
   const calculateFinalPrice = useCallback((flight: Flight): number => {
     if (!flight.price_numeric) return 0 // Enquire-only flights sort to end
-    if (!marginSetting) return flight.price_numeric
-    return flight.price_numeric * (1 + (marginSetting.margin_percentage / 100))
-  }, [marginSetting])
+
+    // Priority 1: Custom price (admin override)
+    if (flight.custom_price !== null && flight.custom_price !== undefined) {
+      return flight.custom_price
+    }
+
+    // Priority 2: Tiered margins
+    if (tieredMargins && tieredMargins.length > 0) {
+      const { adjustedPrice } = tieredMarginService.calculateAdjustedPrice(flight.price_numeric, tieredMargins)
+      return Math.ceil(adjustedPrice / 100) * 100 // Round up to nearest 100
+    }
+
+    // Priority 3: Legacy single margin
+    if (marginSetting && marginSetting.margin_percentage > 0) {
+      const adjustedPrice = flight.price_numeric * (1 + (marginSetting.margin_percentage / 100))
+      return Math.ceil(adjustedPrice / 100) * 100 // Round up to nearest 100
+    }
+
+    return flight.price_numeric
+  }, [marginSetting, tieredMargins])
 
   useEffect(() => {
     const sorted = [...flights]
@@ -326,9 +348,10 @@ export default function ClientFlightsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <ClientFlightCard 
-                    flight={flight} 
+                  <ClientFlightCard
+                    flight={flight}
                     marginSetting={marginSetting || undefined}
+                    tieredMargins={tieredMargins}
                     onBookingRequest={() => handleBookingRequest(flight)}
                   />
                 </motion.div>

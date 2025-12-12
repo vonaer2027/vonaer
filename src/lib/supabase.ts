@@ -74,6 +74,17 @@ export interface MarginSetting {
   updated_at?: string
 }
 
+export interface TieredMarginSetting {
+  id: number
+  min_price: number
+  max_price: number
+  margin_percentage: number
+  is_active: boolean
+  created_by?: string
+  created_at?: string
+  updated_at?: string
+}
+
 export interface BookingRequest {
   id: number
   flight_id: string
@@ -393,9 +404,109 @@ export const marginService = {
       .from('margin_settings')
       .select('*')
       .order('created_at', { ascending: false })
-    
+
     if (error) throw error
     return data as MarginSetting[]
+  }
+}
+
+// Tiered margin settings operations
+export const tieredMarginService = {
+  async getAll() {
+    const supabase = getSupabaseClient()
+    const { data, error } = await supabase
+      .from('tiered_margin_settings')
+      .select('*')
+      .eq('is_active', true)
+      .order('min_price', { ascending: true })
+
+    if (error) throw error
+    return data as TieredMarginSetting[]
+  },
+
+  async getMarginForPrice(price: number): Promise<number> {
+    const supabase = getSupabaseClient()
+    const { data, error } = await supabase
+      .from('tiered_margin_settings')
+      .select('*')
+      .eq('is_active', true)
+      .lte('min_price', price)
+      .gt('max_price', price)
+      .limit(1)
+      .single()
+
+    if (error || !data) {
+      // Fallback: get the tier that contains this price
+      const { data: allTiers, error: allError } = await supabase
+        .from('tiered_margin_settings')
+        .select('*')
+        .eq('is_active', true)
+        .order('min_price', { ascending: true })
+
+      if (allError || !allTiers || allTiers.length === 0) {
+        return 0 // Default to 0% margin if no tiers found
+      }
+
+      // Find the appropriate tier
+      for (const tier of allTiers) {
+        if (price >= tier.min_price && price < tier.max_price) {
+          return tier.margin_percentage
+        }
+      }
+
+      // If price is above all tiers, use the highest tier
+      return allTiers[allTiers.length - 1].margin_percentage
+    }
+
+    return data.margin_percentage
+  },
+
+  async update(tiers: Omit<TieredMarginSetting, 'id' | 'created_at' | 'updated_at'>[]) {
+    const response = await fetch('/api/tiered-margins', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ tiers }),
+    })
+
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to update tiered margin settings')
+    }
+
+    return response.json()
+  },
+
+  // Calculate adjusted price with tiered margin
+  calculateAdjustedPrice(basePrice: number, tiers: TieredMarginSetting[]): { adjustedPrice: number; marginPercentage: number; marginAmount: number } {
+    if (!tiers || tiers.length === 0) {
+      return { adjustedPrice: basePrice, marginPercentage: 0, marginAmount: 0 }
+    }
+
+    // Find the appropriate tier for this price
+    const tier = tiers.find(t => basePrice >= t.min_price && basePrice < t.max_price)
+
+    if (!tier) {
+      // If no exact match, use the highest tier for very high prices
+      const highestTier = tiers[tiers.length - 1]
+      if (basePrice >= highestTier.max_price) {
+        const marginAmount = basePrice * (highestTier.margin_percentage / 100)
+        return {
+          adjustedPrice: basePrice + marginAmount,
+          marginPercentage: highestTier.margin_percentage,
+          marginAmount
+        }
+      }
+      return { adjustedPrice: basePrice, marginPercentage: 0, marginAmount: 0 }
+    }
+
+    const marginAmount = basePrice * (tier.margin_percentage / 100)
+    return {
+      adjustedPrice: basePrice + marginAmount,
+      marginPercentage: tier.margin_percentage,
+      marginAmount
+    }
   }
 }
 

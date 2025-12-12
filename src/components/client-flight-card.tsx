@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Plane, Calendar, Users, MapPin, ArrowRight } from "lucide-react"
-import { Flight, MarginSetting } from "@/lib/supabase"
+import { Flight, MarginSetting, TieredMarginSetting, tieredMarginService } from "@/lib/supabase"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { useTranslations } from 'next-intl'
@@ -12,10 +12,11 @@ import { useLocale } from '@/components/locale-provider'
 interface ClientFlightCardProps {
   flight: Flight
   marginSetting?: MarginSetting
+  tieredMargins?: TieredMarginSetting[]
   onBookingRequest: () => void
 }
 
-export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: ClientFlightCardProps) {
+export function ClientFlightCard({ flight, marginSetting, tieredMargins, onBookingRequest }: ClientFlightCardProps) {
   const t = useTranslations()
   const { locale } = useLocale()
   const roundUpToNearestHundred = (price: number) => {
@@ -24,18 +25,24 @@ export function ClientFlightCard({ flight, marginSetting, onBookingRequest }: Cl
 
   const calculateFinalPrice = () => {
     if (!flight.price_numeric) return flight.price_numeric || 0
-    
-    // If custom price is set, use that
+
+    // If custom price is set, use that (highest priority)
     if (flight.custom_price !== null && flight.custom_price !== undefined) {
       return flight.custom_price
     }
-    
-    // Apply margin and round up to nearest hundred
+
+    // Apply tiered margin if available (second priority)
+    if (tieredMargins && tieredMargins.length > 0) {
+      const result = tieredMarginService.calculateAdjustedPrice(flight.price_numeric, tieredMargins)
+      return roundUpToNearestHundred(result.adjustedPrice)
+    }
+
+    // Fallback to legacy single margin (third priority)
     if (marginSetting && marginSetting.margin_percentage > 0) {
       const adjustedPrice = flight.price_numeric * (1 + (marginSetting.margin_percentage / 100))
       return roundUpToNearestHundred(adjustedPrice)
     }
-    
+
     return flight.price_numeric
   }
 

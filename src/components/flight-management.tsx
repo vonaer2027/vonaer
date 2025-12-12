@@ -7,16 +7,17 @@ import { Plus, Edit, Trash2, Search, Filter } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { FlightForm } from './flight-form'
-import { Flight, flightService } from '@/lib/supabase'
+import { Flight, TieredMarginSetting, flightService, tieredMarginService } from '@/lib/supabase'
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
 
 interface FlightManagementProps {
   flights: Flight[]
+  tieredMargins?: TieredMarginSetting[]
   onFlightsChange: () => void
 }
 
-export function FlightManagement({ flights, onFlightsChange }: FlightManagementProps) {
+export function FlightManagement({ flights, tieredMargins, onFlightsChange }: FlightManagementProps) {
   const t = useTranslations()
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editingFlight, setEditingFlight] = useState<Flight | null>(null)
@@ -149,6 +150,7 @@ export function FlightManagement({ flights, onFlightsChange }: FlightManagementP
           <FlightCardWithActions
             key={flight.id}
             flight={flight}
+            tieredMargins={tieredMargins}
             onEdit={handleEditFlight}
             onDelete={onFlightsChange}
           />
@@ -190,12 +192,14 @@ export function FlightManagement({ flights, onFlightsChange }: FlightManagementP
 }
 
 // Individual flight card with action buttons
-function FlightCardWithActions({ 
-  flight, 
-  onEdit, 
-  onDelete 
-}: { 
+function FlightCardWithActions({
+  flight,
+  tieredMargins,
+  onEdit,
+  onDelete
+}: {
   flight: Flight
+  tieredMargins?: TieredMarginSetting[]
   onEdit: (flight: Flight) => void
   onDelete: () => void
 }) {
@@ -275,10 +279,20 @@ function FlightCardWithActions({
           <div className="flex items-center justify-between">
             <span className="text-muted-foreground text-sm">{t('admin.flightManagement.price')}</span>
             <span className="font-medium">
-              {flight.custom_price 
-                ? `$${flight.custom_price.toLocaleString()}`
-                : flight.price || t('admin.flightManagement.tbd')
-              }
+              {(() => {
+                const roundUpToNearestHundred = (price: number) => Math.ceil(price / 100) * 100
+                // Priority 1: Custom price
+                if (flight.custom_price !== null && flight.custom_price !== undefined) {
+                  return `$${flight.custom_price.toLocaleString()}`
+                }
+                // Priority 2: Tiered margins
+                if (flight.price_numeric && tieredMargins && tieredMargins.length > 0) {
+                  const { adjustedPrice } = tieredMarginService.calculateAdjustedPrice(flight.price_numeric, tieredMargins)
+                  return `$${roundUpToNearestHundred(adjustedPrice).toLocaleString()}`
+                }
+                // Fallback to original price
+                return flight.price || t('admin.flightManagement.tbd')
+              })()}
             </span>
           </div>
           {flight.involves_korea && (

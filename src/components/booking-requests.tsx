@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Phone, Calendar, Plane, ArrowRight, Check, RefreshCw, Trash2, Eye, Users } from "lucide-react"
 import Image from "next/image"
-import { BookingRequest, bookingRequestService } from "@/lib/supabase"
+import { BookingRequest, TieredMarginSetting, bookingRequestService, tieredMarginService } from "@/lib/supabase"
 import { motion } from "framer-motion"
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
@@ -16,6 +16,7 @@ import { useTranslations } from 'next-intl'
 export function BookingRequests() {
   const t = useTranslations()
   const [bookingRequests, setBookingRequests] = useState<BookingRequest[]>([])
+  const [tieredMargins, setTieredMargins] = useState<TieredMarginSetting[]>([])
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
   const [selectedFlight, setSelectedFlight] = useState<BookingRequest | null>(null)
@@ -24,8 +25,12 @@ export function BookingRequests() {
   const loadBookingRequests = useCallback(async () => {
     try {
       setRefreshing(true)
-      const data = await bookingRequestService.getAll()
+      const [data, marginsData] = await Promise.all([
+        bookingRequestService.getAll(),
+        tieredMarginService.getAll().catch(() => [])
+      ])
       setBookingRequests(data)
+      setTieredMargins(marginsData)
     } catch (error) {
       console.error('Error loading booking requests:', error)
       toast.error(t('bookingRequests.loading.failed'))
@@ -34,6 +39,28 @@ export function BookingRequests() {
       setRefreshing(false)
     }
   }, [t])
+
+  // Calculate display price with tiered margins
+  const calculateDisplayPrice = (flight: BookingRequest['flight']): string => {
+    if (!flight) return 'N/A'
+
+    const roundUpToNearestHundred = (price: number) => Math.ceil(price / 100) * 100
+
+    // Priority 1: Custom price
+    if (flight.custom_price !== null && flight.custom_price !== undefined) {
+      return `$${flight.custom_price.toLocaleString()}`
+    }
+
+    // Priority 2: Calculate with tiered margins
+    if (flight.price_numeric && tieredMargins && tieredMargins.length > 0) {
+      const { adjustedPrice } = tieredMarginService.calculateAdjustedPrice(flight.price_numeric, tieredMargins)
+      const roundedPrice = roundUpToNearestHundred(adjustedPrice)
+      return `$${roundedPrice.toLocaleString()}`
+    }
+
+    // Fallback to original price
+    return flight.price || 'N/A'
+  }
 
   useEffect(() => {
     loadBookingRequests()
@@ -458,9 +485,9 @@ export function BookingRequests() {
                         <Users className="h-2 w-2" />
                         {selectedFlight.flight.seats} seats
                       </span>
-                      {selectedFlight.flight.price && (
+                      {selectedFlight.flight && (
                         <span className="font-semibold text-primary text-xs">
-                          {selectedFlight.flight.price}
+                          {calculateDisplayPrice(selectedFlight.flight)}
                         </span>
                       )}
                     </div>
