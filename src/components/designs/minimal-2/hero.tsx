@@ -12,20 +12,32 @@ export function Minimal2Hero() {
 
   // Play video after mount
   useEffect(() => {
-    const playVideo = async (video: HTMLVideoElement | null) => {
+    const playVideo = async (video: HTMLVideoElement | null, name: string) => {
       if (!video) return;
-      try {
-        // Reset video to start
-        video.currentTime = 0;
-        await video.play();
-      } catch (err) {
-        console.error('Video autoplay failed:', err);
+
+      // Add event listeners for debugging
+      video.addEventListener('canplay', () => {
+        console.log(`${name} can play`);
+        video.play().catch(err => console.error(`${name} play error:`, err));
+      });
+
+      video.addEventListener('error', (e) => {
+        console.error(`${name} error:`, video.error);
+      });
+
+      // Try to play immediately if ready
+      if (video.readyState >= 3) {
+        try {
+          await video.play();
+        } catch (err) {
+          console.error(`${name} autoplay failed:`, err);
+        }
       }
     };
 
     // Try to play both videos - browser will only show the correct one based on CSS
-    playVideo(videoRef.current);
-    playVideo(mobileVideoRef.current);
+    playVideo(videoRef.current, 'Desktop video');
+    playVideo(mobileVideoRef.current, 'Mobile video');
   }, []);
 
   return (
@@ -45,7 +57,8 @@ export function Minimal2Hero() {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
+          poster="/hero/1.webp"
           className="hidden md:block absolute inset-0 w-full h-full object-cover z-[1]"
           style={{ objectPosition: 'center center' }}
         >
@@ -59,7 +72,8 @@ export function Minimal2Hero() {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
+          poster="/hero/1.webp"
           className="block md:hidden absolute inset-0 w-full h-full object-cover z-[1]"
           style={{ objectPosition: 'center center' }}
         >
