@@ -62,7 +62,7 @@ export function Minimal2Hero() {
           className="hidden md:block absolute inset-0 w-full h-full object-cover z-[1]"
           style={{ objectPosition: 'center center' }}
         >
-          <source src="/hero/hero_video.mp4" type="video/mp4" />
+          <source src="https://oky9bjc5qhufiiy6.public.blob.vercel-storage.com/hero_video.mp4" type="video/mp4" />
         </video>
 
         {/* Mobile video */}
@@ -77,7 +77,7 @@ export function Minimal2Hero() {
           className="block md:hidden absolute inset-0 w-full h-full object-cover z-[1]"
           style={{ objectPosition: 'center center' }}
         >
-          <source src="/hero/hero_video_mobile.mp4" type="video/mp4" />
+          <source src="https://oky9bjc5qhufiiy6.public.blob.vercel-storage.com/hero_video_mobile.mp4" type="video/mp4" />
         </video>
 
         {/* Dark overlay for text readability - Covers entire video */}
