@@ -73,20 +73,57 @@ export default function AdminDashboard() {
 
   const loadData = async () => {
     try {
-      
+
       // Check if environment variables are available
       if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
         console.error('Missing Supabase environment variables')
         toast.error('Configuration error: Missing database connection')
         return
       }
-      
+
       const [flightsData, marginData] = await Promise.all([
         flightService.getAll(),
         marginService.getCurrent().catch(() => null) // Handle case where no margin is set
       ])
-      
-      setFlights(flightsData)
+
+      // Helper to check if a flight involves Korea (Seoul, Busan, Jeju, Incheon, Gimpo)
+      const involvesKorea = (flight: Flight) => {
+        const koreaPattern = /korea|seoul|busan|jeju|incheon|gimpo|icn|gmp|pus|cju|서울|부산|제주|인천|김포/i
+        const fromCity = flight.from_city || ''
+        const toCity = flight.to_city || ''
+        const fromCountry = flight.from_country || ''
+        const toCountry = flight.to_country || ''
+        return koreaPattern.test(fromCity) || koreaPattern.test(toCity) ||
+               fromCountry === 'South Korea' || toCountry === 'South Korea'
+      }
+
+      // Filter to only show Korea-related flights with valid data (same as /empty page)
+      const validFlights = flightsData.filter(flight =>
+        (flight.price_numeric || flight.price) &&
+        flight.flight_date &&
+        flight.from_city &&
+        flight.to_city &&
+        involvesKorea(flight)
+      )
+
+      // Remove duplicates based on flight details
+      const uniqueFlights = validFlights.reduce((acc, flight) => {
+        const key = `${flight.flight_date}_${flight.from_city}_${flight.to_city}_${flight.aircraft || 'unknown'}`
+        if (!acc.has(key)) {
+          acc.set(key, flight)
+        } else {
+          const existing = acc.get(key)!
+          if ((flight.image_urls?.length || 0) > (existing.image_urls?.length || 0) ||
+              (flight.custom_price !== null && existing.custom_price === null)) {
+            acc.set(key, flight)
+          }
+        }
+        return acc
+      }, new Map<string, Flight>())
+
+      const deduplicatedFlights = Array.from(uniqueFlights.values())
+
+      setFlights(deduplicatedFlights)
       setMarginSetting(marginData)
     } catch (error) {
       console.error('Error loading data:', error)

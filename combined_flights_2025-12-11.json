@@ -1,0 +1,238 @@
+{
+  "metadata": {
+    "scrapedAt": "2025-12-11T09:06:38.503Z",
+    "totalFlights": 6,
+    "sources": [
+      "flyxo",
+      "jetbay"
+    ],
+    "breakdown": {
+      "flyxo": 5,
+      "jetbay": 1
+    },
+    "dataQuality": {
+      "withSeats": 1,
+      "withoutSeats": 5,
+      "withDefaultImage": 5,
+      "notes": [
+        "FlyXO source does not provide seat information (null is expected)",
+        "FlyXO source does not provide images (default image is used)",
+        "All flights are validated for location data, dates, and prices"
+      ]
+    }
+  },
+  "flights": [
+    {
+      "id": "flyxo_27601e95685a",
+      "rawText": "Thursday 11 DEC SeoulOsaka Empty leg $9,330",
+      "extractedData": {
+        "price": "9330 USD",
+        "priceType": "fixed",
+        "date": "Thursday, 11 DEC",
+        "dateTimestamp": 1765411200000,
+        "aircraft": "Private Jet",
+        "seats": null,
+        "from": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "code": "ICN",
+          "formatted": "Seoul, South Korea"
+        },
+        "to": {
+          "city": "Osaka",
+          "country": "Japan",
+          "code": "KIX",
+          "formatted": "Osaka, Japan"
+        },
+        "route": {
+          "from": "Seoul, South Korea",
+          "to": "Osaka, Japan",
+          "summary": "Seoul, South Korea → Osaka, Japan"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-12-11T09:06:12.512Z",
+        "source": "flyxo"
+      },
+      "images": [],
+      "source": "flyxo"
+    },
+    {
+      "id": "flyxo_c13c643cabb4",
+      "rawText": "Sunday 14 DEC BeijingSeoul Empty leg $9,920",
+      "extractedData": {
+        "price": "9920 USD",
+        "priceType": "fixed",
+        "date": "Sunday, 14 DEC",
+        "dateTimestamp": 1765670400000,
+        "aircraft": "Private Jet",
+        "seats": null,
+        "from": {
+          "city": "Beijing",
+          "country": "China",
+          "code": "PEK",
+          "formatted": "Beijing, China"
+        },
+        "to": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "code": "ICN",
+          "formatted": "Seoul, South Korea"
+        },
+        "route": {
+          "from": "Beijing, China",
+          "to": "Seoul, South Korea",
+          "summary": "Beijing, China → Seoul, South Korea"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-12-11T09:06:12.512Z",
+        "source": "flyxo"
+      },
+      "images": [],
+      "source": "flyxo"
+    },
+    {
+      "id": "flyxo_cd8a79ee6ae0",
+      "rawText": "Tuesday 16 DEC SeoulShanghai Empty leg $15,830",
+      "extractedData": {
+        "price": "15830 USD",
+        "priceType": "fixed",
+        "date": "Tuesday, 16 DEC",
+        "dateTimestamp": 1765843200000,
+        "aircraft": "Private Jet",
+        "seats": null,
+        "from": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "code": "ICN",
+          "formatted": "Seoul, South Korea"
+        },
+        "to": {
+          "city": "Shanghai",
+          "country": "China",
+          "code": "PVG",
+          "formatted": "Shanghai, China"
+        },
+        "route": {
+          "from": "Seoul, South Korea",
+          "to": "Shanghai, China",
+          "summary": "Seoul, South Korea → Shanghai, China"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-12-11T09:06:12.513Z",
+        "source": "flyxo"
+      },
+      "images": [],
+      "source": "flyxo"
+    },
+    {
+      "id": "flyxo_fc4efce2bbb6",
+      "rawText": "Friday 12 DEC SeoulManila Empty leg $21,080",
+      "extractedData": {
+        "price": "21080 USD",
+        "priceType": "fixed",
+        "date": "Friday, 12 DEC",
+        "dateTimestamp": 1765497600000,
+        "aircraft": "Private Jet",
+        "seats": null,
+        "from": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "code": "ICN",
+          "formatted": "Seoul, South Korea"
+        },
+        "to": {
+          "city": "Manila",
+          "country": "Philippines",
+          "code": "MNL",
+          "formatted": "Manila, Philippines"
+        },
+        "route": {
+          "from": "Seoul, South Korea",
+          "to": "Manila, Philippines",
+          "summary": "Seoul, South Korea → Manila, Philippines"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-12-11T09:06:12.513Z",
+        "source": "flyxo"
+      },
+      "images": [],
+      "source": "flyxo"
+    },
+    {
+      "id": "flyxo_95ebefb65057",
+      "rawText": "Thursday 11 DEC TokyoSeoul Empty leg $22,500",
+      "extractedData": {
+        "price": "22500 USD",
+        "priceType": "fixed",
+        "date": "Thursday, 11 DEC",
+        "dateTimestamp": 1765411200000,
+        "aircraft": "Private Jet",
+        "seats": null,
+        "from": {
+          "city": "Tokyo",
+          "country": "Japan",
+          "code": "NRT",
+          "formatted": "Tokyo, Japan"
+        },
+        "to": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "code": "ICN",
+          "formatted": "Seoul, South Korea"
+        },
+        "route": {
+          "from": "Tokyo, Japan",
+          "to": "Seoul, South Korea",
+          "summary": "Tokyo, Japan → Seoul, South Korea"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-12-11T09:06:12.513Z",
+        "source": "flyxo"
+      },
+      "images": [],
+      "source": "flyxo"
+    },
+    {
+      "id": "flight_1765443987596_18",
+      "rawText": "Model: Global 750014 seatsDec 12, 2025SeoulSouth Korea SingaporeSingapore From64,480 USDBook",
+      "extractedData": {
+        "price": "64,480 USD",
+        "priceType": "fixed",
+        "date": "Dec 12, 2025",
+        "dateTimestamp": 1765497600000,
+        "aircraft": "Global 7500",
+        "seats": 14,
+        "from": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "formatted": "Seoul, South Korea"
+        },
+        "to": {
+          "city": "Singapore",
+          "country": "Singapore",
+          "formatted": "Singapore, Singapore"
+        },
+        "route": {
+          "from": "Seoul, South Korea",
+          "to": "Singapore, Singapore",
+          "summary": "Seoul, South Korea → Singapore, Singapore"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-12-11T09:06:27.596Z",
+        "locations": [
+          "Seoul",
+          "South Korea",
+          "Singapore",
+          "Singapore"
+        ]
+      },
+      "images": [
+        {
+          "src": "https://www.jet-bay.com/_next/image?url=https%3A%2F%2Fasserts.avi-go.com%2Fplane_img%2F169960899954102933466724698648.jpg&w=1536&q=75",
+          "alt": "emptyLeg"
+        }
+      ],
+      "source": "jetbay"
+    }
+  ]
+}

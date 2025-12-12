@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "url": "https://www.jet-bay.com/en-us/empty-leg",
+    "scrapedAt": "2025-12-11T09:06:27.608Z",
+    "totalFlights": 1,
+    "duplicatesRemoved": 0,
+    "region": "East Asia",
+    "currency": "USD",
+    "filter": "South Korea flights only (FROM or TO South Korea)",
+    "filterCriteria": [
+      "South Korea",
+      "Seoul",
+      "Busan",
+      "Korea"
+    ],
+    "version": "2.0",
+    "features": [
+      "Formatted from/to fields",
+      "Route summaries",
+      "City/country separation",
+      "Duplicate removal"
+    ]
+  },
+  "flights": [
+    {
+      "id": "flight_1765443987596_18",
+      "rawText": "Model: Global 750014 seatsDec 12, 2025SeoulSouth Korea SingaporeSingapore From64,480 USDBook",
+      "extractedData": {
+        "price": "64,480 USD",
+        "priceType": "fixed",
+        "date": "Dec 12, 2025",
+        "dateTimestamp": 1765497600000,
+        "aircraft": "Global 7500",
+        "seats": 14,
+        "from": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "formatted": "Seoul, South Korea"
+        },
+        "to": {
+          "city": "Singapore",
+          "country": "Singapore",
+          "formatted": "Singapore, Singapore"
+        },
+        "route": {
+          "from": "Seoul, South Korea",
+          "to": "Singapore, Singapore",
+          "summary": "Seoul, South Korea → Singapore, Singapore"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-12-11T09:06:27.596Z",
+        "locations": [
+          "Seoul",
+          "South Korea",
+          "Singapore",
+          "Singapore"
+        ]
+      },
+      "images": [
+        {
+          "src": "https://www.jet-bay.com/_next/image?url=https%3A%2F%2Fasserts.avi-go.com%2Fplane_img%2F169960899954102933466724698648.jpg&w=1536&q=75",
+          "alt": "emptyLeg"
+        }
+      ]
+    }
+  ]
+}

@@ -137,7 +137,7 @@
     "tagline": "Elevate Your Flystyle with VONAER",
     "evtol": {
       "title": "Present the Future",
-      "paragraph1": "VONAER is preparing the next chapter of luxury mobility. As global eVTOL programs near commercial readiness, we are architecting a seamless transition from today's private jets and helicopters to quiet, battery-electric eVTOL travel—designed for city-to-city hops and urban airport access with dramatically lower operational footprint.",
+      "paragraph1": "VONAER is preparing the next chapter of luxury mobility. As global eVTOL programs near commercial readiness, we are architecting a seamless transition from today's private jets and helicopters to quiet, battery-electric eVTOL travel, designed for city-to-city hops and urban airport access with dramatically lower operational footprint.",
       "paragraph2": "From short city-to-city flights to urban airport access, eVTOL represents the next generation of transportation that fulfills operational efficiency, environmental responsibility, and refined experiences.",
       "paragraph3": "Across the world, certification and infrastructure are coming into focus.",
       "paragraph4": "The FAA's powered-lift framework now clarifies the path to approval for leading U.S. developers, accelerating final certification steps. In Asia, now advancing to its next phase of urban verification as authorities refine airspace, safety, and infrastructure standards.",
@@ -154,8 +154,8 @@
   },
   "evtol": {
     "title": "Present the Future",
-    "paragraph1": "VONAER is preparing the next chapter of luxury mobility. As global eVTOL programs near commercial readiness, we are architecting a seamless transition from today's private jets and helicopters to quiet, battery-electric eVTOL travel—designed for city-to-city hops and urban airport access with dramatically lower operational footprint.",
-    "paragraph2": "Across the world, certification and infrastructure are coming into focus: the FAA's powered-lift framework now clarifies the path to approval for leading U.S. developers, accelerating final certification steps.",
+    "paragraph1": "VONAER is preparing the next chapter of luxury mobility. As global eVTOL programs near commercial readiness, we are architecting a seamless transition from today's private jets and helicopters to quiet, battery-electric eVTOL travel, designed for city-to-city hops and urban airport access with dramatically lower operational footprint.",
+    "paragraph2": "Across the world, certification and infrastructure are coming into focus. The FAA's powered-lift framework now clarifies the path to approval for leading U.S. developers, accelerating final certification steps.",
     "paragraph3": "In Asia, now advancing to its next phase of urban verification as authorities refine airspace, safety, and infrastructure standards.",
     "paragraph4": "",
     "paragraph5": "VONAER is aligning our roadmap to this national initiative so that, as certified aircraft and corridors open, we can integrate eVTOL into premium, real-world missions from day one.",
@@ -1261,7 +1261,7 @@
       "steps": {
         "arrival": "Airport Arrival",
         "checkin": "Quick Check-in",
-        "boarding": "Direct Aircraft Boarding"
+        "boarding": "Boarding"
       }
     },
     "benefits": {
