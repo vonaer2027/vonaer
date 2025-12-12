@@ -166,10 +166,28 @@ export function MMSMessaging() {
         flightService.getAll(),
         userService.getAll()
       ])
-      
-      // Filter for Korean flights only
-      const koreanFlights = flightsData.filter(flight => flight.involves_korea)
-      setFlights(koreanFlights)
+
+      // Helper to check if a flight involves Korea (matches /empty page logic)
+      const involvesKorea = (flight: Flight) => {
+        const koreaPattern = /korea|seoul|busan|jeju|incheon|gimpo|icn|gmp|pus|cju|서울|부산|제주|인천|김포/i
+        const fromCity = flight.from_city || ''
+        const toCity = flight.to_city || ''
+        const fromCountry = flight.from_country || ''
+        const toCountry = flight.to_country || ''
+        return koreaPattern.test(fromCity) || koreaPattern.test(toCity) ||
+               fromCountry === 'South Korea' || toCountry === 'South Korea'
+      }
+
+      // Filter for available flights only (same logic as /empty page)
+      // These are the flights currently displayed to customers
+      const availableFlights = flightsData.filter(flight =>
+        (flight.price_numeric || flight.price) && // Must have price
+        flight.flight_date &&                      // Must have date
+        flight.from_city &&                        // Must have departure city
+        flight.to_city &&                          // Must have arrival city
+        involvesKorea(flight)                      // Must involve Korea
+      )
+      setFlights(availableFlights)
       
       // Filter for active users only
       const activeUsers = usersData.filter(user => user.is_active !== false)
@@ -649,7 +667,7 @@ export function MMSMessaging() {
             MMS 메시지 발송
           </CardTitle>
           <CardDescription>
-            한국 노선 항공편 정보를 활용하여 고객에게 MMS 메시지를 발송합니다.
+            현재 고객에게 노출 중인 한국 노선 항공편 정보를 활용하여 MMS 메시지를 발송합니다.
           </CardDescription>
         </CardHeader>
       </Card>
