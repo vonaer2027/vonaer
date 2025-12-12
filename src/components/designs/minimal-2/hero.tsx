@@ -8,14 +8,24 @@ import { useEffect, useRef } from 'react';
 export function Minimal2Hero() {
   const t = useTranslations();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
   // Play video after mount
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch((err) => {
+    const playVideo = async (video: HTMLVideoElement | null) => {
+      if (!video) return;
+      try {
+        // Reset video to start
+        video.currentTime = 0;
+        await video.play();
+      } catch (err) {
         console.error('Video autoplay failed:', err);
-      });
-    }
+      }
+    };
+
+    // Try to play both videos - browser will only show the correct one based on CSS
+    playVideo(videoRef.current);
+    playVideo(mobileVideoRef.current);
   }, []);
 
   return (
@@ -35,23 +45,26 @@ export function Minimal2Hero() {
           loop
           muted
           playsInline
-          preload="auto"
-          src="/hero/intro.mp4"
+          preload="metadata"
           className="hidden md:block absolute inset-0 w-full h-full object-cover z-[1]"
           style={{ objectPosition: 'center center' }}
-        />
+        >
+          <source src="/hero/intro.mp4" type="video/mp4" />
+        </video>
 
         {/* Mobile video */}
         <video
+          ref={mobileVideoRef}
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
-          src="/hero/mobile_intro.mp4"
+          preload="metadata"
           className="block md:hidden absolute inset-0 w-full h-full object-cover z-[1]"
           style={{ objectPosition: 'center center' }}
-        />
+        >
+          <source src="/hero/mobile_intro.mp4" type="video/mp4" />
+        </video>
 
         {/* Dark overlay for text readability - Covers entire video */}
         <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/60 via-black/30 to-black/40 z-10" />
