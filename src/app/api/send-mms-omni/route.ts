@@ -4,8 +4,8 @@ import { sendBulkMessages } from '@/lib/infobank-omni'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    // Sender number: 16009064 (approved in BizGO, no hyphen for consistency)
-    const { recipients, message, from = '16009064' } = body
+    // Sender number: 0260129500 (02-6012-9500, approved in BizGO)
+    const { recipients, message, from = '0260129500' } = body
 
     if (!recipients || !Array.isArray(recipients) || recipients.length === 0) {
       return NextResponse.json(

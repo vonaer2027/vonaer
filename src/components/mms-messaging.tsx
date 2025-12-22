@@ -746,7 +746,7 @@ export function MMSMessaging() {
           text: generatedFlightText,
           title: "[본에어 Empty Leg 특가 안내]"
         },
-        from: "16009064",
+        from: "0260129500",
         flightId: selectedFlights.map(f => f.flight_id).join(','),
         templateId: 'multi-flight-list'
       }
@@ -827,7 +827,7 @@ export function MMSMessaging() {
           text: customMessage,
           title: "[본에어 Empty Leg 특가 안내]"
         },
-        from: "16009064", // Remove hyphen for consistency (approved in BizGO)
+        from: "0260129500", // Remove hyphen for consistency (approved in BizGO)
         flightId: selectedFlight.flight_id,
         templateId: selectedTemplate.id
       }

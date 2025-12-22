@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
       }],
       messageFlow: [{
         mms: {
-          from: '16009064',
+          from: '0260129500',
           text: testMessage,
           title: '[본에어 테스트]',
           ttl: '86400'
