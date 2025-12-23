@@ -105,13 +105,13 @@ export default function ContactPage() {
                     {/* Social Media */}
                     <div className="p-4 rounded-lg bg-background/50 hover:bg-background/70 transition-colors">
                       <h3 className="text-base md:text-lg font-bold text-foreground mb-3">{t('social')}</h3>
-                      <div className="flex gap-4">
+                      <div className="flex flex-wrap gap-3 md:gap-4">
                         {/* KakaoTalk Link */}
                         <a
                           href="http://pf.kakao.com/_nxdxlHG"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                          className="px-4 md:px-6 py-2.5 md:py-3 rounded-lg bg-primary hover:bg-primary/90 text-white text-sm md:text-base font-semibold whitespace-nowrap transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                         >
                           {t('kakao')}
                         </a>
@@ -121,7 +121,7 @@ export default function ContactPage() {
                           href="https://www.instagram.com/vonaer_official/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                          className="px-4 md:px-6 py-2.5 md:py-3 rounded-lg bg-primary hover:bg-primary/90 text-white text-sm md:text-base font-semibold whitespace-nowrap transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                         >
                           {t('instagram')}
                         </a>
