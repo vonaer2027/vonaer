@@ -75,28 +75,60 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "VONAER 본에어 - 도심 항공 모빌리티의 새로운 시대",
-  description: "프리미엄 항공 여행의 혁신적 플랫폼. 본에어와 함께 도심 항공 모빌리티를 경험하세요.",
-  keywords: "본에어, VONAER, 도심항공모빌리티, 프리미엄항공, 헬리콥터, 전세기, 엠프티레그",
+  metadataBase: new URL("https://vonaer.com"),
+  title: {
+    default: "전용기 예약 플랫폼 본에어 (VONAER) | 24/7 실시간 컨시어지 서비스",
+    template: "%s | 본에어 VONAER",
+  },
+  description: "국내 최초 전용기 예약 플랫폼. 복잡한 절차 없이 앱으로 요청하세요. 365일 24시간 전문 컨시어지가 최적의 항공편과 의전 서비스를 설계해 드립니다.",
+  keywords: ["전용기 예약", "본에어", "VONAER", "프라이빗 제트", "비즈니스 제트", "컨시어지 서비스", "항공 의전", "전세기", "헬리콥터", "VIP 항공", "엠프티레그", "private jet korea"],
+  authors: [{ name: "본에어 VONAER" }],
+  creator: "본에어 VONAER",
+  publisher: "본에어 VONAER",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "https://vonaer.com",
+    languages: {
+      "ko-KR": "https://vonaer.com",
+    },
+  },
   openGraph: {
-    title: "VONAER 본에어 - 도심 항공 모빌리티의 새로운 시대",
-    description: "프리미엄 항공 여행의 혁신적 플랫폼. 본에어와 함께 도심 항공 모빌리티를 경험하세요.",
+    title: "전용기 예약 플랫폼 본에어 (VONAER) | 24/7 실시간 컨시어지 서비스",
+    description: "국내 최초 전용기 예약 플랫폼. 복잡한 절차 없이 앱으로 요청하세요. 365일 24시간 전문 컨시어지가 최적의 항공편과 의전 서비스를 설계해 드립니다.",
+    url: "https://vonaer.com",
     images: [
       {
         url: "/vonaer.png",
         width: 1200,
         height: 630,
-        alt: "VONAER 본에어 - 도심 항공 모빌리티",
+        alt: "전용기 예약 플랫폼 본에어 VONAER - 24/7 컨시어지 서비스",
       },
     ],
     locale: "ko_KR",
     type: "website",
+    siteName: "본에어 VONAER",
   },
   twitter: {
     card: "summary_large_image",
-    title: "VONAER 본에어 - 도심 항공 모빌리티의 새로운 시대",
-    description: "프리미엄 항공 여행의 혁신적 플랫폼. 본에어와 함께 도심 항공 모빌리티를 경험하세요.",
+    title: "전용기 예약 플랫폼 본에어 (VONAER) | 24/7 실시간 컨시어지 서비스",
+    description: "국내 최초 전용기 예약 플랫폼. 복잡한 절차 없이 앱으로 요청하세요. 365일 24시간 전문 컨시어지가 최적의 항공편과 의전 서비스를 설계해 드립니다.",
     images: ["/vonaer.png"],
+    creator: "@vonaer",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
