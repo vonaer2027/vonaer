@@ -77,10 +77,10 @@ const pretendard = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://vonaer.com"),
   title: {
-    default: "전용기 예약 플랫폼 본에어 (VONAER) | 24/7 실시간 컨시어지 서비스",
+    default: "전용기 예약 및 전세·차터, 제트기 서비스 | 본에어 (VONAER)",
     template: "%s | 본에어 VONAER",
   },
-  description: "국내 최초 전용기 예약 플랫폼. 복잡한 절차 없이 앱으로 요청하세요. 365일 24시간 전문 컨시어지가 최적의 항공편과 의전 서비스를 설계해 드립니다.",
+  description: "국내 최초 전용기 예약 플랫폼 본에어. 전세 항공편 및 프라이빗 제트기 실시간 차터 예약까지. 24시간 전문 컨시어지가 비행포함 여행 관련 모든것을 설계해 드립니다.",
   keywords: ["전용기 예약", "본에어", "VONAER", "프라이빗 제트", "비즈니스 제트", "컨시어지 서비스", "항공 의전", "전세기", "헬리콥터", "VIP 항공", "엠프티레그", "private jet korea"],
   authors: [{ name: "본에어 VONAER" }],
   creator: "본에어 VONAER",
@@ -97,8 +97,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "전용기 예약 플랫폼 본에어 (VONAER) | 24/7 실시간 컨시어지 서비스",
-    description: "국내 최초 전용기 예약 플랫폼. 복잡한 절차 없이 앱으로 요청하세요. 365일 24시간 전문 컨시어지가 최적의 항공편과 의전 서비스를 설계해 드립니다.",
+    title: "전용기 예약 및 전세·차터, 제트기 서비스 | 본에어 (VONAER)",
+    description: "국내 최초 전용기 예약 플랫폼 본에어. 전세 항공편 및 프라이빗 제트기 실시간 차터 예약까지. 24시간 전문 컨시어지가 비행포함 여행 관련 모든것을 설계해 드립니다.",
     url: "https://vonaer.com",
     images: [
       {
@@ -114,8 +114,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "전용기 예약 플랫폼 본에어 (VONAER) | 24/7 실시간 컨시어지 서비스",
-    description: "국내 최초 전용기 예약 플랫폼. 복잡한 절차 없이 앱으로 요청하세요. 365일 24시간 전문 컨시어지가 최적의 항공편과 의전 서비스를 설계해 드립니다.",
+    title: "전용기 예약 및 전세·차터, 제트기 서비스 | 본에어 (VONAER)",
+    description: "국내 최초 전용기 예약 플랫폼 본에어. 전세 항공편 및 프라이빗 제트기 실시간 차터 예약까지. 24시간 전문 컨시어지가 비행포함 여행 관련 모든것을 설계해 드립니다.",
     images: ["/vonaer.png"],
     creator: "@vonaer",
   },

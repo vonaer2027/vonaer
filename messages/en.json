@@ -150,6 +150,39 @@
       "quote": "Effortless. Refined. Responsible.",
       "paragraph3": "Our goal is to offer quiet, efficient, and carbon-neutral Urban Air Mobility that feels unmistakably VONAER; effortless, refined, and responsible.",
       "paragraph4": "As certification milestones and vertiport networks mature, VONAER intends to be among the very first to introduce eco-friendly eVTOL service in Korea and to help shape the future of Urban Air Mobility across Asia."
+    },
+    "team": {
+      "title": "Leadership Team",
+      "members": {
+        "min": {
+          "name": "Min Shin",
+          "role": "CEO & Founder",
+          "image": "/about/min.PNG",
+          "bio": "Min Shin is the Founder and Chief Executive Officer of VONAER, where he leads the development of a premium jet and helicopter charter platform designed to address the evolving landscape of modern air mobility across Asia. Drawing on experience spanning private aviation, investment management, and cross border business strategy, he brings a disciplined and methodical approach to building scalable, high quality mobility services.",
+          "quote": "VONAER is built on a simple philosophy. Private aviation should feel effortless, personal, and precisely executed."
+        },
+        "hyun": {
+          "name": "Hyun Lee",
+          "role": "Chief Relationship Officer",
+          "image": "/about/mihyun.PNG",
+          "bio": "With experience across Digital Chosun Ilbo, Minumsa Publishing Group, NCSOFT, and Daewoo Industrial Development, Hyun Lee has led branding strategies across diverse industries including media, content, gaming, and construction. Currently serving as Chief Relationship Officer at VONAER, she is defining a new private aviation market where technology and luxury converge.",
+          "quote": "I design how brands connect with people's lives beyond media, platforms, and physical spaces."
+        },
+        "david": {
+          "name": "David Lee",
+          "role": "Head of Flight Operations",
+          "image": "/about/david.JPG",
+          "bio": "With 35 years of service in the Republic of Korea Army Aviation, David has served on the front line of aviation safety as a veteran pilot, instructor, and maintenance test flight pilot. As Head of Flight Operations at VONAER, he leads the flight operations team with safety as the highest priority.",
+          "quote": "With 35 years of flight experience and uncompromising principles, I am committed to opening the safest path in the sky."
+        },
+        "becky": {
+          "name": "Becky Han",
+          "role": "Head of Concierge Operations",
+          "image": "/about/becky.PNG",
+          "bio": "With experience at world class five star hotels including Grand Hyatt, Four Seasons, and Park Hyatt, Becky has led VIP dedicated services and operational systems, developing a deep understanding of global hospitality standards. Currently serving as Head of Concierge Operations at VONAER, she oversees every customer touchpoint from ground to air.",
+          "quote": "I extend the refinement of global luxury hospitality into the sky, delivering a truly seamless journey."
+        }
+      }
     }
   },
   "evtol": {

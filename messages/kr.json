@@ -150,6 +150,43 @@
       "quote": "Effortless. Refined. Responsible.",
       "paragraph3": "조용하고 효율적이며 탄소중립적인 Urban Air Mobility를 통해 Sustainable Luxury Travel을 실현합니다.",
       "paragraph4": "아시아에서 선두적인 친환경 eVTOL 서비스 제공업체로 자리매김하며, 도심 항공 모빌리티의 미래를 함께 이끌어갈 것입니다."
+    },
+    "team": {
+      "title": "리더십 팀",
+      "members": {
+        "min": {
+          "name": "신 민",
+          "role": "CEO & Founder",
+          "roleKr": "대표이사 · 창업자",
+          "image": "/about/min.PNG",
+          "bio": "아시아 시장에서 변화하는 항공 모빌리티 수요에 대응하기 위해 프리미엄 제트 및 헬리콥터 차터 플랫폼 VONAER를 설립했으며 현재 대표이사로서 회사의 전반적인 전략과 운영을 이끌고 있습니다. 프라이빗 항공과 투자 운용, Cross-Border 비즈니스 전반에 걸친 경험을 바탕으로 확장성과 품질을 동시에 충족하는 모빌리티 서비스를 구축하는 데 집중하고 있습니다.",
+          "quote": "VONAER가 그리는 항공의 미래는 복잡한 절차가 아닌, 일상 속에 자연스럽게 스며드는 고객 중심의 프리미엄 경험입니다."
+        },
+        "hyun": {
+          "name": "이미현",
+          "role": "Chief Relationship Officer",
+          "roleKr": "부사장",
+          "image": "/about/mihyun.PNG",
+          "bio": "디지틀조선일보와 민음사 출판그룹, NCSOFT, 대우산업개발을 거치며 미디어, 콘텐츠, 게임, 건설 등 이종 산업을 관통하는 브랜딩 전략을 총괄해 왔습니다. 현재 본에어의 CRO로서 기술(Tech)과 럭셔리(Luxury)가 결합된 새로운 시장을 정의하고, 고객 및 파트너와의 관계를 확장하고 있습니다.",
+          "quote": "미디어와 플랫폼, 공간을 넘어 브랜드가 고객의 삶에 닿는 방식을 설계합니다."
+        },
+        "david": {
+          "name": "이중길",
+          "role": "Head of Flight Operations",
+          "roleKr": "항공운영팀장",
+          "image": "/about/david.JPG",
+          "bio": "대한민국 육군 항공에서 35년간 복무하며 베테랑 조종사이자 교관, 정비 시험 비행 조종사로서 항공 안전의 최전선을 지켜왔습니다. 본에어 항공운영팀을 이끄는 리더로서, '안전'을 최우선 가치로 삼아 운항 절차를 엄격하게 수립하고 감독합니다.",
+          "quote": "35년의 비행 경험과 타협하지 않는 원칙으로, 가장 안전한 하늘길을 엽니다."
+        },
+        "becky": {
+          "name": "한혜정",
+          "role": "Head of Concierge Operations",
+          "roleKr": "오퍼레이션 팀장",
+          "image": "/about/becky.PNG",
+          "bio": "그랜드 하얏트, 포시즌스, 파크 하얏트 등 세계적인 5성급 호텔에서 VIP 전담 서비스와 운영 시스템을 총괄하며 글로벌 수준의 호스피탈리티 기준을 체득했습니다. 현재 본에어의 오퍼레이션 리더로서 지상에서 하늘로 이어지는 모든 접점(Touchpoint)을 관리합니다.",
+          "quote": "글로벌 럭셔리 호텔의 섬세함을 하늘 위로 확장하여, 끊김 없는(Seamless) 여정을 선사합니다."
+        }
+      }
     }
   },
   "evtol": {

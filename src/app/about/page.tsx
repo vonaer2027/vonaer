@@ -90,6 +90,123 @@ export default function AboutPage() {
               </p>
             </div>
           </motion.div>
+
+          {/* Team Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mb-16"
+          >
+            <h2 className="text-2xl md:text-3xl font-light text-foreground mb-12 text-center">
+              {t('team.title')}
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Min Shin - CEO */}
+              <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
+                <div className="aspect-[4/3] relative">
+                  <Image
+                    src={t('team.members.min.image')}
+                    alt={t('team.members.min.name')}
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-medium text-foreground mb-1">
+                    {t('team.members.min.name')}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {t('team.members.min.role')}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                    {t('team.members.min.bio')}
+                  </p>
+                  <p className="text-sm italic text-foreground/80 border-l-2 border-primary pl-4" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                    "{t('team.members.min.quote')}"
+                  </p>
+                </div>
+              </div>
+
+              {/* Hyun Lee - CRO */}
+              <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
+                <div className="aspect-[4/3] relative">
+                  <Image
+                    src={t('team.members.hyun.image')}
+                    alt={t('team.members.hyun.name')}
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-medium text-foreground mb-1">
+                    {t('team.members.hyun.name')}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {t('team.members.hyun.role')}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                    {t('team.members.hyun.bio')}
+                  </p>
+                  <p className="text-sm italic text-foreground/80 border-l-2 border-primary pl-4" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                    "{t('team.members.hyun.quote')}"
+                  </p>
+                </div>
+              </div>
+
+              {/* David Lee - Flight Ops */}
+              <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
+                <div className="aspect-[4/3] relative">
+                  <Image
+                    src={t('team.members.david.image')}
+                    alt={t('team.members.david.name')}
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-medium text-foreground mb-1">
+                    {t('team.members.david.name')}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {t('team.members.david.role')}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                    {t('team.members.david.bio')}
+                  </p>
+                  <p className="text-sm italic text-foreground/80 border-l-2 border-primary pl-4" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                    "{t('team.members.david.quote')}"
+                  </p>
+                </div>
+              </div>
+
+              {/* Becky Han - Concierge Ops */}
+              <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
+                <div className="aspect-[4/3] relative">
+                  <Image
+                    src={t('team.members.becky.image')}
+                    alt={t('team.members.becky.name')}
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-medium text-foreground mb-1">
+                    {t('team.members.becky.name')}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {t('team.members.becky.role')}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                    {t('team.members.becky.bio')}
+                  </p>
+                  <p className="text-sm italic text-foreground/80 border-l-2 border-primary pl-4" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                    "{t('team.members.becky.quote')}"
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </main>
 
