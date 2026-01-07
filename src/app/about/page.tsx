@@ -104,7 +104,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {/* Min Shin - CEO */}
               <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
-                <div className="aspect-[4/3] relative">
+                <div className="aspect-[3/4] relative">
                   <Image
                     src={t('team.members.min.image')}
                     alt={t('team.members.min.name')}
@@ -130,7 +130,7 @@ export default function AboutPage() {
 
               {/* Hyun Lee - CRO */}
               <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
-                <div className="aspect-[4/3] relative">
+                <div className="aspect-[3/4] relative">
                   <Image
                     src={t('team.members.hyun.image')}
                     alt={t('team.members.hyun.name')}
@@ -156,7 +156,7 @@ export default function AboutPage() {
 
               {/* David Lee - Flight Ops */}
               <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
-                <div className="aspect-[4/3] relative">
+                <div className="aspect-[3/4] relative">
                   <Image
                     src={t('team.members.david.image')}
                     alt={t('team.members.david.name')}
@@ -182,7 +182,7 @@ export default function AboutPage() {
 
               {/* Becky Han - Concierge Ops */}
               <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
-                <div className="aspect-[4/3] relative">
+                <div className="aspect-[3/4] relative">
                   <Image
                     src={t('team.members.becky.image')}
                     alt={t('team.members.becky.name')}
