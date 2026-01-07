@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "url": "https://www.jet-bay.com/en-us/empty-leg",
+    "scrapedAt": "2025-12-12T07:12:53.493Z",
+    "totalFlights": 4,
+    "duplicatesRemoved": 0,
+    "region": "East Asia",
+    "currency": "USD",
+    "filter": "South Korea flights only (FROM or TO South Korea)",
+    "filterCriteria": [
+      "South Korea",
+      "Seoul",
+      "Busan",
+      "Korea"
+    ],
+    "version": "2.0",
+    "features": [
+      "Formatted from/to fields",
+      "Route summaries",
+      "City/country separation",
+      "Duplicate removal"
+    ]
+  },
+  "flights": [
+    {
+      "id": "flight_1765523573481_4",
+      "rawText": "Model: Global 600014 seatsDec 13, 2025BeijingChina SeoulSouth Korea From17,730 USDBook",
+      "extractedData": {
+        "price": "17,730 USD",
+        "priceType": "fixed",
+        "date": "Dec 13, 2025",
+        "dateTimestamp": 1765584000000,
+        "aircraft": "Global 6000",
+        "seats": 14,
+        "from": {
+          "city": "Beijing",
+          "country": "China",
+          "formatted": "Beijing, China"
+        },
+        "to": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "formatted": "Seoul, South Korea"
+        },
+        "route": {
+          "from": "Beijing, China",
+          "to": "Seoul, South Korea",
+          "summary": "Beijing, China → Seoul, South Korea"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-12-12T07:12:53.481Z",
+        "locations": [
+          "Beijing, China",
+          "Seoul, South Korea"
+        ]
+      },
+      "images": [
+        {
+          "src": "https://www.jet-bay.com/_next/image?url=https%3A%2F%2Fasserts.avi-go.com%2Fplane_img_jt%2Faircraft%2F230706155901003.jpg&w=1536&q=75",
+          "alt": "emptyLeg"
+        }
+      ]
+    },
+    {
+      "id": "flight_1765523573481_8",
+      "rawText": "Model: Gulfstream G55015 seatsDec 25, 2025BeijingChina SeoulSouth Korea From19,572 USDBook",
+      "extractedData": {
+        "price": "19,572 USD",
+        "priceType": "fixed",
+        "date": "Dec 25, 2025",
+        "dateTimestamp": 1766620800000,
+        "aircraft": "Gulfstream G 550",
+        "seats": 15,
+        "from": {
+          "city": "Beijing",
+          "country": "China",
+          "formatted": "Beijing, China"
+        },
+        "to": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "formatted": "Seoul, South Korea"
+        },
+        "route": {
+          "from": "Beijing, China",
+          "to": "Seoul, South Korea",
+          "summary": "Beijing, China → Seoul, South Korea"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-12-12T07:12:53.481Z",
+        "locations": [
+          "Beijing, China",
+          "Seoul, South Korea"
+        ]
+      },
+      "images": [
+        {
+          "src": "https://www.jet-bay.com/_next/image?url=https%3A%2F%2Fasserts.jet-bay.com%2Fimages%2Fv2%2Faircraft_model%2Fno_aircraftImg.png&w=1536&q=75",
+          "alt": "emptyLeg"
+        }
+      ]
+    },
+    {
+      "id": "flight_1765523573482_38",
+      "rawText": "Model: Global 600014 seatsDec 14, 2025BeijingChina (ZBAA)SeoulSouth Korea (RKSS)Enquire for PriceBook",
+      "extractedData": {
+        "price": "Enquire for Price",
+        "priceType": "enquire",
+        "date": "Dec 14, 2025",
+        "dateTimestamp": 1765670400000,
+        "aircraft": "Global 6000",
+        "seats": 14,
+        "from": {
+          "city": "Beijing",
+          "country": "China",
+          "formatted": "Beijing, China"
+        },
+        "to": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "formatted": "Seoul, South Korea"
+        },
+        "route": {
+          "from": "Beijing, China",
+          "to": "Seoul, South Korea",
+          "summary": "Beijing, China → Seoul, South Korea"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-12-12T07:12:53.482Z",
+        "locations": [
+          "Beijing, China",
+          "Seoul, South Korea"
+        ]
+      },
+      "images": [
+        {
+          "src": "https://www.jet-bay.com/_next/image?url=https%3A%2F%2Fasserts.avi-go.com%2Fplane_img%2F169942990897309196167168908955.jpg&w=1536&q=75",
+          "alt": "emptyLeg"
+        }
+      ]
+    },
+    {
+      "id": "flight_1765523573482_46",
+      "rawText": "Model: Challenger 60512 seatsDec 12, 2025SeoulSouth Korea (RKSI)MabalacatPhilippines (RPLC)Enquire for PriceBook",
+      "extractedData": {
+        "price": "Enquire for Price",
+        "priceType": "enquire",
+        "date": "Dec 12, 2025",
+        "dateTimestamp": 1765497600000,
+        "aircraft": "Challenger 605",
+        "seats": 12,
+        "from": {
+          "city": "Seoul",
+          "country": "South Korea",
+          "formatted": "Seoul, South Korea"
+        },
+        "to": {
+          "city": "Mabalacat",
+          "country": "Philippines",
+          "formatted": "Mabalacat, Philippines"
+        },
+        "route": {
+          "from": "Seoul, South Korea",
+          "to": "Mabalacat, Philippines",
+          "summary": "Seoul, South Korea → Mabalacat, Philippines"
+        },
+        "involvesKorea": true,
+        "timestamp": "2025-12-12T07:12:53.482Z",
+        "locations": [
+          "Seoul, South Korea",
+          "Mabalacat, Philippines"
+        ]
+      },
+      "images": [
+        {
+          "src": "https://www.jet-bay.com/_next/image?url=https%3A%2F%2Fasserts.avi-go.com%2Fplane_img%2F169942978579309168465658807512.jpg&w=1536&q=75",
+          "alt": "emptyLeg"
+        }
+      ]
+    }
+  ]
+}

@@ -518,7 +518,8 @@ class UnifiedJetBayCrawlerWithUpload {
                         const dateMatch = dateMatches.find(match => match !== null);
 
                         // Extract route locations from text AFTER date and BEFORE price
-                        // Format: "[date] [from_city][from_country] [to_city][to_country] [price]"
+                        // Format: "[date] [City1][Country1] [City2][Country2] [price]"
+                        // Dynamic extraction - no hardcoded city lists
                         let locations = [];
 
                         if (dateMatch) {
@@ -527,38 +528,43 @@ class UnifiedJetBayCrawlerWithUpload {
 
                             if (datePosition !== -1 && pricePosition > datePosition) {
                                 // Extract text between date and price
-                                const routeText = textContent.substring(datePosition + dateMatch[0].length, pricePosition).trim();
+                                let routeText = textContent.substring(datePosition + dateMatch[0].length, pricePosition).trim();
 
-                                // Match location patterns in order - match countries first to avoid city+country duplication
-                                const locationPattern = /(South Korea|Hong Kong|Kuala Lumpur|Seoul|Busan|Osaka|Tokyo|Beijing|Shanghai|Macau|Taipei|Bangkok|Manila|Singapore|Jakarta|Korea|Japan|China|Taiwan|Thailand|Malaysia|Philippines|Vietnam|Indonesia)/gi;
+                                // Remove airport codes like (ZBAA), (RKSI) etc.
+                                routeText = routeText.replace(/\([A-Z]{3,4}\)/g, '');
 
-                                const allMatches = [];
-                                let match;
-                                while ((match = locationPattern.exec(routeText)) !== null) {
-                                    allMatches.push({
-                                        text: match[1],
-                                        index: match.index
-                                    });
+                                // Insert space before capital letters that follow lowercase
+                                // This handles concatenated names like "BeijingChina" -> "Beijing China"
+                                const spacedText = routeText.replace(/([a-z])([A-Z])/g, '$1 $2');
+
+                                // Split into words
+                                const words = spacedText.split(/\s+/);
+
+                                // Group compound country names that should stay together
+                                const knownCompounds = ['South Korea', 'Hong Kong', 'Kuala Lumpur', 'New Zealand', 'Sri Lanka', 'United Arab Emirates', 'Saudi Arabia'];
+                                const grouped = [];
+
+                                for (let i = 0; i < words.length; i++) {
+                                    const current = words[i];
+                                    const next = words[i + 1];
+
+                                    const compound = current + ' ' + next;
+                                    if (next && knownCompounds.includes(compound)) {
+                                        grouped.push(compound);
+                                        i++; // Skip next word since it's part of compound
+                                    } else {
+                                        grouped.push(current);
+                                    }
                                 }
 
-                                // Group locations: if city and country are within 20 chars, treat as one location
-                                const cities = ['Seoul', 'Busan', 'Osaka', 'Tokyo', 'Beijing', 'Shanghai', 'Macau', 'Taipei', 'Bangkok', 'Manila', 'Singapore', 'Jakarta'];
-                                const countries = ['South Korea', 'Korea', 'Hong Kong', 'Japan', 'China', 'Taiwan', 'Thailand', 'Malaysia', 'Philippines', 'Vietnam', 'Indonesia'];
-
-                                for (let i = 0; i < allMatches.length; i++) {
-                                    const current = allMatches[i];
-                                    const next = allMatches[i + 1];
-
-                                    // If current is a city and next is a country within 20 chars, push BOTH
-                                    if (next &&
-                                        cities.some(c => c.toLowerCase() === current.text.toLowerCase()) &&
-                                        countries.some(c => c.toLowerCase() === next.text.toLowerCase()) &&
-                                        (next.index - current.index) < 20) {
-                                        locations.push(current.text); // Push city
-                                        locations.push(next.text);    // Push country
-                                        i++; // Skip next since we used it
-                                    } else {
-                                        locations.push(current.text);
+                                // Pair up: [city, country, city, country] -> ["city, country", "city, country"]
+                                for (let i = 0; i < grouped.length; i += 2) {
+                                    const city = grouped[i];
+                                    const country = grouped[i + 1];
+                                    if (city && country) {
+                                        locations.push(city + ', ' + country);
+                                    } else if (city) {
+                                        locations.push(city);
                                     }
                                 }
                             }
@@ -647,75 +653,35 @@ class UnifiedJetBayCrawlerWithUpload {
                                 aircraft = `${modelMatch[1].trim()} ${modelMatch[2]}`;
                             }
                         }
-                        
-                        // Helper function to parse city-country pairs
-                        const parseLocation = (locArray, startIndex) => {
-                            if (!locArray || locArray.length <= startIndex) {
+
+                        // Helper function to parse location - now locations are already formatted as "City, Country"
+                        const parseLocation = (locArray, index) => {
+                            if (!locArray || locArray.length <= index) {
                                 return { city: 'Unknown', country: 'Unknown', formatted: 'Unknown' };
                             }
 
-                            const cities = ['Seoul', 'Busan', 'Osaka', 'Tokyo', 'Beijing', 'Shanghai', 'Macau', 'Taipei', 'Bangkok', 'Manila', 'Singapore', 'Jakarta', 'Hong Kong', 'Kuala Lumpur'];
-                            const countries = ['South Korea', 'Korea', 'Japan', 'China', 'Taiwan', 'Thailand', 'Malaysia', 'Philippines', 'Vietnam', 'Indonesia'];
-
-                            const first = locArray[startIndex];
-                            const second = locArray[startIndex + 1];
-
-                            const isFirstCity = cities.some(c => first?.includes(c));
-                            const isSecondCountry = countries.some(c => second?.includes(c));
-
-                            // If we have city + country pair
-                            if (isFirstCity && isSecondCountry) {
+                            const loc = locArray[index];
+                            if (loc.includes(', ')) {
+                                const parts = loc.split(', ');
                                 return {
-                                    city: first,
-                                    country: second,
-                                    formatted: `${first}, ${second}`
+                                    city: parts[0],
+                                    country: parts[1],
+                                    formatted: loc
                                 };
                             }
 
-                            // If first is a country (like "South Korea" or "Japan")
-                            if (countries.some(c => first?.includes(c))) {
-                                return {
-                                    city: first,
-                                    country: first,
-                                    formatted: first
-                                };
-                            }
-
-                            // If first is a city without country
-                            if (isFirstCity) {
-                                // Guess country from city
-                                let country = 'Unknown';
-                                if (first.includes('Seoul') || first.includes('Busan')) country = 'South Korea';
-                                else if (first.includes('Tokyo') || first.includes('Osaka')) country = 'Japan';
-                                else if (first.includes('Beijing') || first.includes('Shanghai')) country = 'China';
-                                else if (first.includes('Taipei')) country = 'Taiwan';
-                                else if (first.includes('Bangkok')) country = 'Thailand';
-                                else if (first.includes('Singapore')) country = 'Singapore';
-
-                                return {
-                                    city: first,
-                                    country: country,
-                                    formatted: country !== 'Unknown' ? `${first}, ${country}` : first
-                                };
-                            }
-
-                            // Default fallback
+                            // Single location (no comma) - treat as country or city
                             return {
-                                city: first,
-                                country: first?.includes('Korea') ? 'South Korea' : 'Unknown',
-                                formatted: first
+                                city: loc,
+                                country: loc,
+                                formatted: loc
                             };
                         };
 
-                        // Parse FROM location (elements 0-1)
+                        // Parse FROM and TO locations
+                        // locations array is now: ["Beijing, China", "Seoul, South Korea"] format
                         const fromLocation = parseLocation(locations, 0);
-
-                        // Parse TO location (elements 2-3 if from was city+country, otherwise 1-2)
-                        const cities = ['Seoul', 'Busan', 'Osaka', 'Tokyo', 'Beijing', 'Shanghai'];
-                        const isFromPaired = cities.some(c => locations[0]?.includes(c)) &&
-                                            locations[1] && !cities.some(c => locations[1]?.includes(c));
-                        const toStartIndex = isFromPaired ? 2 : 1;
-                        const toLocation = parseLocation(locations, toStartIndex);
+                        const toLocation = parseLocation(locations, 1);
 
                         // Image already extracted above at line 404
                         // (imageSrc variable from outer scope)
