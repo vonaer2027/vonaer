@@ -282,7 +282,7 @@ export function VonaerServices({ section }: VonaerServicesProps) {
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <Phone className="h-5 w-5 text-gray-400" />
-                      <span className="text-white">+82 1600 9064</span>
+                      <span className="text-white">02-6012-9500</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <Mail className="h-5 w-5 text-gray-400" />

@@ -132,10 +132,10 @@ export default function ContactPage() {
                     <div className="p-4 rounded-lg bg-background/50 hover:bg-background/70 transition-colors">
                       <h3 className="text-base md:text-lg font-bold text-foreground mb-1">{t('phone')}</h3>
                       <a
-                        href="tel:+8216009064"
+                        href="tel:+8260129500"
                         className="text-sm md:text-base text-primary hover:underline"
                       >
-                        +82 1600 9064
+                        02-6012-9500
                       </a>
                     </div>
                   </div>

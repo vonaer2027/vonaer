@@ -69,9 +69,9 @@ export function VonaerHero() {
           transition={{ duration: 1, delay: 0.5 }}
           className="mb-16"
         >
-          <img 
-            src="/vonaer.svg" 
-            alt="VONAER" 
+          <img
+            src="/vonaer.svg"
+            alt="VONAER"
             className="h-24 md:h-32 lg:h-40 w-auto mx-auto mb-4"
           />
           <div className="h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-30 max-w-md mx-auto" />
@@ -156,7 +156,7 @@ export function VonaerHero() {
             >
               <h3 className="text-lg font-light text-white mb-4">Contact</h3>
               <div className="space-y-2 text-gray-400 text-sm">
-                <p>+82 1600 9064</p>
+                <p>02-6012-9500</p>
                 <p>business@VONAER.com</p>
                 <p>Seoul, Korea</p>
               </div>
