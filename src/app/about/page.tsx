@@ -70,23 +70,26 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-16"
+            className="mb-24"
           >
-            <div className="prose prose-base max-w-none" style={{ color: '#71717A', wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
-              <p className="text-base leading-relaxed mb-4">
+            {/* Hero Statement */}
+            <div className="text-center mb-16">
+              <p className="text-xl md:text-2xl lg:text-3xl font-light text-foreground leading-relaxed tracking-wide" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                 {t('intro.paragraph1')}
               </p>
-              <p className="text-base leading-relaxed mb-4">
+            </div>
+
+            {/* Divider */}
+            <div className="flex items-center justify-center gap-4 mb-16">
+              <div className="w-16 h-px bg-border" />
+              <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+              <div className="w-16 h-px bg-border" />
+            </div>
+
+            {/* Description */}
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-sm md:text-base text-muted-foreground leading-[2]" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                 {t('intro.paragraph2')}
-              </p>
-              <p className="text-base leading-relaxed mb-4">
-                {t('intro.paragraph3')}
-              </p>
-              <p className="text-base leading-relaxed mb-4">
-                {t('intro.paragraph4')}
-              </p>
-              <p className="text-base leading-relaxed mb-4">
-                {t('intro.paragraph5')}
               </p>
             </div>
           </motion.div>
@@ -98,99 +101,143 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mb-16"
           >
-            <h2 className="text-2xl md:text-3xl font-light text-foreground mb-12 text-center">
+            <h2 className="text-2xl md:text-3xl font-light text-foreground mb-16 text-center tracking-wide">
               {t('team.title')}
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {/* Min Shin - CEO */}
-              <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
-                <div className="aspect-[3/4] relative">
-                  <Image
-                    src={t('team.members.min.image')}
-                    alt={t('team.members.min.name')}
-                    fill
-                    className="object-cover object-top"
-                  />
-                </div>
-                <div className="p-3 md:p-4">
-                  <h3 className="text-sm md:text-base font-medium text-foreground mb-0.5">
-                    {t('team.members.min.name')}
-                  </h3>
-                  <p className="text-xs md:text-sm text-muted-foreground mb-2">
-                    {t('team.members.min.role')}
-                  </p>
-                  <p className="text-xs text-muted-foreground leading-relaxed" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
-                    {t('team.members.min.bio')}
-                  </p>
-                </div>
-              </div>
-
-              {/* Hyun Lee - CRO */}
-              <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
-                <div className="aspect-[3/4] relative">
-                  <Image
-                    src={t('team.members.hyun.image')}
-                    alt={t('team.members.hyun.name')}
-                    fill
-                    className="object-cover object-top"
-                  />
-                </div>
-                <div className="p-3 md:p-4">
-                  <h3 className="text-sm md:text-base font-medium text-foreground mb-0.5">
-                    {t('team.members.hyun.name')}
-                  </h3>
-                  <p className="text-xs md:text-sm text-muted-foreground mb-2">
-                    {t('team.members.hyun.role')}
-                  </p>
-                  <p className="text-xs text-muted-foreground leading-relaxed" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
-                    {t('team.members.hyun.bio')}
-                  </p>
+            <div className="flex flex-col gap-20 md:gap-24">
+              {/* Min Shin - CEO (Photo Left) */}
+              <div className="group">
+                <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+                  <div className="w-full md:w-2/5 flex-shrink-0">
+                    <div className="aspect-[4/5] relative overflow-hidden rounded-2xl shadow-2xl">
+                      <Image
+                        src={t('team.members.min.image')}
+                        alt={t('team.members.min.name')}
+                        fill
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    </div>
+                  </div>
+                  <div className="flex-1 space-y-4">
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-light text-foreground tracking-wide">
+                        {t('team.members.min.name')}
+                      </h3>
+                      <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mt-2">
+                        {t('team.members.min.role')}
+                      </p>
+                    </div>
+                    <div className="w-12 h-px bg-border" />
+                    <p className="text-sm md:text-base text-muted-foreground leading-[1.8] whitespace-pre-line" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                      {t('team.members.min.bio')}
+                    </p>
+                    <blockquote className="text-sm md:text-base text-foreground/70 italic pt-4 border-l border-foreground/20 pl-6">
+                      {t('team.members.min.quote')}
+                    </blockquote>
+                  </div>
                 </div>
               </div>
 
-              {/* David Lee - Flight Ops */}
-              <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
-                <div className="aspect-[3/4] relative">
-                  <Image
-                    src={t('team.members.david.image')}
-                    alt={t('team.members.david.name')}
-                    fill
-                    className="object-cover object-top"
-                  />
-                </div>
-                <div className="p-3 md:p-4">
-                  <h3 className="text-sm md:text-base font-medium text-foreground mb-0.5">
-                    {t('team.members.david.name')}
-                  </h3>
-                  <p className="text-xs md:text-sm text-muted-foreground mb-2">
-                    {t('team.members.david.role')}
-                  </p>
-                  <p className="text-xs text-muted-foreground leading-relaxed" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
-                    {t('team.members.david.bio')}
-                  </p>
+              {/* Hyun Lee - CRO (Photo Right) */}
+              <div className="group">
+                <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-12 items-center">
+                  <div className="w-full md:w-2/5 flex-shrink-0">
+                    <div className="aspect-[4/5] relative overflow-hidden rounded-2xl shadow-2xl">
+                      <Image
+                        src={t('team.members.hyun.image')}
+                        alt={t('team.members.hyun.name')}
+                        fill
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    </div>
+                  </div>
+                  <div className="flex-1 space-y-4">
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-light text-foreground tracking-wide">
+                        {t('team.members.hyun.name')}
+                      </h3>
+                      <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mt-2">
+                        {t('team.members.hyun.role')}
+                      </p>
+                    </div>
+                    <div className="w-12 h-px bg-border" />
+                    <p className="text-sm md:text-base text-muted-foreground leading-[1.8] whitespace-pre-line" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                      {t('team.members.hyun.bio')}
+                    </p>
+                    <blockquote className="text-sm md:text-base text-foreground/70 italic pt-4 border-l border-foreground/20 pl-6">
+                      {t('team.members.hyun.quote')}
+                    </blockquote>
+                  </div>
                 </div>
               </div>
 
-              {/* Becky Han - Concierge Ops */}
-              <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border">
-                <div className="aspect-[3/4] relative">
-                  <Image
-                    src={t('team.members.becky.image')}
-                    alt={t('team.members.becky.name')}
-                    fill
-                    className="object-cover object-top"
-                  />
+              {/* David Lee - Flight Ops (Photo Left) */}
+              <div className="group">
+                <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+                  <div className="w-full md:w-2/5 flex-shrink-0">
+                    <div className="aspect-[4/5] relative overflow-hidden rounded-2xl shadow-2xl">
+                      <Image
+                        src={t('team.members.david.image')}
+                        alt={t('team.members.david.name')}
+                        fill
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    </div>
+                  </div>
+                  <div className="flex-1 space-y-4">
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-light text-foreground tracking-wide">
+                        {t('team.members.david.name')}
+                      </h3>
+                      <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mt-2">
+                        {t('team.members.david.role')}
+                      </p>
+                    </div>
+                    <div className="w-12 h-px bg-border" />
+                    <p className="text-sm md:text-base text-muted-foreground leading-[1.8] whitespace-pre-line" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                      {t('team.members.david.bio')}
+                    </p>
+                    <blockquote className="text-sm md:text-base text-foreground/70 italic pt-4 border-l border-foreground/20 pl-6">
+                      {t('team.members.david.quote')}
+                    </blockquote>
+                  </div>
                 </div>
-                <div className="p-3 md:p-4">
-                  <h3 className="text-sm md:text-base font-medium text-foreground mb-0.5">
-                    {t('team.members.becky.name')}
-                  </h3>
-                  <p className="text-xs md:text-sm text-muted-foreground mb-2">
-                    {t('team.members.becky.role')}
-                  </p>
-                  <p className="text-xs text-muted-foreground leading-relaxed" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
-                    {t('team.members.becky.bio')}
-                  </p>
+              </div>
+
+              {/* Becky Han - Concierge Ops (Photo Right) */}
+              <div className="group">
+                <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-12 items-center">
+                  <div className="w-full md:w-2/5 flex-shrink-0">
+                    <div className="aspect-[4/5] relative overflow-hidden rounded-2xl shadow-2xl">
+                      <Image
+                        src={t('team.members.becky.image')}
+                        alt={t('team.members.becky.name')}
+                        fill
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    </div>
+                  </div>
+                  <div className="flex-1 space-y-4">
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-light text-foreground tracking-wide">
+                        {t('team.members.becky.name')}
+                      </h3>
+                      <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mt-2">
+                        {t('team.members.becky.role')}
+                      </p>
+                    </div>
+                    <div className="w-12 h-px bg-border" />
+                    <p className="text-sm md:text-base text-muted-foreground leading-[1.8] whitespace-pre-line" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                      {t('team.members.becky.bio')}
+                    </p>
+                    <blockquote className="text-sm md:text-base text-foreground/70 italic pt-4 border-l border-foreground/20 pl-6">
+                      {t('team.members.becky.quote')}
+                    </blockquote>
+                  </div>
                 </div>
               </div>
             </div>
