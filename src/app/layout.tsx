@@ -150,7 +150,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LocaleProvider>
-            {children}
+            <div className="overflow-x-clip w-full">
+              {children}
+            </div>
             <ScrollToTop />
           </LocaleProvider>
         </ThemeProvider>

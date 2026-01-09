@@ -6,6 +6,40 @@ const nextConfig: NextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/aircraft',
+        destination: '/charter#aircraft',
+        permanent: true,
+      },
+      {
+        source: '/supercar',
+        destination: '/charter#supercar',
+        permanent: true,
+      },
+      {
+        source: '/yacht',
+        destination: '/charter#yacht',
+        permanent: true,
+      },
+      {
+        source: '/evtol',
+        destination: '/charter#evtol',
+        permanent: true,
+      },
+      {
+        source: '/helicopter',
+        destination: '/charter',
+        permanent: true,
+      },
+      {
+        source: '/jets',
+        destination: '/charter#aircraft',
+        permanent: true,
+      },
+    ]
+  },
   images: {
     formats: ['image/webp', 'image/avif'],
     remotePatterns: [

@@ -107,7 +107,7 @@ export default function AboutPage() {
             <div className="flex flex-col gap-20 md:gap-24">
               {/* Min Shin - CEO (Photo Left) */}
               <div className="group">
-                <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+                <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
                   <div className="w-full md:w-2/5 flex-shrink-0">
                     <div className="aspect-[4/5] relative overflow-hidden rounded-2xl shadow-2xl">
                       <Image
@@ -141,7 +141,7 @@ export default function AboutPage() {
 
               {/* Hyun Lee - CRO (Photo Right) */}
               <div className="group">
-                <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-12 items-center">
+                <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-12 items-start">
                   <div className="w-full md:w-2/5 flex-shrink-0">
                     <div className="aspect-[4/5] relative overflow-hidden rounded-2xl shadow-2xl">
                       <Image
@@ -175,7 +175,7 @@ export default function AboutPage() {
 
               {/* David Lee - Flight Ops (Photo Left) */}
               <div className="group">
-                <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+                <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
                   <div className="w-full md:w-2/5 flex-shrink-0">
                     <div className="aspect-[4/5] relative overflow-hidden rounded-2xl shadow-2xl">
                       <Image
@@ -209,7 +209,7 @@ export default function AboutPage() {
 
               {/* Becky Han - Concierge Ops (Photo Right) */}
               <div className="group">
-                <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-12 items-center">
+                <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-12 items-start">
                   <div className="w-full md:w-2/5 flex-shrink-0">
                     <div className="aspect-[4/5] relative overflow-hidden rounded-2xl shadow-2xl">
                       <Image

@@ -1756,5 +1756,15 @@
         }
       }
     }
+  },
+  "charter": {
+    "title": "Luxury Charter Services",
+    "subtitle": "Experience premium travel by air, land, and sea with VONAER's world-class charter services",
+    "nav": {
+      "aircraft": "Aircraft",
+      "supercar": "Supercar",
+      "yacht": "Yacht",
+      "evtol": "eVTOL"
+    }
   }
 }

@@ -1,0 +1,300 @@
+'use client'
+
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { FloorPlanModal } from '@/components/floor-plan-modal'
+import { useTranslations } from 'next-intl'
+import {
+  Plane,
+  Users,
+  Gauge,
+  MapPin,
+  Clock,
+  ArrowRight,
+  Zap
+} from 'lucide-react'
+
+interface FloorPlan {
+  name: string
+  image: string
+}
+
+interface AircraftSectionProps {
+  onRequestQuote: (aircraftName: string) => void
+}
+
+export function AircraftSection({ onRequestQuote }: AircraftSectionProps) {
+  const [floorPlanModalOpen, setFloorPlanModalOpen] = useState(false)
+  const [selectedFloorPlans, setSelectedFloorPlans] = useState<FloorPlan[]>([])
+  const [selectedAircraftTitle, setSelectedAircraftTitle] = useState<string>('')
+  const t = useTranslations('aircraft')
+
+  const aircraftCategories = [
+    {
+      id: 'light-jet',
+      titleKey: 'categories.lightJet.title',
+      subtitleKey: 'categories.lightJet.subtitle',
+      descriptionKey: 'categories.lightJet.description',
+      icon: Plane,
+      mostPopular: false,
+      specs: {
+        passengers: '4-8',
+        range: '1,500-2,500 nm',
+        speed: '400-500 mph',
+        airports: '5,000+'
+      },
+      featuresKey: 'categories.lightJet.features',
+      image: '/jet/Light Jet 1.webp',
+      floorPlans: [
+        { name: 'Pilatus PC-24', image: '/jet/floorplan/pilatus pc 24.png' }
+      ]
+    },
+    {
+      id: 'mid-jet',
+      titleKey: 'categories.midJet.title',
+      subtitleKey: 'categories.midJet.subtitle',
+      descriptionKey: 'categories.midJet.description',
+      icon: Plane,
+      mostPopular: false,
+      specs: {
+        passengers: '6-10',
+        range: '2,000-3,500 nm',
+        speed: '450-550 mph',
+        airports: '3,500+'
+      },
+      featuresKey: 'categories.midJet.features',
+      image: '/jet/Mid Jet.jpg',
+      floorPlans: [
+        { name: 'Gulfstream 200', image: '/jet/floorplan/gulfstream200.png' }
+      ]
+    },
+    {
+      id: 'heavy-jet',
+      titleKey: 'categories.heavyJet.title',
+      subtitleKey: 'categories.heavyJet.subtitle',
+      descriptionKey: 'categories.heavyJet.description',
+      icon: Plane,
+      mostPopular: true,
+      specs: {
+        passengers: '8-16',
+        range: '3,500-7,000 nm',
+        speed: '500-600 mph',
+        airports: '3,000+'
+      },
+      featuresKey: 'categories.heavyJet.features',
+      image: '/jet/Heavy Jet 1.jpg',
+      floorPlans: [
+        { name: 'Global 5000', image: '/jet/floorplan/Global5000.png' },
+        { name: 'Gulfstream 450', image: '/jet/floorplan/gulfstream450.png' }
+      ]
+    },
+    {
+      id: 'ultra-long-haul',
+      titleKey: 'categories.ultraLongHaul.title',
+      subtitleKey: 'categories.ultraLongHaul.subtitle',
+      descriptionKey: 'categories.ultraLongHaul.description',
+      icon: Plane,
+      mostPopular: false,
+      specs: {
+        passengers: '10-19',
+        range: '6,000+ nm',
+        speed: '550-650 mph',
+        airports: '2,500+'
+      },
+      featuresKey: 'categories.ultraLongHaul.features',
+      image: '/jet/Ultra Long.jpg',
+      floorPlans: [
+        { name: 'Gulfstream 550', image: '/jet/floorplan/gulfstream550.png' },
+        { name: 'Gulfstream 700', image: '/jet/floorplan/gulfstream700.png' }
+      ]
+    },
+    {
+      id: 'vip-airline',
+      titleKey: 'categories.vipAirline.title',
+      subtitleKey: 'categories.vipAirline.subtitle',
+      descriptionKey: 'categories.vipAirline.description',
+      icon: Plane,
+      mostPopular: false,
+      specs: {
+        passengers: '1-4',
+        range: 'Global',
+        speed: '500-600 mph',
+        airports: 'Major hubs'
+      },
+      featuresKey: 'categories.vipAirline.features',
+      image: '/jet/boeing777x-hero-960x600.jpeg',
+      floorPlans: [
+        { name: 'BBJ', image: '/jet/floorplan/bbj.png' }
+      ]
+    },
+    {
+      id: 'helicopter',
+      titleKey: 'categories.helicopter.title',
+      subtitleKey: 'categories.helicopter.subtitle',
+      descriptionKey: 'categories.helicopter.description',
+      icon: Zap,
+      mostPopular: false,
+      specs: {
+        passengers: '2-8',
+        range: '200-400 nm',
+        speed: '120-180 mph',
+        airports: 'Helipads'
+      },
+      featuresKey: 'categories.helicopter.features',
+      image: '/jet/helicopter.png',
+      floorPlans: [
+        { name: 'H155', image: '/jet/floorplan/h155.png' }
+      ]
+    }
+  ]
+
+  const handleViewFloorPlans = (floorPlans: FloorPlan[], aircraftTitle: string) => {
+    setSelectedFloorPlans(floorPlans)
+    setSelectedAircraftTitle(aircraftTitle)
+    setFloorPlanModalOpen(true)
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-16">
+      {/* Section Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-center mb-16"
+      >
+        <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
+          {t('title')}
+        </h2>
+        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          {t('subtitle')}
+        </p>
+      </motion.div>
+
+      {/* Aircraft Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {aircraftCategories.map((aircraft, index) => (
+          <motion.div
+            key={aircraft.id}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: index * 0.1 }}
+            whileHover={{ y: -8 }}
+          >
+            <Card className="border shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+              {/* Aircraft Image */}
+              <div className="relative h-48 bg-muted/30 border-b overflow-hidden">
+                {aircraft.mostPopular && (
+                  <Badge className="absolute top-2 right-2 bg-white text-black font-semibold text-xs px-2 py-0.5 shadow-md shadow-black/20 z-10 border border-black/10">
+                    Most Popular
+                  </Badge>
+                )}
+                <Image
+                  src={aircraft.image}
+                  alt={t(aircraft.titleKey)}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+
+              <CardHeader>
+                <CardTitle className="text-xl font-bold text-foreground">
+                  {t(aircraft.titleKey)}
+                </CardTitle>
+              </CardHeader>
+
+              <CardContent className="space-y-6 flex-1 flex flex-col">
+                <p className="text-muted-foreground leading-relaxed" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                  {t(aircraft.descriptionKey)}
+                </p>
+
+                {/* Specifications */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Users className="h-4 w-4 text-muted-foreground" />
+                      <div>
+                        <p className="text-xs text-muted-foreground">{t('specs.passengers')}</p>
+                        <p className="text-sm font-medium text-foreground">{aircraft.specs.passengers}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4 text-muted-foreground" />
+                      <div>
+                        <p className="text-xs text-muted-foreground">{t('specs.range')}</p>
+                        <p className="text-sm font-medium text-foreground">{aircraft.specs.range}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Gauge className="h-4 w-4 text-muted-foreground" />
+                      <div>
+                        <p className="text-xs text-muted-foreground">{t('specs.speed')}</p>
+                        <p className="text-sm font-medium text-foreground">{aircraft.specs.speed}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-muted-foreground" />
+                      <div>
+                        <p className="text-xs text-muted-foreground">{t('specs.airports')}</p>
+                        <p className="text-sm font-medium text-foreground">{aircraft.specs.airports}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Features */}
+                <div className="space-y-2 flex-1" style={{ wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                  {[0, 1, 2, 3].map((featureIndex) => (
+                    <div key={featureIndex} className="flex items-center gap-3">
+                      <div className="flex-shrink-0 w-4 h-4 rounded-full border border-border bg-muted/50 flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground" />
+                      </div>
+                      <p className="text-sm text-muted-foreground">{t(`${aircraft.featuresKey}.${featureIndex}`)}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="space-y-3 mt-auto">
+                  {aircraft.floorPlans && aircraft.floorPlans.length > 0 && (
+                    <Button
+                      onClick={() => handleViewFloorPlans(aircraft.floorPlans, t(aircraft.titleKey))}
+                      variant="outline"
+                      className="w-full group"
+                    >
+                      View Cabin Layout
+                    </Button>
+                  )}
+                  <Button
+                    onClick={() => onRequestQuote(t(aircraft.titleKey))}
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 group"
+                  >
+                    {t('cta.requestQuote')}
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Floor Plan Modal */}
+      <FloorPlanModal
+        isOpen={floorPlanModalOpen}
+        onClose={() => setFloorPlanModalOpen(false)}
+        floorPlans={selectedFloorPlans}
+        aircraftTitle={selectedAircraftTitle}
+      />
+    </div>
+  )
+}
