@@ -25,6 +25,9 @@ export default function CharterPage() {
   // Section refs for scroll spy
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({})
 
+  // Valid section IDs
+  const sectionIds = ['aircraft', 'supercar', 'yacht', 'evtol']
+
   // Scroll spy using IntersectionObserver
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -39,7 +42,6 @@ export default function CharterPage() {
     )
 
     // Observe all sections
-    const sectionIds = ['aircraft', 'supercar', 'yacht', 'evtol']
     sectionIds.forEach((id) => {
       const element = document.getElementById(id)
       if (element) {
@@ -49,6 +51,32 @@ export default function CharterPage() {
     })
 
     return () => observer.disconnect()
+  }, [])
+
+  // Handle initial hash navigation (e.g., /charter#aircraft)
+  useEffect(() => {
+    const hash = window.location.hash.slice(1) // Remove '#'
+    if (hash && sectionIds.includes(hash)) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        const element = document.getElementById(hash)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    }
+  }, [])
+
+  // Handle hash changes while on page
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1)
+      if (hash && sectionIds.includes(hash)) {
+        scrollToSection(hash)
+      }
+    }
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
 
   // Smooth scroll to section

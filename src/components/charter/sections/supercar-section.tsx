@@ -36,7 +36,7 @@ export function SupercarSection({ onRequestQuote }: SupercarSectionProps) {
         className="text-center mb-16"
       >
         <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
-          {t('title')}
+          CHAUFFEURED CAR
         </h2>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
           {t('subtitle')}

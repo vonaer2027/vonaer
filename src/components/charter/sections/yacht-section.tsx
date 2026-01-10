@@ -31,7 +31,7 @@ export function YachtSection({ onRequestQuote }: YachtSectionProps) {
         className="text-center mb-16"
       >
         <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
-          {t('title')}
+          SUPER YACHT
         </h2>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
           {t('subtitle')}
