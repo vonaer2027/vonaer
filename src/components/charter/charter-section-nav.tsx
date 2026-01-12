@@ -8,9 +8,9 @@ interface CharteSectionNavProps {
   onSectionClick: (sectionId: string) => void
 }
 
-// Always English labels
+// Always English labels - concise for mobile fit
 const sections = [
-  { id: 'aircraft', label: 'JET & HELICOPTER' },
+  { id: 'aircraft', label: 'AIRCRAFT' },
   { id: 'supercar', label: 'CHAUFFEURED CAR' },
   { id: 'yacht', label: 'SUPER YACHT' },
   { id: 'evtol', label: 'eVTOL' }
@@ -25,8 +25,8 @@ export function CharterSectionNav({ activeSection, onSectionClick }: CharteSecti
       transition={{ duration: 0.3 }}
       className="sticky top-[56px] md:top-[72px] z-20 bg-background/95 backdrop-blur-sm border-b border-border"
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-center gap-2 py-3 overflow-x-auto scrollbar-hide">
+      <div className="container mx-auto px-2 sm:px-4">
+        <div className="flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3">
           {sections.map((section) => {
             const isActive = activeSection === section.id
 
@@ -35,7 +35,7 @@ export function CharterSectionNav({ activeSection, onSectionClick }: CharteSecti
                 key={section.id}
                 onClick={() => onSectionClick(section.id)}
                 className={cn(
-                  'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap',
+                  'px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-medium transition-all duration-300 whitespace-nowrap',
                   isActive
                     ? 'bg-primary text-primary-foreground shadow-md'
                     : 'bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground'

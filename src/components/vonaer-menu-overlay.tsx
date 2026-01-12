@@ -27,7 +27,7 @@ export function VonaerMenuOverlay({ isOpen, onClose }: VonaerMenuOverlayProps) {
 
   // Charter sub-items for dropdown (always English)
   const charterSubItems = useMemo(() => [
-    { id: 'aircraft', label: 'JET & HELICOPTER', href: '/charter#aircraft' },
+    { id: 'aircraft', label: 'AIRCRAFT', href: '/charter#aircraft' },
     { id: 'supercar', label: 'CHAUFFEURED CAR', href: '/charter#supercar' },
     { id: 'yacht', label: 'SUPER YACHT', href: '/charter#yacht' },
     { id: 'evtol', label: 'eVTOL', href: '/charter#evtol' }
