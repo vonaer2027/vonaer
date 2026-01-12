@@ -16,11 +16,9 @@ CREATE TABLE IF NOT EXISTS tiered_margin_settings (
 
 -- Insert default tiered margins (you can adjust these values)
 INSERT INTO tiered_margin_settings (min_price, max_price, margin_percentage, created_by) VALUES
-  (0, 10000, 30, 'system'),
-  (10000, 20000, 25, 'system'),
-  (20000, 40000, 15, 'system'),
-  (40000, 80000, 10, 'system'),
-  (80000, 999999999, 5, 'system');
+  (0, 30000, 25, 'system'),
+  (30000, 50000, 20, 'system'),
+  (50000, 999999999, 15, 'system');
 
 -- Enable RLS
 ALTER TABLE tiered_margin_settings ENABLE ROW LEVEL SECURITY;

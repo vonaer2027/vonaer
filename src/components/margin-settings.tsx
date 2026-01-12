@@ -44,22 +44,18 @@ export function MarginSettings() {
       } else {
         // Default tiers if none exist
         setTiers([
-          { id: '1', min_price: '0', max_price: '10000', margin_percentage: '30' },
-          { id: '2', min_price: '10000', max_price: '20000', margin_percentage: '25' },
-          { id: '3', min_price: '20000', max_price: '40000', margin_percentage: '15' },
-          { id: '4', min_price: '40000', max_price: '80000', margin_percentage: '10' },
-          { id: '5', min_price: '80000', max_price: '999999999', margin_percentage: '5' },
+          { id: '1', min_price: '0', max_price: '30000', margin_percentage: '25' },
+          { id: '2', min_price: '30000', max_price: '50000', margin_percentage: '20' },
+          { id: '3', min_price: '50000', max_price: '999999999', margin_percentage: '15' },
         ])
       }
     } catch (error) {
       console.error('Error loading tiered margins:', error)
       // Set default tiers on error
       setTiers([
-        { id: '1', min_price: '0', max_price: '10000', margin_percentage: '30' },
-        { id: '2', min_price: '10000', max_price: '20000', margin_percentage: '25' },
-        { id: '3', min_price: '20000', max_price: '40000', margin_percentage: '15' },
-        { id: '4', min_price: '40000', max_price: '80000', margin_percentage: '10' },
-        { id: '5', min_price: '80000', max_price: '999999999', margin_percentage: '5' },
+        { id: '1', min_price: '0', max_price: '30000', margin_percentage: '25' },
+        { id: '2', min_price: '30000', max_price: '50000', margin_percentage: '20' },
+        { id: '3', min_price: '50000', max_price: '999999999', margin_percentage: '15' },
       ])
     } finally {
       setLoadingTiers(false)
@@ -153,7 +149,7 @@ export function MarginSettings() {
   }
 
   // Example prices to demonstrate tiered pricing
-  const examplePrices = [5000, 15000, 30000, 60000, 100000]
+  const examplePrices = [10000, 25000, 40000, 60000, 100000]
 
   return (
     <motion.div
