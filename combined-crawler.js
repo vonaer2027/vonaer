@@ -392,7 +392,7 @@ class CombinedCrawler {
     }
 
     async uploadToSupabase() {
-        console.log('\n🚀 Starting unified Supabase upload...');
+        console.log('\n🚀 Starting unified Supabase upload with price update logic...');
 
         if (this.combinedFlights.length === 0) {
             console.log('⚠️  No flights to upload');
@@ -404,7 +404,7 @@ class CombinedCrawler {
             console.log('🔍 Getting all currently active flights from database...');
             const { data: activeFlights, error: fetchError } = await this.supabase
                 .from(config.tableName)
-                .select('flight_id, from_formatted, to_formatted, flight_date, source')
+                .select('id, flight_id, from_city, to_city, flight_date, price_numeric, source, created_at')
                 .eq('is_active', true);
 
             if (fetchError) {
@@ -416,40 +416,137 @@ class CombinedCrawler {
 
             // Transform data for Supabase
             const transformedFlights = this.combinedFlights.map(flight => this.transformForSupabase(flight));
-            const newFlightIds = transformedFlights.map(f => f.flight_id);
 
-            // Determine which flights to archive
-            // Only archive flights that are:
-            // 1. Not in current scrape AND
-            // 2. Have past flight dates (no longer valid)
+            // Check for route+date duplicates and update prices
+            console.log('\n💰 Checking for flights with updated prices and deactivating old duplicates...');
+            const priceUpdates = [];
+            const flightsToInsert = [];
+            const flightsToDeactivate = [];
+
+            for (const newFlight of transformedFlights) {
+                // Find ALL existing flights with same route, date, and source
+                const existingFlights = (activeFlights || []).filter(f =>
+                    f.from_city === newFlight.from_city &&
+                    f.to_city === newFlight.to_city &&
+                    f.flight_date === newFlight.flight_date &&
+                    f.source === newFlight.source
+                );
+
+                if (existingFlights.length > 0) {
+                    // Sort by created_at to find the oldest (first created)
+                    existingFlights.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+
+                    // Update the oldest flight with new price
+                    const primaryFlight = existingFlights[0];
+
+                    // Check if price has changed
+                    if (primaryFlight.price_numeric !== newFlight.price_numeric) {
+                        priceUpdates.push({
+                            id: primaryFlight.id,
+                            flight_id: primaryFlight.flight_id,
+                            route: `${newFlight.from_city} → ${newFlight.to_city}`,
+                            date: newFlight.flight_date,
+                            oldPrice: primaryFlight.price_numeric,
+                            newPrice: newFlight.price_numeric,
+                            newFlightData: newFlight
+                        });
+                        console.log(`   💸 Price change detected:`);
+                        console.log(`      Route: ${newFlight.from_city} → ${newFlight.to_city}`);
+                        console.log(`      Date: ${newFlight.flight_date}`);
+                        console.log(`      Old price: $${primaryFlight.price_numeric}`);
+                        console.log(`      New price: $${newFlight.price_numeric}`);
+                    } else {
+                        // Same price, just update last_seen_at
+                        await this.supabase
+                            .from(config.tableName)
+                            .update({ last_seen_at: new Date().toISOString() })
+                            .eq('id', primaryFlight.id);
+                    }
+
+                    // Deactivate all duplicate flights (keep only the oldest/primary one)
+                    if (existingFlights.length > 1) {
+                        const duplicates = existingFlights.slice(1); // All except the first one
+                        console.log(`   🔄 Found ${duplicates.length} duplicate(s) for ${newFlight.from_city} → ${newFlight.to_city} on ${newFlight.flight_date}`);
+                        for (const dup of duplicates) {
+                            flightsToDeactivate.push({
+                                id: dup.id,
+                                flight_id: dup.flight_id,
+                                route: `${newFlight.from_city} → ${newFlight.to_city}`,
+                                price: dup.price_numeric
+                            });
+                            console.log(`      ⛔ Deactivating duplicate flight ID ${dup.id} (price: $${dup.price_numeric})`);
+                        }
+                    }
+                } else {
+                    // New flight
+                    flightsToInsert.push(newFlight);
+                }
+            }
+
+            // Deactivate duplicate flights
+            if (flightsToDeactivate.length > 0) {
+                console.log(`\n🚫 Deactivating ${flightsToDeactivate.length} duplicate flights...`);
+                const { error: deactivateError } = await this.supabase
+                    .from(config.tableName)
+                    .update({
+                        is_active: false,
+                        archived_at: new Date().toISOString()
+                    })
+                    .in('id', flightsToDeactivate.map(f => f.id));
+
+                if (deactivateError) {
+                    console.error('❌ Error deactivating duplicate flights:', deactivateError);
+                } else {
+                    console.log(`✅ Successfully deactivated ${flightsToDeactivate.length} duplicate flights`);
+                }
+            }
+
+            // Update flights with new prices
+            if (priceUpdates.length > 0) {
+                console.log(`\n🔄 Updating ${priceUpdates.length} flights with new prices...`);
+                for (const update of priceUpdates) {
+                    const { error: updateError } = await this.supabase
+                        .from(config.tableName)
+                        .update({
+                            price: update.newFlightData.price,
+                            price_numeric: update.newFlightData.price_numeric,
+                            last_seen_at: new Date().toISOString(),
+                            // Also update other fields that might have changed
+                            raw_text: update.newFlightData.raw_text,
+                            aircraft: update.newFlightData.aircraft,
+                            seats: update.newFlightData.seats,
+                            image_urls: update.newFlightData.image_urls
+                        })
+                        .eq('id', update.id);
+
+                    if (updateError) {
+                        console.error(`❌ Error updating flight ${update.flight_id}:`, updateError);
+                    } else {
+                        console.log(`   ✅ Updated ${update.route} on ${update.date}: $${update.oldPrice} → $${update.newPrice}`);
+                    }
+                }
+            }
+
+            // Archive old flights (not in current scrape and past date)
             const today = new Date().toISOString().split('T')[0];
-            const activeFlightIds = activeFlights?.map(f => f.flight_id) || [];
+            const newFlightKeys = transformedFlights.map(f =>
+                `${f.from_city}_${f.to_city}_${f.flight_date}_${f.source}`
+            );
+
             const flightsToArchive = (activeFlights || [])
                 .filter(flight => {
-                    const notInCurrentScrape = !newFlightIds.includes(flight.flight_id);
+                    const key = `${flight.from_city}_${flight.to_city}_${flight.flight_date}_${flight.source}`;
+                    const notInCurrentScrape = !newFlightKeys.includes(key);
                     const isPastDate = flight.flight_date && flight.flight_date < today;
                     return notInCurrentScrape && isPastDate;
-                })
-                .map(f => f.flight_id);
+                });
 
-            // Determine which flights are new vs existing
-            const existingFlightIds = activeFlightIds.filter(id => newFlightIds.includes(id));
-            const newFlights = transformedFlights.filter(f => !existingFlightIds.includes(f.flight_id));
-
-            console.log(`📊 Upload Summary:`);
-            console.log(`   Total flights to upload: ${transformedFlights.length}`);
-            console.log(`   Active flights in DB: ${activeFlights?.length || 0}`);
-            console.log(`   Flights to archive: ${flightsToArchive.length}`);
-            console.log(`   Existing flights to update: ${existingFlightIds.length}`);
-            console.log(`   New flights to insert: ${newFlights.length}\n`);
-
-            // Archive old flights
             if (flightsToArchive.length > 0) {
-                console.log(`📦 Archiving ${flightsToArchive.length} flights that are no longer available...`);
+                console.log(`\n📦 Archiving ${flightsToArchive.length} flights that are no longer available...`);
                 const { error: archiveError } = await this.supabase
                     .from(config.tableName)
                     .update({ is_active: false, archived_at: new Date().toISOString() })
-                    .in('flight_id', flightsToArchive);
+                    .in('id', flightsToArchive.map(f => f.id));
 
                 if (archiveError) {
                     console.error('❌ Error archiving flights:', archiveError);
@@ -458,41 +555,31 @@ class CombinedCrawler {
                 }
             }
 
-            // Update existing flights
-            if (existingFlightIds.length > 0) {
-                console.log(`🔄 Updating ${existingFlightIds.length} existing flights...`);
-                for (const flight of transformedFlights.filter(f => existingFlightIds.includes(f.flight_id))) {
-                    const { error: updateError } = await this.supabase
-                        .from(config.tableName)
-                        .update({ last_seen_at: new Date().toISOString() })
-                        .eq('flight_id', flight.flight_id);
+            // Insert new flights
+            if (flightsToInsert.length > 0) {
+                console.log(`\n📤 Inserting ${flightsToInsert.length} new flights...`);
+                const batchSize = 10;
+                for (let i = 0; i < flightsToInsert.length; i += batchSize) {
+                    const batch = flightsToInsert.slice(i, i + batchSize);
+                    console.log(`   Inserting batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(flightsToInsert.length / batchSize)}...`);
 
-                    if (updateError) {
-                        console.error(`❌ Error updating flight ${flight.flight_id}:`, updateError);
+                    const { error: insertError } = await this.supabase
+                        .from(config.tableName)
+                        .insert(batch);
+
+                    if (insertError) {
+                        console.error(`❌ Error inserting batch:`, insertError);
+                    } else {
+                        console.log(`   ✅ Successfully inserted ${batch.length} flights`);
                     }
                 }
-                console.log(`✅ Successfully updated ${existingFlightIds.length} flights`);
             }
 
-            // Upsert all flights (insert or update if exists)
-            // Using upsert ensures deterministic IDs prevent duplicates
-            console.log(`📤 Upserting ${transformedFlights.length} flights...`);
-            const batchSize = 10;
-            for (let i = 0; i < transformedFlights.length; i += batchSize) {
-                const batch = transformedFlights.slice(i, i + batchSize);
-                console.log(`   Upserting batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(transformedFlights.length / batchSize)}...`);
-
-                const { error: upsertError } = await this.supabase
-                    .from(config.tableName)
-                    .upsert(batch, { onConflict: 'flight_id' });
-
-                if (upsertError) {
-                    console.error(`❌ Error upserting batch:`, upsertError);
-                } else {
-                    console.log(`   ✅ Successfully upserted ${batch.length} flights`);
-                }
-            }
-
+            console.log('\n📊 Upload Summary:');
+            console.log(`   Price updates: ${priceUpdates.length}`);
+            console.log(`   Duplicates deactivated: ${flightsToDeactivate.length}`);
+            console.log(`   New flights: ${flightsToInsert.length}`);
+            console.log(`   Archived flights: ${flightsToArchive.length}`);
             console.log('\n✅ Supabase upload completed successfully!');
 
         } catch (error) {
