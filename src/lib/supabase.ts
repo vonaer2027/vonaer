@@ -622,6 +622,44 @@ export const bookingRequestService = {
     }
     
     console.log('Google Chat notification sent successfully')
+  }, 
+  
+  async sendToGoogleSheets(bookingRequest: BookingRequest, flightDetails: any) {
+    const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+    if (!webhookUrl) {
+      console.warn('Google Sheets webhook URL not configured');
+      return;
+    }
+
+    let price = '';
+    if (flightDetails) {
+      if (flightDetails.custom_price !== null && flightDetails.custom_price !== undefined) {
+        price = `$${flightDetails.custom_price.toLocaleString()}`;
+      } else if (flightDetails.price) {
+        price = flightDetails.price;
+      } else if (flightDetails.price_numeric) {
+        price = `$${flightDetails.price_numeric.toLocaleString()}`;
+      }
+    }
+
+    try {
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: bookingRequest.customer_name,
+          phone: bookingRequest.customer_phone,
+          email: bookingRequest.customer_email || '',
+          departure: flightDetails?.from_city || '',
+          destination: flightDetails?.to_city || '',
+          date: flightDetails?.flight_date ? new Date(flightDetails.flight_date).toLocaleDateString('ko-KR') : '',
+          passengers: flightDetails?.seats || '',
+          price: price,
+        }),
+      });
+    } catch (error) {
+      console.error('Google Sheets logging failed:', error);
+    }
   },
 
   async testGoogleChatWebhook() {
