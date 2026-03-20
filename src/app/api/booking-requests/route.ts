@@ -82,7 +82,12 @@ export async function POST(request: NextRequest) {
       console.error('Failed to send Google Chat notification:', notificationError)
       // Continue despite notification failure
     }
-
+// Send to Google Sheets (don't fail if this errors)
+    try {
+      await sendToGoogleSheets(data, bookingData.flight_id, supabase)
+    } catch (sheetsError) {
+      console.error('Failed to send to Google Sheets:', sheetsError)
+    }
     return NextResponse.json(data)
   } catch (error) {
     console.error('Error creating booking request:', error)
@@ -164,4 +169,46 @@ async function sendGoogleChatNotification(
   }
 
   console.log('Google Chat notification sent successfully')
+}
+
+// Helper function to send booking data to Google Sheets
+async function sendToGoogleSheets(
+  bookingRequest: any,
+  flightId: string,
+  supabase: ReturnType<typeof getAdminSupabaseClient>
+) {
+  const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL
+  if (!webhookUrl) return
+
+  const { data: flight } = await supabase
+    .from('flights')
+    .select('*')
+    .eq('flight_id', flightId)
+    .single()
+
+  let price = ''
+  if (flight) {
+    if (flight.custom_price !== null && flight.custom_price !== undefined) {
+      price = `$${flight.custom_price.toLocaleString()}`
+    } else if (flight.price) {
+      price = flight.price
+    } else if (flight.price_numeric) {
+      price = `$${flight.price_numeric.toLocaleString()}`
+    }
+  }
+
+  await fetch(webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: bookingRequest.customer_name,
+      phone: bookingRequest.customer_phone,
+      email: bookingRequest.customer_email || '',
+      departure: flight?.from_city || '',
+      destination: flight?.to_city || '',
+      date: flight?.flight_date ? new Date(flight.flight_date).toLocaleDateString('ko-KR') : '',
+      passengers: flight?.seats || '',
+      price: price,
+    }),
+  })
 }
