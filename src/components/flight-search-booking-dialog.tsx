@@ -403,7 +403,7 @@ async function sendFlightSearchRequestToGoogleChat({
 
   // Send to Google Sheets
   try {
-    const sheetsWebhookUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK_URL
+    const sheetsWebhookUrl = 'https://script.google.com/macros/s/AKfycbwjXDwaA_C8HCk4-nJIhfEwnAZD0a7a6nQDilZLJzWZxRhEi7MMdToM70JENRoSy8JgvA/exec'
     if (sheetsWebhookUrl) {
       await fetch(sheetsWebhookUrl, {
         method: 'POST',
