@@ -402,4 +402,28 @@ async function sendFlightSearchRequestToGoogleChat({
   console.log('Google Chat notification sent successfully')
 }
 
+// Send to Google Sheets
+  try {
+    const sheetsWebhookUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK_URL
+    if (sheetsWebhookUrl) {
+      await fetch(sheetsWebhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'charter',
+          name: customerData.customerName,
+          phone: `${customerData.customerCountryCode} ${customerData.customerPhone}`,
+          email: customerData.customerEmail || '',
+          departure: flightData.fromLocation,
+          destination: flightData.toLocation,
+          date: flightData.departDate ? flightData.departDate.toLocaleDateString('ko-KR') : '',
+          returnDate: flightData.returnDate ? flightData.returnDate.toLocaleDateString('ko-KR') : '',
+          passengers: flightData.passengers,
+          tripType: flightData.tripType === 'one-way' ? '편도' : '왕복',
+        }),
+      })
+    }
+  } catch (sheetsError) {
+    console.error('Google Sheets logging failed:', sheetsError)
+  }
 
