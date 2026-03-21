@@ -84,9 +84,12 @@ export async function POST(request: NextRequest) {
     }
 // Send to Google Sheets (don't fail if this errors)
     try {
+      console.log('=== SHEETS DEBUG: Starting sendToGoogleSheets ===')
+      console.log('=== SHEETS DEBUG: WEBHOOK URL:', process.env.GOOGLE_SHEETS_WEBHOOK_URL ? 'EXISTS' : 'MISSING')
       await sendToGoogleSheets(data, bookingData.flight_id, supabase)
+      console.log('=== SHEETS DEBUG: sendToGoogleSheets completed ===')
     } catch (sheetsError) {
-      console.error('Failed to send to Google Sheets:', sheetsError)
+      console.error('=== SHEETS DEBUG: FAILED:', sheetsError)
     }
     return NextResponse.json(data)
   } catch (error) {
