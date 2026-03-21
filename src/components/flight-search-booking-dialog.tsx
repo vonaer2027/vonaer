@@ -400,9 +400,8 @@ async function sendFlightSearchRequestToGoogleChat({
   }
   
   console.log('Google Chat notification sent successfully')
-}
 
-// Send to Google Sheets
+  // Send to Google Sheets
   try {
     const sheetsWebhookUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK_URL
     if (sheetsWebhookUrl) {
@@ -426,4 +425,4 @@ async function sendFlightSearchRequestToGoogleChat({
   } catch (sheetsError) {
     console.error('Google Sheets logging failed:', sheetsError)
   }
-
+}
