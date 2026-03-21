@@ -204,6 +204,7 @@ async function sendToGoogleSheets(
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      type: 'empty_leg',
       name: bookingRequest.customer_name,
       phone: bookingRequest.customer_phone,
       email: bookingRequest.customer_email || '',
