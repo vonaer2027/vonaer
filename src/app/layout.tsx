@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Noto_Sans_KR } from "next/font/google";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LocaleProvider } from "@/components/locale-provider";
@@ -158,6 +159,7 @@ export default function RootLayout({
           </LocaleProvider>
           <Analytics />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
